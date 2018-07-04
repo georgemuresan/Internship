@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">SleepBetter</string>
+    <string name="introductionTitle">INTRODUCTION</string>
+    <string name="welcomeTitle">Welcome to.... Here....</string>
+    <string name="startButton">START</string>
+    <string name="permission">Permission to run in the background</string>
+    <string name="yourName">Your name...</string>
+    <string name="linkBitmoji">Link your Bitmoji!</string>
+
+    <string name="questionnaireTitle">QUESTIONNAIRE</string>
+    <string name="some_explanation_about_the_input">description</string>
+    <string name="questionnaireHelp">First, how would you rate the following aspects of your everyday life?</string>
+    <string name="nocturnalTitle">Nocturnal Effects</string>
+    <string name="timesWakingUp">How many times do you wake up per night?</string>
+    <string name="desc">desc</string>
+
+</resources>
