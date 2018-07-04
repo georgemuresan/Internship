@@ -8,10 +8,30 @@
     <string name="linkBitmoji">Link your Bitmoji!</string>
 
     <string name="questionnaireTitle">QUESTIONNAIRE</string>
-    <string name="some_explanation_about_the_input">description</string>
     <string name="questionnaireHelp">First, how would you rate the following aspects of your everyday life?</string>
     <string name="nocturnalTitle">Nocturnal Effects</string>
     <string name="timesWakingUp">How many times do you wake up per night?</string>
-    <string name="desc">desc</string>
+    <string name="nightTerrorUsually">How often do you have night terrors?</string>
+    <string name="fallAsleepUsually">How easily do you usually fall asleep?</string>
+    <string name="wakeUpUsually">How easily do you usually wake up?</string>
+    <string name="freshUsually">How fresh do you usually feel after you wake up?</string>
+    <string name="diurnalEffects">Diurnal Effects</string>
+
+    <string name="happyUsually">How happy do you usually feel during the day?</string>
+    <string name="sadUsually">How sad do you usually feel during the day?</string>
+    <string name="sleepyUsually">How sleepy do you usually feel during the day?</string>
+    <string name="tiredUsually">How tired do you usually feel during the day?</string>
+    <string name="stressUsually">How stressed do you usually feel during the day?</string>
+    <string name="irritableUsually">How irritable do you usually feel during the day?</string>
+    <string name="concentrateUsually">How hard is for you to concentrate during the day?</string>
+    <string name="coordinateUsually">How hard is for you to coordinate your activities during the day?</string>
+    <string name="apetiteUsually">How would you usually rate your appetite during the day?</string>
+
+
+
+
+
+    <string name="some_explanation_about_the_input">description</string>
+    <string name="desc">Description</string>
 
 </resources>
