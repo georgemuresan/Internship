@@ -17,7 +17,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".SecondPage" />
-        <activity android:name=".ThirdPage"></activity>
+        <activity android:name=".ThirdPage" />
+        <activity
+            android:name=".MainMenu"
+            android:label="@string/title_activity_main_menu"></activity>
     </application>
 
 </manifest>

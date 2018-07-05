@@ -29,7 +29,8 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/topView"
         app:layout_constraintStart_toStartOf="@+id/topView"
-        app:layout_constraintTop_toTopOf="@+id/topView" />
+        app:layout_constraintTop_toTopOf="@+id/topView"
+        tools:ignore="RtlHardcoded" />
 
     <ImageView
         android:id="@+id/logoPlace"
@@ -43,7 +44,8 @@
         app:layout_constraintBottom_toBottomOf="@+id/topView"
         app:layout_constraintEnd_toEndOf="@+id/topView"
         app:layout_constraintTop_toTopOf="@+id/topView"
-        app:srcCompat="@android:color/holo_blue_dark" />
+        app:srcCompat="@android:color/holo_blue_dark"
+        tools:ignore="RtlHardcoded" />
 
     <EditText
         android:id="@+id/questionnaireUsuallyIntro"
