@@ -32,6 +32,12 @@
     <string name="pleaseInputGoal">Please input either a goal, a wish, or any note. You can return to this section later.</string>
     <string name="goalInput">Goal Diary input...</string>
 
+
+    <string name="main">MAIN</string>
+
+
+
+
     <string name="some_explanation_about_the_input">description</string>
     <string name="desc">Description</string>
     <string name="title_activity_main_page">MainPage</string>
