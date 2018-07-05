@@ -27,9 +27,10 @@
     <string name="coordinateUsually">How hard is for you to coordinate your activities during the day?</string>
     <string name="apetiteUsually">How would you usually rate your appetite during the day?</string>
 
-
-
-
+    <string name="goalDiaryTitle">GOAL DIARY</string>
+    <string name="greatText">GREAT! Here is your current avatar, reflecting your current state:</string>
+    <string name="pleaseInputGoal">Please input either a goal, a wish, or any note. You can return to this section later.</string>
+    <string name="goalInput">Goal Diary input...</string>
 
     <string name="some_explanation_about_the_input">description</string>
     <string name="desc">Description</string>
