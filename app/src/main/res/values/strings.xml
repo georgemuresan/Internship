@@ -57,6 +57,115 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
+    <string name="factorsTitle">FACTORS</string>
+    <string name="factorsIntroduction">These are the next factors that impact your sleep hygiene. The checked ones are the ones you chose as targeted factors.</string>
+    <string name="sleepSettings">SLEEP SETTINGS</string>
+    <string name="lightCheck">Light</string>
+    <string name="temperatureCheck">Temperature</string>
+    <string name="noiseCheck">Noise</string>
+    <string name="drugEffects">DRUG EFFECTS</string>
+    <string name="nicotineCheck">Nicotine</string>
+    <string name="alcoholCheck">Alcohol</string>
+    <string name="homeostaticDrive">HOMEOSTATIC DRIVE</string>
+    <string name="daytimeNapsCheck">Daytime naps</string>
+    <string name="circadianRythms">CIRCADIAN RYTHMS</string>
+    <string name="sleepingScheduleCheck">Sleep schedule</string>
+    <string name="caffeineCheck">Caffeine</string>
+
+
+    <string name="sleepSettingsTitle">Sleep Settings</string>
+    <string name="lightIntro">Here you can mark which experiments you wish to undertake in terms of the LIGHT factor. You can also choose your own personalised behavior by clicking on PERSONALISED and having access to information.</string>
+    <string name="lightTitle">LIGHT</string>
+    <string name="firstLight">Increase bright light exposure during the day</string>
+    <string name="secondLight">Stop watching the TV/computer with 2 hours before sleep</string>
+    <string name="thirdLight">Turn off bright lights 2 hours before going to bed.</string>
+    <string name="fourthLight">Wear glasses that block blue light during the night.</string>
+    <string name="personalised">PERSONALISED</string>
+    <string name="personalisedText">You currently have no personalised plan for this factor.</string>
+
+    <string name="lightPersTitle">LIGHT - PERSONALISED PLAN</string>
+    <string name="PersIntro">Here you can create your own personalised plan based on your own wishes ad desires. In case you need help, below you ca find the CHATBOT - a robot that will help you with any enquieries you have regarding this factor. We highly encourage using this!</string>
+    <string name="PersPlease">Please input your personalised plan:</string>
+    <string name="chatbotTitle">CHATBOT</string>
+    <string name="persInputLight"> </string>
+
+    <string name="temperatureIntro">Here you can mark which experiments you wish to undertake in terms of the TEMPERATURE factor. You can also choose your own personalised behavior by clicking on PERSONALISED and having access to information.</string>
+    <string name="temperatureTitle">TEMPERATURE</string>
+    <string name="firstTemperature">If it is too hot, take a cold shower before going to bed</string>
+    <string name="secondTemperature">If it is too hot, wear a thin bed sheet</string>
+    <string name="thirdTemperature">If it is too cold, wear socks at night</string>
+    <string name="fourthTemperature">Keep the temperature between 65 and 75 Fahrenheit</string>
+
+    <string name="temperaturePersTitle">TEMPERATURE - PERSONALISED PLAN</string>
+    <string name="persInputTemperature"> </string>
+
+    <string name="noiseIntro">Here you can mark which experiments you wish to undertake in terms of the NOISE factor. You can also choose your own personalised behavior by clicking on PERSONALISED and having access to information.</string>
+    <string name="noiseTitle">NOISE</string>
+    <string name="firstNoise">Wear soft flexible earplugs  that are rated at no higher than 32 decibels</string>
+    <string name="secondNoise">Use carpets, floor coverings and curtains to block noise from outside</string>
+    <string name="thirdNoise">White noise</string>
+
+    <string name="noisePersTitle">NOISE - PERSONALISED PLAN</string>
+    <string name="persInputNoise"> </string>
+
+    <string name="drugEffectsTitle">Drug Effects</string>
+
+
+
+
+    <string name="caffeineIntro">Here you can mark which experiments you wish to undertake in terms of the CAFFEINE factor. You can also choose your own personalised behavior by clicking on PERSONALISED and having access to information.</string>
+    <string name="caffeineTitle">CAFFEINE</string>
+    <string name="firstCaffeine">Do not drink caffeine within 6 hours before sleep</string>
+    <string name="secondCaffeine">Limit yourself to 4 cups of coffees per day; 10 cans of coke/fanta; 2 energy drinks</string>
+    <string name="thirdCaffeine">Do not drink caffeine on empty stomach</string>
+
+    <string name="caffeinePersTitle">CAFFEINE - PERSONALISED PLAN</string>
+    <string name="persInputCaffeine"> </string>
+
+    <string name="nicotineIntro">Here you can mark which experiments you wish to undertake in terms of the NICOTINE factor. You can also choose your own personalised behavior by clicking on PERSONALISED and having access to information.</string>
+    <string name="nicotineTitle">NICOTINE</string>
+    <string name="firstNicotine">Do not smoke anytime close to bedtime</string>
+
+    <string name="nicotinePersTitle">NICOTINE - PERSONALISED PLAN</string>
+    <string name="persInputNicotine"> </string>
+
+    <string name="alcoholIntro">Here you can mark which experiments you wish to undertake in terms of the ALCOHOL factor. You can also choose your own personalised behavior by clicking on PERSONALISED and having access to information.</string>
+    <string name="alcoholTitle">ALCOHOL</string>
+    <string name="firstAlcohol">Allow between 3 to 4 hours of no drinking before going to sleep.</string>
+    <string name="secondAlcohol">Drink less bubbly alcohol</string>
+    <string name="thirdAlcohol">Drink alcohol with food, but not on empty stomach</string>
+    <string name="fourthAlcohol">For every glass of alcohol, drink 2 cups of water</string>
+
+    <string name="alcoholPersTitle">ALCOHOL - PERSONALISED PLAN</string>
+    <string name="persInputAlcohol"> </string>
+
+
+    <string name="homeostaticDriveTitle">Homeostatic Drive</string>
+
+    <string name="napsIntro">Here you can mark which experiments you wish to undertake in terms of the DAYTIME NAPS factor. You can also choose your own personalised behavior by clicking on PERSONALISED and having access to information.</string>
+    <string name="napsTitle">DAYTIME NAPS</string>
+    <string name="firstNaps">When taking naps, take 20/30-minute ones</string>
+    <string name="secondNaps">Do not take naps too early in the day, neither too late</string>
+
+    <string name="napsPersTitle">DAYTIME NAPS - PERSONALISED PLAN</string>
+    <string name="persInputNaps"> </string>
+
+
+
+
+    <string name="circadianRythmsTitle">Circadian Rythms</string>
+
+    <string name="scheduleIntro">Here you can mark which experiments you wish to undertake in terms of the SLEEP SCHEDULE factor. You can also choose your own personalised behavior by clicking on PERSONALISED and having access to information.</string>
+    <string name="scheduleTitle">SLEEP SCHEDULE</string>
+    <string name="firstSchedule">Usually get up at the same time everyday, even on weekends/vacatins</string>
+    <string name="secondSchedule">Sleep no less than 7 hours per night</string>
+    <string name="thirdSchedule">Do not go to bed unless you are tired. If you are not, relax with a bath/by reading a book before bed</string>
+
+    <string name="schedulePersTitle">SLEEP SCHEDULE - PERSONALISED PLAN</string>
+    <string name="persInputSchedule"> </string>
+
+
+
 
     <string name="factorsMenu">Factors</string>
     <string name="data">Data</string>

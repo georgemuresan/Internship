@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:id="@+id/ScrollViewQuestionnaire"
+            style="@android:style/Widget.Material.ScrollView"
+            android:layout_width="379dp"
+            android:layout_height="395dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:fillViewport="true"
+            android:scrollbarStyle="insideOverlay"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.454"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/topView"
+            app:layout_constraintVertical_bias="1.0"
+            tools:targetApi="lollipop">
+
+            <FrameLayout
+                android:id="@+id/FrameForScrollView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/ScrollViewQuestionnaire"
+                app:layout_constraintStart_toStartOf="@+id/ScrollViewQuestionnaire"
+                app:layout_constraintTop_toTopOf="@+id/ScrollViewQuestionnaire">
+
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="384dp">
+
+
+                    <EditText
+                        android:id="@+id/lightTitle"
+                        android:layout_width="360dp"
+                        android:layout_height="wrap_content"
+                        android:clickable="false"
+                        android:cursorVisible="false"
+                        android:ems="10"
+                        android:focusable="false"
+                        android:focusableInTouchMode="false"
+                        android:hint="@string/some_explanation_about_the_input"
+                        android:inputType="textPersonName"
+                        android:text="@string/caffeineTitle"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:layout_editor_absoluteX="1dp" />
+
+                    <CheckBox
+                        android:id="@+id/firstLightCheckbox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="10dp"
+                        android:onClick="doSomething"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.019"
+                        app:layout_constraintStart_toStartOf="parent"
+                        tools:layout_editor_absoluteY="55dp" />
+
+                    <TextView
+                        android:id="@+id/firstLightOption"
+                        android:layout_width="309dp"
+                        android:layout_height="19dp"
+                        android:background="@android:color/transparent"
+                        android:clickable="false"
+                        android:ems="10"
+                        android:focusable="false"
+                        android:focusableInTouchMode="false"
+                        android:hint="@string/some_explanation_about_the_input"
+                        android:inputType=""
+                        android:text="@string/firstCaffeine"
+                        android:textColor="@android:color/black"
+                        tools:layout_editor_absoluteX="52dp"
+                        tools:layout_editor_absoluteY="55dp" />
+
+                    <CheckBox
+                        android:id="@+id/secondLightCheckbox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="10dp"
+                        android:onClick="doSomething"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.019"
+                        app:layout_constraintStart_toStartOf="parent"
+                        tools:layout_editor_absoluteY="94dp" />
+
+                    <TextView
+                        android:id="@+id/secondLightOption"
+                        android:layout_width="314dp"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:clickable="false"
+                        android:ems="10"
+                        android:focusable="false"
+                        android:focusableInTouchMode="false"
+                        android:hint="@string/some_explanation_about_the_input"
+                        android:inputType=""
+                        android:text="@string/secondCaffeine"
+                        android:textColor="@android:color/black"
+                        tools:layout_editor_absoluteX="52dp"
+                        tools:layout_editor_absoluteY="86dp" />
+
+                    <CheckBox
+                        android:id="@+id/thirdLightCheckbox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="10dp"
+                        android:onClick="doSomething"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.019"
+                        app:layout_constraintStart_toStartOf="parent"
+                        tools:layout_editor_absoluteY="139dp" />
+
+                    <TextView
+                        android:id="@+id/thirdLightOption"
+                        android:layout_width="295dp"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:clickable="false"
+                        android:ems="10"
+                        android:focusable="false"
+                        android:focusableInTouchMode="false"
+                        android:hint="@string/some_explanation_about_the_input"
+                        android:inputType=""
+                        android:text="@string/thirdCaffeine"
+                        android:textColor="@android:color/black"
+                        tools:layout_editor_absoluteX="52dp"
+                        tools:layout_editor_absoluteY="139dp" />
+
+
+                    <CheckBox
+                        android:id="@+id/personalisedCheckbox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="10dp"
+                        android:onClick="doSomething"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.019"
+                        app:layout_constraintStart_toStartOf="parent"
+                        tools:layout_editor_absoluteY="182dp" />
+
+                    <TextView
+                        android:id="@+id/personalisedOption"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/personalised"
+                        android:textColor="@android:color/black"
+                        tools:layout_editor_absoluteX="48dp"
+                        tools:layout_editor_absoluteY="183dp" />
+
+                    <EditText
+                        android:id="@+id/personallisedTExt"
+                        android:layout_width="327dp"
+                        android:layout_height="75dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        android:background="@drawable/text_input_border"
+                        android:hint="@string/some_explanation_about_the_input"
+                        android:inputType=""
+                        android:text="@string/personalisedText"
+                        android:textSize="14sp"
+                        android:textStyle="italic"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        tools:layout_editor_absoluteY="223dp" />
+
+                </android.support.constraint.ConstraintLayout>
+            </FrameLayout>
+        </ScrollView>
+
+        <View
+            android:id="@+id/topView"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="0dp"
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:background="@color/LightSteelBlue" />
+
+        <TextView
+            android:id="@+id/factorsTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="@string/drugEffectsTitle"
+            android:textAllCaps="false"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/topView"
+            app:layout_constraintStart_toStartOf="@+id/topView"
+            app:layout_constraintTop_toTopOf="@+id/topView"
+            app:layout_constraintVertical_bias="0.72" />
+
+        <TextView
+            android:id="@+id/factorsTitle2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="@string/factorsTitle"
+            android:textAllCaps="false"
+            android:textColor="@android:color/black"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/topView"
+            app:layout_constraintStart_toStartOf="@+id/topView"
+            app:layout_constraintTop_toTopOf="@+id/topView"
+            app:layout_constraintVertical_bias="0.205" />
+
+        <ImageView
+            android:id="@+id/logoPlace"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_marginEnd="16dp"
+            android:contentDescription="@string/desc"
+            app:layout_constraintBottom_toBottomOf="@+id/topView"
+            app:layout_constraintEnd_toEndOf="@+id/topView"
+            app:layout_constraintTop_toTopOf="@+id/topView"
+            app:layout_constraintVertical_bias="0.533"
+            app:srcCompat="@android:color/holo_blue_dark" />
+
+        <TextView
+            android:id="@+id/lightIntro"
+            android:layout_width="362dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/caffeineIntro"
+            android:textColor="@android:color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/topView" />
+
+    </android.support.constraint.ConstraintLayout>
+
+</RelativeLayout>

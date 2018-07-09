@@ -94,10 +94,6 @@ public class MainMenu extends AppCompatActivity
             fragmentManager.beginTransaction().replace(R.id.content_frame, new Questionnaire()).commit();
         } else if (id == R.id.nav_help) {
             fragmentManager.beginTransaction().replace(R.id.content_frame, new Help()).commit();
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
