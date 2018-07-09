@@ -52,7 +52,6 @@
                         android:id="@+id/lightTitle"
                         android:layout_width="360dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="180dp"
                         android:clickable="false"
                         android:cursorVisible="false"
                         android:ems="10"
@@ -60,34 +59,143 @@
                         android:focusableInTouchMode="false"
                         android:hint="@string/some_explanation_about_the_input"
                         android:inputType="textPersonName"
-                        android:text="@string/chatbotTitle"
+                        android:text="@string/lightTitle"
                         app:layout_constraintTop_toTopOf="parent"
                         tools:layout_editor_absoluteX="1dp" />
 
+                    <CheckBox
+                        android:id="@+id/firstLightCheckbox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="10dp"
+                        android:onClick="doSomething"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.019"
+                        app:layout_constraintStart_toStartOf="parent"
+                        tools:layout_editor_absoluteY="55dp" />
 
-                    <EditText
-                        android:id="@+id/lightTitle2"
-                        android:layout_width="360dp"
+                    <TextView
+                        android:id="@+id/firstLightOption"
+                        android:layout_width="309dp"
+                        android:layout_height="19dp"
+                        android:background="@android:color/transparent"
+                        android:clickable="false"
+                        android:ems="10"
+                        android:focusable="false"
+                        android:focusableInTouchMode="false"
+                        android:hint="@string/some_explanation_about_the_input"
+                        android:inputType=""
+                        android:text="@string/firstLight"
+                        android:textColor="@android:color/black"
+                        tools:layout_editor_absoluteX="52dp"
+                        tools:layout_editor_absoluteY="55dp" />
+
+                    <CheckBox
+                        android:id="@+id/secondLightCheckbox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="10dp"
+                        android:onClick="doSomething"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.019"
+                        app:layout_constraintStart_toStartOf="parent"
+                        tools:layout_editor_absoluteY="94dp" />
+
+                    <TextView
+                        android:id="@+id/secondLightOption"
+                        android:layout_width="314dp"
                         android:layout_height="wrap_content"
+                        android:background="@android:color/transparent"
                         android:clickable="false"
-                        android:cursorVisible="false"
                         android:ems="10"
                         android:focusable="false"
                         android:focusableInTouchMode="false"
                         android:hint="@string/some_explanation_about_the_input"
-                        android:inputType="textPersonName"
-                        android:text="@string/temperaturePersTitle"
-                        app:layout_constraintTop_toTopOf="parent"
-                        tools:layout_editor_absoluteX="1dp" />
+                        android:inputType=""
+                        android:text="@string/secondLight"
+                        android:textColor="@android:color/black"
+                        tools:layout_editor_absoluteX="52dp"
+                        tools:layout_editor_absoluteY="86dp" />
+
+                    <CheckBox
+                        android:id="@+id/thirdLightCheckbox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="10dp"
+                        android:onClick="doSomething"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.019"
+                        app:layout_constraintStart_toStartOf="parent"
+                        tools:layout_editor_absoluteY="139dp" />
+
+                    <TextView
+                        android:id="@+id/thirdLightOption"
+                        android:layout_width="295dp"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:clickable="false"
+                        android:ems="10"
+                        android:focusable="false"
+                        android:focusableInTouchMode="false"
+                        android:hint="@string/some_explanation_about_the_input"
+                        android:inputType=""
+                        android:text="@string/thirdLight"
+                        android:textColor="@android:color/black"
+                        tools:layout_editor_absoluteX="52dp"
+                        tools:layout_editor_absoluteY="132dp" />
+
+
+                    <CheckBox
+                        android:id="@+id/fourthLightCheckbox"
+                        android:layout_width="30dp"
+                        android:layout_height="20dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="10dp"
+                        android:onClick="doSomething"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.019"
+                        app:layout_constraintStart_toStartOf="parent"
+                        tools:layout_editor_absoluteY="182dp" />
+
+                    <TextView
+                        android:id="@+id/fourthLightOption"
+                        android:layout_width="296dp"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:clickable="false"
+                        android:ems="10"
+                        android:focusable="false"
+                        android:focusableInTouchMode="false"
+                        android:hint="@string/some_explanation_about_the_input"
+                        android:inputType=""
+                        android:text="@string/fourthLight"
+                        android:textColor="@android:color/black"
+                        tools:layout_editor_absoluteX="54dp"
+                        tools:layout_editor_absoluteY="175dp" />
+
+                    <CheckBox
+                        android:id="@+id/personalisedCheckbox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="10dp"
+                        android:onClick="doSomething"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.019"
+                        app:layout_constraintStart_toStartOf="parent"
+                        tools:layout_editor_absoluteY="220dp" />
 
                     <TextView
                         android:id="@+id/personalisedOption"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/PersPlease"
+                        android:text="@string/personalised"
                         android:textColor="@android:color/black"
-                        tools:layout_editor_absoluteX="16dp"
-                        tools:layout_editor_absoluteY="60dp" />
+                        tools:layout_editor_absoluteX="53dp"
+                        tools:layout_editor_absoluteY="220dp" />
 
                     <EditText
                         android:id="@+id/personallisedTExt"
@@ -98,13 +206,12 @@
                         android:background="@drawable/text_input_border"
                         android:hint="@string/some_explanation_about_the_input"
                         android:inputType=""
-                        android:text="@string/persInputTemperature"
+                        android:text="@string/personalisedText"
                         android:textSize="14sp"
                         android:textStyle="italic"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.4"
                         app:layout_constraintStart_toStartOf="parent"
-                        tools:layout_editor_absoluteY="92dp" />
+                        tools:layout_editor_absoluteY="252dp" />
 
                 </android.support.constraint.ConstraintLayout>
             </FrameLayout>
@@ -120,7 +227,7 @@
             android:background="@color/LightSteelBlue" />
 
         <TextView
-            android:id="@+id/factorsTitle"
+            android:id="@+id/sleepSettingsTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -168,7 +275,7 @@
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:text="@string/PersIntro"
+            android:text="@string/lightIntro"
             android:textColor="@android:color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

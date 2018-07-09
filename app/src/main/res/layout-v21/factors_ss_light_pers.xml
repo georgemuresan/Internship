@@ -49,7 +49,7 @@
 
 
                     <EditText
-                        android:id="@+id/lightTitle"
+                        android:id="@+id/chatbotTitle"
                         android:layout_width="360dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="180dp"
@@ -66,7 +66,7 @@
 
 
                     <EditText
-                        android:id="@+id/lightTitle2"
+                        android:id="@+id/lightPersTitle"
                         android:layout_width="360dp"
                         android:layout_height="wrap_content"
                         android:clickable="false"
@@ -76,7 +76,7 @@
                         android:focusableInTouchMode="false"
                         android:hint="@string/some_explanation_about_the_input"
                         android:inputType="textPersonName"
-                        android:text="@string/schedulePersTitle"
+                        android:text="@string/lightPersTitle"
                         app:layout_constraintTop_toTopOf="parent"
                         tools:layout_editor_absoluteX="1dp" />
 
@@ -98,7 +98,7 @@
                         android:background="@drawable/text_input_border"
                         android:hint="@string/some_explanation_about_the_input"
                         android:inputType=""
-                        android:text="@string/persInputSchedule"
+                        android:text="@string/persInputLight"
                         android:textSize="14sp"
                         android:textStyle="italic"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -120,11 +120,11 @@
             android:background="@color/LightSteelBlue" />
 
         <TextView
-            android:id="@+id/factorsTitle"
+            android:id="@+id/sleepSettingsTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:text="@string/circadianRythmsTitle"
+            android:text="@string/sleepSettingsTitle"
             android:textAllCaps="false"
             android:textColor="@android:color/black"
             android:textSize="18sp"
@@ -137,7 +137,7 @@
         <TextView
             android:id="@+id/factorsTitle2"
             android:layout_width="wrap_content"
-            android:layout_height="41dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:text="@string/factorsTitle"
             android:textAllCaps="false"
@@ -162,7 +162,7 @@
             app:srcCompat="@android:color/holo_blue_dark" />
 
         <TextView
-            android:id="@+id/lightIntro"
+            android:id="@+id/persIntr"
             android:layout_width="362dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"

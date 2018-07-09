@@ -49,7 +49,7 @@
 
 
                     <EditText
-                        android:id="@+id/lightTitle"
+                        android:id="@+id/nicotineTitle"
                         android:layout_width="360dp"
                         android:layout_height="wrap_content"
                         android:clickable="false"
@@ -59,7 +59,7 @@
                         android:focusableInTouchMode="false"
                         android:hint="@string/some_explanation_about_the_input"
                         android:inputType="textPersonName"
-                        android:text="@string/scheduleTitle"
+                        android:text="@string/nicotineTitle"
                         app:layout_constraintTop_toTopOf="parent"
                         tools:layout_editor_absoluteX="1dp" />
 
@@ -76,7 +76,7 @@
                         tools:layout_editor_absoluteY="55dp" />
 
                     <TextView
-                        android:id="@+id/firstLightOption"
+                        android:id="@+id/firstNicotineOption"
                         android:layout_width="309dp"
                         android:layout_height="19dp"
                         android:background="@android:color/transparent"
@@ -86,66 +86,10 @@
                         android:focusableInTouchMode="false"
                         android:hint="@string/some_explanation_about_the_input"
                         android:inputType=""
-                        android:text="@string/secondSchedule"
+                        android:text="@string/firstNicotine"
                         android:textColor="@android:color/black"
                         tools:layout_editor_absoluteX="52dp"
                         tools:layout_editor_absoluteY="55dp" />
-
-                    <CheckBox
-                        android:id="@+id/secondLightCheckbox"
-                        android:layout_width="wrap_content"
-                        android:layout_height="20dp"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginStart="10dp"
-                        android:onClick="doSomething"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.019"
-                        app:layout_constraintStart_toStartOf="parent"
-                        tools:layout_editor_absoluteY="94dp" />
-
-                    <TextView
-                        android:id="@+id/secondLightOption"
-                        android:layout_width="314dp"
-                        android:layout_height="wrap_content"
-                        android:background="@android:color/transparent"
-                        android:clickable="false"
-                        android:ems="10"
-                        android:focusable="false"
-                        android:focusableInTouchMode="false"
-                        android:hint="@string/some_explanation_about_the_input"
-                        android:inputType=""
-                        android:text="@string/firstSchedule"
-                        android:textColor="@android:color/black"
-                        tools:layout_editor_absoluteX="52dp"
-                        tools:layout_editor_absoluteY="86dp" />
-
-                    <CheckBox
-                        android:id="@+id/thirdLightCheckbox"
-                        android:layout_width="wrap_content"
-                        android:layout_height="20dp"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginStart="10dp"
-                        android:onClick="doSomething"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.019"
-                        app:layout_constraintStart_toStartOf="parent"
-                        tools:layout_editor_absoluteY="139dp" />
-
-                    <TextView
-                        android:id="@+id/thirdLightOption"
-                        android:layout_width="295dp"
-                        android:layout_height="wrap_content"
-                        android:background="@android:color/transparent"
-                        android:clickable="false"
-                        android:ems="10"
-                        android:focusable="false"
-                        android:focusableInTouchMode="false"
-                        android:hint="@string/some_explanation_about_the_input"
-                        android:inputType=""
-                        android:text="@string/thirdSchedule"
-                        android:textColor="@android:color/black"
-                        tools:layout_editor_absoluteX="52dp"
-                        tools:layout_editor_absoluteY="132dp" />
 
 
                     <CheckBox
@@ -158,7 +102,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.019"
                         app:layout_constraintStart_toStartOf="parent"
-                        tools:layout_editor_absoluteY="192dp" />
+                        tools:layout_editor_absoluteY="89dp" />
 
                     <TextView
                         android:id="@+id/personalisedOption"
@@ -166,8 +110,8 @@
                         android:layout_height="wrap_content"
                         android:text="@string/personalised"
                         android:textColor="@android:color/black"
-                        tools:layout_editor_absoluteX="52dp"
-                        tools:layout_editor_absoluteY="192dp" />
+                        tools:layout_editor_absoluteX="48dp"
+                        tools:layout_editor_absoluteY="89dp" />
 
                     <EditText
                         android:id="@+id/personallisedTExt"
@@ -183,7 +127,7 @@
                         android:textStyle="italic"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        tools:layout_editor_absoluteY="227dp" />
+                        tools:layout_editor_absoluteY="122dp" />
 
                 </android.support.constraint.ConstraintLayout>
             </FrameLayout>
@@ -199,11 +143,11 @@
             android:background="@color/LightSteelBlue" />
 
         <TextView
-            android:id="@+id/factorsTitle"
+            android:id="@+id/drugEffectsTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:text="@string/circadianRythmsTitle"
+            android:text="@string/drugEffectsTitle"
             android:textAllCaps="false"
             android:textColor="@android:color/black"
             android:textSize="18sp"
@@ -241,13 +185,13 @@
             app:srcCompat="@android:color/holo_blue_dark" />
 
         <TextView
-            android:id="@+id/lightIntro"
+            android:id="@+id/nicotineIntro"
             android:layout_width="362dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:text="@string/scheduleIntro"
+            android:text="@string/nicotineIntro"
             android:textColor="@android:color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

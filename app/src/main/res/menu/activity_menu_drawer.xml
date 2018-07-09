@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:theme="@style/AppTheme"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_factors"
+            android:title="Factors" />
+        <item
+            android:id="@+id/nav_goal_diary"
+            android:title="Goal Diary" />
+        <item
+            android:id="@+id/nav_data"
+            android:title="Data" />
+        <item
+            android:id="@+id/nav_questionnaire"
+            android:title="Questionnaire" />
+        <item
+            android:id="@+id/nav_help"
+            android:title="Help" />
+    </group>
+
+</menu>
