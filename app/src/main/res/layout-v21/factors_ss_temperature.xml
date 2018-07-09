@@ -52,6 +52,8 @@
                         android:id="@+id/temperatureTitle"
                         android:layout_width="360dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
                         android:clickable="false"
                         android:cursorVisible="false"
                         android:ems="10"
@@ -60,8 +62,9 @@
                         android:hint="@string/some_explanation_about_the_input"
                         android:inputType="textPersonName"
                         android:text="@string/temperatureTitle"
-                        app:layout_constraintTop_toTopOf="parent"
-                        tools:layout_editor_absoluteX="1dp" />
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <CheckBox
                         android:id="@+id/firstLightCheckbox"
@@ -69,16 +72,20 @@
                         android:layout_height="20dp"
                         android:layout_marginEnd="8dp"
                         android:layout_marginStart="10dp"
+                        android:layout_marginTop="24dp"
                         android:onClick="doSomething"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.019"
                         app:layout_constraintStart_toStartOf="parent"
-                        tools:layout_editor_absoluteY="55dp" />
+                        app:layout_constraintTop_toBottomOf="@+id/temperatureTitle" />
 
                     <TextView
                         android:id="@+id/firstTemperatureOption"
-                        android:layout_width="295dp"
+                        android:layout_width="309dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginTop="12dp"
                         android:background="@android:color/transparent"
                         android:clickable="false"
                         android:ems="10"
@@ -88,8 +95,9 @@
                         android:inputType=""
                         android:text="@string/firstTemperature"
                         android:textColor="@android:color/black"
-                        tools:layout_editor_absoluteX="52dp"
-                        tools:layout_editor_absoluteY="55dp" />
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/firstLightCheckbox"
+                        app:layout_constraintTop_toBottomOf="@+id/temperatureTitle" />
 
 
                     <CheckBox
@@ -98,16 +106,20 @@
                         android:layout_height="20dp"
                         android:layout_marginEnd="8dp"
                         android:layout_marginStart="10dp"
+                        android:layout_marginTop="12dp"
                         android:onClick="doSomething"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.019"
                         app:layout_constraintStart_toStartOf="parent"
-                        tools:layout_editor_absoluteY="94dp" />
+                        app:layout_constraintTop_toBottomOf="@+id/firstLightCheckbox" />
 
                     <TextView
                         android:id="@+id/secondTemperatureOption"
-                        android:layout_width="314dp"
+                        android:layout_width="309dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginTop="12dp"
                         android:background="@android:color/transparent"
                         android:clickable="false"
                         android:ems="10"
@@ -117,8 +129,9 @@
                         android:inputType=""
                         android:text="@string/secondTemperature"
                         android:textColor="@android:color/black"
-                        tools:layout_editor_absoluteX="52dp"
-                        tools:layout_editor_absoluteY="94dp" />
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/secondLightCheckbox"
+                        app:layout_constraintTop_toBottomOf="@+id/firstTemperatureOption" />
 
                     <CheckBox
                         android:id="@+id/thirdLightCheckbox"
@@ -126,16 +139,20 @@
                         android:layout_height="20dp"
                         android:layout_marginEnd="8dp"
                         android:layout_marginStart="10dp"
+                        android:layout_marginTop="12dp"
                         android:onClick="doSomething"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.019"
                         app:layout_constraintStart_toStartOf="parent"
-                        tools:layout_editor_absoluteY="139dp" />
+                        app:layout_constraintTop_toBottomOf="@+id/secondLightCheckbox" />
 
                     <TextView
                         android:id="@+id/thirdTemperatureOption"
-                        android:layout_width="295dp"
+                        android:layout_width="309dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginTop="12dp"
                         android:background="@android:color/transparent"
                         android:clickable="false"
                         android:ems="10"
@@ -145,8 +162,9 @@
                         android:inputType=""
                         android:text="@string/thirdTemperature"
                         android:textColor="@android:color/black"
-                        tools:layout_editor_absoluteX="52dp"
-                        tools:layout_editor_absoluteY="139dp" />
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/fourthLightCheckbox"
+                        app:layout_constraintTop_toBottomOf="@+id/secondTemperatureOption" />
 
 
                     <CheckBox
@@ -155,16 +173,20 @@
                         android:layout_height="20dp"
                         android:layout_marginEnd="8dp"
                         android:layout_marginStart="10dp"
+                        android:layout_marginTop="28dp"
                         android:onClick="doSomething"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.019"
                         app:layout_constraintStart_toStartOf="parent"
-                        tools:layout_editor_absoluteY="182dp" />
+                        app:layout_constraintTop_toBottomOf="@+id/thirdLightCheckbox" />
 
                     <TextView
                         android:id="@+id/fourthTemperatureOption"
-                        android:layout_width="296dp"
+                        android:layout_width="309dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginTop="20dp"
                         android:background="@android:color/transparent"
                         android:clickable="false"
                         android:ems="10"
@@ -174,8 +196,10 @@
                         android:inputType=""
                         android:text="@string/fourthTemperature"
                         android:textColor="@android:color/black"
-                        tools:layout_editor_absoluteX="54dp"
-                        tools:layout_editor_absoluteY="175dp" />
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="1.0"
+                        app:layout_constraintStart_toEndOf="@+id/fourthLightCheckbox"
+                        app:layout_constraintTop_toBottomOf="@+id/thirdTemperatureOption" />
 
                     <CheckBox
                         android:id="@+id/personalisedCheckbox"
@@ -183,20 +207,25 @@
                         android:layout_height="20dp"
                         android:layout_marginEnd="8dp"
                         android:layout_marginStart="10dp"
+                        android:layout_marginTop="16dp"
                         android:onClick="doSomething"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.019"
                         app:layout_constraintStart_toStartOf="parent"
-                        tools:layout_editor_absoluteY="220dp" />
+                        app:layout_constraintTop_toBottomOf="@+id/fourthLightCheckbox" />
 
                     <TextView
                         android:id="@+id/personalisedOption"
-                        android:layout_width="wrap_content"
+                        android:layout_width="309dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginTop="12dp"
                         android:text="@string/personalised"
                         android:textColor="@android:color/black"
-                        tools:layout_editor_absoluteX="53dp"
-                        tools:layout_editor_absoluteY="220dp" />
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/personalisedCheckbox"
+                        app:layout_constraintTop_toBottomOf="@+id/fourthTemperatureOption" />
 
                     <EditText
                         android:id="@+id/personallisedTExt"
@@ -204,6 +233,7 @@
                         android:layout_height="75dp"
                         android:layout_marginEnd="8dp"
                         android:layout_marginStart="8dp"
+                        android:layout_marginTop="28dp"
                         android:background="@drawable/text_input_border"
                         android:hint="@string/some_explanation_about_the_input"
                         android:inputType=""
@@ -212,7 +242,7 @@
                         android:textStyle="italic"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        tools:layout_editor_absoluteY="252dp" />
+                        app:layout_constraintTop_toBottomOf="@+id/personalisedOption" />
 
                 </android.support.constraint.ConstraintLayout>
             </FrameLayout>

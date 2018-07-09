@@ -74,16 +74,20 @@
                         android:layout_height="20dp"
                         android:layout_marginEnd="8dp"
                         android:layout_marginStart="10dp"
+                        android:layout_marginTop="12dp"
                         android:onClick="doSomething"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.019"
                         app:layout_constraintStart_toStartOf="parent"
-                        tools:layout_editor_absoluteY="55dp" />
+                        app:layout_constraintTop_toBottomOf="@+id/caffeineTitle" />
 
                     <TextView
                         android:id="@+id/firstCaffeineOption"
                         android:layout_width="309dp"
-                        android:layout_height="19dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginTop="12dp"
                         android:background="@android:color/transparent"
                         android:clickable="false"
                         android:ems="10"
@@ -93,8 +97,9 @@
                         android:inputType=""
                         android:text="@string/firstCaffeine"
                         android:textColor="@android:color/black"
-                        tools:layout_editor_absoluteX="52dp"
-                        tools:layout_editor_absoluteY="55dp" />
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/firstLightCheckbox"
+                        app:layout_constraintTop_toBottomOf="@+id/caffeineTitle" />
 
                     <CheckBox
                         android:id="@+id/secondLightCheckbox"
@@ -102,16 +107,19 @@
                         android:layout_height="20dp"
                         android:layout_marginEnd="8dp"
                         android:layout_marginStart="10dp"
+                        android:layout_marginTop="20dp"
                         android:onClick="doSomething"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.019"
                         app:layout_constraintStart_toStartOf="parent"
-                        tools:layout_editor_absoluteY="94dp" />
+                        app:layout_constraintTop_toBottomOf="@+id/firstLightCheckbox" />
 
                     <TextView
                         android:id="@+id/secondCaffeineOption"
-                        android:layout_width="314dp"
+                        android:layout_width="309dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginTop="12dp"
                         android:background="@android:color/transparent"
                         android:clickable="false"
                         android:ems="10"
@@ -121,8 +129,10 @@
                         android:inputType=""
                         android:text="@string/secondCaffeine"
                         android:textColor="@android:color/black"
-                        tools:layout_editor_absoluteX="52dp"
-                        tools:layout_editor_absoluteY="86dp" />
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toEndOf="@+id/secondLightCheckbox"
+                        app:layout_constraintTop_toBottomOf="@+id/firstCaffeineOption" />
 
                     <CheckBox
                         android:id="@+id/thirdLightCheckbox"
@@ -130,16 +140,19 @@
                         android:layout_height="20dp"
                         android:layout_marginEnd="8dp"
                         android:layout_marginStart="10dp"
+                        android:layout_marginTop="12dp"
                         android:onClick="doSomething"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.019"
                         app:layout_constraintStart_toStartOf="parent"
-                        tools:layout_editor_absoluteY="139dp" />
+                        app:layout_constraintTop_toBottomOf="@+id/secondLightCheckbox" />
 
                     <TextView
                         android:id="@+id/thirdCaffeineOption"
-                        android:layout_width="295dp"
+                        android:layout_width="309dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginTop="8dp"
                         android:background="@android:color/transparent"
                         android:clickable="false"
                         android:ems="10"
@@ -149,8 +162,8 @@
                         android:inputType=""
                         android:text="@string/thirdCaffeine"
                         android:textColor="@android:color/black"
-                        tools:layout_editor_absoluteX="52dp"
-                        tools:layout_editor_absoluteY="139dp" />
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/secondCaffeineOption" />
 
 
                     <CheckBox
@@ -159,20 +172,26 @@
                         android:layout_height="20dp"
                         android:layout_marginEnd="8dp"
                         android:layout_marginStart="10dp"
+                        android:layout_marginTop="16dp"
                         android:onClick="doSomething"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.019"
                         app:layout_constraintStart_toStartOf="parent"
-                        tools:layout_editor_absoluteY="182dp" />
+                        app:layout_constraintTop_toBottomOf="@+id/thirdLightCheckbox" />
 
                     <TextView
                         android:id="@+id/personalisedOption"
-                        android:layout_width="wrap_content"
+                        android:layout_width="309dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="16dp"
                         android:text="@string/personalised"
                         android:textColor="@android:color/black"
-                        tools:layout_editor_absoluteX="48dp"
-                        tools:layout_editor_absoluteY="183dp" />
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.8"
+                        app:layout_constraintStart_toEndOf="@+id/personalisedCheckbox"
+                        app:layout_constraintTop_toBottomOf="@+id/thirdCaffeineOption" />
 
                     <EditText
                         android:id="@+id/personallisedTExt"
@@ -180,6 +199,7 @@
                         android:layout_height="75dp"
                         android:layout_marginEnd="8dp"
                         android:layout_marginStart="8dp"
+                        android:layout_marginTop="20dp"
                         android:background="@drawable/text_input_border"
                         android:hint="@string/some_explanation_about_the_input"
                         android:inputType=""
@@ -188,7 +208,7 @@
                         android:textStyle="italic"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        tools:layout_editor_absoluteY="223dp" />
+                        app:layout_constraintTop_toBottomOf="@+id/personalisedOption" />
 
                 </android.support.constraint.ConstraintLayout>
             </FrameLayout>
