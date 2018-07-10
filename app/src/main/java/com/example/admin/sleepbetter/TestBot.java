@@ -1,10 +1,16 @@
 package com.example.admin.sleepbetter;
 
+import android.app.Activity;
+import android.app.Fragment;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -22,7 +28,7 @@ import com.ibm.watson.developer_cloud.http.ServiceCallback;
 import java.util.HashMap;
 import java.util.Map;
 
-public class TestBot extends AppCompatActivity {
+public class TestBot extends Fragment {
 
     private static final String TAG = "TestBot";
     private ConversationService myConversationService = null;
@@ -33,11 +39,12 @@ public class TestBot extends AppCompatActivity {
     private final String IBM_WORKSPACE_ID = "724cbe7d-c790-4298-a591-79833ac9aff9";
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.testbot);
-        chatDisplayTV = findViewById(R.id.tv_chat_display);
-        userStatementET = findViewById(R.id.et_user_statement);
+        View view = inflater.inflate(R.layout.testbot, container, false);
+        //setContentView(R.layout.testbot);
+        chatDisplayTV = view.findViewById(R.id.tv_chat_display);
+        userStatementET = view.findViewById(R.id.et_user_statement);
 
         //instantiating IBM Watson Conversation Service
         myConversationService =
@@ -68,7 +75,7 @@ public class TestBot extends AppCompatActivity {
                                 @Override
                                 public void onResponse(MessageResponse response) {
                                     final String botStatement = response.getText().get(0);
-                                    runOnUiThread(new Runnable() {
+                                    getActivity().runOnUiThread(new Runnable() {
                                         @Override
                                         public void run() {
                                             chatDisplayTV.append(
@@ -111,5 +118,6 @@ public class TestBot extends AppCompatActivity {
                 return false;
             }
         });
+        return view;
     }
 }
