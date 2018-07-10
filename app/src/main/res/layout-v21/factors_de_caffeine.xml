@@ -166,50 +166,6 @@
                         app:layout_constraintTop_toBottomOf="@+id/secondCaffeineOption" />
 
 
-                    <CheckBox
-                        android:id="@+id/personalisedCheckbox"
-                        android:layout_width="wrap_content"
-                        android:layout_height="20dp"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginTop="16dp"
-                        android:onClick="doSomething"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.019"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/thirdLightCheckbox" />
-
-                    <TextView
-                        android:id="@+id/personalisedOption"
-                        android:layout_width="309dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginTop="16dp"
-                        android:text="@string/personalised"
-                        android:textColor="@android:color/black"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.8"
-                        app:layout_constraintStart_toEndOf="@+id/personalisedCheckbox"
-                        app:layout_constraintTop_toBottomOf="@+id/thirdCaffeineOption" />
-
-                    <EditText
-                        android:id="@+id/personallisedTExt"
-                        android:layout_width="327dp"
-                        android:layout_height="75dp"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginTop="20dp"
-                        android:background="@drawable/text_input_border"
-                        android:hint="@string/some_explanation_about_the_input"
-                        android:inputType=""
-                        android:text="@string/personalisedText"
-                        android:textSize="14sp"
-                        android:textStyle="italic"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/personalisedOption" />
-
                 </android.support.constraint.ConstraintLayout>
             </FrameLayout>
         </ScrollView>

@@ -42,23 +42,8 @@
 
                 <android.support.constraint.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="487dp">
+                    android:layout_height="404dp">
 
-
-                    <EditText
-                        android:id="@+id/sleepSettings"
-                        android:layout_width="360dp"
-                        android:layout_height="wrap_content"
-                        android:clickable="false"
-                        android:cursorVisible="false"
-                        android:ems="10"
-                        android:focusable="false"
-                        android:focusableInTouchMode="false"
-                        android:hint="@string/some_explanation_about_the_input"
-                        android:inputType="textPersonName"
-                        android:text="@string/sleepSettings"
-                        app:layout_constraintTop_toTopOf="parent"
-                        tools:layout_editor_absoluteX="1dp" />
 
                     <CheckBox
                         android:id="@+id/lightCheckbox"
@@ -66,91 +51,25 @@
                         android:layout_height="20dp"
                         android:layout_marginEnd="8dp"
                         android:layout_marginStart="10dp"
-                        android:layout_marginTop="12dp"
+                        android:layout_marginTop="16dp"
                         android:onClick="doSomething"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.029"
+                        app:layout_constraintHorizontal_bias="0.019"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/sleepSettings" />
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
                         android:id="@+id/lightFactor"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="8dp"
-                        android:layout_marginTop="12dp"
+                        android:layout_marginTop="16dp"
                         android:text="@string/lightCheck"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toEndOf="@+id/lightCheckbox"
-                        app:layout_constraintTop_toBottomOf="@+id/sleepSettings" />
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                    <CheckBox
-                        android:id="@+id/temperatureCheckbox"
-                        android:layout_width="wrap_content"
-                        android:layout_height="20dp"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginTop="40dp"
-                        android:onClick="doSomething"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.029"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/sleepSettings" />
-
-                    <TextView
-                        android:id="@+id/temperatureFactor"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginTop="40dp"
-                        android:text="@string/temperatureCheck"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toEndOf="@+id/lightCheckbox"
-                        app:layout_constraintTop_toBottomOf="@+id/sleepSettings" />
-
-                    <CheckBox
-                        android:id="@+id/noiseCheckbox"
-                        android:layout_width="wrap_content"
-                        android:layout_height="20dp"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginTop="68dp"
-                        android:onClick="doSomething"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.029"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/sleepSettings" />
-
-                    <TextView
-                        android:id="@+id/noiseFactor"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginTop="68dp"
-                        android:text="@string/noiseCheck"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toEndOf="@+id/lightCheckbox"
-                        app:layout_constraintTop_toBottomOf="@+id/sleepSettings" />
-
-
-                    <EditText
-                        android:id="@+id/drugEffects"
-                        android:layout_width="360dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="100dp"
-                        android:clickable="false"
-                        android:cursorVisible="false"
-                        android:ems="10"
-                        android:focusable="false"
-                        android:focusableInTouchMode="false"
-                        android:hint="@string/some_explanation_about_the_input"
-                        android:inputType="textPersonName"
-                        android:text="@string/drugEffects"
-                        app:layout_constraintTop_toBottomOf="@+id/sleepSettings"
-                        tools:layout_editor_absoluteX="1dp" />
 
                     <CheckBox
                         android:id="@+id/caffeineCheckbox"
@@ -158,131 +77,24 @@
                         android:layout_height="20dp"
                         android:layout_marginEnd="8dp"
                         android:layout_marginStart="10dp"
-                        android:layout_marginTop="156dp"
+                        android:layout_marginTop="28dp"
                         android:onClick="doSomething"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.019"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/sleepSettings" />
+                        app:layout_constraintTop_toBottomOf="@+id/lightCheckbox" />
 
                     <TextView
                         android:id="@+id/caffeineFactor"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="8dp"
-                        android:layout_marginTop="156dp"
+                        android:layout_marginTop="28dp"
                         android:text="@string/caffeineCheck"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toEndOf="@+id/lightCheckbox"
-                        app:layout_constraintTop_toBottomOf="@+id/sleepSettings" />
-
-                    <CheckBox
-                        android:id="@+id/nicotineCheckbox"
-                        android:layout_width="wrap_content"
-                        android:layout_height="20dp"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginTop="184dp"
-                        android:onClick="doSomething"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.019"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/sleepSettings" />
-
-                    <TextView
-                        android:id="@+id/nicotinneFactor"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginTop="184dp"
-                        android:text="@string/nicotineCheck"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toEndOf="@+id/lightCheckbox"
-                        app:layout_constraintTop_toBottomOf="@+id/sleepSettings" />
-
-                    <CheckBox
-                        android:id="@+id/alcoholCheckbox"
-                        android:layout_width="wrap_content"
-                        android:layout_height="20dp"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginTop="212dp"
-                        android:onClick="doSomething"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.019"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/sleepSettings" />
-
-                    <TextView
-                        android:id="@+id/alcoholFactor"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginTop="212dp"
-                        android:text="@string/alcoholCheck"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toEndOf="@+id/lightCheckbox"
-                        app:layout_constraintTop_toBottomOf="@+id/sleepSettings" />
-
-                    <EditText
-                        android:id="@+id/homeostaticDrive"
-                        android:layout_width="360dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="244dp"
-                        android:clickable="false"
-                        android:cursorVisible="false"
-                        android:ems="10"
-                        android:focusable="false"
-                        android:focusableInTouchMode="false"
-                        android:hint="@string/some_explanation_about_the_input"
-                        android:inputType="textPersonName"
-                        android:text="@string/homeostaticDrive"
-                        app:layout_constraintTop_toBottomOf="@+id/sleepSettings"
-                        tools:layout_editor_absoluteX="1dp" />
-
-                    <CheckBox
-                        android:id="@+id/daytimeNapsCheckbox"
-                        android:layout_width="wrap_content"
-                        android:layout_height="20dp"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginTop="300dp"
-                        android:onClick="doSomething"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.019"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/sleepSettings" />
-
-                    <TextView
-                        android:id="@+id/daytimeNapsFactor"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginTop="300dp"
-                        android:text="@string/daytimeNapsCheck"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toEndOf="@+id/lightCheckbox"
-                        app:layout_constraintTop_toBottomOf="@+id/sleepSettings" />
-
-                    <EditText
-                        android:id="@+id/circadianRythms"
-                        android:layout_width="360dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="332dp"
-                        android:clickable="false"
-                        android:cursorVisible="false"
-                        android:ems="10"
-                        android:focusable="false"
-                        android:focusableInTouchMode="false"
-                        android:hint="@string/some_explanation_about_the_input"
-                        android:inputType="textPersonName"
-                        android:text="@string/circadianRythms"
-                        app:layout_constraintTop_toBottomOf="@+id/sleepSettings"
-                        tools:layout_editor_absoluteX="0dp" />
+                        app:layout_constraintTop_toBottomOf="@+id/lightFactor" />
 
                     <CheckBox
                         android:id="@+id/sleepingScheduleCheckbox"
@@ -290,24 +102,24 @@
                         android:layout_height="20dp"
                         android:layout_marginEnd="8dp"
                         android:layout_marginStart="10dp"
-                        android:layout_marginTop="388dp"
+                        android:layout_marginTop="24dp"
                         android:onClick="doSomething"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.019"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/sleepSettings" />
+                        app:layout_constraintTop_toBottomOf="@+id/caffeineCheckbox" />
 
                     <TextView
                         android:id="@+id/sleepingScheduleFactor"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="8dp"
-                        android:layout_marginTop="388dp"
+                        android:layout_marginTop="28dp"
                         android:text="@string/sleepingScheduleCheck"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toEndOf="@+id/lightCheckbox"
-                        app:layout_constraintTop_toBottomOf="@+id/sleepSettings" />
+                        app:layout_constraintTop_toBottomOf="@+id/caffeineFactor" />
 
                 </android.support.constraint.ConstraintLayout>
             </FrameLayout>

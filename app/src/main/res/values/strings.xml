@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">SleepBetter</string>
-    <string name="introductionTitle">INTRODUCTION</string>
+    <string name="introductionTitle">WELCOME</string>
     <string name="welcomeTitle">Welcome to.... Here....</string>
     <string name="startButton">START</string>
     <string name="permission">Permission to run in the background</string>
@@ -9,13 +9,14 @@
 
     <string name="questionnaireTitle">QUESTIONNAIRE</string>
     <string name="questionnaireHelp">First, how would you rate the following aspects of your everyday life?</string>
-    <string name="nocturnalTitle">Nocturnal Effects</string>
+    <string name="nocturnalTitle">Night-time</string>
     <string name="timesWakingUp">How many times do you wake up per night?</string>
     <string name="nightTerrorUsually">How often do you have night terrors?</string>
+    <string name="beforeAfter">Before and after</string>
     <string name="fallAsleepUsually">How easily do you usually fall asleep?</string>
     <string name="wakeUpUsually">How easily do you usually wake up?</string>
     <string name="freshUsually">How fresh do you usually feel after you wake up?</string>
-    <string name="diurnalEffects">Diurnal Effects</string>
+    <string name="mood">Mood</string>
 
     <string name="happyUsually">How happy do you usually feel during the day?</string>
     <string name="sadUsually">How sad do you usually feel during the day?</string>
@@ -23,6 +24,7 @@
     <string name="tiredUsually">How tired do you usually feel during the day?</string>
     <string name="stressUsually">How stressed do you usually feel during the day?</string>
     <string name="irritableUsually">How irritable do you usually feel during the day?</string>
+    <string name="actions">Actions</string>
     <string name="concentrateUsually">How hard is for you to concentrate during the day?</string>
     <string name="coordinateUsually">How hard is for you to coordinate your activities during the day?</string>
     <string name="apetiteUsually">How would you usually rate your appetite during the day?</string>
