@@ -1,10 +1,9 @@
 package com.example.admin.sleepbetter;
 
-import android.app.Activity;
+
 import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.util.Log;
 import android.view.KeyEvent;
