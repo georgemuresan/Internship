@@ -84,6 +84,7 @@ public class MainMenu extends AppCompatActivity
         FragmentManager fragmentManager = getFragmentManager();
 
 
+
         if (id == R.id.nav_factors) {
             fragmentManager.beginTransaction().replace(R.id.content_frame, new Factors()).commit();
         } else if (id == R.id.nav_goal_diary) {
@@ -94,6 +95,8 @@ public class MainMenu extends AppCompatActivity
             fragmentManager.beginTransaction().replace(R.id.content_frame, new Questionnaire()).commit();
         } else if (id == R.id.nav_help) {
             fragmentManager.beginTransaction().replace(R.id.content_frame, new Help()).commit();
+        } else if (id == R.id.nav_bot) {
+            fragmentManager.beginTransaction().replace(R.id.content_frame, new TestBot()).commit();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
