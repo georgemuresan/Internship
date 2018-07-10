@@ -27,7 +27,7 @@ public class FirstPage extends AppCompatActivity {
     }
     private void goToSecondActivity() {
 
-        Intent intent = new Intent(this, SecondPage.class);
+        Intent intent = new Intent(this, MainMenu.class);
 
         startActivity(intent);
 

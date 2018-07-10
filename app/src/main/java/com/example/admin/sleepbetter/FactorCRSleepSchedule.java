@@ -13,7 +13,7 @@ public class FactorCRSleepSchedule extends Fragment{
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        myView = inflater.inflate(R.layout.factors_cr_schedule_pers, container, false);
+        myView = inflater.inflate(R.layout.factors_cr_schedule, container, false);
 
         return myView;
     }

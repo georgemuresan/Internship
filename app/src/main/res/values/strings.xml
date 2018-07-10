@@ -1,4 +1,9 @@
 <resources>
+
+    <string name="diurnalEffects">SleepBetter</string>
+    <string name="nocturnalEffects">SleepBetter</string>
+
+
     <string name="app_name">SleepBetter</string>
     <string name="introductionTitle">WELCOME</string>
     <string name="welcomeTitle">Welcome to.... Here....</string>
