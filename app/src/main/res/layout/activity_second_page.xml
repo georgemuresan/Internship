@@ -80,7 +80,7 @@
 
             <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="995dp">
+                android:layout_height="1280dp">
 
                 <EditText
                     android:id="@+id/nighttime"
@@ -111,7 +111,7 @@
                     android:id="@+id/beforeAfter"
                     android:layout_width="360dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="828dp"
+                    android:layout_marginBottom="708dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
@@ -127,7 +127,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.538"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/nightTerrorsBarUsually"
+                    app:layout_constraintTop_toBottomOf="@+id/nightTerrorsLay"
                     app:layout_constraintVertical_bias="0.0" />
 
                 <EditText
@@ -157,24 +157,6 @@
                     app:layout_constraintTop_toBottomOf="@+id/nighttime"
                     app:layout_constraintVertical_bias="0.0" />
 
-                <SeekBar
-                    android:id="@+id/wakeUpPerNightBarUsually"
-                    android:layout_width="341dp"
-                    android:layout_height="17dp"
-                    android:layout_marginBottom="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginLeft="4dp"
-                    android:layout_marginRight="8dp"
-                    android:layout_marginStart="4dp"
-                    android:layout_marginTop="8dp"
-                    android:max="10"
-                    app:layout_constraintBottom_toBottomOf="@+id/startButton"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.2"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/wakeUpPerNightUsually"
-                    app:layout_constraintVertical_bias="0.0" />
-
                 <Button
                     android:id="@+id/startButton"
                     android:layout_width="102dp"
@@ -194,10 +176,8 @@
                     android:id="@+id/nightTerrorsUsually"
                     android:layout_width="340dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
+                    android:layout_marginBottom="744dp"
                     android:layout_marginEnd="8dp"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginRight="8dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:background="@android:color/transparent"
@@ -214,8 +194,8 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.428"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/wakeUpPerNightBarUsually"
-                    app:layout_constraintVertical_bias="0.0" />
+                    app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
+                    app:layout_constraintVertical_bias="0.002" />
 
 
                 <EditText
@@ -243,31 +223,12 @@
                     app:layout_constraintTop_toBottomOf="@+id/beforeAfter"
                     app:layout_constraintVertical_bias="0.0" />
 
-                <SeekBar
-                    android:id="@+id/nightTerrorsBarUsually"
-                    android:layout_width="341dp"
-                    android:layout_height="17dp"
-                    android:layout_marginBottom="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginLeft="4dp"
-                    android:layout_marginRight="8dp"
-                    android:layout_marginStart="4dp"
-                    android:layout_marginTop="8dp"
-                    app:layout_constraintBottom_toBottomOf="@+id/startButton"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.2"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/nightTerrorsUsually"
-                    app:layout_constraintVertical_bias="0.0" />
-
                 <EditText
                     android:id="@+id/wakeUpUsually"
                     android:layout_width="340dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
+                    android:layout_marginBottom="580dp"
                     android:layout_marginEnd="8dp"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginRight="8dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:background="@android:color/transparent"
@@ -284,34 +245,15 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.428"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/fallAsleepBarUsually"
-                    app:layout_constraintVertical_bias="0.0" />
-
-                <SeekBar
-                    android:id="@+id/wakeUpBarUsually"
-                    android:layout_width="341dp"
-                    android:layout_height="17dp"
-                    android:layout_marginBottom="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginLeft="4dp"
-                    android:layout_marginRight="8dp"
-                    android:layout_marginStart="4dp"
-                    android:layout_marginTop="8dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.2"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/wakeUpUsually"
+                    app:layout_constraintTop_toBottomOf="@+id/relativeLayout2"
                     app:layout_constraintVertical_bias="0.0" />
 
                 <EditText
                     android:id="@+id/freshUsually"
                     android:layout_width="340dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
+                    android:layout_marginBottom="440dp"
                     android:layout_marginEnd="8dp"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginRight="8dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:background="@android:color/transparent"
@@ -328,31 +270,14 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.428"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/wakeUpBarUsually"
-                    app:layout_constraintVertical_bias="0.0" />
-
-                <SeekBar
-                    android:id="@+id/freshBarUsually"
-                    android:layout_width="341dp"
-                    android:layout_height="17dp"
-                    android:layout_marginBottom="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginLeft="4dp"
-                    android:layout_marginRight="8dp"
-                    android:layout_marginStart="4dp"
-                    android:layout_marginTop="8dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.2"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/freshUsually"
+                    app:layout_constraintTop_toBottomOf="@+id/relativeLayout3"
                     app:layout_constraintVertical_bias="0.0" />
 
                 <EditText
                     android:id="@+id/mood"
                     android:layout_width="360dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="828dp"
+                    android:layout_marginBottom="472dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
@@ -366,16 +291,16 @@
                     android:text="@string/mood"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.500"
+                    app:layout_constraintHorizontal_bias="0.538"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/freshBarUsually"
+                    app:layout_constraintTop_toBottomOf="@+id/relativeLayout4"
                     app:layout_constraintVertical_bias="0.0" />
 
                 <EditText
                     android:id="@+id/actions"
                     android:layout_width="360dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="400dp"
+                    android:layout_marginBottom="328dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
@@ -391,25 +316,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.538"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/irritableBarUsually"
-                    app:layout_constraintVertical_bias="0.025" />
-
-                <SeekBar
-                    android:id="@+id/fallAsleepBarUsually"
-                    android:layout_width="341dp"
-                    android:layout_height="17dp"
-                    android:layout_marginBottom="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginLeft="4dp"
-                    android:layout_marginRight="8dp"
-                    android:layout_marginStart="4dp"
-                    android:layout_marginTop="8dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.2"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/fallAsleepUsually"
-                    app:layout_constraintVertical_bias="0.0" />
+                    app:layout_constraintTop_toBottomOf="@+id/relativeLayout12" />
 
                 <EditText
                     android:id="@+id/happyUsually"
@@ -438,31 +345,12 @@
                     app:layout_constraintTop_toBottomOf="@+id/mood"
                     app:layout_constraintVertical_bias="0.0" />
 
-                <SeekBar
-                    android:id="@+id/happyBarUsually"
-                    android:layout_width="341dp"
-                    android:layout_height="17dp"
-                    android:layout_marginBottom="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginLeft="4dp"
-                    android:layout_marginRight="8dp"
-                    android:layout_marginStart="4dp"
-                    android:layout_marginTop="8dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.2"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/happyUsually"
-                    app:layout_constraintVertical_bias="0.0" />
-
                 <EditText
                     android:id="@+id/sadUsually"
                     android:layout_width="340dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
+                    android:layout_marginBottom="596dp"
                     android:layout_marginEnd="8dp"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginRight="8dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:background="@android:color/transparent"
@@ -479,34 +367,15 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.428"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/happyBarUsually"
-                    app:layout_constraintVertical_bias="0.0" />
-
-                <SeekBar
-                    android:id="@+id/sadBarUsually"
-                    android:layout_width="341dp"
-                    android:layout_height="17dp"
-                    android:layout_marginBottom="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginLeft="4dp"
-                    android:layout_marginRight="8dp"
-                    android:layout_marginStart="4dp"
-                    android:layout_marginTop="8dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.2"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/sadUsually"
+                    app:layout_constraintTop_toBottomOf="@+id/relativeLayout5"
                     app:layout_constraintVertical_bias="0.0" />
 
                 <EditText
                     android:id="@+id/sleepyUsually"
                     android:layout_width="340dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
+                    android:layout_marginBottom="488dp"
                     android:layout_marginEnd="8dp"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginRight="8dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:background="@android:color/transparent"
@@ -523,34 +392,15 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.428"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/sadBarUsually"
-                    app:layout_constraintVertical_bias="0.0" />
-
-                <SeekBar
-                    android:id="@+id/sleepyBarUsually"
-                    android:layout_width="341dp"
-                    android:layout_height="17dp"
-                    android:layout_marginBottom="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginLeft="4dp"
-                    android:layout_marginRight="8dp"
-                    android:layout_marginStart="4dp"
-                    android:layout_marginTop="8dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.2"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/sleepyUsually"
+                    app:layout_constraintTop_toBottomOf="@+id/relativeLayout6"
                     app:layout_constraintVertical_bias="0.0" />
 
                 <EditText
                     android:id="@+id/tiredUsually"
                     android:layout_width="340dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
+                    android:layout_marginBottom="332dp"
                     android:layout_marginEnd="8dp"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginRight="8dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:background="@android:color/transparent"
@@ -567,34 +417,15 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.428"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/sleepyBarUsually"
-                    app:layout_constraintVertical_bias="0.0" />
-
-                <SeekBar
-                    android:id="@+id/tiredBarUsually"
-                    android:layout_width="341dp"
-                    android:layout_height="17dp"
-                    android:layout_marginBottom="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginLeft="4dp"
-                    android:layout_marginRight="8dp"
-                    android:layout_marginStart="4dp"
-                    android:layout_marginTop="8dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.2"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tiredUsually"
+                    app:layout_constraintTop_toBottomOf="@+id/relativeLayout8"
                     app:layout_constraintVertical_bias="0.0" />
 
                 <EditText
                     android:id="@+id/stressUsually"
                     android:layout_width="340dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
+                    android:layout_marginBottom="340dp"
                     android:layout_marginEnd="8dp"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginRight="8dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:background="@android:color/transparent"
@@ -611,34 +442,15 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.428"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tiredBarUsually"
-                    app:layout_constraintVertical_bias="0.0" />
-
-                <SeekBar
-                    android:id="@+id/stressBarUsually"
-                    android:layout_width="341dp"
-                    android:layout_height="17dp"
-                    android:layout_marginBottom="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginLeft="4dp"
-                    android:layout_marginRight="8dp"
-                    android:layout_marginStart="4dp"
-                    android:layout_marginTop="8dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.2"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/stressUsually"
+                    app:layout_constraintTop_toBottomOf="@+id/relativeLayout10"
                     app:layout_constraintVertical_bias="0.0" />
 
                 <EditText
                     android:id="@+id/irritableUsually"
                     android:layout_width="340dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
+                    android:layout_marginBottom="328dp"
                     android:layout_marginEnd="8dp"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginRight="8dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:background="@android:color/transparent"
@@ -655,25 +467,8 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.428"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/stressBarUsually"
+                    app:layout_constraintTop_toBottomOf="@+id/relativeLayout11"
                     app:layout_constraintVertical_bias="0.0" />
-
-                <SeekBar
-                    android:id="@+id/irritableBarUsually"
-                    android:layout_width="341dp"
-                    android:layout_height="17dp"
-                    android:layout_marginBottom="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginLeft="4dp"
-                    android:layout_marginRight="8dp"
-                    android:layout_marginStart="4dp"
-                    android:layout_marginTop="8dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.2"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/irritableUsually"
-                    app:layout_constraintVertical_bias="0.003" />
 
                 <EditText
                     android:id="@+id/concentrateUsually"
@@ -700,31 +495,12 @@
                     app:layout_constraintTop_toBottomOf="@+id/actions"
                     app:layout_constraintVertical_bias="0.0" />
 
-                <SeekBar
-                    android:id="@+id/concentrateBarUsually"
-                    android:layout_width="341dp"
-                    android:layout_height="17dp"
-                    android:layout_marginBottom="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginLeft="4dp"
-                    android:layout_marginRight="8dp"
-                    android:layout_marginStart="4dp"
-                    android:layout_marginTop="8dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.2"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/concentrateUsually"
-                    app:layout_constraintVertical_bias="0.0" />
-
                 <EditText
                     android:id="@+id/cordinateUsually"
                     android:layout_width="340dp"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
                     android:layout_marginEnd="8dp"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginRight="8dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:background="@android:color/transparent"
@@ -741,24 +517,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.428"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/concentrateBarUsually"
-                    app:layout_constraintVertical_bias="0.0" />
-
-                <SeekBar
-                    android:id="@+id/coordinateBarUsually"
-                    android:layout_width="341dp"
-                    android:layout_height="19dp"
-                    android:layout_marginBottom="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginLeft="4dp"
-                    android:layout_marginRight="8dp"
-                    android:layout_marginStart="4dp"
-                    android:layout_marginTop="8dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.2"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/cordinateUsually"
+                    app:layout_constraintTop_toBottomOf="@+id/relativeLayout13"
                     app:layout_constraintVertical_bias="0.0" />
 
                 <EditText
@@ -767,9 +526,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
                     android:layout_marginEnd="8dp"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginRight="8dp"
                     android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
                     android:background="@android:color/transparent"
                     android:clickable="false"
                     android:cursorVisible="false"
@@ -784,25 +542,263 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.428"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/coordinateBarUsually"
+                    app:layout_constraintTop_toBottomOf="@+id/relativeLayout14"
                     app:layout_constraintVertical_bias="0.0" />
 
-                <SeekBar
-                    android:id="@+id/apetiteBarUsually"
-                    android:layout_width="341dp"
-                    android:layout_height="17dp"
-                    android:layout_marginBottom="8dp"
+                <RelativeLayout
+                    android:id="@+id/relativeLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
                     android:layout_marginEnd="8dp"
-                    android:layout_marginLeft="4dp"
-                    android:layout_marginRight="8dp"
-                    android:layout_marginStart="4dp"
+                    android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.2"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/apetiteUsually"
-                    app:layout_constraintVertical_bias="0.0" />
+                    app:layout_constraintTop_toBottomOf="@+id/wakeUpPerNightUsually">
+
+                    <com.example.admin.sleepbetter.SeekBarWithIntervals
+                        android:id="@+id/timesPerNightBar"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/nightTerrorsLay"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/nightTerrorsUsually">
+
+                    <com.example.admin.sleepbetter.SeekBarWithIntervals
+                        android:id="@+id/nightTerrorsBar"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_centerHorizontal="true" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/relativeLayout2"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/fallAsleepUsually">
+
+                    <com.example.admin.sleepbetter.SeekBarWithIntervals
+                        android:id="@+id/fallAsleepBar"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginStart="0dp" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/relativeLayout3"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/wakeUpUsually">
+
+                    <com.example.admin.sleepbetter.SeekBarWithIntervals
+                        android:id="@+id/easyWakeUpBar"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_centerHorizontal="true" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/relativeLayout4"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/freshUsually">
+
+                    <com.example.admin.sleepbetter.SeekBarWithIntervals
+                        android:id="@+id/freshBar"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginStart="0dp" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/relativeLayout5"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/happyUsually">
+
+                    <com.example.admin.sleepbetter.SeekBarWithIntervals
+                        android:id="@+id/happyBar"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_centerInParent="true" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/relativeLayout6"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/sadUsually">
+
+                    <com.example.admin.sleepbetter.SeekBarWithIntervals
+                        android:id="@+id/sadBar"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_centerHorizontal="true" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/relativeLayout8"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/sleepyUsually">
+
+                    <com.example.admin.sleepbetter.SeekBarWithIntervals
+                        android:id="@+id/sleepyBar"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/relativeLayout10"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tiredUsually">
+
+                    <com.example.admin.sleepbetter.SeekBarWithIntervals
+                        android:id="@+id/tiredBar"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/relativeLayout11"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/stressUsually">
+
+                    <com.example.admin.sleepbetter.SeekBarWithIntervals
+                        android:id="@+id/stressedBar"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_centerHorizontal="true" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/relativeLayout12"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/irritableUsually">
+
+                    <com.example.admin.sleepbetter.SeekBarWithIntervals
+                        android:id="@+id/irritableBar"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_centerHorizontal="true" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/relativeLayout13"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/concentrateUsually">
+
+                    <com.example.admin.sleepbetter.SeekBarWithIntervals
+                        android:id="@+id/concentrateBar"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/relativeLayout14"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/cordinateUsually">
+
+                    <com.example.admin.sleepbetter.SeekBarWithIntervals
+                        android:id="@+id/coordinateBar"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_centerHorizontal="true" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/apetiteUsually">
+
+                    <com.example.admin.sleepbetter.SeekBarWithIntervals
+                        android:id="@+id/apetiteBar"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_centerHorizontal="true" />
+                </RelativeLayout>
 
 
             </android.support.constraint.ConstraintLayout>

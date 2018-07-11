@@ -6,8 +6,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class FirstPage extends AppCompatActivity {
 
+    private SeekBarWithIntervals SeekbarWithIntervals = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,12 +28,14 @@ public class FirstPage extends AppCompatActivity {
             }
 
         });
+
     }
     private void goToSecondActivity() {
 
-        Intent intent = new Intent(this, MainMenu.class);
+        Intent intent = new Intent(this, SecondPage.class);
 
         startActivity(intent);
 
     }
+
 }

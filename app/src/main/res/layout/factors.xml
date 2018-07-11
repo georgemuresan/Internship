@@ -166,11 +166,14 @@
             android:id="@+id/factorsIntro"
             android:layout_width="362dp"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:text="@string/factorsIntroduction"
             android:textColor="@android:color/black"
-            app:layout_constraintTop_toBottomOf="@+id/topView"
-            tools:layout_editor_absoluteX="11dp" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/topView" />
 
     </android.support.constraint.ConstraintLayout>
 
