@@ -1,6 +1,7 @@
 package com.example.admin.sleepbetter;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -31,4 +32,12 @@ public class Data extends Fragment {
 
         return dataView;
     }
+/*
+    public void onBackPressed() {
+        System.out.println("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW");
+        Intent intent = new Intent(getActivity(), MainMenu.class);
+        startActivity(intent);
+        getActivity().finish();
+
+    }*/
 }

@@ -2,9 +2,11 @@ package com.example.admin.sleepbetter;
 
 
 import android.app.FragmentManager;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.view.KeyEvent;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -52,6 +54,19 @@ public class MainMenu extends AppCompatActivity
         } else {
             super.onBackPressed();
         }
+
+        int count = getFragmentManager().getBackStackEntryCount();
+
+        if (count == 0) {
+            super.onBackPressed();
+
+            Intent intent = new Intent(this, MainMenu.class);
+            startActivity(intent);
+            finish();
+        } else {
+            getFragmentManager().popBackStack();
+        }
+
     }
 
     @Override
@@ -104,4 +119,16 @@ public class MainMenu extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+/*
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            finish();
+            System.exit(0);
+            return true;
+        }
+
+        return super.onKeyDown(keyCode, event);
+    }*/
+
+
 }

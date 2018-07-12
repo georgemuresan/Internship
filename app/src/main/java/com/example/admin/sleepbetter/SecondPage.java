@@ -199,5 +199,11 @@ public class SecondPage extends AppCompatActivity {
         }
         return null;
     }
+
+    public void onBackPressed() {
+        Intent intent = new Intent(this, MainMenu.class);
+        startActivity(intent);
+        finish();
+    }
 }
 
