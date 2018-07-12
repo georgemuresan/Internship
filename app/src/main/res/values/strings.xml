@@ -177,6 +177,8 @@
 
     <string name="moreInfo">More Information</string>
 
+    <string name="dataTitle">DATA</string>
+    <string name="dataIntro">Here you will be able to look at personal data in terms of progress, changes, variations and so on! Below you will find 3 categories of data visualisation:\nProgress bar - where you will be able to see your current state on the way to your goal;\nTimelines - looking at your progress;\nSingle value displays - looking at your current state.  </string>
 
     <string name="factorsMenu">Factors</string>
     <string name="data">Data</string>

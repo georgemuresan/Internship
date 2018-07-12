@@ -17,7 +17,6 @@ public class SecondPage extends AppCompatActivity {
     private SeekBarWithIntervals fallAsleepBar = null;
     private SeekBarWithIntervals wakeUpBar = null;
     private SeekBarWithIntervals freshBar = null;
-    private SeekBarWithIntervals happyBar = null;
     private SeekBarWithIntervals sadBar = null;
     private SeekBarWithIntervals sleepyBar = null;
     private SeekBarWithIntervals tiredBar = null;
@@ -78,6 +77,20 @@ public class SecondPage extends AppCompatActivity {
 
         Intent intent = new Intent(this, ThirdPage.class);
 
+        int timesPerNight = timesPerNightBar.getProgress();
+        int nightTerrors = nightTerrorsBar.getProgress();
+        int fallAsleep = fallAsleepBar.getProgress();
+        int wakeUp = wakeUpBar.getProgress();
+        int fresh = freshBar.getProgress();
+        int sad = sadBar.getProgress();
+        int sleepy = sleepyBar.getProgress();
+        int tired = tiredBar.getProgress();
+        int stressed = stressedBar.getProgress();
+        int apetite = apetiteBar.getProgress();
+        int concentrate = concentrateBar.getProgress();
+        int coordinate = coordinateBar.getProgress();
+        int irritable = irritableBar.getProgress();
+
         startActivity(intent);
 
     }
@@ -135,12 +148,6 @@ public class SecondPage extends AppCompatActivity {
             }
 
             return freshBar;
-        } else  if (name.equals("happy")) {
-            if (happyBar == null) {
-                happyBar = (SeekBarWithIntervals) findViewById(R.id.happyBar);
-            }
-
-            return happyBar;
         } else  if (name.equals("sad")) {
             if (sadBar == null) {
                 sadBar = (SeekBarWithIntervals) findViewById(R.id.sadBar);

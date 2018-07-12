@@ -44,7 +44,7 @@ public class FirstPage extends AppCompatActivity {
             //show start activity
             startActivity(new Intent(this, MainMenu.class));
             Toast.makeText(FirstPage.this, "First Run", Toast.LENGTH_LONG)
-                    .show(); 
+                    .show();
         }
 
         getSharedPreferences("PREFERENCE", MODE_PRIVATE).edit()
