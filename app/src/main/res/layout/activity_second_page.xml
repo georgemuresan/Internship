@@ -80,7 +80,7 @@
 
             <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="1280dp">
+                android:layout_height="1230dp">
 
                 <EditText
                     android:id="@+id/nighttime"
@@ -161,16 +161,14 @@
                     android:id="@+id/startButton"
                     android:layout_width="102dp"
                     android:layout_height="43dp"
-                    android:layout_marginBottom="16dp"
                     android:layout_marginEnd="8dp"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginRight="8dp"
                     android:layout_marginStart="8dp"
+                    android:layout_marginTop="24dp"
                     android:text="@string/startButton"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.497"
-                    app:layout_constraintStart_toStartOf="parent" />
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/relativeLayout7" />
 
                 <EditText
                     android:id="@+id/nightTerrorsUsually"
@@ -277,7 +275,6 @@
                     android:id="@+id/mood"
                     android:layout_width="360dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="472dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
@@ -289,12 +286,10 @@
                     android:hint="@string/some_explanation_about_the_input"
                     android:inputType="textPersonName"
                     android:text="@string/mood"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.538"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/relativeLayout4"
-                    app:layout_constraintVertical_bias="0.0" />
+                    app:layout_constraintTop_toBottomOf="@+id/relativeLayout4" />
 
                 <EditText
                     android:id="@+id/actions"
@@ -316,43 +311,16 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.538"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/relativeLayout12" />
-
-                <EditText
-                    android:id="@+id/happyUsually"
-                    android:layout_width="340dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginRight="8dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:background="@android:color/transparent"
-                    android:clickable="false"
-                    android:cursorVisible="false"
-                    android:ems="10"
-                    android:focusable="false"
-                    android:focusableInTouchMode="false"
-                    android:hint="@string/some_explanation_about_the_input"
-                    android:inputType="textPersonName"
-                    android:text="@string/happyUsually"
-                    android:textSize="12sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.428"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/mood"
+                    app:layout_constraintTop_toBottomOf="@+id/relativeLayout12"
                     app:layout_constraintVertical_bias="0.0" />
 
                 <EditText
                     android:id="@+id/sadUsually"
                     android:layout_width="340dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="596dp"
+                    android:layout_marginBottom="708dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
                     android:background="@android:color/transparent"
                     android:clickable="false"
                     android:cursorVisible="false"
@@ -367,8 +335,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.428"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/relativeLayout5"
-                    app:layout_constraintVertical_bias="0.0" />
+                    app:layout_constraintTop_toBottomOf="@+id/mood" />
 
                 <EditText
                     android:id="@+id/sleepyUsually"
@@ -637,24 +604,6 @@
                 </RelativeLayout>
 
                 <RelativeLayout
-                    android:id="@+id/relativeLayout5"
-                    android:layout_width="match_parent"
-                    android:layout_height="35dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/happyUsually">
-
-                    <com.example.admin.sleepbetter.SeekBarWithIntervals
-                        android:id="@+id/happyBar"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_centerInParent="true" />
-                </RelativeLayout>
-
-                <RelativeLayout
                     android:id="@+id/relativeLayout6"
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
@@ -784,6 +733,7 @@
                 </RelativeLayout>
 
                 <RelativeLayout
+                    android:id="@+id/relativeLayout7"
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
                     android:layout_marginEnd="8dp"

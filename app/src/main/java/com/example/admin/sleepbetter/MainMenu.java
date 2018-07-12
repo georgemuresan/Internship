@@ -14,6 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 public class MainMenu extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -35,6 +36,12 @@ public class MainMenu extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        View headerView = navigationView.getHeaderView(0);
+        TextView navUsername = (TextView) headerView.findViewById(R.id.nameOfUser);
+
+        String name = getSharedPreferences("name", MODE_PRIVATE).getString("username", "nothing");
+        navUsername.setText(name);
     }
 
     @Override
@@ -89,7 +96,9 @@ public class MainMenu extends AppCompatActivity
             fragmentManager.beginTransaction().replace(R.id.content_frame, new Help()).commit();
         } else if (id == R.id.nav_bot) {
             fragmentManager.beginTransaction().replace(R.id.content_frame, new TestBot()).commit();
-        }
+        } else if (id == R.id.nav_update) {
+        fragmentManager.beginTransaction().replace(R.id.content_frame, new Update()).commit();
+    }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

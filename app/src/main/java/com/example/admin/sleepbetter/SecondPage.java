@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,6 +43,7 @@ public class SecondPage extends AppCompatActivity {
             }
 
         });
+
         List<String> seekbarIntervals = getIntervals("upToFour");
         getSeekbarWithIntervals("times").setIntervals(seekbarIntervals);
 
@@ -53,8 +55,6 @@ public class SecondPage extends AppCompatActivity {
         getSeekbarWithIntervals("wakeUp").setIntervals(listOne);
 
         getSeekbarWithIntervals("fresh").setIntervals(listOne);
-
-        getSeekbarWithIntervals("happy").setIntervals(listOne);
 
         getSeekbarWithIntervals("sad").setIntervals(listOne);
 
