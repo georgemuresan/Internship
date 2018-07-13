@@ -46,7 +46,7 @@ public class MainMenu extends AppCompatActivity
 
         String name = getSharedPreferences("name", MODE_PRIVATE).getString("username", "nothing");
         navUsername.setText(name);
-
+// Adding the right bitmoji
         int mood = getSharedPreferences("MOOD", MODE_PRIVATE).getInt("mood", 0);
         ImageView imageView =  (ImageView) headerView.findViewById(R.id.imageView);
         if (mood == 1) imageView.setImageResource(R.drawable.happy);
