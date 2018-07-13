@@ -2,9 +2,10 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent" android:layout_height="match_parent"
-    android:clickable="true"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:background="#FFF"
+    android:clickable="true"
     android:focusable="true">
 
     <android.support.constraint.ConstraintLayout
@@ -48,20 +49,66 @@
 
                 <android.support.constraint.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="384dp">
+                    android:layout_height="481dp"
+                    tools:layout_editor_absoluteX="8dp"
+                    tools:layout_editor_absoluteY="0dp">
 
 
-                    <Button
-                        android:id="@+id/moreInfo"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                    <RadioGroup
+                        android:id="@+id/sunlightGroup"
+                        android:layout_width="327dp"
+                        android:layout_height="43dp"
                         android:layout_marginEnd="8dp"
                         android:layout_marginStart="8dp"
-                        android:layout_marginTop="24dp"
-                        android:text="@string/moreInfo"
+                        android:layout_marginTop="8dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/fourthLightOption" />
+                        app:layout_constraintTop_toBottomOf="@+id/sunlightQuestion">
+
+                        <RadioButton
+                            android:id="@+id/noSunlight"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/noAnswer"
+                            android:textSize="12sp" />
+
+                        <RadioButton
+                            android:id="@+id/yesSunlight"
+                            android:layout_width="125dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/yesAnswer"
+                            android:textSize="12sp" />
+                    </RadioGroup>
+
+                    <RadioGroup
+                        android:id="@+id/outGroup"
+                        android:layout_width="327dp"
+                        android:layout_height="43dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/outQuestion">
+
+                        <RadioButton
+                            android:id="@+id/noOut"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/noAnswer"
+                            android:textSize="12sp" />
+
+                        <RadioButton
+                            android:id="@+id/yesOut"
+                            android:layout_width="125dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/yesAnswer"
+                            android:textSize="12sp" />
+                    </RadioGroup>
 
                     <EditText
                         android:id="@+id/loggngTitle"
@@ -76,29 +123,56 @@
                         android:focusableInTouchMode="false"
                         android:hint="@string/some_explanation_about_the_input"
                         android:inputType="textPersonName"
-                        android:text="@string/lightTitle"
+                        android:text="@string/logging"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <CheckBox
-                        android:id="@+id/firstLightCheckbox"
-                        android:layout_width="wrap_content"
-                        android:layout_height="20dp"
+                    <EditText
+                        android:id="@+id/dayReview"
+                        android:layout_width="360dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginEnd="8dp"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginTop="8dp"
-                        android:onClick="doSomething"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="12dp"
+                        android:clickable="false"
+                        android:cursorVisible="false"
+                        android:ems="10"
+                        android:focusable="false"
+                        android:focusableInTouchMode="false"
+                        android:hint="@string/some_explanation_about_the_input"
+                        android:inputType="textPersonName"
+                        android:text="@string/dayReview"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.019"
+                        app:layout_constraintHorizontal_bias="0.538"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/loggngTitle" />
+                        app:layout_constraintTop_toBottomOf="@+id/sunlightGroup" />
 
                     <TextView
                         android:id="@+id/questionDay"
                         android:layout_width="309dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="8dp"
+                        android:layout_marginEnd="24dp"
+                        android:layout_marginStart="8dp"
+                        android:background="@android:color/transparent"
+                        android:clickable="false"
+                        android:ems="10"
+                        android:focusable="false"
+                        android:focusableInTouchMode="false"
+                        android:hint="@string/some_explanation_about_the_input"
+                        android:inputType=""
+                        android:text="@string/question"
+                        android:textColor="@android:color/black"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.363"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/dayReview" />
+
+                    <TextView
+                        android:id="@+id/morningLight"
+                        android:layout_width="309dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="24dp"
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="8dp"
                         android:background="@android:color/transparent"
@@ -108,30 +182,18 @@
                         android:focusableInTouchMode="false"
                         android:hint="@string/some_explanation_about_the_input"
                         android:inputType=""
-                        android:text="@string/firstLight"
+                        android:text="@string/morningQuestion"
                         android:textColor="@android:color/black"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/firstLightCheckbox"
+                        app:layout_constraintHorizontal_bias="0.363"
+                        app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/loggngTitle" />
 
-                    <CheckBox
-                        android:id="@+id/secondLightCheckbox"
-                        android:layout_width="wrap_content"
-                        android:layout_height="20dp"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginTop="12dp"
-                        android:onClick="doSomething"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.019"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/firstLightCheckbox" />
-
                     <TextView
-                        android:id="@+id/secondLightOption"
-                        android:layout_width="309dp"
+                        android:id="@+id/outQuestion"
+                        android:layout_width="316dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="8dp"
+                        android:layout_marginEnd="24dp"
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="8dp"
                         android:background="@android:color/transparent"
@@ -141,62 +203,18 @@
                         android:focusableInTouchMode="false"
                         android:hint="@string/some_explanation_about_the_input"
                         android:inputType=""
-                        android:text="@string/secondLight"
+                        android:text="@string/outQuestion"
                         android:textColor="@android:color/black"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/secondLightCheckbox"
-                        app:layout_constraintTop_toBottomOf="@+id/questionDay" />
-
-                    <CheckBox
-                        android:id="@+id/thirdLightCheckbox"
-                        android:layout_width="wrap_content"
-                        android:layout_height="20dp"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginTop="16dp"
-                        android:onClick="doSomething"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.019"
+                        app:layout_constraintHorizontal_bias="0.533"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/secondLightCheckbox" />
+                        app:layout_constraintTop_toBottomOf="@+id/exposureQuestion" />
 
                     <TextView
-                        android:id="@+id/thirdLightOption"
-                        android:layout_width="309dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginTop="8dp"
-                        android:background="@android:color/transparent"
-                        android:clickable="false"
-                        android:ems="10"
-                        android:focusable="false"
-                        android:focusableInTouchMode="false"
-                        android:hint="@string/some_explanation_about_the_input"
-                        android:inputType=""
-                        android:text="@string/thirdLight"
-                        android:textColor="@android:color/black"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/secondLightOption" />
-
-
-                    <CheckBox
-                        android:id="@+id/fourthLightCheckbox"
-                        android:layout_width="30dp"
-                        android:layout_height="20dp"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginTop="20dp"
-                        android:onClick="doSomething"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.019"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/thirdLightCheckbox" />
-
-                    <TextView
-                        android:id="@+id/fourthLightOption"
-                        android:layout_width="309dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="8dp"
+                        android:id="@+id/sunlightQuestion"
+                        android:layout_width="324dp"
+                        android:layout_height="21dp"
+                        android:layout_marginEnd="24dp"
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="8dp"
                         android:background="@android:color/transparent"
@@ -206,11 +224,70 @@
                         android:focusableInTouchMode="false"
                         android:hint="@string/some_explanation_about_the_input"
                         android:inputType=""
-                        android:text="@string/fourthLight"
+                        android:text="@string/sunlightQuestion"
                         android:textColor="@android:color/black"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/fourthLightCheckbox"
-                        app:layout_constraintTop_toBottomOf="@+id/thirdLightOption" />
+                        app:layout_constraintHorizontal_bias="1.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/outGroup" />
+
+                    <RelativeLayout
+                        android:id="@+id/relativeLayout9"
+                        android:layout_width="match_parent"
+                        android:layout_height="35dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/questionDay">
+
+                        <com.example.admin.sleepbetter.SeekBarWithIntervals
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_centerHorizontal="true" />
+                    </RelativeLayout>
+
+                    <RadioGroup
+                        android:id="@+id/exposureQuestion"
+                        android:layout_width="327dp"
+                        android:layout_height="43dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/morningLight">
+
+                        <RadioButton
+                            android:id="@+id/noExposure"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/noAnswer"
+                            android:textSize="12sp" />
+
+                        <RadioButton
+                            android:id="@+id/yesExposure"
+                            android:layout_width="125dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/yesAnswer"
+                            android:textSize="12sp" />
+                    </RadioGroup>
+
+                    <Button
+                        android:id="@+id/submitUpdate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/submitUpdate"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/relativeLayout9" />
+
 
                 </android.support.constraint.ConstraintLayout>
             </FrameLayout>
@@ -218,19 +295,19 @@
 
         <View
             android:id="@+id/topView"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="0dp"
             android:layout_width="match_parent"
             android:layout_height="75dp"
-            android:background="@color/LightSteelBlue" />
+            android:background="@color/LightSteelBlue"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="0dp" />
 
         <TextView
             android:id="@+id/sleepSettingsTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:text="@string/sleepSettingsTitle"
+            android:text="@string/lightSubTitle"
             android:textAllCaps="false"
             android:textColor="@android:color/black"
             android:textSize="18sp"
@@ -241,11 +318,11 @@
             app:layout_constraintVertical_bias="0.72" />
 
         <TextView
-            android:id="@+id/factorsTitle2"
+            android:id="@+id/experimentTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:text="@string/factorsTitle"
+            android:text="@string/experimentTitle"
             android:textAllCaps="false"
             android:textColor="@android:color/black"
             android:textSize="30sp"
@@ -273,8 +350,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:text="@string/lightIntro"
+            android:text="@string/brightExposureIntro"
             android:textColor="@android:color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
