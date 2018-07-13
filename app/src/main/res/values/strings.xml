@@ -86,7 +86,7 @@
     <string name="firstLight">Increase bright light exposure during the day</string>
     <string name="secondLight">Stop watching the TV/computer with 2 hours before sleep</string>
     <string name="thirdLight">Turn off bright lights 2 hours before going to bed.</string>
-    <string name="fourthLight">Wear glasses that block blue light during the night.</string>
+    <string name="fourthLight">Adjust blue light during the day and wear glasses that block blue light during the night.</string>
     <string name="personalised">PERSONALISED</string>
     <string name="personalisedText">You currently have no personalised plan for this factor.</string>
 
@@ -183,10 +183,35 @@
     <string name="timelineTitle">Timelines</string>
     <string name="singleValueDisplayTitle">Single Value Display</string>
 
+       <string name="experimentTitle">EXPERIMENT</string>
+    <string name="lightSubTitle">Light</string>
+    <string name="logging">LOGGING</string>
+    <string name="dayReview">DAY REVIEW</string>
+    <string name="question">Do you think you feel better than yesterday?</string>
+    <string name="brightExposureIntro">Your current experiment is: INCREASE BRIGHT LIGHT EXPOSURE DURING THE DAY. Below you are asked to complete the questions on whether you followed the experiment.</string>
+    <string name="morningQuestion">Did you get sunlight exposure in the morning?</string>
+    <string name="outQuestion">Did you stay at least half an hour in the sun today?</string>
+    <string name="sunlightQuestion">Did you keep your room so that it captures sunlight?</string>
+
+
+
+    <string name="stopTVIntro">Your current experiment is: STOP WATCHING THE TV/THE COMPUTER WITHIN 2 HOURS OF GOING TO SLEEP. Below you are asked to complete the questions on whether you followed the experiment.</string>
+
+    <string name="turnOffIntro">Your current experiment is: TURN OFF ANY BRIGHT LIGHT WITHIN 2 HOURS OF GOING TO SLEEP. Below you are asked to complete the questions on whether you followed the experiment.</string>
+
+
+    <string name="glassesIntro">Your current experiment is: WEAR GLASSES THAT BLOCK ANY LIGHT DURING THE NIGHT. Below you are asked to complete the questions on whether you followed the experiment.</string>
+
 
     <string name="factorsMenu">Factors</string>
     <string name="data">Data</string>
     <string name="questionnaire">Questionnaire</string>
     <string name="help">Help</string>
     <string name="diary">Goal Diary</string>
+
+
+    <string name="noAnswer">No</string>
+    <string name="yesAnswer">Yes</string>
+    <string name="submitUpdate">SUBMIT</string>
+
 </resources>

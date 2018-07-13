@@ -35,6 +35,7 @@ public class SeekBarWithIntervals extends LinearLayout {
         init();
     }
 
+
     private void init() {
         this.setOrientation(VERTICAL);
 
