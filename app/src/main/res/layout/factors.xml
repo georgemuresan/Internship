@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:clickable="true"
     android:background="#FFF">
 
@@ -24,7 +25,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.454"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/dataIntro"
+            app:layout_constraintTop_toBottomOf="@+id/factorsIntro"
             tools:targetApi="lollipop">
 
             <FrameLayout
@@ -43,85 +44,165 @@
                 app:layout_constraintTop_toTopOf="@+id/ScrollViewQuestionnaire">
 
                 <android.support.constraint.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="404dp">
+                    android:layout_width="350dp"
+                    android:layout_height="559dp"
+                    tools:layout_editor_absoluteX="24dp"
+                    tools:layout_editor_absoluteY="0dp">
 
 
-                    <CheckBox
-                        android:id="@+id/lightCheckbox"
-                        android:layout_width="wrap_content"
-                        android:layout_height="20dp"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginTop="16dp"
-                        android:onClick="doSomething"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.019"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <TextView
-                        android:id="@+id/lightFactor"
+                    <Button
+                        android:id="@+id/moreInfo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="8dp"
-                        android:layout_marginTop="16dp"
-                        android:text="@string/lightCheck"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toEndOf="@+id/lightCheckbox"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-
-                    <CheckBox
-                        android:id="@+id/caffeineCheckbox"
-                        android:layout_width="wrap_content"
-                        android:layout_height="20dp"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginStart="10dp"
+                        android:layout_marginStart="8dp"
                         android:layout_marginTop="28dp"
-                        android:onClick="doSomething"
+                        android:text="@string/moreInfo"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.019"
+                        app:layout_constraintHorizontal_bias="0.502"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/lightCheckbox" />
+                        app:layout_constraintTop_toBottomOf="@+id/experimentsGroup" />
 
-                    <TextView
-                        android:id="@+id/caffeineFactor"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                    <RadioGroup
+                        android:id="@+id/experimentsGroup"
+                        android:layout_width="match_parent"
+                        android:layout_height="447dp"
                         android:layout_marginEnd="8dp"
-                        android:layout_marginTop="28dp"
-                        android:text="@string/caffeineCheck"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="4dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toEndOf="@+id/lightCheckbox"
-                        app:layout_constraintTop_toBottomOf="@+id/lightFactor" />
-
-                    <CheckBox
-                        android:id="@+id/sleepingScheduleCheckbox"
-                        android:layout_width="wrap_content"
-                        android:layout_height="20dp"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginTop="24dp"
-                        android:onClick="doSomething"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.019"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/caffeineCheckbox" />
+                        app:layout_constraintTop_toTopOf="parent">
 
-                    <TextView
-                        android:id="@+id/sleepingScheduleFactor"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginTop="28dp"
-                        android:text="@string/sleepingScheduleCheck"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toEndOf="@+id/lightCheckbox"
-                        app:layout_constraintTop_toBottomOf="@+id/caffeineFactor" />
+                        <EditText
+                            android:id="@+id/light"
+                            android:layout_width="360dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:clickable="false"
+                            android:cursorVisible="false"
+                            android:ems="10"
+                            android:focusable="false"
+                            android:focusableInTouchMode="false"
+                            android:hint="@string/some_explanation_about_the_input"
+                            android:inputType="textPersonName"
+                            android:text="@string/lightTitle"
+                            tools:layout_editor_absoluteX="0dp"
+                            tools:layout_editor_absoluteY="3dp" />
+
+                        <RadioButton
+                            android:id="@+id/firstLight"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/firstLight"
+                            android:textSize="12sp" />
+
+                        <RadioButton
+                            android:id="@+id/secondLight"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/secondLight"
+                            android:textSize="12sp" />
+
+                        <RadioButton
+                            android:id="@+id/thirdLight"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/thirdLight"
+                            android:textSize="12sp" />
+
+                        <EditText
+                            android:id="@+id/caffeine"
+                            android:layout_width="360dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:clickable="false"
+                            android:cursorVisible="false"
+                            android:ems="10"
+                            android:focusable="false"
+                            android:focusableInTouchMode="false"
+                            android:hint="@string/some_explanation_about_the_input"
+                            android:inputType="textPersonName"
+                            android:text="@string/caffeineTitle"
+                            tools:layout_editor_absoluteX="1dp"
+                            tools:layout_editor_absoluteY="153dp" />
+
+                        <RadioButton
+                            android:id="@+id/firstCaffeine"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/firstCaffeine"
+                            android:textSize="12sp" />
+
+                        <RadioButton
+                            android:id="@+id/secondCaffeine"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/secondCaffeine"
+                            android:textSize="12sp" />
+
+                        <RadioButton
+                            android:id="@+id/thirdCaffeine"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/thirdCaffeine"
+                            android:textSize="12sp" />
+
+                        <EditText
+                            android:id="@+id/schedule"
+                            android:layout_width="360dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:clickable="false"
+                            android:cursorVisible="false"
+                            android:ems="10"
+                            android:focusable="false"
+                            android:focusableInTouchMode="false"
+                            android:hint="@string/some_explanation_about_the_input"
+                            android:inputType="textPersonName"
+                            android:text="@string/scheduleTitle"
+                            tools:layout_editor_absoluteX="1dp"
+                            tools:layout_editor_absoluteY="297dp" />
+
+                        <RadioButton
+                            android:id="@+id/firstSchedule"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/firstSchedule"
+                            android:textSize="12sp" />
+
+                        <RadioButton
+                            android:id="@+id/secondSchedule"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/secondSchedule"
+                            android:textSize="12sp" />
+
+                        <RadioButton
+                            android:id="@+id/thirdSchdule"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/thirdSchedule"
+                            android:textSize="12sp" />
+
+                        <RadioButton
+                            android:id="@+id/fourthSchedule"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/fourthSchedule"
+                            android:textSize="12sp" />
+                    </RadioGroup>
 
                 </android.support.constraint.ConstraintLayout>
             </FrameLayout>
@@ -129,12 +210,12 @@
 
         <View
             android:id="@+id/topView"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="0dp"
             android:layout_width="match_parent"
             android:layout_height="75dp"
-            android:background="@color/LightSteelBlue" />
+            android:background="@color/LightSteelBlue"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="0dp" />
 
         <TextView
             android:id="@+id/factorsTitle"
@@ -163,7 +244,7 @@
             app:srcCompat="@android:color/holo_blue_dark" />
 
         <TextView
-            android:id="@+id/dataIntro"
+            android:id="@+id/factorsIntro"
             android:layout_width="362dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"

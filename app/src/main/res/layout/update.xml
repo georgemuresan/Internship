@@ -4,12 +4,4 @@
     android:clickable="true"
     android:background="#FFF" >
 
-    <TextView
-        android:id="@+id/help"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="87dp"
-        android:text="@string/help" />
 </RelativeLayout>

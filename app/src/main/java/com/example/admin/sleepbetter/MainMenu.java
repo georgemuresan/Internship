@@ -112,7 +112,34 @@ public class MainMenu extends AppCompatActivity
         } else if (id == R.id.nav_bot) {
             fragmentManager.beginTransaction().replace(R.id.content_frame, new TestBot()).commit();
         } else if (id == R.id.nav_update) {
-        fragmentManager.beginTransaction().replace(R.id.content_frame, new Update()).commit();
+
+            System.out.println("FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFf");
+            String experiment = getSharedPreferences("name", MODE_PRIVATE).getString("experiment", "nothing");
+
+            if (experiment.equals("firstLight")){
+                fragmentManager.beginTransaction().replace(R.id.content_frame, new Update_Light_Bright()).commit();
+            } else if (experiment.equals("secondLight")){
+                fragmentManager.beginTransaction().replace(R.id.content_frame, new Update_Light_Glasses()).commit();
+            } else if (experiment.equals("thirdLight")){
+                fragmentManager.beginTransaction().replace(R.id.content_frame, new Update_Light_TurnOffBright()).commit();
+            } else if (experiment.equals("firstCaffeine")){
+                fragmentManager.beginTransaction().replace(R.id.content_frame, new Update_Caffeine_6hours()).commit();
+            } else if (experiment.equals("secondCaffeine")){
+                fragmentManager.beginTransaction().replace(R.id.content_frame, new Update_Caffeine_limit()).commit();
+            } else if (experiment.equals("thirdCaffeine")){
+                fragmentManager.beginTransaction().replace(R.id.content_frame, new Update_Caffeine_Empty()).commit();
+            } else if (experiment.equals("firstSchedule")){
+                fragmentManager.beginTransaction().replace(R.id.content_frame, new Update_Schedule_SameTime()).commit();
+            } else if (experiment.equals("secondSchedule")){
+                fragmentManager.beginTransaction().replace(R.id.content_frame, new Update_Schedule_7hours()).commit();
+            } else if (experiment.equals("thirdSchedule")){
+                fragmentManager.beginTransaction().replace(R.id.content_frame, new Update_Schedule_Relax()).commit();
+            } else if (experiment.equals("fourthSchedule")){
+                fragmentManager.beginTransaction().replace(R.id.content_frame, new Update_Schedule_Midnight()).commit();
+            } else {
+                fragmentManager.beginTransaction().replace(R.id.content_frame, new Update()).commit();
+            }
+
     }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

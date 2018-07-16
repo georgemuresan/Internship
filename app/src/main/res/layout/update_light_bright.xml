@@ -71,6 +71,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:text="@string/noAnswer"
+                            android:textColor="@android:color/holo_red_dark"
                             android:textSize="12sp" />
 
                         <RadioButton
@@ -79,11 +80,12 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:text="@string/yesAnswer"
+                            android:textColor="@android:color/holo_green_dark"
                             android:textSize="12sp" />
                     </RadioGroup>
 
                     <RadioGroup
-                        android:id="@+id/outGroup"
+                        android:id="@+id/glassesGroup"
                         android:layout_width="327dp"
                         android:layout_height="43dp"
                         android:layout_marginEnd="8dp"
@@ -91,7 +93,7 @@
                         android:layout_marginTop="8dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/outQuestion">
+                        app:layout_constraintTop_toBottomOf="@+id/glassesQuestion">
 
                         <RadioButton
                             android:id="@+id/noOut"
@@ -99,6 +101,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:text="@string/noAnswer"
+                            android:textColor="@android:color/holo_red_dark"
                             android:textSize="12sp" />
 
                         <RadioButton
@@ -107,6 +110,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:text="@string/yesAnswer"
+                            android:textColor="@android:color/holo_green_dark"
                             android:textSize="12sp" />
                     </RadioGroup>
 
@@ -169,7 +173,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/dayReview" />
 
                     <TextView
-                        android:id="@+id/morningLight"
+                        android:id="@+id/turnOffQuestion"
                         android:layout_width="309dp"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="24dp"
@@ -190,7 +194,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/loggngTitle" />
 
                     <TextView
-                        android:id="@+id/outQuestion"
+                        android:id="@+id/glassesQuestion"
                         android:layout_width="316dp"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="24dp"
@@ -208,7 +212,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.533"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/exposureQuestion" />
+                        app:layout_constraintTop_toBottomOf="@+id/appGroup" />
 
                     <TextView
                         android:id="@+id/sunlightQuestion"
@@ -229,7 +233,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="1.0"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/outGroup" />
+                        app:layout_constraintTop_toBottomOf="@+id/glassesGroup" />
 
                     <RelativeLayout
                         android:id="@+id/relativeLayout9"
@@ -251,7 +255,7 @@
                     </RelativeLayout>
 
                     <RadioGroup
-                        android:id="@+id/exposureQuestion"
+                        android:id="@+id/appGroup"
                         android:layout_width="327dp"
                         android:layout_height="43dp"
                         android:layout_marginEnd="8dp"
@@ -259,7 +263,7 @@
                         android:layout_marginTop="8dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/morningLight">
+                        app:layout_constraintTop_toBottomOf="@+id/turnOffQuestion">
 
                         <RadioButton
                             android:id="@+id/noExposure"
@@ -267,6 +271,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:text="@string/noAnswer"
+                            android:textColor="@android:color/holo_red_dark"
                             android:textSize="12sp" />
 
                         <RadioButton
@@ -275,6 +280,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:text="@string/yesAnswer"
+                            android:textColor="@android:color/holo_green_dark"
                             android:textSize="12sp" />
                     </RadioGroup>
 

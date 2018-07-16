@@ -83,7 +83,7 @@
                 android:layout_height="1280dp">
 
                 <EditText
-                    android:id="@+id/nighttime"
+                    android:id="@+id/light"
                     android:layout_width="360dp"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="828dp"
@@ -154,7 +154,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.428"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/nighttime"
+                    app:layout_constraintTop_toBottomOf="@+id/light"
                     app:layout_constraintVertical_bias="0.0" />
 
                 <Button

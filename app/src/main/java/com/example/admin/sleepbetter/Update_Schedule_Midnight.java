@@ -10,17 +10,15 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Update_Light_TV extends Fragment {
+public class Update_Schedule_Midnight extends Fragment {
     private SeekBarWithIntervals dayReviewBar = null;
     View updateView;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        updateView = inflater.inflate(R.layout.update_light_tv, container, false);
-
+        updateView = inflater.inflate(R.layout.update_schedule_midnight, container, false);
         List<String> listOne = getIntervals("dayReview");
         getSeekbarWithIntervals("dayReviewBar").setIntervals(listOne);
-
         return updateView;
     }
 
