@@ -1,10 +1,14 @@
 package com.example.admin.sleepbetter;
 
 import android.content.Intent;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
+import android.support.design.widget.NavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -91,8 +95,21 @@ public class SecondPage extends AppCompatActivity {
         int coordinate = coordinateBar.getProgress();
         int irritable = irritableBar.getProgress();
 
+        int mood = getSharedPreferences("MOOD", MODE_PRIVATE)
+                .getInt("mood", 0);
+        getSharedPreferences("MOOD", MODE_PRIVATE).edit()
+                .putInt("mood", moodCalculato(timesPerNight,nightTerrors,sad,sleepy,tired,stressed,irritable,concentrate,coordinate)).apply();
+
         startActivity(intent);
 
+    }
+
+    private int moodCalculato(int timesNight, int nightmares, int sad, int sleepy, int tired, int stressed, int irritable, int concentrate, int coordinate){
+        int avgMood = (sad + sleepy + tired + stressed + irritable) / 5;
+        int avgNight = (timesNight + nightmares) / 2;
+        int avgAction = (concentrate + coordinate) / 2;
+        int result = (avgMood * 3 + avgNight + avgAction) / 5;
+        return result;
     }
     private List<String> getIntervals(String command) {
 
