@@ -12,15 +12,15 @@ import java.util.List;
 public interface DaoAccess {
 
     @Insert
-    void insertOnlySingleMovie(Movies movies);
+    void insertOnlySingleMovie(UserData data);
     @Insert
-    void insertMultipleMovies (List<Movies> moviesList);
-    @Query("SELECT * FROM Movies WHERE movieId = :movieId")
-    Movies fetchOneMoviesbyMovieId(int movieId);
-    @Query("SELECT * FROM Movies")
-    List<Movies> fetchMovies();
+    void insertMultipleMovies (List<UserData> moviesList);
+    @Query("SELECT * FROM UserData WHERE username = :username")
+    UserData fetchOneMoviesbyMovieId(String username);
+    @Query("SELECT * FROM UserData")
+    List<UserData> fetchMovies();
     @Update
-    void updateMovie(Movies movies);
+    void updateMovie(UserData data);
     @Delete
-    void deleteMovie(Movies movies);
+    void deleteMovie(UserData data);
 }
