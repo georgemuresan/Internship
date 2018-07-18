@@ -15,7 +15,7 @@ import com.jjoe64.graphview.series.LineGraphSeries;
 public class Data extends Fragment {
 
     View dataView;
-    @Nullable
+    @Nullable 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         dataView = inflater.inflate(R.layout.data, container, false);
