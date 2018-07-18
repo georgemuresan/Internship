@@ -49,7 +49,7 @@
 
                 <android.support.constraint.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="430dp"
+                    android:layout_height="640dp"
                     tools:layout_editor_absoluteX="8dp"
                     tools:layout_editor_absoluteY="0dp">
 
@@ -73,7 +73,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.111"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/editText2" />
+                        app:layout_constraintTop_toBottomOf="@+id/lastDrink" />
 
                     <EditText
                         android:id="@+id/loggngTitle"
@@ -99,7 +99,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="8dp"
                         android:layout_marginStart="8dp"
-                        android:layout_marginTop="24dp"
+                        android:layout_marginTop="8dp"
                         android:clickable="false"
                         android:cursorVisible="false"
                         android:ems="10"
@@ -111,7 +111,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.538"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/editText3" />
+                        app:layout_constraintTop_toBottomOf="@+id/whenSleep" />
 
                     <TextView
                         android:id="@+id/questionDay"
@@ -164,11 +164,11 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/questionDay">
-
                         <com.example.admin.sleepbetter.SeekBarWithIntervals
                             android:id="@+id/dayReviewBar"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:layout_alignParentTop="true"
                             android:layout_centerHorizontal="true" />
                     </RelativeLayout>
 
@@ -184,28 +184,26 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/relativeLayout9" />
 
-                    <EditText
-                        android:id="@+id/editText2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                    <TimePicker
+                        android:id="@+id/lastDrink"
+                        android:layout_width="297dp"
+                        android:layout_height="146dp"
                         android:layout_marginEnd="8dp"
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="8dp"
-                        android:ems="10"
-                        android:inputType="time"
+                        android:timePickerMode="spinner"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/turnOffQuestion" />
 
-                    <EditText
-                        android:id="@+id/editText3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                    <TimePicker
+                        android:id="@+id/whenSleep"
+                        android:layout_width="297dp"
+                        android:layout_height="146dp"
                         android:layout_marginEnd="8dp"
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="8dp"
-                        android:ems="10"
-                        android:inputType="time"
+                        android:timePickerMode="spinner"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/appGroup" />
@@ -225,7 +223,7 @@
             tools:layout_editor_absoluteY="0dp" />
 
         <TextView
-            android:id="@+id/caffeineSubtitle"
+            android:id="@+id/scheduleSubTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -267,7 +265,7 @@
             app:srcCompat="@android:color/holo_blue_dark" />
 
         <TextView
-            android:id="@+id/lightIntro"
+            android:id="@+id/sametimeIntro"
             android:layout_width="362dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"

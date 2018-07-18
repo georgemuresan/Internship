@@ -122,7 +122,6 @@ public class MainMenu extends AppCompatActivity
             fragmentManager.beginTransaction().replace(R.id.content_frame, new TestBot()).commit();
         } else if (id == R.id.nav_update) {
 
-            System.out.println("FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFf");
             String experiment = getSharedPreferences("name", MODE_PRIVATE).getString("experiment", "nothing");
 
             if (experiment.equals("firstLight")){
