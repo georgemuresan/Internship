@@ -3,6 +3,7 @@ package com.example.admin.sleepbetter;
 import android.app.FragmentManager;
 import android.content.Intent;
 import android.app.Fragment;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -46,35 +47,67 @@ public class Factors extends Fragment {
         });
 
 */
-        getActivity().getSharedPreferences("name", MODE_PRIVATE).getString("experiment", "nothing");
+
+
+
+
+        String experiment = getActivity().getSharedPreferences("name", MODE_PRIVATE).getString("experiment", "nothing");
+
+        int savedRadioIndex = getActivity().getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).getInt("KEY_SAVED_RADIO_BUTTON_INDEX", 0);
 
         RadioGroup radioGroup = (RadioGroup) factorsView.findViewById(R.id.experimentsGroup);
+
+        if (!experiment.equals("nothing")){
+            System.out.println(savedRadioIndex);
+            System.out.println(radioGroup.getChildAt(savedRadioIndex));
+            RadioButton savedCheckedRadioButton = (RadioButton)radioGroup.getChildAt(savedRadioIndex);
+            savedCheckedRadioButton.setChecked(true);
+        }
+
+
+
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
         {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
+
+                int checkedIndex;
+
                 RadioButton rb =(RadioButton) factorsView.findViewById(checkedId);
                 if (rb.getText().equals(getString(R.string.firstLight))){
                     getActivity().getSharedPreferences("name", MODE_PRIVATE).edit().putString("experiment", "firstLight").apply();
+                    SavePreferences("KEY_SAVED_RADIO_BUTTON_INDEX", 1);
                 } else if (rb.getText().equals(getString(R.string.secondLight))){
                     getActivity().getSharedPreferences("name", MODE_PRIVATE).edit().putString("experiment", "secondLight").apply();
+                    SavePreferences("KEY_SAVED_RADIO_BUTTON_INDEX", 2);
                 } else if (rb.getText().equals(getString(R.string.thirdLight))){
                     getActivity().getSharedPreferences("name", MODE_PRIVATE).edit().putString("experiment", "thirdLight").apply();
+                    SavePreferences("KEY_SAVED_RADIO_BUTTON_INDEX", 3);
                 } else if (rb.getText().equals(getString(R.string.firstCaffeine))){
                     getActivity().getSharedPreferences("name", MODE_PRIVATE).edit().putString("experiment", "firstCaffeine").apply();
+                    SavePreferences("KEY_SAVED_RADIO_BUTTON_INDEX", 5);
                 } else if (rb.getText().equals(getString(R.string.secondCaffeine))){
                     getActivity().getSharedPreferences("name", MODE_PRIVATE).edit().putString("experiment", "secondCaffeine").apply();
+                    SavePreferences("KEY_SAVED_RADIO_BUTTON_INDEX", 6);
                 } else if (rb.getText().equals(getString(R.string.thirdCaffeine))){
                     getActivity().getSharedPreferences("name", MODE_PRIVATE).edit().putString("experiment", "thirdCaffeine").apply();
+                    SavePreferences("KEY_SAVED_RADIO_BUTTON_INDEX", 7);
                 } else if (rb.getText().equals(getString(R.string.firstSchedule))){
                     getActivity().getSharedPreferences("name", MODE_PRIVATE).edit().putString("experiment", "firstSchedule").apply();
+                    SavePreferences("KEY_SAVED_RADIO_BUTTON_INDEX", 9);
                 } else if (rb.getText().equals(getString(R.string.secondSchedule))){
                     getActivity().getSharedPreferences("name", MODE_PRIVATE).edit().putString("experiment", "secondSchedule").apply();
+                    SavePreferences("KEY_SAVED_RADIO_BUTTON_INDEX", 10);
                 } else if (rb.getText().equals(getString(R.string.thirdSchedule))){
                     getActivity().getSharedPreferences("name", MODE_PRIVATE).edit().putString("experiment", "thirdSchedule").apply();
+                    SavePreferences("KEY_SAVED_RADIO_BUTTON_INDEX", 11);
                 } else if (rb.getText().equals(getString(R.string.fourthSchedule))){
                     getActivity().getSharedPreferences("name", MODE_PRIVATE).edit().putString("experiment", "fourthSchedule").apply();
+                    SavePreferences("KEY_SAVED_RADIO_BUTTON_INDEX", 12);
                 }
+
+
+
             }
         });
 
@@ -93,6 +126,10 @@ public class Factors extends Fragment {
 
 
         return factorsView;
+    }
+
+    private void SavePreferences(String key, int value){
+        getActivity().getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).edit().putInt(key, value).apply();
     }
 
     private void goHelpPage() {

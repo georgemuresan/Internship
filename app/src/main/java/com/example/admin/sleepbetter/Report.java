@@ -33,7 +33,7 @@ public class Report {
 
     public void save() {
         String filePath = "";
-        List<UserData> mov = database.daoAccess().fetchMovies();
+        List<UserQuestionnaire> mov = database.daoAccess().fetchMovies();
 
         try {
             filePath = context.getFilesDir().getPath().toString() + "/coco.csv";
@@ -43,15 +43,15 @@ public class Report {
 
             BufferedWriter bw = null;
             bw = new BufferedWriter(new FileWriter(f));
-            bw.write("moveID, movieName, \n");
+            bw.write("Username, Date, times of waking up per night, nr of night terrors, fall asleep rate, wake up rate, fresh rate, sad rate, sleepy rate, tired rate, stressed rate, irritable rate, concentrate level, coordinate rate, appetite level, \n");
 
             for (int i = 0; i < mov.size(); i++) {
                 bw.append(mov.get(i).getUsername() + ", " + mov.get(i).getDate() + ", " + mov.get(i).getTimesPerNight() +
                         ", " + mov.get(i).getNightTerrors() + ", " + mov.get(i).getFallAsleep() + ", " + mov.get(i).getWakeUp() +
-                        ", " + mov.get(i).getFresh() + ", " + mov.get(i).getHappy() + ", " + mov.get(i).getSad() +
+                        ", " + mov.get(i).getFresh() + ", " + mov.get(i).getSad() +
                         ", " + mov.get(i).getSleepy() + ", " + mov.get(i).getTired() + ", " + mov.get(i).getStressed() + ", " +
-                        mov.get(i).getApetite() + ", " + mov.get(i).getConcentrate() + ", " + mov.get(i).getCoordinate() + ", "
-                        + mov.get(i).getIrritable() + "\n");
+                        mov.get(i).getIrritable() + ", " + mov.get(i).getConcentrate() + ", " + mov.get(i).getCoordinate() + ", "
+                        + mov.get(i).getApetite() + "\n");
             }
 
             bw.close();

@@ -1,11 +1,13 @@
 package com.example.admin.sleepbetter;
 
 import android.app.Fragment;
+import android.app.FragmentManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +35,25 @@ public class Update_Caffeine_limit extends Fragment {
         List<String> listFour = getIntervals("energy");
         getSeekbarWithIntervals("energy").setIntervals(listFour);
 
+        Button button = (Button) updateView.findViewById(R.id.submitUpdate);
+
+        button.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v) {
+
+                goToQuestionnaire();
+
+            }
+
+        });
+
         return updateView;
+    }
+
+    public void goToQuestionnaire(){
+        FragmentManager fragmentManager = getFragmentManager();
+
+        fragmentManager.beginTransaction().replace(R.id.content_frame, new Questionnaire()).commit();
     }
 
         private List<String> getIntervals(String command) {

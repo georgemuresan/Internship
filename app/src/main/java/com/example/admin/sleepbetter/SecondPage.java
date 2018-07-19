@@ -2,15 +2,10 @@ package com.example.admin.sleepbetter;
 
 import android.arch.persistence.room.Room;
 import android.content.Intent;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
-import android.support.design.widget.NavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -38,10 +33,13 @@ public class SecondPage extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second_page);
 
-        Button button = (Button) findViewById(R.id.startButton);
+        Button button = (Button) findViewById(R.id.submitButton);
 
         button.setOnClickListener(new View.OnClickListener() {
 
@@ -82,10 +80,13 @@ public class SecondPage extends AppCompatActivity {
         getSeekbarWithIntervals("apetite").setIntervals(listOne);
 
 
+
+
     }
 
     private void goToThirdActivity() {
-        userDatabase = Room.databaseBuilder(getApplicationContext(), UserDatabase.class, DATABASE_NAME).fallbackToDestructiveMigration().build();
+
+
         Intent intent = new Intent(this, ThirdPage.class);
 
         final int timesPerNight = timesPerNightBar.getProgress();
@@ -101,14 +102,13 @@ public class SecondPage extends AppCompatActivity {
         final int concentrate = concentrateBar.getProgress();
         final int coordinate = coordinateBar.getProgress();
         final int irritable = irritableBar.getProgress();
+
         Date c = Calendar.getInstance().getTime();
         SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
         final String formattedDate = df.format(c);
 
-        int mood = getSharedPreferences("MOOD", MODE_PRIVATE)
-                .getInt("mood", 0);
-        getSharedPreferences("MOOD", MODE_PRIVATE).edit()
-                .putInt("mood", moodCalculato(timesPerNight, nightTerrors, sad, sleepy, tired, stressed, irritable, concentrate, coordinate)).apply();
+        int mood = getSharedPreferences("MOOD", MODE_PRIVATE).getInt("mood", 0);
+        getSharedPreferences("MOOD", MODE_PRIVATE).edit().putInt("mood", moodCalculato(timesPerNight, nightTerrors, sad, sleepy, tired, stressed, irritable, concentrate, coordinate)).apply();
 
         startActivity(intent);
 
@@ -116,8 +116,12 @@ public class SecondPage extends AppCompatActivity {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                getSharedPreferences("name", MODE_PRIVATE).getString("username", "nothing");
-                UserData user = new UserData();
+
+                userDatabase = Room.databaseBuilder(getApplicationContext(), UserDatabase.class, DATABASE_NAME).fallbackToDestructiveMigration().build();
+                userDatabase.daoAccess().deleteUserExperimentTable();
+                userDatabase.daoAccess().deleteUserQuesionnaireTable();
+
+                UserQuestionnaire user = new UserQuestionnaire();
                 user.setUsername(getSharedPreferences("name", MODE_PRIVATE).getString("username", "nothing"));
                 user.setDate(formattedDate);
                 user.setTimesPerNight(timesPerNight);
@@ -134,9 +138,7 @@ public class SecondPage extends AppCompatActivity {
                 user.setCoordinate(coordinate);
                 user.setIrritable(irritable);
 
-                userDatabase.daoAccess().insertOnlySingleMovie(user);
-
-                // System.out.println(movieDatabase.daoAccess().fetchOneMoviesbyMovieId(4).getMovieName());
+                userDatabase.daoAccess().insertSingleUserQuestionnaire(user);
 
                 Report rep = new Report(userDatabase, getApplicationContext());
                 rep.save();

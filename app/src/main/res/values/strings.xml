@@ -34,6 +34,25 @@
     <string name="coordinateUsually">How hard is for you to coordinate your activities during the day?</string>
     <string name="apetiteUsually">How would you usually rate your appetite during the day?</string>
 
+    <string name="offquestionnaireHelp">How would you rate the following aspects of your day?</string>
+    <string name="offtimesWakingUp">How many times did you wake up last night?</string>
+    <string name="offnightTerrorUsually">How many night terrors did you have last night?</string>
+    <string name="offfallAsleepUsually">How easily did you fall asleep last night?</string>
+    <string name="offwakeUpUsually">How easily did you wake up this morning?</string>
+    <string name="offfreshUsually">How fresh did you feel after you woke up today?</string>
+
+    <string name="offhappyUsually">How happy did you feel today?</string>
+    <string name="offsadUsually">How sad did you feel today?</string>
+    <string name="offsleepyUsually">How sleepy did you feel today?</string>
+    <string name="offtiredUsually">How tired did you feel today?</string>
+    <string name="offstressUsually">How stressed did you feel today?</string>
+    <string name="offirritableUsually">How irritable did you feel today?</string>
+    <string name="offconcentrateUsually">How hard was for you to concentrate today?</string>
+    <string name="offcoordinateUsually">How hard was for you to coordinate your activities today?</string>
+    <string name="offapetiteUsually">How would you rate your appetite for today?</string>
+
+
+
     <string name="goalDiaryTitle">GOAL DIARY</string>
     <string name="greatText">GREAT! Here is your current avatar, reflecting your current state:</string>
     <string name="pleaseInputGoal">Please input either a goal, a wish, or any note. You can return to this section later.</string>
@@ -199,5 +218,6 @@
     <string name="noAnswer">No</string>
     <string name="yesAnswer">Yes</string>
     <string name="submitUpdate">SUBMIT</string>
+    <string name="nextButton">NEXT</string>
 
 </resources>

@@ -1,17 +1,11 @@
 package com.example.admin.sleepbetter;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class FirstPage extends AppCompatActivity {
 
@@ -22,7 +16,7 @@ public class FirstPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_first_page);
 
-        Button button = (Button) findViewById(R.id.startButton);
+        Button button = (Button) findViewById(R.id.submitButton);
 
         button.setOnClickListener(new View.OnClickListener() {
 
@@ -34,6 +28,12 @@ public class FirstPage extends AppCompatActivity {
 
         });
         nameBox = (EditText) findViewById(R.id.yourName);
+
+
+        getApplicationContext().getSharedPreferences("MOOD", MODE_PRIVATE).edit().clear().commit();
+        getApplicationContext().getSharedPreferences("name", MODE_PRIVATE).edit().clear().commit();
+        getApplicationContext().getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).edit().clear().commit();
+
 
         String text = getSharedPreferences("name", MODE_PRIVATE).getString("username", "nothing");
 /*

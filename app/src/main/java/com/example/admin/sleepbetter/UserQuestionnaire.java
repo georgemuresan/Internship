@@ -5,10 +5,17 @@ import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
 @Entity
-public class UserData {
+public class UserQuestionnaire {
+ //   @NonNull
+  //  @PrimaryKey
+  //  private String date;
+
+  //  private String username;
+
     @NonNull
     @PrimaryKey
     private String username;
+
     private String date;
     private int timesPerNight;
     private int nightTerrors;
@@ -25,7 +32,7 @@ public class UserData {
     private int coordinate;
     private int irritable;
 
-    public UserData() {
+    public UserQuestionnaire() {
     }
 
     public String getUsername() {
