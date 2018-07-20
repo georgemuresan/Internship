@@ -15,7 +15,7 @@
         <ScrollView
             android:id="@+id/ScrollViewQuestionnaire"
             style="@android:style/Widget.Material.ScrollView"
-            android:layout_width="379dp"
+            android:layout_width="match_parent"
             android:layout_height="395dp"
             android:layout_marginBottom="8dp"
             android:layout_marginEnd="8dp"
