@@ -122,7 +122,8 @@ public class SecondPage extends AppCompatActivity {
                 userDatabase.daoAccess().deleteUserQuesionnaireTable();
 
                 UserQuestionnaire user = new UserQuestionnaire();
-                user.setUsername(getSharedPreferences("name", MODE_PRIVATE).getString("username", "nothing"));
+                String username = getSharedPreferences("name", MODE_PRIVATE).getString("username", "nothing");
+                user.setUsername(username);
                 user.setDate(formattedDate);
                 user.setTimesPerNight(timesPerNight);
                 user.setNightTerrors(nightTerrors);
@@ -141,7 +142,7 @@ public class SecondPage extends AppCompatActivity {
                 userDatabase.daoAccess().insertSingleUserQuestionnaire(user);
 
                 Report rep = new Report(userDatabase, getApplicationContext());
-                rep.save();
+                rep.save(username, true);
             }
         }).start();
 

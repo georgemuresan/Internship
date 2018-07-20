@@ -11,8 +11,13 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TimePicker;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+
+import static android.content.Context.MODE_PRIVATE;
 
 public class Update_Caffeine_6hours extends Fragment {
     private SeekBarWithIntervals dayReviewBar = null;
@@ -40,35 +45,46 @@ public class Update_Caffeine_6hours extends Fragment {
 
         });
 
+
+
         return updateView;
     }
 
     public void goToQuestionnaire(){
 
-       // final TimePicker tpLastdrink = (TimePicker) updateView.findViewById(R.id.lastDrink);
-      //  String lastDrink = tpLastdrink.getCurrentHour() + ":" + tpLastdrink.getCurrentMinute();
+        Date c = Calendar.getInstance().getTime();
+        SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
+        final String formattedDate = df.format(c);
 
-      //  final TimePicker tpWhenSleep = (TimePicker) updateView.findViewById(R.id.whenSleep);
-    //    String whenSleep = tpWhenSleep.getCurrentHour() + ":" + tpWhenSleep.getCurrentMinute();
-//
-    //    final int dayReview = dayReviewBar.getProgress();
+        final TimePicker tpLastdrink = (TimePicker) updateView.findViewById(R.id.lastDrink);
+        final String lastDrink = tpLastdrink.getCurrentHour() + ":" + tpLastdrink.getCurrentMinute();
 
-    /*    new Thread(new Runnable() {
+        final TimePicker tpWhenSleep = (TimePicker) updateView.findViewById(R.id.whenSleep);
+        final String whenSleep = tpWhenSleep.getCurrentHour() + ":" + tpWhenSleep.getCurrentMinute();
+
+        final int dayReview = dayReviewBar.getProgress();
+
+        new Thread(new Runnable() {
             @Override
             public void run() {
 
                 userDatabase = Room.databaseBuilder(getActivity().getApplicationContext(), UserDatabase.class, DATABASE_NAME).fallbackToDestructiveMigration().build();
                 UserExperiment user = new UserExperiment();
+                String username = getActivity().getApplicationContext().getSharedPreferences("name", MODE_PRIVATE).getString("username", "nothing");
+                user.setUsername(username);
+                user.setDate(formattedDate);
+                user.setExperiment("C1");
+                user.setCaffeineOneWhenDrink(lastDrink);
+                user.setCaffeineOneWhenSleep(whenSleep);
+                user.setOverallBetter(dayReview);
+
+                userDatabase.daoAccess().insertSingleUserExperiment(user);
 
 
-               // userDatabase.daoAccess().insertSingleUserQuestionnaire(user);
-
-               // Report rep = new Report(userDatabase, getActivity().getApplicationContext());
-              //  rep.save();
             }
         }).start();
 
-*/
+
         FragmentManager fragmentManager = getFragmentManager();
 
         fragmentManager.beginTransaction().replace(R.id.content_frame, new Questionnaire()).commit();

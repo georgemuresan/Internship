@@ -237,7 +237,7 @@ public class Questionnaire extends Fragment {
 
                 userDatabase = Room.databaseBuilder(getActivity().getApplicationContext(), UserDatabase.class, DATABASE_NAME).fallbackToDestructiveMigration().build();
                 UserQuestionnaire user = new UserQuestionnaire();
-                user.setUsername("after test");
+                user.setUsername("after_userquestionnaire");
                 user.setDate(formattedDate);
                 user.setTimesPerNight(timesPerNight);
                 user.setNightTerrors(nightTerrors);
@@ -256,7 +256,7 @@ public class Questionnaire extends Fragment {
                 userDatabase.daoAccess().insertSingleUserQuestionnaire(user);
 
                 Report rep = new Report(userDatabase, getActivity().getApplicationContext());
-                rep.save();
+                rep.save("after_userquestionnaire", false);
             }
         }).start();
     }

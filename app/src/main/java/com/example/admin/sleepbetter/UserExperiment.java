@@ -33,6 +33,7 @@ public class UserExperiment {
     private String scheduleThreeRelaxed;
     private String scheduleThreeActivity;
     private String scheduleFourWhenSleep;
+    private int overallBetter;
 
     public UserExperiment() {
     }
@@ -58,7 +59,7 @@ public class UserExperiment {
         return experiment;
     }
 
-    public void setExperiment(String timesPerNight) {
+    public void setExperiment(String experiment) {
         this.experiment = experiment;
     }
 
@@ -198,4 +199,8 @@ public class UserExperiment {
     }
 
     public void setScheduleFourWhenSleep(String scheduleFourWhenSleep) { this.scheduleFourWhenSleep = scheduleFourWhenSleep; }
+
+    public int getOverallBetter() { return overallBetter; }
+
+    public void setOverallBetter(int overallBetter) { this.overallBetter = overallBetter; }
 }

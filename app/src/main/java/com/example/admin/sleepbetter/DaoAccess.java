@@ -13,16 +13,27 @@ public interface DaoAccess {
 
     @Insert
     void insertSingleUserQuestionnaire(UserQuestionnaire data);
+
     @Insert
-    void insertMultipleMovies (List<UserQuestionnaire> moviesList);
+    void insertSingleUserExperiment(UserExperiment data);
+
+
     @Query("SELECT * FROM UserQuestionnaire WHERE username = :username")
-    UserQuestionnaire fetchOneMoviesbyMovieId(String username);
+    UserQuestionnaire fetchUseQuestionnaireByUsrname(String username);
+
     @Query("SELECT * FROM UserQuestionnaire")
-    List<UserQuestionnaire> fetchMovies();
+    List<UserQuestionnaire> fetchUserQuestionnaires();
+
+
+    @Query("SELECT * FROM UserExperiment")
+    List<UserExperiment> fetchUserExperiments();
+
     @Update
-    void updateMovie(UserQuestionnaire data);
+    void updateUSerQuestionnaire(UserQuestionnaire data);
+
     @Delete
-    void deleteMovie(UserQuestionnaire data);
+
+    void deleteUserQuestonnaire(UserQuestionnaire data);
 
     @Query("DELETE FROM UserQuestionnaire")
     public void deleteUserQuesionnaireTable();
