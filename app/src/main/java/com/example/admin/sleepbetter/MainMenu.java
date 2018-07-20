@@ -2,14 +2,19 @@ package com.example.admin.sleepbetter;
 
 
 import android.app.FragmentManager;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationManagerCompat;
 import android.view.KeyEvent;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -45,7 +50,6 @@ public class MainMenu extends AppCompatActivity
         setSupportActionBar(toolbar);
 
 
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -62,30 +66,29 @@ public class MainMenu extends AppCompatActivity
         navUsername.setText(name);
 // Adding the right bitmoji
         int mood = getSharedPreferences("MOOD", MODE_PRIVATE).getInt("mood", 0);
-        ImageView imageView =  (ImageView) headerView.findViewById(R.id.imageView);
+        ImageView imageView = (ImageView) headerView.findViewById(R.id.imageView);
         if (mood == 1) imageView.setImageResource(R.drawable.happy);
         if (mood == 2) imageView.setImageResource(R.drawable.ok);
         if (mood == 3) imageView.setImageResource(R.drawable.notok);
         if (mood == 4 || mood == 5) imageView.setImageResource(R.drawable.bad);
 
 
-        HomeCollection.date_collection_arr=new ArrayList<HomeCollection>();
-        HomeCollection.date_collection_arr.add( new HomeCollection("2017-07-08" ,"Diwali","Holiday","this is holiday"));
-        HomeCollection.date_collection_arr.add( new HomeCollection("2017-07-08" ,"Holi","Holiday","this is holiday"));
-        HomeCollection.date_collection_arr.add( new HomeCollection("2017-07-08" ,"Statehood Day","Holiday","this is holiday"));
-        HomeCollection.date_collection_arr.add( new HomeCollection("2017-08-08" ,"Republic Unian","Holiday","this is holiday"));
-        HomeCollection.date_collection_arr.add( new HomeCollection("2017-07-09" ,"ABC","Holiday","this is holiday"));
-        HomeCollection.date_collection_arr.add( new HomeCollection("2017-06-15" ,"demo","Holiday","this is holiday"));
-        HomeCollection.date_collection_arr.add( new HomeCollection("2017-09-26" ,"weekly off","Holiday","this is holiday"));
-        HomeCollection.date_collection_arr.add( new HomeCollection("2018-01-08" ,"Events","Holiday","this is holiday"));
-        HomeCollection.date_collection_arr.add( new HomeCollection("2018-01-16" ,"Dasahara","Holiday","this is holiday"));
-        HomeCollection.date_collection_arr.add( new HomeCollection("2018-02-09" ,"Christmas","Holiday","this is holiday"));
-
+        HomeCollection.date_collection_arr = new ArrayList<HomeCollection>();
+        HomeCollection.date_collection_arr.add(new HomeCollection("2017-07-08", "Diwali", "Holiday", "this is holiday"));
+        HomeCollection.date_collection_arr.add(new HomeCollection("2017-07-08", "Holi", "Holiday", "this is holiday"));
+        HomeCollection.date_collection_arr.add(new HomeCollection("2017-07-08", "Statehood Day", "Holiday", "this is holiday"));
+        HomeCollection.date_collection_arr.add(new HomeCollection("2017-08-08", "Republic Unian", "Holiday", "this is holiday"));
+        HomeCollection.date_collection_arr.add(new HomeCollection("2017-07-09", "ABC", "Holiday", "this is holiday"));
+        HomeCollection.date_collection_arr.add(new HomeCollection("2017-06-15", "demo", "Holiday", "this is holiday"));
+        HomeCollection.date_collection_arr.add(new HomeCollection("2017-09-26", "weekly off", "Holiday", "this is holiday"));
+        HomeCollection.date_collection_arr.add(new HomeCollection("2018-01-08", "Events", "Holiday", "this is holiday"));
+        HomeCollection.date_collection_arr.add(new HomeCollection("2018-01-16", "Dasahara", "Holiday", "this is holiday"));
+        HomeCollection.date_collection_arr.add(new HomeCollection("2018-02-09", "Christmas", "Holiday", "this is holiday"));
 
 
         cal_month = (GregorianCalendar) GregorianCalendar.getInstance();
         cal_month_copy = (GregorianCalendar) cal_month.clone();
-        hwAdapter = new HwAdapter(this, cal_month,HomeCollection.date_collection_arr);
+        hwAdapter = new HwAdapter(this, cal_month, HomeCollection.date_collection_arr);
 
         tv_month = (TextView) findViewById(R.id.tv_month);
         tv_month.setText(android.text.format.DateFormat.format("MMMM yyyy", cal_month));
@@ -95,11 +98,10 @@ public class MainMenu extends AppCompatActivity
         previous.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (cal_month.get(GregorianCalendar.MONTH) == 4&&cal_month.get(GregorianCalendar.YEAR)==2017) {
+                if (cal_month.get(GregorianCalendar.MONTH) == 4 && cal_month.get(GregorianCalendar.YEAR) == 2017) {
                     //cal_month.set((cal_month.get(GregorianCalendar.YEAR) - 1), cal_month.getActualMaximum(GregorianCalendar.MONTH), 1);
                     Toast.makeText(MainMenu.this, "Event Detail is available for current session only.", Toast.LENGTH_SHORT).show();
-                }
-                else {
+                } else {
                     setPreviousMonth();
                     refreshCalendar();
                 }
@@ -111,11 +113,10 @@ public class MainMenu extends AppCompatActivity
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (cal_month.get(GregorianCalendar.MONTH) == 5&&cal_month.get(GregorianCalendar.YEAR)==2018) {
+                if (cal_month.get(GregorianCalendar.MONTH) == 5 && cal_month.get(GregorianCalendar.YEAR) == 2018) {
                     //cal_month.set((cal_month.get(GregorianCalendar.YEAR) + 1), cal_month.getActualMinimum(GregorianCalendar.MONTH), 1);
                     Toast.makeText(MainMenu.this, "Event Detail is available for current session only.", Toast.LENGTH_SHORT).show();
-                }
-                else {
+                } else {
                     setNextMonth();
                     refreshCalendar();
                 }
@@ -131,6 +132,20 @@ public class MainMenu extends AppCompatActivity
             }
 
         });
+
+        this.createNotificationChannel();
+        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this, "13")
+                .setSmallIcon(R.drawable.ic_drawer)
+                .setContentTitle("My notification")
+                .setContentText("Hello World!")
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                // Set the intent that will fire when the user taps the notification
+                //     .setContentIntent(pendingIntent)
+                .setAutoCancel(true);
+        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
+
+// notificationId is a unique int for each notification that you must define
+        notificationManager.notify(13, mBuilder.build());
 
     }
 
@@ -197,25 +212,25 @@ public class MainMenu extends AppCompatActivity
 
             String experiment = getSharedPreferences("name", MODE_PRIVATE).getString("experiment", "nothing");
 
-            if (experiment.equals("firstLight")){
+            if (experiment.equals("firstLight")) {
                 fragmentManager.beginTransaction().replace(R.id.content_frame, new Update_Light_Bright()).commit();
-            } else if (experiment.equals("secondLight")){
+            } else if (experiment.equals("secondLight")) {
                 fragmentManager.beginTransaction().replace(R.id.content_frame, new Update_Light_Glasses()).commit();
-            } else if (experiment.equals("thirdLight")){
+            } else if (experiment.equals("thirdLight")) {
                 fragmentManager.beginTransaction().replace(R.id.content_frame, new Update_Light_TurnOffBright()).commit();
-            } else if (experiment.equals("firstCaffeine")){
+            } else if (experiment.equals("firstCaffeine")) {
                 fragmentManager.beginTransaction().replace(R.id.content_frame, new Update_Caffeine_6hours()).commit();
-            } else if (experiment.equals("secondCaffeine")){
+            } else if (experiment.equals("secondCaffeine")) {
                 fragmentManager.beginTransaction().replace(R.id.content_frame, new Update_Caffeine_limit()).commit();
-            } else if (experiment.equals("thirdCaffeine")){
+            } else if (experiment.equals("thirdCaffeine")) {
                 fragmentManager.beginTransaction().replace(R.id.content_frame, new Update_Caffeine_Empty()).commit();
-            } else if (experiment.equals("firstSchedule")){
+            } else if (experiment.equals("firstSchedule")) {
                 fragmentManager.beginTransaction().replace(R.id.content_frame, new Update_Schedule_SameTime()).commit();
-            } else if (experiment.equals("secondSchedule")){
+            } else if (experiment.equals("secondSchedule")) {
                 fragmentManager.beginTransaction().replace(R.id.content_frame, new Update_Schedule_7hours()).commit();
-            } else if (experiment.equals("thirdSchedule")){
+            } else if (experiment.equals("thirdSchedule")) {
                 fragmentManager.beginTransaction().replace(R.id.content_frame, new Update_Schedule_Relax()).commit();
-            } else if (experiment.equals("fourthSchedule")){
+            } else if (experiment.equals("fourthSchedule")) {
                 fragmentManager.beginTransaction().replace(R.id.content_frame, new Update_Schedule_Midnight()).commit();
             } else {
                 fragmentManager.beginTransaction().replace(R.id.content_frame, new Update()).commit();
@@ -254,5 +269,20 @@ public class MainMenu extends AppCompatActivity
         hwAdapter.refreshDays();
         hwAdapter.notifyDataSetChanged();
         tv_month.setText(android.text.format.DateFormat.format("MMMM yyyy", cal_month));
+    }
+
+
+    private void createNotificationChannel() {
+        // Create the NotificationChannel, but only on API 26+ because
+        // the NotificationChannel class is new and not in the support library
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            CharSequence name = "reminder";
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            NotificationChannel channel = new NotificationChannel("13", name, importance);
+            // Register the channel with the system; you can't change the importance
+            // or other notification behaviors after this
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
     }
 }
