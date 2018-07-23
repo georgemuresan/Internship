@@ -52,7 +52,6 @@
     <string name="offapetiteUsually">How would you rate your appetite for today?</string>
 
 
-
     <string name="goalDiaryTitle">GOAL DIARY</string>
     <string name="greatText">GREAT! Here is your current avatar, reflecting your current state:</string>
     <string name="pleaseInputGoal">Please input either a goal, a wish, or any note. You can return to this section later.</string>
@@ -60,8 +59,6 @@
 
 
     <string name="main">MAIN</string>
-
-
 
 
     <string name="some_explanation_about_the_input">description</string>
@@ -114,10 +111,7 @@
     <string name="chatbotTitle">CHATBOT</string>
 
 
-
     <string name="drugEffectsTitle">Drug Effects</string>
-
-
 
 
     <string name="caffeineIntro">Here you can mark which experiments you wish to undertake in terms of the CAFFEINE factor. You can also choose your own personalised behavior by clicking on PERSONALISED and having access to information.</string>
@@ -125,8 +119,6 @@
     <string name="firstCaffeine">Do not drink caffeine within 6 hours before sleep</string>
     <string name="secondCaffeine">Limit yourself to 4 cups of coffees per day; 10 cans of coke/fanta; 2 energy drinks</string>
     <string name="thirdCaffeine">Do not drink caffeine on empty stomach</string>
-
-
 
 
     <string name="circadianRythmsTitle">Circadian Rythms</string>
@@ -153,7 +145,7 @@
     <string name="timelineTitle">Timelines</string>
     <string name="singleValueDisplayTitle">Single Value Display</string>
 
-       <string name="experimentTitle">EXPERIMENT</string>
+    <string name="experimentTitle">EXPERIMENT</string>
     <string name="lightSubTitle">Light</string>
     <string name="caffeineSubTitle">Caffeine</string>
     <string name="scheduleSubTitle">Schedule</string>
@@ -166,7 +158,6 @@
     <string name="morningQuestion">Did you get sunlight exposure in the morning?</string>
     <string name="outQuestion">Did you stay at least half an hour in the sun today?</string>
     <string name="sunlightQuestion">Did you keep your room so that it captures sunlight?</string>
-
 
 
     <string name="stopTVIntro">Your current experiment is: STOP WATCHING THE TV/THE COMPUTER WITHIN 2 HOURS OF GOING TO SLEEP. Below you are asked to complete the questions on whether you followed the experiment.</string>
@@ -202,18 +193,39 @@
     <string name="teaAnswer">Drank hot drink</string>
     <string name="noneAnsswer">None of the above</string>
 
-    <string name="sametimeIntro">Your current experiment is: Usually get up at the same time everyday, even on weekends/vacatins. Below you are asked to complete the questions on whether you followed the experiment.</string>
+    <string name="sametimeIntro">Your current experiment is: Usually get up at the same time everyday, even on weekends/vacations. Below you are asked to complete the questions on whether you followed the experiment.</string>
     <string name="whenWakeQuestion">When did you wake up?</string>
 
     <string name="sevenIntro">Your current experiment is: SLEEP NO LESS THAN 7 HOURS PER NIGHT. Below you are asked to complete the questions on whether you followed the experiment.</string>
 
+
+    <string name="calendarTitle">CALENDAR</string>
 
     <string name="factorsMenu">Factors</string>
     <string name="data">Data</string>
     <string name="questionnaire">Questionnaire</string>
     <string name="help">Help</string>
     <string name="diary">Goal Diary</string>
+    <string name="calendarMenu">Calendar</string>
 
+
+    <string name="firstOptionMainMenu">WHAT IS SleepBetter?</string>
+    <string name="secondOptionMainMenu">EXPERIMENTS AND FEATURES</string>
+    <string name="thirdOptionMainMenu">CHATBOT GUIDE</string>
+
+    <string name="mainMenuUp">Sleep Better works towards a tuning process over your sleeping patterns.</string>
+    <string name="introUp">FOR A BETTER YOU</string>
+    <string name="introUpsub">Find your experiment</string>
+    <string name="introDown">Sleep Beter @ Main Menu</string>
+
+    <string name="whatISTitle">WHAT IS SLEEP BETTER?</string>
+
+    <string name="sleepHygienetitle">Sleep Hygiene?</string>
+    <string name="ourMissionTitle">Our Mission?</string>
+
+    <string name="whatExeriments">WHAT EXPERIMENTS AND FEATURES?</string>
+
+    <string name="chatbotGuide">CHATBOT GUIDE</string>
 
     <string name="noAnswer">No</string>
     <string name="yesAnswer">Yes</string>

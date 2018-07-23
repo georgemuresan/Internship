@@ -2,8 +2,8 @@ package com.example.admin.sleepbetter;
 
 import android.arch.persistence.room.Room;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
@@ -13,10 +13,11 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-public class SecondPage extends AppCompatActivity {
+public class SecondPage2 extends AppCompatActivity {
 
-    private SeekBarWithIntervals timesPerNightBar = null;
-    private SeekBarWithIntervals nightTerrorsBar = null;
+    private SeekBarWithIntervals fallAsleepBar = null;
+    private SeekBarWithIntervals wakeUpBar = null;
+    private SeekBarWithIntervals freshBar = null;
 
     private static final String DATABASE_NAME = "user_db";
     private UserDatabase userDatabase;
@@ -27,7 +28,7 @@ public class SecondPage extends AppCompatActivity {
 
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_second_page);
+        setContentView(R.layout.activity_second_page_two);
 
         Button button = (Button) findViewById(R.id.submitButton);
 
@@ -41,12 +42,14 @@ public class SecondPage extends AppCompatActivity {
 
         });
 
-        List<String> seekbarIntervals = getIntervals("upToFour");
-        getSeekbarWithIntervals("times").setIntervals(seekbarIntervals);
 
         List<String> listOne = getIntervals("upToFive");
-        getSeekbarWithIntervals("nightTerrors").setIntervals(listOne);
 
+        getSeekbarWithIntervals("fallAsleep").setIntervals(listOne);
+
+        getSeekbarWithIntervals("wakeUp").setIntervals(listOne);
+
+        getSeekbarWithIntervals("fresh").setIntervals(listOne);
 
 
 
@@ -57,19 +60,26 @@ public class SecondPage extends AppCompatActivity {
     private void goToThirdActivity() {
 
 
-        Intent intent = new Intent(this, SecondPage2.class);
+        Intent intent = new Intent(this, SecondPage3.class);
 
-        final int timesPerNight = timesPerNightBar.getProgress();
-        final int nightTerrors = nightTerrorsBar.getProgress();
 
-        getSharedPreferences("questionnaire", MODE_PRIVATE).getInt("timesPerNight", timesPerNight);
-        getSharedPreferences("questionnaire", MODE_PRIVATE).getInt("nightTerrors", nightTerrors);
+        final int fallAsleep = fallAsleepBar.getProgress();
+        final int wakeUp = wakeUpBar.getProgress();
+        final int fresh = freshBar.getProgress();
+
+        getSharedPreferences("questionnaire", MODE_PRIVATE).getInt("fallAsleep", fallAsleep);
+        getSharedPreferences("questionnaire", MODE_PRIVATE).getInt("wakeUp", wakeUp);
+        getSharedPreferences("questionnaire", MODE_PRIVATE).getInt("fresh", fresh);
+
+
 
         startActivity(intent);
 
 
 
+
     }
+
 
     private List<String> getIntervals(String command) {
 
@@ -95,18 +105,24 @@ public class SecondPage extends AppCompatActivity {
 
     private SeekBarWithIntervals getSeekbarWithIntervals(String name) {
 
-        if (name.equals("times")) {
-            if (timesPerNightBar == null) {
-                timesPerNightBar = (SeekBarWithIntervals) findViewById(R.id.timesPerNightBar);
+        if (name.equals("fallAsleep")) {
+            if (fallAsleepBar == null) {
+                fallAsleepBar = (SeekBarWithIntervals) findViewById(R.id.fallAsleepBar);
             }
 
-            return timesPerNightBar;
-        } else if (name.equals("nightTerrors")) {
-            if (nightTerrorsBar == null) {
-                nightTerrorsBar = (SeekBarWithIntervals) findViewById(R.id.nightTerrorsBar);
+            return fallAsleepBar;
+        } else if (name.equals("wakeUp")) {
+            if (wakeUpBar == null) {
+                wakeUpBar = (SeekBarWithIntervals) findViewById(R.id.easyWakeUpBar);
             }
 
-            return nightTerrorsBar;
+            return wakeUpBar;
+        } else if (name.equals("fresh")) {
+            if (freshBar == null) {
+                freshBar = (SeekBarWithIntervals) findViewById(R.id.freshBar);
+            }
+
+            return freshBar;
         }
         return null;
     }

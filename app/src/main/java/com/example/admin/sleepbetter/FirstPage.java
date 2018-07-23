@@ -33,7 +33,7 @@ public class FirstPage extends AppCompatActivity {
         getApplicationContext().getSharedPreferences("MOOD", MODE_PRIVATE).edit().clear().commit();
         getApplicationContext().getSharedPreferences("name", MODE_PRIVATE).edit().clear().commit();
         getApplicationContext().getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).edit().clear().commit();
-
+        getApplicationContext().getSharedPreferences("questionnaire", MODE_PRIVATE).edit().clear().commit();
 
         String text = getSharedPreferences("name", MODE_PRIVATE).getString("username", "nothing");
 /*

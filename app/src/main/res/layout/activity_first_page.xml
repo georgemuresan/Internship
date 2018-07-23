@@ -37,6 +37,7 @@
         android:layout_marginTop="8dp"
         android:text="@string/introductionTitle"
         android:textAllCaps="false"
+        android:textColor="@android:color/black"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/topView"
@@ -45,16 +46,17 @@
 
     <ImageView
         android:id="@+id/logoPlace"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
+        android:layout_width="91dp"
+        android:layout_height="81dp"
         android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="4dp"
         android:layout_marginTop="8dp"
         android:contentDescription="@string/desc"
         app:layout_constraintBottom_toBottomOf="@+id/topView"
         app:layout_constraintEnd_toEndOf="@+id/topView"
         app:layout_constraintTop_toTopOf="@+id/topView"
-        app:srcCompat="@android:color/holo_blue_dark" />
+        app:layout_constraintVertical_bias="0.363"
+        app:srcCompat="@drawable/pill" />
 
     <Button
         android:id="@+id/submitButton"

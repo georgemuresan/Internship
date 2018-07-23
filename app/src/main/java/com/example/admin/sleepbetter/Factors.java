@@ -1,9 +1,7 @@
 package com.example.admin.sleepbetter;
 
 import android.app.FragmentManager;
-import android.content.Intent;
 import android.app.Fragment;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -12,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.TextView;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -135,7 +132,7 @@ public class Factors extends Fragment {
     private void goHelpPage() {
 
         FragmentManager fragmentManager = getFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.content_frame, new Help()).commit();
+        fragmentManager.beginTransaction().replace(R.id.content_frame, new Calendar()).commit();
 
     }
 
