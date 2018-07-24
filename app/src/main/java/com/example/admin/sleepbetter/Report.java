@@ -92,14 +92,14 @@ public class Report {
             e.printStackTrace();
         }
 
-        final String username = "internshipecs18@gmail.com";
-        final String password = "ohmygoals2018";
+        final String username = "gcm1y18";
+        final String password = "Ohmygoals2018";
 
         Properties props = new Properties();
         props.put("mail.smtp.auth", true);
         props.put("mail.smtp.starttls.enable", true);
-        props.put("mail.smtp.host", "smtp.gmail.com");
-        props.put("mail.smtp.port", "587");
+        props.put("mail.smtp.host", "smtp.soton.ac.uk");
+        props.put("mail.smtp.port", "25");
         props.put("mail.smtp.EnableSSL.enable", "true");
 
         Session session = Session.getInstance(props, new javax.mail.Authenticator() {
@@ -111,8 +111,8 @@ public class Report {
         try {
 
             Message message = new MimeMessage(session);
-            message.setFrom(new InternetAddress("internshipecs18@gmail.com"));
-            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse("internshipecs18@gmail.com"));
+            message.setFrom(new InternetAddress("GC.Muresan@soton.ac.uk"));
+            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse("GC.Muresan@soton.ac.uk"));
             message.setSubject("Username: " + user + " / First time: " + isFirstTime);
             message.setText("PFA");
 

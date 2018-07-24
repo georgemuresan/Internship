@@ -28,6 +28,7 @@ public class SecondPage4 extends AppCompatActivity {
 
 
         super.onCreate(savedInstanceState);
+        System.out.println("receivedFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFf");
         setContentView(R.layout.activity_second_page_four);
 
         Button button = (Button) findViewById(R.id.submitButton);

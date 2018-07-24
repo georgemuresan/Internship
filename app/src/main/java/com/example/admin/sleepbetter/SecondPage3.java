@@ -66,6 +66,7 @@ public class SecondPage3 extends AppCompatActivity {
     private void goToThirdActivity() {
 
 
+        System.out.println("sentFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFf");
         Intent intent = new Intent(this, SecondPage4.class);
 
         final int sad = sadBar.getProgress();
@@ -80,7 +81,7 @@ public class SecondPage3 extends AppCompatActivity {
         getSharedPreferences("questionnaire", MODE_PRIVATE).getInt("stressed", stressed);
         getSharedPreferences("questionnaire", MODE_PRIVATE).getInt("irritable", irritable);
 
-
+        startActivity(intent);
     }
 
 
