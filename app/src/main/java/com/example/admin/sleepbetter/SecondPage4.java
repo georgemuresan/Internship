@@ -28,7 +28,7 @@ public class SecondPage4 extends AppCompatActivity {
 
 
         super.onCreate(savedInstanceState);
-        System.out.println("receivedFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFf");
+
         setContentView(R.layout.activity_second_page_four);
 
         Button button = (Button) findViewById(R.id.submitButton);
@@ -79,8 +79,13 @@ public class SecondPage4 extends AppCompatActivity {
         final int coordinate = coordinateBar.getProgress();
 
         getSharedPreferences("questionnaire", MODE_PRIVATE).getInt("apetite", apetite);
+        getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("apetite", apetite).apply();
         getSharedPreferences("questionnaire", MODE_PRIVATE).getInt("concentrate", concentrate);
+        getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("concentrate", concentrate).apply();
         getSharedPreferences("questionnaire", MODE_PRIVATE).getInt("coordinate", coordinate);
+        getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("coordinate", coordinate).apply();
+
+        System.out.print(getSharedPreferences("questionnaire", MODE_PRIVATE).getInt("timesPerNight", timesPerNight));
 
         Date c = Calendar.getInstance().getTime();
         SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
@@ -180,11 +185,11 @@ public class SecondPage4 extends AppCompatActivity {
         }
         return null;
     }
-
+/*
     public void onBackPressed() {
         Intent intent = new Intent(this, MainMenu.class);
         startActivity(intent);
         finish();
-    }
+    }*/
 }
 

@@ -9,7 +9,7 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/pill"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
@@ -21,6 +21,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".FirstPageConsent" />
+        <activity android:name=".FirstPageLinkBitmoji" />
         <activity android:name=".SecondPage" />
         <activity android:name=".SecondPage2" />
         <activity android:name=".SecondPage3" />
@@ -31,6 +33,8 @@
             android:name=".MainMenu"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".WhatExperiments"></activity>
+        <activity android:name=".WhatChatbot"></activity>
         <activity android:name=".WhatIsSleep"></activity>
     </application>
 

@@ -1,19 +1,20 @@
 package com.example.admin.sleepbetter;
 
-import android.arch.persistence.room.Room;
+import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.support.annotation.Nullable;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
-public class SecondPage2 extends AppCompatActivity {
+import static android.content.Context.MODE_PRIVATE;
+
+public class Questionnaire2 extends Fragment {
 
     private SeekBarWithIntervals fallAsleepBar = null;
     private SeekBarWithIntervals wakeUpBar = null;
@@ -22,15 +23,13 @@ public class SecondPage2 extends AppCompatActivity {
     private static final String DATABASE_NAME = "user_db";
     private UserDatabase userDatabase;
 
+    View questionnaireView;
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+        questionnaireView = inflater.inflate(R.layout.questionnaire_two, container, false);
 
-
-
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_second_page_two);
-
-        Button button = (Button) findViewById(R.id.submitButton);
+        Button button = (Button) questionnaireView.findViewById(R.id.submitButton);
 
         button.setOnClickListener(new View.OnClickListener() {
 
@@ -52,36 +51,8 @@ public class SecondPage2 extends AppCompatActivity {
         getSeekbarWithIntervals("fresh").setIntervals(listOne);
 
 
-
-
-
+        return questionnaireView;
     }
-
-    private void goToThirdActivity() {
-
-
-        Intent intent = new Intent(this, SecondPage3.class);
-
-
-        final int fallAsleep = fallAsleepBar.getProgress();
-        final int wakeUp = wakeUpBar.getProgress();
-        final int fresh = freshBar.getProgress();
-
-        getSharedPreferences("questionnaire", MODE_PRIVATE).getInt("fallAsleep", fallAsleep);
-        getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("fallAsleep", fallAsleep).apply();
-        getSharedPreferences("questionnaire", MODE_PRIVATE).getInt("wakeUp", wakeUp);
-        getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("wakeUp", wakeUp).apply();
-        getSharedPreferences("questionnaire", MODE_PRIVATE).getInt("fresh", fresh);
-        getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("fresh", fresh).apply();
-
-
-        startActivity(intent);
-
-
-
-
-    }
-
 
     private List<String> getIntervals(String command) {
 
@@ -93,7 +64,7 @@ public class SecondPage2 extends AppCompatActivity {
                 add("3");
                 add("4/4+");
             }};
-        } else if (command.equals("upToFive")) {
+        } else  if (command.equals("upToFive")) {
             return new ArrayList<String>() {{
                 add("1");
                 add("2");
@@ -109,30 +80,42 @@ public class SecondPage2 extends AppCompatActivity {
 
         if (name.equals("fallAsleep")) {
             if (fallAsleepBar == null) {
-                fallAsleepBar = (SeekBarWithIntervals) findViewById(R.id.fallAsleepBar);
+                fallAsleepBar = (SeekBarWithIntervals) questionnaireView.findViewById(R.id.fallAsleepBar);
             }
 
             return fallAsleepBar;
         } else if (name.equals("wakeUp")) {
             if (wakeUpBar == null) {
-                wakeUpBar = (SeekBarWithIntervals) findViewById(R.id.easyWakeUpBar);
+                wakeUpBar = (SeekBarWithIntervals) questionnaireView.findViewById(R.id.easyWakeUpBar);
             }
 
             return wakeUpBar;
         } else if (name.equals("fresh")) {
             if (freshBar == null) {
-                freshBar = (SeekBarWithIntervals) findViewById(R.id.freshBar);
+                freshBar = (SeekBarWithIntervals) questionnaireView.findViewById(R.id.freshBar);
             }
 
             return freshBar;
         }
         return null;
     }
-/*
-    public void onBackPressed() {
-        Intent intent = new Intent(this, MainMenu.class);
-        startActivity(intent);
-        finish();
-    }*/
-}
 
+
+    public void goToThirdActivity(){
+
+
+        Intent intent = new Intent(getActivity().getApplicationContext(), Questionnaire3.class);
+
+        final int fallAsleep = fallAsleepBar.getProgress();
+        final int wakeUp = wakeUpBar.getProgress();
+        final int fresh = freshBar.getProgress();
+
+        getActivity().getApplicationContext().getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("fallAsleep", fallAsleep).apply();
+        getActivity().getApplicationContext().getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("wakeUp", wakeUp).apply();
+        getActivity().getApplicationContext().getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("fresh", fresh).apply();
+
+        startActivity(intent);
+    }
+
+
+}

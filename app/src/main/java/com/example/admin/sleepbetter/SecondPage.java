@@ -63,8 +63,9 @@ public class SecondPage extends AppCompatActivity {
         final int nightTerrors = nightTerrorsBar.getProgress();
 
         getSharedPreferences("questionnaire", MODE_PRIVATE).getInt("timesPerNight", timesPerNight);
+        getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("timesPerNight", timesPerNight).apply();
         getSharedPreferences("questionnaire", MODE_PRIVATE).getInt("nightTerrors", nightTerrors);
-
+        getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("nightTerrors", nightTerrors).apply();
         startActivity(intent);
 
 
@@ -110,11 +111,11 @@ public class SecondPage extends AppCompatActivity {
         }
         return null;
     }
-
+/*
     public void onBackPressed() {
         Intent intent = new Intent(this, MainMenu.class);
         startActivity(intent);
         finish();
-    }
+    }*/
 }
 

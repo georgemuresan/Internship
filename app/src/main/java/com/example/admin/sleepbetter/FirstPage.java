@@ -9,7 +9,6 @@ import android.widget.EditText;
 
 public class FirstPage extends AppCompatActivity {
 
-    private SeekBarWithIntervals SeekbarWithIntervals = null;
     private EditText nameBox = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

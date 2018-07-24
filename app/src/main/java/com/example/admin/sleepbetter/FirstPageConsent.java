@@ -1,37 +1,40 @@
 package com.example.admin.sleepbetter;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
-public class WhatIsSleep extends AppCompatActivity {
+public class FirstPageConsent extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.what_is_sleep);
+        setContentView(R.layout.activity_first_page_consent);
 
-        Button button = (Button) findViewById(R.id.back);
+        Button button = (Button) findViewById(R.id.submitButton);
 
         button.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
 
-                goToThirdActivity();
+                goToSecondActivity();
 
             }
 
         });
+
     }
-    private void goToThirdActivity() {
+    private void goToSecondActivity() {
 
+        Intent intent = new Intent(this, FirstPage.class);
 
-        Intent intent = new Intent(this, MainMenu.class);
 
         startActivity(intent);
 
     }
+
 
 }
