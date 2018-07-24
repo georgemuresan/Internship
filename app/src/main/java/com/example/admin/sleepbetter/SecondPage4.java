@@ -4,6 +4,7 @@ import android.arch.persistence.room.Room;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Display;
 import android.view.View;
 import android.widget.Button;
 
@@ -91,6 +92,7 @@ public class SecondPage4 extends AppCompatActivity {
 
         startActivity(intent);
 
+        getSharedPreferences("date", MODE_PRIVATE).edit().putString("lastdate",formattedDate).apply();
 
         new Thread(new Runnable() {
             @Override

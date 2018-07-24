@@ -1,9 +1,11 @@
 package com.example.admin.sleepbetter;
 
 
+import android.app.AlarmManager;
 import android.app.FragmentManager;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.arch.persistence.room.Room;
 import android.content.Intent;
 import android.os.Build;
@@ -31,10 +33,10 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.Calendar;
 
 public class MainMenu extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
 
 
     @Override
@@ -67,20 +69,10 @@ public class MainMenu extends AppCompatActivity
         if (mood == 3) imageView.setImageResource(R.drawable.notok);
         if (mood == 4 || mood == 5) imageView.setImageResource(R.drawable.bad);
 
+        //NOTIFICATION DEMO
         this.createNotificationChannel();
-        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this, "13")
-                .setSmallIcon(R.drawable.ic_drawer)
-                .setContentTitle("My notification")
-                .setContentText("Hello World!")
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                // Set the intent that will fire when the user taps the notification
-                //     .setContentIntent(pendingIntent)
-                .setAutoCancel(true);
-        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
-
-// notificationId is a unique int for each notification that you must define
-        notificationManager.notify(13, mBuilder.build());
-
+        this.Notidication();
+///END NOTIFICATION
 
         Button button1 = (Button) findViewById(R.id.whatSleep);
 
@@ -229,7 +221,7 @@ public class MainMenu extends AppCompatActivity
             }
 
         } else if (id == R.id.nav_calendar) {
-            fragmentManager.beginTransaction().replace(R.id.content_frame, new Calendar()).commit();
+            //   fragmentManager.beginTransaction().replace(R.id.content_frame, new Calendar()).commit();
         } else if (id == R.id.nav_bot) {
             fragmentManager.beginTransaction().replace(R.id.content_frame, new Help()).commit();
         }
@@ -238,9 +230,6 @@ public class MainMenu extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-
-
-
 
 
     private void createNotificationChannel() {
@@ -254,6 +243,32 @@ public class MainMenu extends AppCompatActivity
             // or other notification behaviors after this
             NotificationManager notificationManager = getSystemService(NotificationManager.class);
             notificationManager.createNotificationChannel(channel);
+        }
+    }
+
+    private void Notidication() {
+        Date c = Calendar.getInstance().getTime();
+        SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
+        String currentDate = df.format(c);
+        String lastDate = getSharedPreferences("date", MODE_PRIVATE).getString("lastdate", "nothing");
+
+        if (!currentDate.equals(lastDate)) {
+
+            Intent intent = new Intent(this, SecondPage.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
+            NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this, "13")
+                    .setSmallIcon(R.drawable.ic_drawer)
+                    .setContentTitle("Questionaire")
+                    .setContentText("Pam: Remember to complete your questionaire :D")
+                    .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                    // Set the intent that will fire when the user taps the notification
+                    .setContentIntent(pendingIntent)
+                    .setAutoCancel(true);
+            NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
+
+// notificationId is a unique int for each notification that you must define
+            notificationManager.notify(14, mBuilder.build());
         }
     }
 }
