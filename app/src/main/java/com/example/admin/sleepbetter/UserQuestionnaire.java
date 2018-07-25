@@ -23,7 +23,6 @@ public class UserQuestionnaire {
     private int fallAsleep;
     private int wakeUp;
     private int fresh;
-    private int happy;
     private int sad;
     private int sleepy;
     private int tired;
@@ -95,14 +94,6 @@ public class UserQuestionnaire {
 
     public void setFresh(int fresh) {
         this.fresh = fresh;
-    }
-
-    public int getHappy() {
-        return happy;
-    }
-
-    public void setHappy(int happy) {
-        this.happy = happy;
     }
 
     public int getSad() {

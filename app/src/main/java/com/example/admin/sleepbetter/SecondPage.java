@@ -66,6 +66,10 @@ public class SecondPage extends AppCompatActivity {
         getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("timesPerNight", timesPerNight + 1).apply();
         getSharedPreferences("questionnaire", MODE_PRIVATE).getInt("nightTerrors", nightTerrors + 1);
         getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("nightTerrors", nightTerrors + 1).apply();
+        getSharedPreferences("name", MODE_PRIVATE).getString("experiment", " ");
+        getSharedPreferences("name", MODE_PRIVATE).edit().putString("experiment", "Increase bright light exposure during the day").apply();
+        getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).getInt("KEY_SAVED_RADIO_BUTTON_INDEX", 0);
+        getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).edit().putInt("KEY_SAVED_RADIO_BUTTON_INDEX", 1).apply();
         startActivity(intent);
 
 

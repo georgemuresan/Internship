@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -21,6 +22,7 @@ public class SecondPage4 extends AppCompatActivity {
     private SeekBarWithIntervals coordinateBar = null;
     private static final String DATABASE_NAME = "user_db";
     private UserDatabase userDatabase;
+    private String comment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,6 +99,8 @@ public class SecondPage4 extends AppCompatActivity {
 
         startActivity(intent);
 
+        EditText commentBox = (EditText) findViewById(R.id.yourName2);
+        comment = commentBox.getText().toString();
 
         new Thread(new Runnable() {
             @Override
@@ -105,6 +109,7 @@ public class SecondPage4 extends AppCompatActivity {
                 userDatabase = Room.databaseBuilder(getApplicationContext(), UserDatabase.class, DATABASE_NAME).fallbackToDestructiveMigration().build();
                 userDatabase.daoAccess().deleteUserExperimentTable();
                 userDatabase.daoAccess().deleteUserQuesionnaireTable();
+                userDatabase.daoAccess().deleteUserDiaryTable();
 
                 UserQuestionnaire user = new UserQuestionnaire();
                 String username = getSharedPreferences("name", MODE_PRIVATE).getString("username", "nothing");
@@ -127,6 +132,13 @@ public class SecondPage4 extends AppCompatActivity {
 
                 userDatabase.daoAccess().insertSingleUserQuestionnaire(user);
 
+
+                UserDiary userDiary = new UserDiary();
+                userDiary.setUsername(username);
+                userDiary.setDate(formattedDate);
+                userDiary.setComment(comment);
+
+                userDatabase.daoAccess().insertSingleUserDiary(userDiary);
 
                 Report rep = new Report(userDatabase, getApplicationContext());
                 rep.save(username, true);

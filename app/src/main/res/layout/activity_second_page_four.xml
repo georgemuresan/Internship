@@ -93,7 +93,7 @@
                     android:background="@drawable/text_input_border"
                     android:hint="@string/some_explanation_about_the_input"
                     android:inputType=""
-                    android:text="@string/yourNote"
+                    android:text="@string/firstNote"
                     android:textSize="12sp"
                     android:textStyle="italic"
                     app:layout_constraintEnd_toEndOf="parent"

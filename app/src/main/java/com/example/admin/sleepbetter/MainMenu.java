@@ -204,25 +204,25 @@ public class MainMenu extends AppCompatActivity
 
             String experiment = getSharedPreferences("name", MODE_PRIVATE).getString("experiment", "nothing");
 
-            if (experiment.equals("firstLight")) {
+            if (experiment.equals(getString(R.string.firstLight))) {
                 fragmentManager.beginTransaction().replace(R.id.content_frame, new Update_Light_Bright()).commit();
-            } else if (experiment.equals("secondLight")) {
+            } else if (experiment.equals(getString(R.string.secondLight))) {
                 fragmentManager.beginTransaction().replace(R.id.content_frame, new Update_Light_Glasses()).commit();
-            } else if (experiment.equals("thirdLight")) {
+            } else if (experiment.equals(getString(R.string.thirdLight))) {
                 fragmentManager.beginTransaction().replace(R.id.content_frame, new Update_Light_TurnOffBright()).commit();
-            } else if (experiment.equals("firstCaffeine")) {
+            } else if (experiment.equals(getString(R.string.firstCaffeine))) {
                 fragmentManager.beginTransaction().replace(R.id.content_frame, new Update_Caffeine_6hours()).commit();
-            } else if (experiment.equals("secondCaffeine")) {
+            } else if (experiment.equals(getString(R.string.secondCaffeine))) {
                 fragmentManager.beginTransaction().replace(R.id.content_frame, new Update_Caffeine_limit()).commit();
-            } else if (experiment.equals("thirdCaffeine")) {
+            } else if (experiment.equals(getString(R.string.thirdCaffeine))) {
                 fragmentManager.beginTransaction().replace(R.id.content_frame, new Update_Caffeine_Empty()).commit();
-            } else if (experiment.equals("firstSchedule")) {
+            } else if (experiment.equals(getString(R.string.firstSchedule))) {
                 fragmentManager.beginTransaction().replace(R.id.content_frame, new Update_Schedule_SameTime()).commit();
-            } else if (experiment.equals("secondSchedule")) {
+            } else if (experiment.equals(getString(R.string.secondSchedule))) {
                 fragmentManager.beginTransaction().replace(R.id.content_frame, new Update_Schedule_7hours()).commit();
-            } else if (experiment.equals("thirdSchedule")) {
+            } else if (experiment.equals(getString(R.string.thirdSchedule))) {
                 fragmentManager.beginTransaction().replace(R.id.content_frame, new Update_Schedule_Relax()).commit();
-            } else if (experiment.equals("fourthSchedule")) {
+            } else if (experiment.equals(getString(R.string.fourthSchedule))) {
                 fragmentManager.beginTransaction().replace(R.id.content_frame, new Update_Schedule_Midnight()).commit();
             } else {
                 fragmentManager.beginTransaction().replace(R.id.content_frame, new Update()).commit();

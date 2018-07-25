@@ -48,15 +48,16 @@ public class Factors extends Fragment {
 
 
 
-        String experiment = getActivity().getSharedPreferences("name", MODE_PRIVATE).getString("experiment", "nothing");
+        String experiment = getActivity().getApplicationContext().getSharedPreferences("name", MODE_PRIVATE).getString("experiment", "nothing");
 
-        int savedRadioIndex = getActivity().getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).getInt("KEY_SAVED_RADIO_BUTTON_INDEX", 0);
+        int savedRadioIndex = getActivity().getApplicationContext().getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).getInt("KEY_SAVED_RADIO_BUTTON_INDEX", 0);
 
         RadioGroup radioGroup = (RadioGroup) factorsView.findViewById(R.id.experimentsGroup);
 
         if (!experiment.equals("nothing")){
+
+            System.out.println(experiment);
             System.out.println(savedRadioIndex);
-            System.out.println(radioGroup.getChildAt(savedRadioIndex));
             RadioButton savedCheckedRadioButton = (RadioButton)radioGroup.getChildAt(savedRadioIndex);
             savedCheckedRadioButton.setChecked(true);
         }
@@ -72,34 +73,34 @@ public class Factors extends Fragment {
 
                 RadioButton rb =(RadioButton) factorsView.findViewById(checkedId);
                 if (rb.getText().equals(getString(R.string.firstLight))){
-                    getActivity().getSharedPreferences("name", MODE_PRIVATE).edit().putString("experiment", "firstLight").apply();
+                    getActivity().getSharedPreferences("name", MODE_PRIVATE).edit().putString("experiment", getString(R.string.firstLight)).apply();
                     SavePreferences("KEY_SAVED_RADIO_BUTTON_INDEX", 1);
                 } else if (rb.getText().equals(getString(R.string.secondLight))){
-                    getActivity().getSharedPreferences("name", MODE_PRIVATE).edit().putString("experiment", "secondLight").apply();
+                    getActivity().getSharedPreferences("name", MODE_PRIVATE).edit().putString("experiment", getString(R.string.secondLight)).apply();
                     SavePreferences("KEY_SAVED_RADIO_BUTTON_INDEX", 2);
                 } else if (rb.getText().equals(getString(R.string.thirdLight))){
-                    getActivity().getSharedPreferences("name", MODE_PRIVATE).edit().putString("experiment", "thirdLight").apply();
+                    getActivity().getSharedPreferences("name", MODE_PRIVATE).edit().putString("experiment", getString(R.string.thirdLight)).apply();
                     SavePreferences("KEY_SAVED_RADIO_BUTTON_INDEX", 3);
                 } else if (rb.getText().equals(getString(R.string.firstCaffeine))){
-                    getActivity().getSharedPreferences("name", MODE_PRIVATE).edit().putString("experiment", "firstCaffeine").apply();
+                    getActivity().getSharedPreferences("name", MODE_PRIVATE).edit().putString("experiment", getString(R.string.firstCaffeine)).apply();
                     SavePreferences("KEY_SAVED_RADIO_BUTTON_INDEX", 5);
                 } else if (rb.getText().equals(getString(R.string.secondCaffeine))){
-                    getActivity().getSharedPreferences("name", MODE_PRIVATE).edit().putString("experiment", "secondCaffeine").apply();
+                    getActivity().getSharedPreferences("name", MODE_PRIVATE).edit().putString("experiment", getString(R.string.secondCaffeine)).apply();
                     SavePreferences("KEY_SAVED_RADIO_BUTTON_INDEX", 6);
                 } else if (rb.getText().equals(getString(R.string.thirdCaffeine))){
-                    getActivity().getSharedPreferences("name", MODE_PRIVATE).edit().putString("experiment", "thirdCaffeine").apply();
+                    getActivity().getSharedPreferences("name", MODE_PRIVATE).edit().putString("experiment", getString(R.string.thirdCaffeine)).apply();
                     SavePreferences("KEY_SAVED_RADIO_BUTTON_INDEX", 7);
                 } else if (rb.getText().equals(getString(R.string.firstSchedule))){
-                    getActivity().getSharedPreferences("name", MODE_PRIVATE).edit().putString("experiment", "firstSchedule").apply();
+                    getActivity().getSharedPreferences("name", MODE_PRIVATE).edit().putString("experiment", getString(R.string.firstSchedule)).apply();
                     SavePreferences("KEY_SAVED_RADIO_BUTTON_INDEX", 9);
                 } else if (rb.getText().equals(getString(R.string.secondSchedule))){
-                    getActivity().getSharedPreferences("name", MODE_PRIVATE).edit().putString("experiment", "secondSchedule").apply();
+                    getActivity().getSharedPreferences("name", MODE_PRIVATE).edit().putString("experiment", getString(R.string.secondSchedule)).apply();
                     SavePreferences("KEY_SAVED_RADIO_BUTTON_INDEX", 10);
                 } else if (rb.getText().equals(getString(R.string.thirdSchedule))){
-                    getActivity().getSharedPreferences("name", MODE_PRIVATE).edit().putString("experiment", "thirdSchedule").apply();
+                    getActivity().getSharedPreferences("name", MODE_PRIVATE).edit().putString("experiment", getString(R.string.thirdSchedule)).apply();
                     SavePreferences("KEY_SAVED_RADIO_BUTTON_INDEX", 11);
                 } else if (rb.getText().equals(getString(R.string.fourthSchedule))){
-                    getActivity().getSharedPreferences("name", MODE_PRIVATE).edit().putString("experiment", "fourthSchedule").apply();
+                    getActivity().getSharedPreferences("name", MODE_PRIVATE).edit().putString("experiment", getString(R.string.fourthSchedule)).apply();
                     SavePreferences("KEY_SAVED_RADIO_BUTTON_INDEX", 12);
                 }
 

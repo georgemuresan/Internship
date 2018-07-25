@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -26,6 +27,7 @@ public class Questionnaire4 extends Fragment {
 
     private static final String DATABASE_NAME = "user_db";
     private UserDatabase userDatabase;
+    private String comment;
 
     View questionnaireView;
     @Nullable
@@ -135,6 +137,8 @@ public class Questionnaire4 extends Fragment {
 
         getActivity().getApplicationContext().getSharedPreferences("MOOD", MODE_PRIVATE).edit().putInt("mood", moodCalculator(timesPerNight, nightTerrors, sad, sleepy, tired, stressed, irritable, concentrate+1, coordinate+1)).apply();
 
+        EditText commentBox = (EditText) questionnaireView.findViewById(R.id.yourName2);
+        comment = commentBox.getText().toString();
 
         startActivity(intent);
 
@@ -165,6 +169,14 @@ public class Questionnaire4 extends Fragment {
 
                 userDatabase.daoAccess().insertSingleUserQuestionnaire(user);
 
+
+
+                UserDiary userDiary = new UserDiary();
+                userDiary.setUsername(username);
+                userDiary.setDate(formattedDate);
+                userDiary.setComment(comment);
+
+                userDatabase.daoAccess().insertSingleUserDiary(userDiary);
 
                 Report rep = new Report(userDatabase, getActivity().getApplicationContext());
                 rep.save("after_userquestionnaire", false);
