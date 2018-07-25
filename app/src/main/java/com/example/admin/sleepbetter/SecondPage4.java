@@ -78,21 +78,22 @@ public class SecondPage4 extends AppCompatActivity {
         final int concentrate = concentrateBar.getProgress();
         final int coordinate = coordinateBar.getProgress();
 
-        getSharedPreferences("questionnaire", MODE_PRIVATE).getInt("apetite", apetite);
-        getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("apetite", apetite).apply();
-        getSharedPreferences("questionnaire", MODE_PRIVATE).getInt("concentrate", concentrate);
-        getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("concentrate", concentrate).apply();
-        getSharedPreferences("questionnaire", MODE_PRIVATE).getInt("coordinate", coordinate);
-        getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("coordinate", coordinate).apply();
 
-        System.out.print(getSharedPreferences("questionnaire", MODE_PRIVATE).getInt("timesPerNight", timesPerNight));
+        getSharedPreferences("questionnaire", MODE_PRIVATE).getInt("apetite", apetite + 1);
+        getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("apetite", apetite + 1).apply();
+        getSharedPreferences("questionnaire", MODE_PRIVATE).getInt("concentrate", concentrate + 1);
+        getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("concentrate", concentrate + 1).apply();
+        getSharedPreferences("questionnaire", MODE_PRIVATE).getInt("coordinate", coordinate + 1);
+        getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("coordinate", coordinate + 1).apply();
+
+        System.out.print(getSharedPreferences("questionnaire", MODE_PRIVATE).getInt("apetite", apetite));
 
         Date c = Calendar.getInstance().getTime();
         SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
         final String formattedDate = df.format(c);
 
         int mood = getSharedPreferences("MOOD", MODE_PRIVATE).getInt("mood", 0);
-        getSharedPreferences("MOOD", MODE_PRIVATE).edit().putInt("mood", moodCalculator(timesPerNight, nightTerrors, sad, sleepy, tired, stressed, irritable, concentrate, coordinate)).apply();
+        getSharedPreferences("MOOD", MODE_PRIVATE).edit().putInt("mood", moodCalculator(timesPerNight, nightTerrors, sad, sleepy, tired, stressed, irritable, concentrate+1, coordinate +1)).apply();
 
         startActivity(intent);
 
@@ -118,12 +119,14 @@ public class SecondPage4 extends AppCompatActivity {
                 user.setSleepy(sleepy);
                 user.setTired(tired);
                 user.setStressed(stressed);
-                user.setApetite(apetite);
-                user.setConcentrate(concentrate);
-                user.setCoordinate(coordinate);
+                user.setApetite(apetite +1);
+                user.setConcentrate(concentrate+1);
+                user.setCoordinate(coordinate+1);
                 user.setIrritable(irritable);
+                user.setMood(getSharedPreferences("MOOD", MODE_PRIVATE).getInt("mood", 0));
 
                 userDatabase.daoAccess().insertSingleUserQuestionnaire(user);
+
 
                 Report rep = new Report(userDatabase, getApplicationContext());
                 rep.save(username, true);

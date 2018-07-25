@@ -28,6 +28,9 @@ public interface DaoAccess {
     @Query("SELECT * FROM UserExperiment")
     List<UserExperiment> fetchUserExperiments();
 
+    @Query("SELECT mood_all FROM UserQuestionnaire")
+    List<Integer> fetchMoods();
+
     @Update
     void updateUSerQuestionnaire(UserQuestionnaire data);
 

@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent" android:layout_height="match_parent"
-    android:clickable="true"
-    android:background="#FFF"
-    android:focusable="true">
-
-    <android.support.constraint.ConstraintLayout
+<android.support.constraint.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="#FFF">
 
         <View
             android:id="@+id/topView"
@@ -48,7 +44,7 @@
 
         <TextView
             android:id="@+id/dataIntro"
-            android:layout_width="362dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
@@ -62,17 +58,17 @@
         <ScrollView
             android:id="@+id/ScrollViewQuestionnaire"
             style="@android:style/Widget.Material.ScrollView"
-            android:layout_width="379dp"
-            android:layout_height="412dp"
+            android:layout_width="match_parent"
+            android:layout_height="360dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:fillViewport="true"
             android:scrollbarStyle="insideOverlay"
             android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.454"
             app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="209dp"
             tools:targetApi="lollipop">
 
             <FrameLayout
@@ -96,7 +92,7 @@
 
                     <EditText
                         android:id="@+id/progress"
-                        android:layout_width="360dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="828dp"
                         android:layout_marginEnd="8dp"
@@ -119,7 +115,7 @@
 
                     <EditText
                         android:id="@+id/timelines"
-                        android:layout_width="360dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="8dp"
                         android:layout_marginStart="8dp"
@@ -139,7 +135,7 @@
 
                     <EditText
                         android:id="@+id/singleVD"
-                        android:layout_width="360dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="8dp"
                         android:layout_marginStart="8dp"
@@ -157,7 +153,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/graph" />
 
-                    <com.jjoe64.graphview.helper.GraphViewXML
+                    <com.jjoe64.graphview.GraphView
                         android:id="@+id/graph"
                         android:layout_width="match_parent"
                         android:layout_height="100dp"
@@ -166,15 +162,10 @@
                         android:layout_marginTop="8dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/timelines"
-                        app:seriesColor="#ee0000"
-                        app:seriesData="0=5;2=5;3=0;4=2"
-                        app:seriesType="line" />
+                        app:layout_constraintTop_toBottomOf="@+id/timelines" />
 
                 </android.support.constraint.ConstraintLayout>
             </FrameLayout>
         </ScrollView>
 
     </android.support.constraint.ConstraintLayout>
-
-</RelativeLayout>

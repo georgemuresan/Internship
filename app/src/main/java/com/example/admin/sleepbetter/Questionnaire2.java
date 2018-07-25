@@ -1,6 +1,7 @@
 package com.example.admin.sleepbetter;
 
 import android.app.Fragment;
+import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -104,17 +105,18 @@ public class Questionnaire2 extends Fragment {
     public void goToThirdActivity(){
 
 
-        Intent intent = new Intent(getActivity().getApplicationContext(), Questionnaire3.class);
-
         final int fallAsleep = fallAsleepBar.getProgress();
         final int wakeUp = wakeUpBar.getProgress();
         final int fresh = freshBar.getProgress();
 
-        getActivity().getApplicationContext().getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("fallAsleep", fallAsleep).apply();
-        getActivity().getApplicationContext().getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("wakeUp", wakeUp).apply();
-        getActivity().getApplicationContext().getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("fresh", fresh).apply();
+        getActivity().getApplicationContext().getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("fallAsleep", fallAsleep + 1).apply();
+        getActivity().getApplicationContext().getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("wakeUp", wakeUp + 1).apply();
+        getActivity().getApplicationContext().getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("fresh", fresh + 1).apply();
 
-        startActivity(intent);
+
+        FragmentManager fragmentManager = getFragmentManager();
+
+        fragmentManager.beginTransaction().replace(R.id.content_frame, new Questionnaire3()).commit();
     }
 
 

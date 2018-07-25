@@ -67,12 +67,12 @@ public class SecondPage2 extends AppCompatActivity {
         final int wakeUp = wakeUpBar.getProgress();
         final int fresh = freshBar.getProgress();
 
-        getSharedPreferences("questionnaire", MODE_PRIVATE).getInt("fallAsleep", fallAsleep);
-        getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("fallAsleep", fallAsleep).apply();
-        getSharedPreferences("questionnaire", MODE_PRIVATE).getInt("wakeUp", wakeUp);
-        getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("wakeUp", wakeUp).apply();
-        getSharedPreferences("questionnaire", MODE_PRIVATE).getInt("fresh", fresh);
-        getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("fresh", fresh).apply();
+        getSharedPreferences("questionnaire", MODE_PRIVATE).getInt("fallAsleep", fallAsleep + 1);
+        getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("fallAsleep", fallAsleep + 1).apply();
+        getSharedPreferences("questionnaire", MODE_PRIVATE).getInt("wakeUp", wakeUp + 1);
+        getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("wakeUp", wakeUp + 1).apply();
+        getSharedPreferences("questionnaire", MODE_PRIVATE).getInt("fresh", fresh + 1);
+        getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("fresh", fresh + 1).apply();
 
 
         startActivity(intent);

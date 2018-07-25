@@ -62,10 +62,10 @@ public class SecondPage extends AppCompatActivity {
         final int timesPerNight = timesPerNightBar.getProgress();
         final int nightTerrors = nightTerrorsBar.getProgress();
 
-        getSharedPreferences("questionnaire", MODE_PRIVATE).getInt("timesPerNight", timesPerNight);
-        getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("timesPerNight", timesPerNight).apply();
-        getSharedPreferences("questionnaire", MODE_PRIVATE).getInt("nightTerrors", nightTerrors);
-        getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("nightTerrors", nightTerrors).apply();
+        getSharedPreferences("questionnaire", MODE_PRIVATE).getInt("timesPerNight", timesPerNight + 1);
+        getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("timesPerNight", timesPerNight + 1).apply();
+        getSharedPreferences("questionnaire", MODE_PRIVATE).getInt("nightTerrors", nightTerrors + 1);
+        getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("nightTerrors", nightTerrors + 1).apply();
         startActivity(intent);
 
 

@@ -36,6 +36,7 @@
         <activity android:name=".WhatExperiments"></activity>
         <activity android:name=".WhatChatbot"></activity>
         <activity android:name=".WhatIsSleep"></activity>
+
     </application>
 
 </manifest>

@@ -125,16 +125,15 @@ public class Questionnaire4 extends Fragment {
         final int concentrate = concentrateBar.getProgress();
         final int coordinate = coordinateBar.getProgress();
 
-        getActivity().getApplicationContext().getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("apetite", apetite).apply();
-        getActivity().getApplicationContext().getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("concentrate", concentrate).apply();
-        getActivity().getApplicationContext().getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("coordinate", coordinate).apply();
+        getActivity().getApplicationContext().getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("apetite", apetite + 1).apply();
+        getActivity().getApplicationContext().getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("concentrate", concentrate + 1).apply();
+        getActivity().getApplicationContext().getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("coordinate", coordinate + 1).apply();
 
         Date c = Calendar.getInstance().getTime();
         SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
         final String formattedDate = df.format(c);
 
-        int mood = getActivity().getApplicationContext().getSharedPreferences("MOOD", MODE_PRIVATE).getInt("mood", 0);
-        getActivity().getApplicationContext().getSharedPreferences("MOOD", MODE_PRIVATE).edit().putInt("mood", moodCalculator(timesPerNight, nightTerrors, sad, sleepy, tired, stressed, irritable, concentrate, coordinate)).apply();
+        getActivity().getApplicationContext().getSharedPreferences("MOOD", MODE_PRIVATE).edit().putInt("mood", moodCalculator(timesPerNight, nightTerrors, sad, sleepy, tired, stressed, irritable, concentrate+1, coordinate+1)).apply();
 
 
         startActivity(intent);
@@ -144,8 +143,6 @@ public class Questionnaire4 extends Fragment {
             public void run() {
 
                 userDatabase = Room.databaseBuilder(getActivity().getApplicationContext(), UserDatabase.class, DATABASE_NAME).fallbackToDestructiveMigration().build();
-                userDatabase.daoAccess().deleteUserExperimentTable();
-                userDatabase.daoAccess().deleteUserQuesionnaireTable();
 
                 UserQuestionnaire user = new UserQuestionnaire();
                 String username = getActivity().getApplicationContext().getSharedPreferences("name", MODE_PRIVATE).getString("username", "nothing");
@@ -160,20 +157,23 @@ public class Questionnaire4 extends Fragment {
                 user.setSleepy(sleepy);
                 user.setTired(tired);
                 user.setStressed(stressed);
-                user.setApetite(apetite);
-                user.setConcentrate(concentrate);
-                user.setCoordinate(coordinate);
+                user.setApetite(apetite+1);
+                user.setConcentrate(concentrate+1);
+                user.setCoordinate(coordinate+1);
                 user.setIrritable(irritable);
+                user.setMood(getActivity().getApplicationContext().getSharedPreferences("MOOD", MODE_PRIVATE).getInt("mood", 0));
 
                 userDatabase.daoAccess().insertSingleUserQuestionnaire(user);
 
+
                 Report rep = new Report(userDatabase, getActivity().getApplicationContext());
-                rep.save("new_test", true);
+                rep.save("after_userquestionnaire", false);
             }
         }).start();
 
     }
     private int moodCalculator(int timesNight, int nightmares, int sad, int sleepy, int tired, int stressed, int irritable, int concentrate, int coordinate) {
+        System.out.println( timesNight + " " + nightmares + " " +   sad + " " +   sleepy + " " +   tired + " " +   stressed + " " +   irritable + " " +   concentrate + " " +   coordinate);
         int avgMood = (sad + sleepy + tired + stressed + irritable) / 5;
         int avgNight = (timesNight + nightmares) / 2;
         int avgAction = (concentrate + coordinate) / 2;
