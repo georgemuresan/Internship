@@ -66,7 +66,6 @@ public class SecondPage3 extends AppCompatActivity {
     private void goToThirdActivity() {
 
 
-        System.out.println("sentFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFf");
         Intent intent = new Intent(this, SecondPage4.class);
 
         final int sad = sadBar.getProgress();
@@ -76,10 +75,15 @@ public class SecondPage3 extends AppCompatActivity {
         final int irritable = irritableBar.getProgress();
 
         getSharedPreferences("questionnaire", MODE_PRIVATE).getInt("sad", sad);
+        getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("sad", sad).apply();
         getSharedPreferences("questionnaire", MODE_PRIVATE).getInt("sleepy", sleepy);
+        getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("sleepy", sleepy).apply();
         getSharedPreferences("questionnaire", MODE_PRIVATE).getInt("tired", tired);
+        getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("tired", tired).apply();
         getSharedPreferences("questionnaire", MODE_PRIVATE).getInt("stressed", stressed);
+        getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("stressed", stressed).apply();
         getSharedPreferences("questionnaire", MODE_PRIVATE).getInt("irritable", irritable);
+        getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("irritable", irritable).apply();
 
         startActivity(intent);
     }
@@ -143,11 +147,11 @@ public class SecondPage3 extends AppCompatActivity {
         }
         return null;
     }
-
+/*
     public void onBackPressed() {
         Intent intent = new Intent(this, MainMenu.class);
         startActivity(intent);
         finish();
-    }
+    }*/
 }
 

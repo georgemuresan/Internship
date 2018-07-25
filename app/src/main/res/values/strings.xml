@@ -8,9 +8,15 @@
     <string name="introductionTitle">WELCOME</string>
     <string name="welcomeTitle">Welcome to.... Here....</string>
     <string name="startButton">START</string>
-    <string name="permission">Permission to run in the background</string>
+    <string name="permission">Consent Form</string>
     <string name="yourName">Your name...</string>
-    <string name="linkBitmoji">Link your Bitmoji!</string>
+    <string name="participantName">Participant ID...</string>
+    <string name="linkBitmoji">Linked Bitmoji</string>
+
+    <string name="linkBitmojiTitle">LINK YOUR BITMOJI</string>
+    <string name="chooseBitmojiTitle">Please choose one of the Bitmojis bellow as your companion.</string>
+
+
 
     <string name="questionnaireTitle">QUESTIONNAIRE</string>
     <string name="questionnaireHelp">First, how would you rate the following aspects of your everyday life?</string>
@@ -33,6 +39,10 @@
     <string name="concentrateUsually">How hard is for you to concentrate during the day?</string>
     <string name="coordinateUsually">How hard is for you to coordinate your activities during the day?</string>
     <string name="apetiteUsually">How would you usually rate your appetite during the day?</string>
+
+    <string name="comments">Do you have any other notes you wish to add into your Goal Diary?</string>
+    <string name="yourNote">Your note...</string>
+
 
     <string name="offquestionnaireHelp">How would you rate the following aspects of your day?</string>
     <string name="offtimesWakingUp">How many times did you wake up last night?</string>
@@ -221,16 +231,38 @@
     <string name="whatISTitle">WHAT IS SLEEP BETTER?</string>
 
     <string name="sleepHygienetitle">Sleep Hygiene?</string>
+    <string name="tuningTitle">Tuning?</string>
+    <string name="tuning">Tuning is about the options you have towards self-exploration - having the knowledge, the skills and the context to find what best works for you. It is more complex than behavior change as it addresses the whole environment and it is not straightly associated with the individual.</string>
+    <string name="sleepDescription">According to National Sleep Foundations, sleep hygiene is a variety of different practices and habits that are necessary to have good nighttime sleep quality and full daytime alertness. Obtaining healthy sleep is important for both physical and mental health. It can also improve productivity and overall quality of life. Everyone, from children to older adults, can benefit from practicing good sleep habits.</string>
+    <string name="ourMissionn">Our mission with Sleep Better is to help you and guide you through a series of experiments that are proved to have an impact over your sleep hygiene. We want to confer an easy-to-use, straightforward, friendly interface for you to use that would not only drive you through a self-experimentation tuning process but also help us identify the most impactful factors over your sleeping hygiene.</string>
+
+
+    <string name="appIntro">Welcome! Sleep Better is a mobile application that guides you through a series of experiments that you can run in a definite period of time in order to start a tuning process over your sleeping patterns.</string>
+
     <string name="ourMissionTitle">Our Mission?</string>
 
     <string name="whatExeriments">WHAT EXPERIMENTS AND FEATURES?</string>
+    <string name="experimentsTitle">Experiments</string>
+    <string name="experiments">For the duration of the self-experimentation study, you will be able to choose which experiments you wish to conduct among the 10 options you have. At every 5 days, you will be required to either change the experiment or stick with it for another 5 days. You will be able to look at the data concerning your well-being in the DATA meu.</string>
+    <string name="experiments2">The experiments will be split into 3 categories - LIGHT, CAFFEINE and SLEEP SCHEDULE. Each of them cover a different contextual factor  that has a direct impact on your sleep hygiene.\n  - Light looks at how either sunlight exposure and blue light impact your sleeping patterns;\n  - Caffeine looks at how drugs impact your system when it comes to bedtime;\n  - Sleep Schedule looks at how important a persistent schedule is towards a good seep.</string>
+    <string name="loggingTitle">Logging</string>
+    <string name="loggingExp">At the end of each day, you will be required to complete 2 short questionnaires (2-3 minutes in total) that would look at both how you approached the experiment in that day AND what is the outcome. The experiment logging asks you to rate whether you feel better/worse than yesterday, but also to answer a short series of questions on how you approached the chosen experiment (1-3 questions).</string>
+
+    <string name="featuresTitle">Other Features</string>
+    <string name="features">By easily navigating through the Sleep Better menu you can access each category that helps you explore your self-experimentation.\n \n FACTORS helps you choose you proffered experiment, at every 5 days.\n \n GOAL DIARY keeps track of every note you save regarding your experience. You are free to add whatever observation you might have at anytme. \n \n DATA gives you insights on how your well-being changed for the duration of the experiments - you can look at graphs, progress bars and current states. \n \n QUESTIONNAIRE will only be able to be accessed at the end of each day, when you will be asked to log in your status. \n \n CALENDAR will look on your progress throughout the experiment, where colors suggest your overall well-being for the day. You are also able to look at that day's status by clicking on it. \n \n HELP represents the Chatbot, that -------.</string>
 
     <string name="chatbotGuide">CHATBOT GUIDE</string>
+
+
+    <string name="chatbotintro">CHATBOT intro</string>
+
+
 
     <string name="noAnswer">No</string>
     <string name="yesAnswer">Yes</string>
     <string name="submitUpdate">SUBMIT</string>
     <string name="nextButton">NEXT</string>
+    <string name="backButton">BACK</string>
 
 
 </resources>

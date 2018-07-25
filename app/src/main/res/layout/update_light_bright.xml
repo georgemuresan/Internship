@@ -12,6 +12,69 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <View
+            android:id="@+id/topView"
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:background="@color/LightSteelBlue"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="0dp" />
+
+        <TextView
+            android:id="@+id/experimentTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="@string/experimentTitle"
+            android:textAllCaps="false"
+            android:textColor="@android:color/black"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/topView"
+            app:layout_constraintStart_toStartOf="@+id/topView"
+            app:layout_constraintTop_toTopOf="@+id/topView"
+            app:layout_constraintVertical_bias="0.205" />
+
+        <TextView
+            android:id="@+id/sleepSettingsTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="@string/lightSubTitle"
+            android:textAllCaps="false"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/topView"
+            app:layout_constraintStart_toStartOf="@+id/topView"
+            app:layout_constraintTop_toTopOf="@+id/topView"
+            app:layout_constraintVertical_bias="0.72" />
+
+        <ImageView
+            android:id="@+id/logoPlace"
+            android:layout_width="91dp"
+            android:layout_height="81dp"
+            android:layout_marginEnd="16dp"
+            android:contentDescription="@string/desc"
+            app:layout_constraintBottom_toBottomOf="@+id/topView"
+            app:layout_constraintEnd_toEndOf="@+id/topView"
+            app:layout_constraintTop_toTopOf="@+id/topView"
+            app:layout_constraintVertical_bias="0.533"
+            app:srcCompat="@drawable/pill" />
+
+        <TextView
+            android:id="@+id/lightIntro"
+            android:layout_width="362dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:text="@string/brightExposureIntro"
+            android:textColor="@android:color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/topView" />
+
         <ScrollView
             android:id="@+id/ScrollViewQuestionnaire"
             style="@android:style/Widget.Material.ScrollView"
@@ -20,7 +83,6 @@
             android:layout_marginBottom="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
             android:fillViewport="true"
             android:scrollbarStyle="insideOverlay"
             android:visibility="visible"
@@ -28,8 +90,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.454"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/topView"
-            app:layout_constraintVertical_bias="1.0"
             tools:targetApi="lollipop">
 
             <FrameLayout
@@ -49,14 +109,14 @@
 
                 <android.support.constraint.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="481dp"
+                    android:layout_height="620dp"
                     tools:layout_editor_absoluteX="8dp"
                     tools:layout_editor_absoluteY="0dp">
 
 
                     <RadioGroup
                         android:id="@+id/sunlightGroup"
-                        android:layout_width="327dp"
+                        android:layout_width="match_parent"
                         android:layout_height="43dp"
                         android:layout_marginEnd="8dp"
                         android:layout_marginStart="8dp"
@@ -86,7 +146,7 @@
 
                     <RadioGroup
                         android:id="@+id/glassesGroup"
-                        android:layout_width="327dp"
+                        android:layout_width="match_parent"
                         android:layout_height="43dp"
                         android:layout_marginEnd="8dp"
                         android:layout_marginStart="8dp"
@@ -116,10 +176,11 @@
 
                     <EditText
                         android:id="@+id/loggngTitle"
-                        android:layout_width="360dp"
-                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="46dp"
                         android:layout_marginEnd="8dp"
                         android:layout_marginStart="8dp"
+                        android:layout_marginTop="4dp"
                         android:clickable="false"
                         android:cursorVisible="false"
                         android:ems="10"
@@ -130,15 +191,14 @@
                         android:text="@string/logging"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toBottomOf="@+id/relativeLayout9" />
 
                     <EditText
                         android:id="@+id/dayReview"
-                        android:layout_width="360dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="8dp"
                         android:layout_marginStart="8dp"
-                        android:layout_marginTop="12dp"
                         android:clickable="false"
                         android:cursorVisible="false"
                         android:ems="10"
@@ -148,13 +208,12 @@
                         android:inputType="textPersonName"
                         android:text="@string/dayReview"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.538"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/sunlightGroup" />
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
                         android:id="@+id/questionDay"
-                        android:layout_width="309dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="24dp"
                         android:layout_marginStart="8dp"
@@ -174,7 +233,7 @@
 
                     <TextView
                         android:id="@+id/turnOffQuestion"
-                        android:layout_width="309dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="24dp"
                         android:layout_marginStart="8dp"
@@ -189,13 +248,13 @@
                         android:text="@string/morningQuestion"
                         android:textColor="@android:color/black"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.363"
+                        app:layout_constraintHorizontal_bias="1.0"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/loggngTitle" />
 
                     <TextView
                         android:id="@+id/glassesQuestion"
-                        android:layout_width="316dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="24dp"
                         android:layout_marginStart="8dp"
@@ -216,7 +275,7 @@
 
                     <TextView
                         android:id="@+id/sunlightQuestion"
-                        android:layout_width="324dp"
+                        android:layout_width="match_parent"
                         android:layout_height="21dp"
                         android:layout_marginEnd="24dp"
                         android:layout_marginStart="8dp"
@@ -256,7 +315,7 @@
 
                     <RadioGroup
                         android:id="@+id/appGroup"
-                        android:layout_width="327dp"
+                        android:layout_width="match_parent"
                         android:layout_height="43dp"
                         android:layout_marginEnd="8dp"
                         android:layout_marginStart="8dp"
@@ -294,75 +353,24 @@
                         android:text="@string/nextButton"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/relativeLayout9" />
+                        app:layout_constraintTop_toBottomOf="@+id/imageView15" />
+
+                    <ImageView
+                        android:id="@+id/imageView15"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/sunlightGroup"
+                        app:srcCompat="@drawable/happy" />
 
 
                 </android.support.constraint.ConstraintLayout>
             </FrameLayout>
         </ScrollView>
-
-        <View
-            android:id="@+id/topView"
-            android:layout_width="match_parent"
-            android:layout_height="75dp"
-            android:background="@color/LightSteelBlue"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="0dp" />
-
-        <TextView
-            android:id="@+id/sleepSettingsTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:text="@string/lightSubTitle"
-            android:textAllCaps="false"
-            android:textColor="@android:color/black"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/topView"
-            app:layout_constraintStart_toStartOf="@+id/topView"
-            app:layout_constraintTop_toTopOf="@+id/topView"
-            app:layout_constraintVertical_bias="0.72" />
-
-        <TextView
-            android:id="@+id/experimentTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:text="@string/experimentTitle"
-            android:textAllCaps="false"
-            android:textColor="@android:color/black"
-            android:textSize="30sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/topView"
-            app:layout_constraintStart_toStartOf="@+id/topView"
-            app:layout_constraintTop_toTopOf="@+id/topView"
-            app:layout_constraintVertical_bias="0.205" />
-
-        <ImageView
-            android:id="@+id/logoPlace"
-            android:layout_width="91dp"
-            android:layout_height="81dp"
-            android:layout_marginEnd="16dp"
-            android:contentDescription="@string/desc"
-            app:layout_constraintBottom_toBottomOf="@+id/topView"
-            app:layout_constraintEnd_toEndOf="@+id/topView"
-            app:layout_constraintTop_toTopOf="@+id/topView"
-            app:layout_constraintVertical_bias="0.533"
-            app:srcCompat="@drawable/pill" />
-
-        <TextView
-            android:id="@+id/lightIntro"
-            android:layout_width="362dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:text="@string/brightExposureIntro"
-            android:textColor="@android:color/black"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/topView" />
 
     </android.support.constraint.ConstraintLayout>
 
