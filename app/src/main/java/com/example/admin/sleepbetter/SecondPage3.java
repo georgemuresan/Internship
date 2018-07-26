@@ -74,16 +74,16 @@ public class SecondPage3 extends AppCompatActivity {
         final int stressed = stressedBar.getProgress();
         final int irritable = irritableBar.getProgress();
 
-        getSharedPreferences("questionnaire", MODE_PRIVATE).getInt("sad", sad);
-        getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("sad", sad).apply();
-        getSharedPreferences("questionnaire", MODE_PRIVATE).getInt("sleepy", sleepy);
-        getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("sleepy", sleepy).apply();
-        getSharedPreferences("questionnaire", MODE_PRIVATE).getInt("tired", tired);
-        getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("tired", tired).apply();
-        getSharedPreferences("questionnaire", MODE_PRIVATE).getInt("stressed", stressed);
-        getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("stressed", stressed).apply();
-        getSharedPreferences("questionnaire", MODE_PRIVATE).getInt("irritable", irritable);
-        getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("irritable", irritable).apply();
+        getSharedPreferences("questionnaire", MODE_PRIVATE).getInt("sad", sad + 1);
+        getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("sad", sad + 1).apply();
+        getSharedPreferences("questionnaire", MODE_PRIVATE).getInt("sleepy", sleepy + 1);
+        getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("sleepy", sleepy + 1).apply();
+        getSharedPreferences("questionnaire", MODE_PRIVATE).getInt("tired", tired + 1);
+        getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("tired", tired + 1).apply();
+        getSharedPreferences("questionnaire", MODE_PRIVATE).getInt("stressed", stressed + 1);
+        getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("stressed", stressed + 1).apply();
+        getSharedPreferences("questionnaire", MODE_PRIVATE).getInt("irritable", irritable + 1);
+        getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("irritable", irritable + 1).apply();
 
         startActivity(intent);
     }

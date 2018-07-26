@@ -41,8 +41,8 @@
     <string name="apetiteUsually">How would you usually rate your appetite during the day?</string>
 
     <string name="comments">Do you have any other notes you wish to add into your Goal Diary?</string>
+    <string name="firstNote">*First note*</string>
     <string name="yourNote">Your note...</string>
-
 
     <string name="offquestionnaireHelp">How would you rate the following aspects of your day?</string>
     <string name="offtimesWakingUp">How many times did you wake up last night?</string>
@@ -66,7 +66,41 @@
     <string name="greatText">GREAT! Here is your current avatar, reflecting your current state:</string>
     <string name="pleaseInputGoal">Please input either a goal, a wish, or any note. You can return to this section later.</string>
     <string name="goalInput">Goal Diary input...</string>
+    <string-array name="targetGraph">
+            <item>Times waking up per night</item>
+            <item>Night terrors</item>
+            <item>Falling asleep</item>
+            <item>Waking up</item>
+        <item>Fresh</item>
+        <item>Sad</item>
+        <item>Sleepy</item>
+        <item>Tired</item>
+        <item>Stressed</item>
+        <item>Irritable</item>
+        <item>Concentrate</item>
+        <item>Coordinate</item>
+        <item>Appetite</item>
+    </string-array>
+    <string name="currentStatus">Current Status</string>
+    <string name="goalStatus">Goal Status</string>
+    <string name="youNeedToWorkOn">You need to work on:</string>
+    <string name="thingsToChange">Edit</string>
 
+    <string name="svdyourOverall">Overall mood: edit</string>
+    <string name="svdTimes">Times waking up: edit</string>
+    <string name="svdnightTerrors">Night terrors: edit</string>
+    <string name="svdfallAsleep">Falling asleep: edit</string>
+    <string name="svdwakeUp">Waking up: edit</string>
+    <string name="svdFresh">Fresh: edit</string>
+    <string name="svdSad">Sad: edit</string>
+    <string name="svdSleepy">Sleepy: edit</string>
+    <string name="svdTired">Tired: edit</string>
+    <string name="svdStressed">Stressed: edit</string>
+    <string name="svdIrritable">Irritable: edit</string>
+    <string name="svdConcenrate">Concentration: edit</string>
+    <string name="svdCoordinate">Coordination: edit</string>
+    <string name="svdAppetite">Appetite: edit</string>
+    <string name="svdExperiment">Experiment: edit</string>
 
     <string name="main">MAIN</string>
 
@@ -154,6 +188,9 @@
     <string name="progressTitle">Progress</string>
     <string name="timelineTitle">Timelines</string>
     <string name="singleValueDisplayTitle">Single Value Display</string>
+    <string name="chooseTitle">Choose a timeline target!</string>
+
+
 
     <string name="experimentTitle">EXPERIMENT</string>
     <string name="lightSubTitle">Light</string>

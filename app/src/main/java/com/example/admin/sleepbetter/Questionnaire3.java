@@ -1,6 +1,7 @@
 package com.example.admin.sleepbetter;
 
 import android.app.Fragment;
+import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -125,21 +126,22 @@ public class Questionnaire3 extends Fragment {
     public void goToThirdActivity(){
 
 
-        Intent intent = new Intent(getActivity().getApplicationContext(), Questionnaire4.class);
-
         final int sad = sadBar.getProgress();
         final int sleepy = sleepyBar.getProgress();
         final int tired = tiredBar.getProgress();
         final int stressed = stressedBar.getProgress();
         final int irritable = irritableBar.getProgress();
 
-        getActivity().getApplicationContext().getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("sad", sad).apply();
-        getActivity().getApplicationContext().getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("sleepy", sleepy).apply();
-        getActivity().getApplicationContext().getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("tired", tired).apply();
-        getActivity().getApplicationContext().getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("stressed", stressed).apply();
-        getActivity().getApplicationContext().getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("irritable", irritable).apply();
+        getActivity().getApplicationContext().getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("sad", sad + 1).apply();
+        getActivity().getApplicationContext().getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("sleepy", sleepy + 1).apply();
+        getActivity().getApplicationContext().getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("tired", tired + 1).apply();
+        getActivity().getApplicationContext().getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("stressed", stressed + 1).apply();
+        getActivity().getApplicationContext().getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("irritable", irritable + 1).apply();
 
-        startActivity(intent);
+
+        FragmentManager fragmentManager = getFragmentManager();
+
+        fragmentManager.beginTransaction().replace(R.id.content_frame, new Questionnaire4()).commit();
     }
 
 

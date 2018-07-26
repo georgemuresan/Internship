@@ -1,6 +1,7 @@
 package com.example.admin.sleepbetter;
 
 import android.app.Fragment;
+import android.app.FragmentManager;
 import android.arch.persistence.room.Room;
 import android.content.Intent;
 import android.os.Bundle;
@@ -100,15 +101,16 @@ public class Questionnaire extends Fragment {
     public void goToThirdActivity(){
 
 
-        Intent intent = new Intent(getActivity().getApplicationContext(), Questionnaire2.class);
-
         final int timesPerNight = timesPerNightBar.getProgress();
         final int nightTerrors = nightTerrorsBar.getProgress();
 
-        getActivity().getApplicationContext().getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("timesPerNight", timesPerNight).apply();
-        getActivity().getApplicationContext().getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("nightTerrors", nightTerrors).apply();
+        getActivity().getApplicationContext().getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("timesPerNight", timesPerNight + 1).apply();
+        getActivity().getApplicationContext().getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("nightTerrors", nightTerrors + 1).apply();
 
-        startActivity(intent);
+
+        FragmentManager fragmentManager = getFragmentManager();
+
+        fragmentManager.beginTransaction().replace(R.id.content_frame, new Questionnaire2()).commit();
     }
 
 

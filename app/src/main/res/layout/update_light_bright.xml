@@ -64,7 +64,7 @@
             app:srcCompat="@drawable/pill" />
 
         <TextView
-            android:id="@+id/lightIntro"
+            android:id="@+id/match_parent"
             android:layout_width="362dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"

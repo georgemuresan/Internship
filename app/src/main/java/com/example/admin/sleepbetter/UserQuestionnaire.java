@@ -1,5 +1,6 @@
 package com.example.admin.sleepbetter;
 
+import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
@@ -22,7 +23,6 @@ public class UserQuestionnaire {
     private int fallAsleep;
     private int wakeUp;
     private int fresh;
-    private int happy;
     private int sad;
     private int sleepy;
     private int tired;
@@ -31,6 +31,9 @@ public class UserQuestionnaire {
     private int concentrate;
     private int coordinate;
     private int irritable;
+
+    @ColumnInfo(name="mood_all")
+    private int mood;
 
     public UserQuestionnaire() {
     }
@@ -91,14 +94,6 @@ public class UserQuestionnaire {
 
     public void setFresh(int fresh) {
         this.fresh = fresh;
-    }
-
-    public int getHappy() {
-        return happy;
-    }
-
-    public void setHappy(int happy) {
-        this.happy = happy;
     }
 
     public int getSad() {
@@ -166,5 +161,13 @@ public class UserQuestionnaire {
 
     public void setIrritable(int irritable) {
         this.irritable = irritable;
+    }
+
+    public int getMood() {
+        return mood;
+    }
+
+    public void setMood(int mood) {
+        this.mood = mood;
     }
 }

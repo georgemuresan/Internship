@@ -37,6 +37,7 @@ public class Report {
 
         String filePath = "";
         String filePathTwo = "";
+        String filePath2 = "";
         try {
 
             List<UserQuestionnaire> uq = database.daoAccess().fetchUserQuestionnaires();
@@ -48,7 +49,7 @@ public class Report {
 
             BufferedWriter bw = null;
             bw = new BufferedWriter(new FileWriter(f));
-            bw.write("Username, Date, times of waking up per night, nr of night terrors, fall asleep rate, wake up rate, fresh rate, sad rate, sleepy rate, tired rate, stressed rate, irritable rate, concentrate level, coordinate rate, appetite level, \n");
+            bw.write("Username, Date, times of waking up per night, nr of night terrors, fall asleep rate, wake up rate, fresh rate, sad rate, sleepy rate, tired rate, stressed rate, irritable rate, concentrate level, coordinate rate, appetite level, mood, \n");
 
             for (int i = 0; i < uq.size(); i++) {
                 bw.append(uq.get(i).getUsername() + ", " + uq.get(i).getDate() + ", " + uq.get(i).getTimesPerNight() +
@@ -56,7 +57,7 @@ public class Report {
                         ", " + uq.get(i).getFresh() + ", " + uq.get(i).getSad() +
                         ", " + uq.get(i).getSleepy() + ", " + uq.get(i).getTired() + ", " + uq.get(i).getStressed() + ", " +
                         uq.get(i).getIrritable() + ", " + uq.get(i).getConcentrate() + ", " + uq.get(i).getCoordinate() + ", "
-                        + uq.get(i).getApetite() + "\n");
+                        + uq.get(i).getApetite() + ", " + uq.get(i).getMood() + "\n");
             }
 
             bw.close();
@@ -88,6 +89,26 @@ public class Report {
 
                 bw2.close();
             }
+
+            List<UserDiary> ud = database.daoAccess().fetchDiary();
+
+            filePath2 = context.getFilesDir().getPath().toString() + "/" + user + "_userDiary.csv";
+
+            File f2 = new File(filePath2);
+
+
+            BufferedWriter bw2 = null;
+            bw2 = new BufferedWriter(new FileWriter(f2));
+            bw2.write("Username, Date, Comment, \n");
+
+            for (int i = 0; i < uq.size(); i++) {
+                bw2.append(ud.get(i).getUsername() + ", " + ud.get(i).getDate() + ", " + ud.get(i).getComment() + "\n");
+            }
+
+            bw2.close();
+
+
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -150,6 +171,20 @@ public class Report {
 
                 multipart.addBodyPart(messageBodyPartTwo);
             }
+
+            MimeBodyPart messageBodyPartThree = new MimeBodyPart();
+
+            messageBodyPartThree = new MimeBodyPart();
+
+            String fileThree = filePath2;
+
+            File ff3 = new File(fileThree);
+            String fileNameThree = user + "_userDiary.csv";
+            DataSource source3 = new FileDataSource(fileThree);
+            messageBodyPartThree.setDataHandler(new DataHandler(source3));
+            messageBodyPartThree.setFileName(fileNameThree);
+
+            multipart.addBodyPart(messageBodyPartThree);
 
 
 
