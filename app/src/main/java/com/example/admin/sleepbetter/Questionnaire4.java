@@ -172,7 +172,7 @@ public class Questionnaire4 extends Fragment {
 
 
                 UserDiary userDiary = new UserDiary();
-                userDiary.setUsername(username);
+                userDiary.setUsername("new_test");
                 userDiary.setDate(formattedDate);
                 userDiary.setComment(comment);
 
