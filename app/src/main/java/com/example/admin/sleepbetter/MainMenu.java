@@ -7,9 +7,11 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.arch.persistence.room.Room;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
 import android.view.View;
@@ -72,6 +74,8 @@ public class MainMenu extends AppCompatActivity
         //NOTIFICATION DEMO
         this.createNotificationChannel();
         this.Notidication();
+
+       this.setAlarmManager();
 ///END NOTIFICATION
 
         Button button1 = (Button) findViewById(R.id.whatSleep);
@@ -271,4 +275,44 @@ public class MainMenu extends AppCompatActivity
             notificationManager.notify(14, mBuilder.build());
         }
     }
+
+    private void NotidicationBot() {
+        Date c = Calendar.getInstance().getTime();
+        SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
+        String currentDate = df.format(c);
+        String lastDate = getSharedPreferences("date", MODE_PRIVATE).getString("lastdate", "nothing");
+
+        if (!currentDate.equals(lastDate)) {
+
+            Intent intent = new Intent(this, SecondPage.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
+            NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this, "13")
+                    .setSmallIcon(R.drawable.ic_drawer)
+                    .setContentTitle("Do you have any question?")
+                    .setContentText("Pam: Ask me something if you are courious ")
+                    .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                    // Set the intent that will fire when the user taps the notification
+                    .setContentIntent(pendingIntent)
+                    .setAutoCancel(true);
+            NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
+
+// notificationId is a unique int for each notification that you must define
+            notificationManager.notify(15, mBuilder.build());
+        }
+    }
+
+    private void setAlarmManager() {
+        System.out.println("FMM");
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.HOUR_OF_DAY, 18);
+        calendar.set(Calendar.MINUTE,2 );
+        calendar.set(Calendar.SECOND, 10);
+        Intent intent1 = new Intent(MainMenu.this, NotifyService.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(MainMenu.this, 0, intent1, 0);
+        AlarmManager am = (AlarmManager) MainMenu.this.getSystemService(MainMenu.this.ALARM_SERVICE);
+        am.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_FIFTEEN_MINUTES, pendingIntent);
+    }
+
+
 }

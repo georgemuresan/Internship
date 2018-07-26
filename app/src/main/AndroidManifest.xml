@@ -8,6 +8,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
+
         android:allowBackup="true"
         android:icon="@drawable/pill"
         android:label="@string/app_name"
@@ -21,6 +22,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <!--<receiver android:name=".NotifyService"/>-->
         <activity android:name=".FirstPageConsent" />
         <activity android:name=".FirstPageLinkBitmoji" />
         <activity android:name=".SecondPage" />
@@ -28,6 +30,7 @@
         <activity android:name=".SecondPage3" />
         <activity android:name=".SecondPage4" />
         <activity android:name=".ThirdPage" />
+        <receiver android:name=".NotifyService"></receiver>
         <activity android:name=".Seek" />
         <activity
             android:name=".MainMenu"
@@ -36,7 +39,6 @@
         <activity android:name=".WhatExperiments"></activity>
         <activity android:name=".WhatChatbot"></activity>
         <activity android:name=".WhatIsSleep"></activity>
-
     </application>
 
 </manifest>
