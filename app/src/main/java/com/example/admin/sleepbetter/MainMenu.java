@@ -7,8 +7,11 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.arch.persistence.room.Room;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.SystemClock;
@@ -73,9 +76,7 @@ public class MainMenu extends AppCompatActivity
 
         //NOTIFICATION DEMO
         this.createNotificationChannel();
-        this.Notidication();
-
-       this.setAlarmManager();
+        this.setNotifications();
 ///END NOTIFICATION
 
         Button button1 = (Button) findViewById(R.id.whatSleep);
@@ -250,69 +251,160 @@ public class MainMenu extends AppCompatActivity
         }
     }
 
-    private void Notidication() {
-        Date c = Calendar.getInstance().getTime();
-        SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
-        String currentDate = df.format(c);
-        String lastDate = getSharedPreferences("date", MODE_PRIVATE).getString("lastdate", "nothing");
-
-        if (!currentDate.equals(lastDate)) {
-
-            Intent intent = new Intent(this, SecondPage.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
-            NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this, "13")
-                    .setSmallIcon(R.drawable.ic_drawer)
-                    .setContentTitle("Questionaire")
-                    .setContentText("Pam: Remember to complete your questionaire :D")
-                    .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                    // Set the intent that will fire when the user taps the notification
-                    .setContentIntent(pendingIntent)
-                    .setAutoCancel(true);
-            NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
-
-// notificationId is a unique int for each notification that you must define
-            notificationManager.notify(14, mBuilder.build());
-        }
-    }
-
-    private void NotidicationBot() {
-        Date c = Calendar.getInstance().getTime();
-        SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
-        String currentDate = df.format(c);
-        String lastDate = getSharedPreferences("date", MODE_PRIVATE).getString("lastdate", "nothing");
-
-        if (!currentDate.equals(lastDate)) {
-
-            Intent intent = new Intent(this, SecondPage.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
-            NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this, "13")
-                    .setSmallIcon(R.drawable.ic_drawer)
-                    .setContentTitle("Do you have any question?")
-                    .setContentText("Pam: Ask me something if you are courious ")
-                    .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                    // Set the intent that will fire when the user taps the notification
-                    .setContentIntent(pendingIntent)
-                    .setAutoCancel(true);
-            NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
-
-// notificationId is a unique int for each notification that you must define
-            notificationManager.notify(15, mBuilder.build());
-        }
-    }
-
-    private void setAlarmManager() {
+    private void setAlarmManager(int hour, int minute, final String title, final String message) {
         System.out.println("FMM");
         Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.HOUR_OF_DAY, 18);
-        calendar.set(Calendar.MINUTE,2 );
-        calendar.set(Calendar.SECOND, 10);
-        Intent intent1 = new Intent(MainMenu.this, NotifyService.class);
+        calendar.set(Calendar.HOUR_OF_DAY, hour);
+        calendar.set(Calendar.MINUTE, minute);
+        calendar.set(Calendar.SECOND, 0);
+
+        class Broadcast extends BroadcastReceiver {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                System.out.println("HERE I AM!!");
+
+                long when = System.currentTimeMillis();
+                NotificationManager notificationManager = (NotificationManager) context
+                        .getSystemService(Context.NOTIFICATION_SERVICE);
+
+                Intent notificationIntent = new Intent(context, MainMenu.class);
+                notificationIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+                PendingIntent pendingIntent = PendingIntent.getActivity(context, 0,
+                        notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+
+                Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+
+                NotificationCompat.Builder mNotifyBuilder = new NotificationCompat.Builder(context, "13")
+                        .setSmallIcon(R.drawable.pill)
+                        .setContentTitle(title)
+                        .setContentText(message).setSound(alarmSound)
+                        .setAutoCancel(true).setWhen(when)
+                        .setContentIntent(pendingIntent);
+                notificationManager.notify(13, mNotifyBuilder.build());
+//
+            }
+        }
+
+
+        Intent intent1 = new Intent(MainMenu.this, Broadcast.class);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(MainMenu.this, 0, intent1, 0);
         AlarmManager am = (AlarmManager) MainMenu.this.getSystemService(MainMenu.this.ALARM_SERVICE);
         am.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_FIFTEEN_MINUTES, pendingIntent);
+
     }
 
+    private void setAlarmManager(int hour, int minute, final String title, final String message, final Class nextclass) {
+        System.out.println("FMM");
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.HOUR_OF_DAY, hour);
+        calendar.set(Calendar.MINUTE, minute);
+        calendar.set(Calendar.SECOND, 0);
+
+        class Broadcast extends BroadcastReceiver {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                System.out.println("HERE I AM!!");
+
+                long when = System.currentTimeMillis();
+                NotificationManager notificationManager = (NotificationManager) context
+                        .getSystemService(Context.NOTIFICATION_SERVICE);
+
+                Intent notificationIntent = new Intent(context, nextclass);
+                notificationIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+                PendingIntent pendingIntent = PendingIntent.getActivity(context, 0,
+                        notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+
+                Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+
+                NotificationCompat.Builder mNotifyBuilder = new NotificationCompat.Builder(context, "13")
+                        .setSmallIcon(R.drawable.pill)
+                        .setContentTitle(title)
+                        .setContentText(message).setSound(alarmSound)
+                        .setAutoCancel(true).setWhen(when)
+                        .setContentIntent(pendingIntent);
+                notificationManager.notify(13, mNotifyBuilder.build());
+//
+            }
+        }
+
+
+        Intent intent1 = new Intent(MainMenu.this, Broadcast.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(MainMenu.this, 0, intent1, 0);
+        AlarmManager am = (AlarmManager) MainMenu.this.getSystemService(MainMenu.this.ALARM_SERVICE);
+        am.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_FIFTEEN_MINUTES, pendingIntent);
+
+    }
+
+//produce the required notifications
+    private void setNotifications() {
+        int experiment = getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).getInt("KEY_SAVED_RADIO_BUTTON_INDEX", 0);
+        switch (experiment) {
+            case 1: //increase bright light exposure
+                setAlarmManager(12, 0, "Remember:", "Stay out in the sun at least half an hour todday!");
+                break;
+            case 2: //wear glasses that block blue light during the night
+                setAlarmManager(8, 30, "Remember:", "Turn on your \"use the f.lux\" app");
+                break;
+            case 3: // turn off any bright lights 2 hours before going to bed
+                setAlarmManager(19, 30, "Going to bed soon?", "Dont forget to turn off yur light");
+                break;
+            case 5: // Do not drink caffeine within 6 hours
+                setAlarmManager(15, 0, "Remember:", "Do not drink caffeine with 6 hours before going to sleep");
+                break;
+            case 6: // Limit yourself to 4 cups of coffees per day; 10 canss of
+                setAlarmManager(12, 15, "Remember:", "Limit yourself to 4 cups of coffees per day");
+                break;
+            case 7: //Do not drink empty stomach
+                setAlarmManager(8, 30, "Remember:", "Try not to drink on an empty stomach");
+                break;
+            case 9://Usually get up at the same time everyday, even on weekends
+                setAlarmManager(18, 30, "Remember:", "Set your alarm at....");
+                break;
+            case 10: // Sleep no lesss than 7 hours per night
+                setAlarmManager(19, 00, "Remember:", "Sleep no less than 7 hours per night");
+                break;
+            case 11: //DO not go to bed unless you are tired. If you are not
+                setAlarmManager(20, 00, "Do not go to bed unless you are tired", "You can do some of the next activities to relax");
+                break;
+            case 12: //Go to sleep at 22:30 PM the latest
+                setAlarmManager(21, 00, "Remember:", "Go to sleep at 10:30 PM the latest");
+                break;
+        }
+
+        setAlarmManager(20, 20, "Questionaire", "Pam: Ask me something if you are courious", SecondPage.class);
+        setAlarmManager(16, 18, "Do you have any question?", "Pam: Ask me something if you are courious ", Help.class);
+    }
+    class Broadcast extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            System.out.println("HERE I AM!!");
+
+            long when = System.currentTimeMillis();
+            NotificationManager notificationManager = (NotificationManager) context
+                    .getSystemService(Context.NOTIFICATION_SERVICE);
+
+            Intent notificationIntent = new Intent(context, nextclass);
+            notificationIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+            PendingIntent pendingIntent = PendingIntent.getActivity(context, 0,
+                    notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+
+            Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+
+            NotificationCompat.Builder mNotifyBuilder = new NotificationCompat.Builder(context, "13")
+                    .setSmallIcon(R.drawable.pill)
+                    .setContentTitle(title)
+                    .setContentText(message).setSound(alarmSound)
+                    .setAutoCancel(true).setWhen(when)
+                    .setContentIntent(pendingIntent);
+            notificationManager.notify(13, mNotifyBuilder.build());
+//
+        }
+    }
 
 }
