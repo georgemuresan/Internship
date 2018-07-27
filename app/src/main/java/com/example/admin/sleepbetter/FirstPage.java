@@ -1,11 +1,17 @@
 package com.example.admin.sleepbetter;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+
+import com.google.gson.Gson;
+
+import java.util.ArrayList;
 
 public class FirstPage extends AppCompatActivity {
 
@@ -56,6 +62,24 @@ public class FirstPage extends AppCompatActivity {
         String name = nameBox.getText().toString();
 
         getSharedPreferences("name", MODE_PRIVATE).edit().putString("username", name).apply();
+
+
+        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        SharedPreferences.Editor editor = sharedPrefs.edit();
+        Gson gson = new Gson();
+
+        HomeCollection.date_collection_arr = new ArrayList<HomeCollection>();
+        HomeCollection.date_collection_arr.add(new HomeCollection("2018-07-08", "Diwali", "Holiday", "this is holiday"));
+        String json = gson.toJson(HomeCollection.date_collection_arr);
+
+        editor.putString("trial", json);
+        editor.commit();
+
+
+
+
+
+
 
         startActivity(intent);
 

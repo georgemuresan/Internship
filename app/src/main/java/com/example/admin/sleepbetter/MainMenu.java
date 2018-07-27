@@ -225,7 +225,7 @@ public class MainMenu extends AppCompatActivity
             }
 
         } else if (id == R.id.nav_calendar) {
-            //   fragmentManager.beginTransaction().replace(R.id.content_frame, new Calendar()).commit();
+               fragmentManager.beginTransaction().replace(R.id.content_frame, new CalendarPage()).commit();
         } else if (id == R.id.nav_bot) {
             fragmentManager.beginTransaction().replace(R.id.content_frame, new Help()).commit();
         }

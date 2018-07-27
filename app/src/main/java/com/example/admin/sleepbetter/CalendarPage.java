@@ -1,7 +1,9 @@
 package com.example.admin.sleepbetter;
 
 import android.app.Fragment;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
@@ -14,10 +16,15 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
+import java.util.List;
 
-public class Calendar extends Fragment {
+public class CalendarPage extends Fragment {
 
     public GregorianCalendar cal_month, cal_month_copy;
     private HwAdapter hwAdapter;
@@ -28,7 +35,7 @@ public class Calendar extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         helpView = inflater.inflate(R.layout.calendar, container, false);
 
-
+/*
         HomeCollection.date_collection_arr = new ArrayList<HomeCollection>();
         HomeCollection.date_collection_arr.add(new HomeCollection("2017-07-08", "Diwali", "Holiday", "this is holiday"));
         HomeCollection.date_collection_arr.add(new HomeCollection("2017-07-08", "Holi", "Holiday", "this is holiday"));
@@ -40,6 +47,23 @@ public class Calendar extends Fragment {
         HomeCollection.date_collection_arr.add(new HomeCollection("2018-01-08", "Events", "Holiday", "this is holiday"));
         HomeCollection.date_collection_arr.add(new HomeCollection("2018-01-16", "Dasahara", "Holiday", "this is holiday"));
         HomeCollection.date_collection_arr.add(new HomeCollection("2018-02-09", "Christmas", "Holiday", "this is holiday"));
+
+*/
+
+        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
+        Gson gson = new Gson();
+        String json = sharedPrefs.getString("trial", "");
+        Type type = new TypeToken<List<HomeCollection>>() {}.getType();
+        List<HomeCollection> arrayList = gson.fromJson(json, type);
+
+        HomeCollection.date_collection_arr = (ArrayList<HomeCollection>) arrayList;
+
+      //  HomeCollection.date_collection_arr = new ArrayList<HomeCollection>();
+      //  HomeCollection.date_collection_arr.add(new HomeCollection("2018-07-08", "Diwali", "Holiday", "this is holiday"));
+
+
+
+
 
 
         cal_month = (GregorianCalendar) GregorianCalendar.getInstance();
@@ -54,7 +78,7 @@ public class Calendar extends Fragment {
         previous.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (cal_month.get(GregorianCalendar.MONTH) == 4 && cal_month.get(GregorianCalendar.YEAR) == 2017) {
+                if (cal_month.get(GregorianCalendar.MONTH) == 4 && cal_month.get(GregorianCalendar.YEAR) == 2018) {
                     //cal_month.set((cal_month.get(GregorianCalendar.YEAR) - 1), cal_month.getActualMaximum(GregorianCalendar.MONTH), 1);
                     Toast.makeText(getActivity().getApplicationContext(), "Event Detail is available for current session only.", Toast.LENGTH_SHORT).show();
                 } else {
@@ -69,7 +93,7 @@ public class Calendar extends Fragment {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (cal_month.get(GregorianCalendar.MONTH) == 5 && cal_month.get(GregorianCalendar.YEAR) == 2018) {
+                if (cal_month.get(GregorianCalendar.MONTH) == 10 && cal_month.get(GregorianCalendar.YEAR) == 2018) {
                     //cal_month.set((cal_month.get(GregorianCalendar.YEAR) + 1), cal_month.getActualMinimum(GregorianCalendar.MONTH), 1);
                     Toast.makeText(getActivity().getApplicationContext(), "Event Detail is available for current session only.", Toast.LENGTH_SHORT).show();
                 } else {

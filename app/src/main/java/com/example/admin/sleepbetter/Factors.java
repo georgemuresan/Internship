@@ -133,7 +133,7 @@ public class Factors extends Fragment {
     private void goHelpPage() {
 
         FragmentManager fragmentManager = getFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.content_frame, new Calendar()).commit();
+        fragmentManager.beginTransaction().replace(R.id.content_frame, new Help()).commit();
 
     }
 
