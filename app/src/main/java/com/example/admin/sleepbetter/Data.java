@@ -83,11 +83,15 @@ public class Data extends Fragment implements AdapterView.OnItemSelectedListener
 
 
                 GraphView graph2 = (GraphView) dataView.findViewById(R.id.shortMood);
-                DataPoint[] dp2 = new DataPoint[userDatabase.daoAccess().fetchMoods().size()];
-                for(int i=0; i< userDatabase.daoAccess().fetchMoods().size() % 6; i++){
-                    dp2[i] = new DataPoint(i+1, userDatabase.daoAccess().fetchMoods().get((userDatabase.daoAccess().fetchMoods().size() /5 )*5 + i));
+                DataPoint[] dp2;
+                if (userDatabase.daoAccess().fetchMoods().size() > 1) {
+                    dp2 = new DataPoint[userDatabase.daoAccess().fetchMoods().size()];
+                    for (int i = 0; i < userDatabase.daoAccess().fetchMoods().size() % 6; i++) {
+                        dp2[i] = new DataPoint(i + 1, userDatabase.daoAccess().fetchMoods().get((userDatabase.daoAccess().fetchMoods().size() / 5) * 5 + i + 1));
+                    }
+                } else {
+                    dp2 = new DataPoint[0];
                 }
-
                 LineGraphSeries<DataPoint> series2 = new LineGraphSeries<>(dp2);
                 graph2.addSeries(series2);
 

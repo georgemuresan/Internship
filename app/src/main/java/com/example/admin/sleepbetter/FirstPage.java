@@ -64,16 +64,6 @@ public class FirstPage extends AppCompatActivity {
         getSharedPreferences("name", MODE_PRIVATE).edit().putString("username", name).apply();
 
 
-        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        SharedPreferences.Editor editor = sharedPrefs.edit();
-        Gson gson = new Gson();
-
-        HomeCollection.date_collection_arr = new ArrayList<HomeCollection>();
-        HomeCollection.date_collection_arr.add(new HomeCollection("2018-07-08", "Diwali", "Holiday", "this is holiday"));
-        String json = gson.toJson(HomeCollection.date_collection_arr);
-
-        editor.putString("trial", json);
-        editor.commit();
 
 
 

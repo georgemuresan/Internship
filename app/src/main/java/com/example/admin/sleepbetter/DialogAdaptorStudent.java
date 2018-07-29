@@ -47,16 +47,17 @@ class DialogAdaptorStudent extends BaseAdapter {
         LayoutInflater inflater = context.getLayoutInflater();
         View listViewItem = inflater.inflate(R.layout.row_addapt, null, true);
 
-        TextView tvTitle=(TextView)listViewItem.findViewById(R.id.tv_name);
-        TextView tvSubject=(TextView)listViewItem.findViewById(R.id.tv_type);
+        TextView tvExperiment=(TextView)listViewItem.findViewById(R.id.tv_experiment);
+        TextView tvOverall=(TextView)listViewItem.findViewById(R.id.tv_overall);
         TextView tvDuedate=(TextView)listViewItem.findViewById(R.id.tv_desc);
-        TextView tvDescription=(TextView)listViewItem.findViewById(R.id.tv_class);
+        TextView tvProof=(TextView)listViewItem.findViewById(R.id.tv_proof);
+        TextView tvComment=(TextView)listViewItem.findViewById(R.id.tv_comment);
 
-
-        tvTitle.setText("Title : "+alCustom.get(position).getTitles());
-        tvSubject.setText("Subject : "+alCustom.get(position).getSubjects());
+        tvExperiment.setText("Experiment : "+alCustom.get(position).getExperiments());
+        tvOverall.setText("Overall Mood : "+alCustom.get(position).getOveralls() + "/5");
         tvDuedate.setText("Due Date : "+alCustom.get(position).getDuedates());
-        tvDescription.setText("Description : "+alCustom.get(position).getDescripts());
+        tvProof.setText("Proof : "+alCustom.get(position).getProofs());
+        tvComment.setText("Comment : "+alCustom.get(position).getComments());
 
         return  listViewItem;
     }

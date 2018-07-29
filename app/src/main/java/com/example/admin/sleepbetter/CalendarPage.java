@@ -58,6 +58,8 @@ public class CalendarPage extends Fragment {
 
         HomeCollection.date_collection_arr = (ArrayList<HomeCollection>) arrayList;
 
+        System.out.println(arrayList.size());
+        System.out.println(arrayList.get(0).date);
       //  HomeCollection.date_collection_arr = new ArrayList<HomeCollection>();
       //  HomeCollection.date_collection_arr.add(new HomeCollection("2018-07-08", "Diwali", "Holiday", "this is holiday"));
 

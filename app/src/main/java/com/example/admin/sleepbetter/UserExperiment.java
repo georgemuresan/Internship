@@ -6,8 +6,11 @@ import android.support.annotation.NonNull;
 
 @Entity
 public class UserExperiment {
-    @NonNull
-    @PrimaryKey
+
+    @PrimaryKey(autoGenerate = true)
+    private int numberID;
+
+
     private String date;
 
     private String username;
@@ -203,4 +206,13 @@ public class UserExperiment {
     public int getOverallBetter() { return overallBetter; }
 
     public void setOverallBetter(int overallBetter) { this.overallBetter = overallBetter; }
+
+    public int getNumberID() {
+        return numberID;
+    }
+
+    public void setNumberID(int numberID) {
+        this.numberID = numberID;
+    }
+
 }

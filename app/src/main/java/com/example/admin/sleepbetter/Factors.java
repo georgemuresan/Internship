@@ -5,6 +5,7 @@ import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -17,6 +18,10 @@ import static android.content.Context.MODE_PRIVATE;
 public class Factors extends Fragment {
 
     View factorsView;
+
+    private boolean shouldBlockTouches = false;
+
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
@@ -45,7 +50,17 @@ public class Factors extends Fragment {
 
 */
 
+        Button button2 = (Button) factorsView.findViewById(R.id.submit);
 
+        button2.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v) {
+
+                submitExperiment();
+
+            }
+
+        });
 
 
         String experiment = getActivity().getApplicationContext().getSharedPreferences("name", MODE_PRIVATE).getString("experiment", "nothing");
@@ -150,4 +165,8 @@ public class Factors extends Fragment {
             fragmentManager.beginTransaction().replace(R.id.content_frame, new FactorCRSleepSchedule()).commit();
         }
     }*/
+
+    private void submitExperiment(){
+       factorsView.setClickable(false);
+    }
 }

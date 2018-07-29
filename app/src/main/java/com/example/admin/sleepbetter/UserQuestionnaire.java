@@ -13,8 +13,10 @@ public class UserQuestionnaire {
 
   //  private String username;
 
-    @NonNull
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
+    private int numberID;
+
+
     private String username;
 
     private String date;
@@ -169,5 +171,13 @@ public class UserQuestionnaire {
 
     public void setMood(int mood) {
         this.mood = mood;
+    }
+
+    public int getNumberID() {
+        return numberID;
+    }
+
+    public void setNumberID(int numberID) {
+        this.numberID = numberID;
     }
 }

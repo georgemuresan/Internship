@@ -1,12 +1,17 @@
 package com.example.admin.sleepbetter;
 
 import android.arch.persistence.room.Room;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+
+import com.google.gson.Gson;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -88,8 +93,6 @@ public class SecondPage4 extends AppCompatActivity {
         getSharedPreferences("questionnaire", MODE_PRIVATE).getInt("coordinate", coordinate + 1);
         getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("coordinate", coordinate + 1).apply();
 
-        System.out.print(getSharedPreferences("questionnaire", MODE_PRIVATE).getInt("apetite", apetite));
-
         Date c = Calendar.getInstance().getTime();
         SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
         final String formattedDate = df.format(c);
@@ -144,6 +147,23 @@ public class SecondPage4 extends AppCompatActivity {
                 rep.save(username, true);
             }
         }).start();
+
+
+        String experiment = getSharedPreferences("name", Context.MODE_PRIVATE).getString("experiment", " ");
+
+        SimpleDateFormat df2 = new SimpleDateFormat("yyyy-MM-dd");
+        final String formattedDate2 = df2.format(c);
+
+        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        SharedPreferences.Editor editor = sharedPrefs.edit();
+        Gson gson = new Gson();
+
+        HomeCollection.date_collection_arr = new ArrayList<HomeCollection>();
+        HomeCollection.date_collection_arr.add(new HomeCollection(formattedDate2, "No experiment started yet", String.valueOf(getSharedPreferences("MOOD", MODE_PRIVATE).getInt("mood", 0)), "No experiment started yet", comment));
+        String json = gson.toJson(HomeCollection.date_collection_arr);
+
+        editor.putString("trial", json);
+        editor.commit();
 
     }
 

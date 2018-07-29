@@ -1,34 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <TextView
+
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_centerHorizontal="true"
-        android:text="event on "
-        android:textColor="#696969"
-        android:layout_marginTop="10dp"
-        android:layout_below="@+id/tv_title"
-        android:textSize="16dp"
-        android:id="@+id/tv_name"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_centerHorizontal="true"
-        android:text="event on "
-        android:textColor="#696969"
-        android:layout_marginTop="5dp"
-        android:layout_below="@+id/tv_name"
-        android:textSize="16dp"
-        android:id="@+id/tv_type"/>
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tv_comment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:paddingLeft="10dp"
+            android:text="event on "
+            android:textColor="#696969"
+            android:textSize="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_proof" />
+
+        <TextView
+            android:id="@+id/tv_overall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_experiment"
+            android:layout_centerHorizontal="true"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:paddingLeft="10dp"
+            android:text="event on "
+            android:textColor="#696969"
+            android:textSize="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_experiment" />
+
+        <TextView
+            android:id="@+id/tv_experiment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_title"
+            android:layout_centerHorizontal="true"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:paddingLeft="10dp"
+            android:text="event on "
+            android:textColor="#696969"
+            android:textSize="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_proof"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:paddingLeft="10dp"
+            android:text="event on "
+            android:textColor="#696969"
+            android:textSize="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_overall" />
+
+        <View
+            android:id="@+id/visdf"
+            android:layout_width="match_parent"
+            android:layout_height="1.5dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="20dp"
+            android:background="#8f8e8e"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_comment" />
+
+        <ImageView
+            android:id="@+id/img_save"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:layout_below="@+id/visdf"
+            android:visibility="gone" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.2dp"
+            android:layout_below="@+id/img_save"
+            android:background="#393939"
+            android:visibility="gone" />
+    </android.support.constraint.ConstraintLayout>
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -40,22 +119,10 @@
         android:text="event on "
         android:textColor="#696969"
         android:layout_marginTop="5dp"
-        android:layout_below="@+id/tv_type"
+        android:layout_below="@+id/tv_overall"
         android:textSize="16dp"
         android:id="@+id/tv_desc"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_centerHorizontal="true"
-        android:text="event on "
-        android:textColor="#696969"
-        android:layout_marginTop="5dp"
-        android:layout_below="@+id/tv_desc"
-        android:textSize="16dp"
-        android:id="@+id/tv_class"/>
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -67,38 +134,9 @@
         android:text="event on "
         android:textColor="#696969"
         android:layout_marginTop="5dp"
-        android:layout_below="@+id/tv_class"
+        android:layout_below="@+id/tv_proof"
         android:textSize="16dp"
         android:id="@+id/tv_section"/>
-    <View
-        android:layout_width="match_parent"
-        android:background="#8f8e8e"
-        android:layout_below="@+id/tv_section"
-        android:id="@+id/visdf"
-        android:layout_marginRight="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="10dp"
-        android:layout_height="1.5dp"/>
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="65dp"
-        android:id="@+id/img_save"
-        android:layout_marginRight="20dp"
-        android:layout_below="@+id/visdf"
-        android:layout_marginLeft="20dp"
-        android:visibility="gone"
-        android:layout_marginTop="20dp"
-        />
-    <View
-        android:layout_width="match_parent"
-        android:layout_marginTop="20dp"
-        android:visibility="gone"
-        android:background="#393939"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_below="@+id/img_save"
-        android:layout_marginBottom="20dp"
-        android:layout_height="0.2dp"/>
 
 
 </RelativeLayout>
