@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:clickable="true"
-    android:background="#FFF">
+    android:background="#FFF"
+    android:clickable="true">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
@@ -49,7 +49,7 @@
         <TextView
             android:id="@+id/factorsIntro"
             android:layout_width="362dp"
-            android:layout_height="wrap_content"
+            android:layout_height="90dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
@@ -62,8 +62,8 @@
         <ScrollView
             android:id="@+id/ScrollViewQuestionnaire"
             style="@android:style/Widget.Material.ScrollView"
-            android:layout_width="379dp"
-            android:layout_height="412dp"
+            android:layout_width="match_parent"
+            android:layout_height="382dp"
             android:layout_marginBottom="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
@@ -73,9 +73,10 @@
             android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.454"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/factorsIntro"
+            app:layout_constraintVertical_bias="1.0"
             tools:targetApi="lollipop">
 
             <FrameLayout
@@ -94,9 +95,9 @@
                 app:layout_constraintTop_toTopOf="@+id/ScrollViewQuestionnaire">
 
                 <android.support.constraint.ConstraintLayout
-                    android:layout_width="350dp"
+                    android:layout_width="match_parent"
                     android:layout_height="559dp"
-                    tools:layout_editor_absoluteX="24dp"
+                    tools:layout_editor_absoluteX="40dp"
                     tools:layout_editor_absoluteY="0dp">
 
 
@@ -127,7 +128,7 @@
 
                         <EditText
                             android:id="@+id/light"
-                            android:layout_width="360dp"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:clickable="false"
@@ -167,7 +168,7 @@
 
                         <EditText
                             android:id="@+id/caffeine"
-                            android:layout_width="360dp"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:clickable="false"
@@ -207,7 +208,7 @@
 
                         <EditText
                             android:id="@+id/schedule"
-                            android:layout_width="360dp"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:clickable="false"

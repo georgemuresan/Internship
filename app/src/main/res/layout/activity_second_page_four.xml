@@ -79,7 +79,7 @@
 
             <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="612dp"
+                android:layout_height="622dp"
                 tools:layout_editor_absoluteX="8dp"
                 tools:layout_editor_absoluteY="0dp">
 
@@ -91,9 +91,8 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:background="@drawable/text_input_border"
-                    android:hint="@string/some_explanation_about_the_input"
+                    android:hint="@string/firstNoteHint"
                     android:inputType=""
-                    android:text="@string/firstNote"
                     android:textSize="12sp"
                     android:textStyle="italic"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -104,7 +103,7 @@
                     android:id="@+id/submitButton"
                     android:layout_width="102dp"
                     android:layout_height="43dp"
-                    android:layout_marginBottom="8dp"
+                    android:layout_marginBottom="14dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginStart="8dp"
                     android:text="@string/submitUpdate"

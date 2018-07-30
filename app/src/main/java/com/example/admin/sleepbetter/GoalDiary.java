@@ -47,8 +47,11 @@ public class GoalDiary extends Fragment {
 
             public void onClick(View v) {
 
-                updateDiary();
-
+                EditText noted = (EditText) goalDiaryView.findViewById(R.id.yourGoal);
+                note = noted.getText().toString();
+                if (!note.equals("")) {
+                    updateDiary(note);
+                }
             }
 
         });
@@ -93,14 +96,13 @@ public class GoalDiary extends Fragment {
         return goalDiaryView;
     }
 
-    public void updateDiary(){
+    public void updateDiary(String notee){
 
         Date c = Calendar.getInstance().getTime();
         SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
         final String formattedDate = df.format(c);
 
-        EditText noted = (EditText) goalDiaryView.findViewById(R.id.yourGoal);
-        note = noted.getText().toString();
+      final String note = notee;
 
         final TableLayout tableLayout = (TableLayout) goalDiaryView.findViewById(R.id.table);
 
@@ -173,7 +175,25 @@ public class GoalDiary extends Fragment {
             editor.commit();
         }
 
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
 
+                userDatabase = Room.databaseBuilder(getActivity().getApplicationContext(), UserDatabase.class, DATABASE_NAME).fallbackToDestructiveMigration().build();
+
+                String username = getActivity().getApplicationContext().getSharedPreferences("name", MODE_PRIVATE).getString("username", "nothing");
+
+                UserDiary userDiary = new UserDiary();
+                userDiary.setUsername(username);
+                userDiary.setDate(formattedDate);
+                userDiary.setComment(note);
+
+                userDatabase.daoAccess().insertSingleUserDiary(userDiary);
+
+                Report rep = new Report(userDatabase, getActivity().getApplicationContext());
+                rep.save(username, false, getActivity().getApplicationContext().getSharedPreferences("consent", MODE_PRIVATE).getString("consent", "nothing"));
+            }
+        }).start();
 
     }
 }
