@@ -2,15 +2,18 @@ package com.example.admin.sleepbetter;
 
 import android.app.FragmentManager;
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -18,7 +21,7 @@ import static android.content.Context.MODE_PRIVATE;
 public class Factors extends Fragment {
 
     View factorsView;
-
+    private RadioGroup radioGroup;
     private boolean shouldBlockTouches = false;
 
 
@@ -67,7 +70,7 @@ public class Factors extends Fragment {
 
         int savedRadioIndex = getActivity().getApplicationContext().getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).getInt("KEY_SAVED_RADIO_BUTTON_INDEX", 0);
 
-        RadioGroup radioGroup = (RadioGroup) factorsView.findViewById(R.id.experimentsGroup);
+        radioGroup = (RadioGroup) factorsView.findViewById(R.id.experimentsGroup);
 
         if (!experiment.equals("nothing")){
 
@@ -137,6 +140,25 @@ public class Factors extends Fragment {
 
         });
 
+        boolean isLocked = getActivity().getApplicationContext().getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).getBoolean("locked", false);
+        int fiveDays = getActivity().getApplicationContext().getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).getInt("days", 0);
+
+        if (isLocked && fiveDays % 5 == 0){
+            for (int i = 0; i < radioGroup.getChildCount(); i++) {
+                radioGroup.getChildAt(i).setEnabled(true);
+            }
+            getActivity().getApplicationContext().getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).edit().putBoolean("locked", false).apply();
+
+        } else if (isLocked && fiveDays % 5 != 0){
+            for (int i = 0; i < radioGroup.getChildCount(); i++) {
+                radioGroup.getChildAt(i).setEnabled(false);
+            }
+            Toast.makeText(getActivity().getApplicationContext(), "You cannot change the current experiment before the 5-day period ends.", Toast.LENGTH_SHORT).show();
+        } else {
+            for (int i = 0; i < radioGroup.getChildCount(); i++) {
+                radioGroup.getChildAt(i).setEnabled(true);
+            }
+        }
 
         return factorsView;
     }
@@ -167,6 +189,22 @@ public class Factors extends Fragment {
     }*/
 
     private void submitExperiment(){
-       factorsView.setClickable(false);
+        boolean isLocked = getActivity().getApplicationContext().getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).getBoolean("locked", false);
+
+
+        if (isLocked){
+            Toast.makeText(getActivity().getApplicationContext(), "You cannot change the current experiment before the 5-day period ends.", Toast.LENGTH_SHORT).show();
+        } else {
+            for (int i = 0; i < radioGroup.getChildCount(); i++) {
+                radioGroup.getChildAt(i).setEnabled(false);
+            }
+            getActivity().getApplicationContext().getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).edit().putBoolean("locked", true).apply();
+
+            int days =  getActivity().getApplicationContext().getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).getInt("days", 0);
+            getActivity().getApplicationContext().getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).edit().putInt("days", days + 1).apply();
+
+            Intent intent = new Intent(getActivity().getApplicationContext(), MainMenu.class);
+            startActivity(intent);
+        }
     }
 }

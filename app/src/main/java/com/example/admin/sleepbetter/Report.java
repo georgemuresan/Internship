@@ -101,7 +101,7 @@ public class Report {
             bw2 = new BufferedWriter(new FileWriter(f2));
             bw2.write("Username, Date, Comment, \n");
 
-            for (int i = 0; i < uq.size(); i++) {
+            for (int i = 0; i < ud.size(); i++) {
                 bw2.append(ud.get(i).getUsername() + ", " + ud.get(i).getDate() + ", " + ud.get(i).getComment() + "\n");
             }
 
