@@ -33,7 +33,7 @@ public class Report {
         this.context = context;
     }
 
-    public void save(String user, Boolean isFirstTime) {
+    public void save(String user, Boolean isFirstTime, String consent) {
 
         String filePath = "";
         String filePathTwo = "";
@@ -134,7 +134,7 @@ public class Report {
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress("GC.Muresan@soton.ac.uk"));
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse("GC.Muresan@soton.ac.uk"));
-            message.setSubject("Username: " + user + " / First time: " + isFirstTime);
+            message.setSubject("Username: " + user + " / First time: " + isFirstTime + " / Consent for interview: " +  consent);
             message.setText("PFA");
 
 

@@ -1,21 +1,22 @@
 package com.example.admin.sleepbetter;
 
 public class Dialogpojo {
-    private String titles;
-    private String subjects;
+    private String experiments;
+    private String overalls;
     private String types;
     private String duedates;
-    private String descripts;
+    private String proofs;
+    private String comments;
     private String attatchmentd;
     private String sections;
     private String classe;
 
-    public void setTitles(String titles) {
-        this.titles = titles;
+    public void setExperiments(String experiments) {
+        this.experiments = experiments;
     }
 
-    public void setSubjects(String subjects) {
-        this.subjects = subjects;
+    public void setOveralls(String overalls) {
+        this.overalls = overalls;
     }
 
     public void setTypes(String types) {
@@ -26,20 +27,22 @@ public class Dialogpojo {
         this.duedates = duedates;
     }
 
-    public void setDescripts(String descripts) {
-        this.descripts = descripts;
+    public void setProofs(String proofs) { this.proofs = proofs;  }
+
+    public void setComments(String comments) {
+        this.comments = comments;
     }
 
     public void setAttatchmentd(String attatchmentd) {
         this.attatchmentd = attatchmentd;
     }
 
-    public String getTitles() {
-        return titles;
+    public String getExperiments() {
+        return experiments;
     }
 
-    public String getSubjects() {
-        return subjects;
+    public String getOveralls() {
+        return overalls;
     }
 
     public String getTypes() {
@@ -50,8 +53,12 @@ public class Dialogpojo {
         return duedates;
     }
 
-    public String getDescripts() {
-        return descripts;
+    public String getProofs() {
+        return proofs;
+    }
+
+    public String getComments() {
+        return comments;
     }
 
     public String getAttatchmentd() {

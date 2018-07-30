@@ -2,8 +2,11 @@ package com.example.admin.sleepbetter;
 
 import android.app.Fragment;
 import android.arch.persistence.room.Room;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,10 +17,17 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+
+import static android.content.Context.MODE_PRIVATE;
 
 public class GoalDiary extends Fragment {
 
@@ -115,6 +125,55 @@ public class GoalDiary extends Fragment {
                     tableRow.addView(text2);
 
                     tableLayout.addView(tableRow);
+
+        String experiment = getActivity().getApplicationContext().getSharedPreferences("name", MODE_PRIVATE).getString("experiment", " ");
+
+        SimpleDateFormat df2 = new SimpleDateFormat("yyyy-MM-dd");
+        final String formattedDate2 = df2.format(c);
+
+        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
+        String json = sharedPrefs.getString("trial", "");
+        Gson gson = new Gson();
+
+        Type type = new TypeToken<List<HomeCollection>>() {}.getType();
+        List<HomeCollection> arrayList = gson.fromJson(json, type);
+
+        HomeCollection.date_collection_arr = (ArrayList<HomeCollection>) arrayList;
+        HomeCollection coll = HomeCollection.date_collection_arr.get(HomeCollection.date_collection_arr.size()-1);
+        String date = coll.date;
+
+        if (date.equals(formattedDate2)){
+            String comment = coll.comment;
+            comment = comment + " / " + note;
+
+            String lastExp = coll.experiment;
+            HomeCollection.date_collection_arr.remove(HomeCollection.date_collection_arr.size()-1);
+            if (lastExp.equals(experiment)){
+
+                HomeCollection.date_collection_arr.add(new HomeCollection(formattedDate2, experiment, String.valueOf(getActivity().getApplicationContext().getSharedPreferences("MOOD", MODE_PRIVATE).getInt("mood", 0)), "No experiment started yet", comment));
+            } else {
+                HomeCollection.date_collection_arr.add(new HomeCollection(formattedDate2, lastExp, String.valueOf(getActivity().getApplicationContext().getSharedPreferences("MOOD", MODE_PRIVATE).getInt("mood", 0)), "No experiment started yet", comment));
+            }
+
+            SharedPreferences.Editor editor = sharedPrefs.edit();
+
+            json = gson.toJson(HomeCollection.date_collection_arr);
+
+            editor.putString("trial", json);
+            editor.commit();
+
+        } else {
+            HomeCollection.date_collection_arr.add(new HomeCollection(formattedDate2, "(yesterday) " + experiment, "(yesterday) " + String.valueOf(getActivity().getApplicationContext().getSharedPreferences("MOOD", MODE_PRIVATE).getInt("mood", 0)), "(yesterday) " + "No experiment started yet", note));
+
+            SharedPreferences.Editor editor = sharedPrefs.edit();
+
+            json = gson.toJson(HomeCollection.date_collection_arr);
+
+            editor.putString("trial", json);
+            editor.commit();
+        }
+
+
 
     }
 }

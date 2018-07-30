@@ -196,7 +196,19 @@ class HwAdapter extends BaseAdapter {
 
                     } else {
                         v.setBackgroundColor(Color.parseColor("#343434"));
-                        v.setBackgroundResource(R.drawable.rounded_calender);
+                        if (cal_obj.overall.equals("1")){
+                            v.setBackgroundResource(R.drawable.rounded_calender_one);
+                        } else if (cal_obj.overall.equals("2")){
+                            v.setBackgroundResource(R.drawable.rounded_calender_two);
+                        } else if (cal_obj.overall.equals("3")){
+                            v.setBackgroundResource(R.drawable.rounded_calender_three);
+                        } else if (cal_obj.overall.equals("4")){
+                            System.out.println("HER");
+                            v.setBackgroundResource(R.drawable.rounded_calender_four);
+                        } else if (cal_obj.overall.equals("5")){
+                            v.setBackgroundResource(R.drawable.rounded_calender_five);
+                        }
+
                         txt.setTextColor(Color.parseColor("#696969"));
                     }
 
@@ -211,9 +223,10 @@ class HwAdapter extends BaseAdapter {
         for (int j=0; j<len; j++){
             if (HomeCollection.date_collection_arr.get(j).date.equals(date)){
                 HashMap<String, String> maplist = new HashMap<String, String>();
-                maplist.put("hnames",HomeCollection.date_collection_arr.get(j).name);
-                maplist.put("hsubject",HomeCollection.date_collection_arr.get(j).subject);
-                maplist.put("descript",HomeCollection.date_collection_arr.get(j).description);
+                maplist.put("hexperiment",HomeCollection.date_collection_arr.get(j).experiment);
+                maplist.put("hoverall",HomeCollection.date_collection_arr.get(j).overall);
+                maplist.put("hproof",HomeCollection.date_collection_arr.get(j).proof);
+                maplist.put("hcomment",HomeCollection.date_collection_arr.get(j).comment);
                 JSONObject json1 = new JSONObject(maplist);
                 jbarrays.put(json1);
             }
@@ -246,9 +259,10 @@ class HwAdapter extends BaseAdapter {
 
                 Dialogpojo pojo = new Dialogpojo();
 
-                pojo.setTitles(jsonObject.optString("hnames"));
-                pojo.setSubjects(jsonObject.optString("hsubject"));
-                pojo.setDescripts(jsonObject.optString("descript"));
+                pojo.setExperiments(jsonObject.optString("hexperiment"));
+                pojo.setOveralls(jsonObject.optString("hoverall"));
+                pojo.setProofs(jsonObject.optString("hproof"));
+                pojo.setComments(jsonObject.optString("hcomment"));
 
                 alCustom.add(pojo);
 
