@@ -16,6 +16,16 @@
     <string name="linkBitmojiTitle">LINK YOUR BITMOJI</string>
     <string name="chooseBitmojiTitle">Please choose one of the Bitmojis bellow as your companion.</string>
 
+    <string name="consentPageTitle">CONSENT FORM</string>
+    <string name="consentIntro">Please initial the box(es) if you agree with the statement(s):</string>
+    <string name="permissionOne">I have read and understood the information sheet (20/07/2018 /Version 1.0) and have had the opportunity to ask questions about the study.</string>
+    <string name="permissionTwo">I agree to take part in this research project and agree for my data to be used for the purpose of this study.</string>
+    <string name="permissionThree">I understand my participation is voluntary and I may withdraw at any time for any reason without my rights being affected.</string>
+    <string name="permissionFour">I understand my responses will be anonymised in reports of the research.</string>
+    <string name="permissionFive">I understand that I may be quoted directly in reports of the research but that my name will not be used.</string>
+    <string name="permissionSix">I understand that the information collected about me may be anonymised and used in future ethically approved research studies.</string>
+    <string name="permissionSeven">I understand that information collected about me during my participation in this study will be stored on a password protected computer and that this information will only be used for the purpose of ethically approved research studies.</string>
+    <string name="permissionEight">Would you agree on being contacted after the study in regards to possible outcomes/ in order to provide insights from your experience of participating in this experiment?</string>
 
 
     <string name="questionnaireTitle">QUESTIONNAIRE</string>

@@ -186,7 +186,7 @@ public class Questionnaire4 extends Fragment {
                 userDatabase.daoAccess().insertSingleUserDiary(userDiary);
 
                 Report rep = new Report(userDatabase, getActivity().getApplicationContext());
-                rep.save(username, false);
+                rep.save(username, false, getActivity().getApplicationContext().getSharedPreferences("consent", MODE_PRIVATE).getString("consent", "nothing"));
             }
         }).start();
 

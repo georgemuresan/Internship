@@ -144,7 +144,7 @@ public class SecondPage4 extends AppCompatActivity {
                 userDatabase.daoAccess().insertSingleUserDiary(userDiary);
 
                 Report rep = new Report(userDatabase, getApplicationContext());
-                rep.save(username, true);
+                rep.save(username, true, getSharedPreferences("consent", MODE_PRIVATE).getString("consent", "nothing"));
             }
         }).start();
 
