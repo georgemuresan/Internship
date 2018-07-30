@@ -80,17 +80,16 @@
             style="@android:style/Widget.Material.ScrollView"
             android:layout_width="match_parent"
             android:layout_height="408dp"
-            android:layout_marginBottom="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:fillViewport="true"
             android:scrollbarStyle="insideOverlay"
             android:visibility="visible"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.454"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lightIntro"
             tools:targetApi="lollipop">
 
             <FrameLayout
@@ -109,6 +108,7 @@
                 app:layout_constraintTop_toTopOf="@+id/ScrollViewQuestionnaire">
 
                 <android.support.constraint.ConstraintLayout
+                    android:id="@+id/fr"
                     android:layout_width="match_parent"
                     android:layout_height="632dp"
                     tools:layout_editor_absoluteX="8dp"
@@ -188,7 +188,7 @@
                     <EditText
                         android:id="@+id/dayReview"
                         android:layout_width="match_parent"
-                        android:layout_height="35dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginEnd="8dp"
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="8dp"
