@@ -137,11 +137,15 @@ public class Data extends Fragment implements AdapterView.OnItemSelectedListener
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
 
+
+
         return dataView;
     }
 
     private void updateAllTexts() {
-
+        TextView editWorking = (TextView) dataView.findViewById(R.id.workEdit);
+        String result = "Nothing to work on";
+        String change = "";
 
         TextView experiment = (TextView) dataView.findViewById(R.id.experimentName);
         experiment.setText("Experiment: " + getActivity().getApplicationContext().getSharedPreferences("name", Context.MODE_PRIVATE).getString("experiment", " "));
@@ -151,44 +155,87 @@ public class Data extends Fragment implements AdapterView.OnItemSelectedListener
 
         TextView times = (TextView) dataView.findViewById(R.id.timesWaking);
         times.setText("Times waking up: " + getActivity().getApplicationContext().getSharedPreferences("questionnaire", Context.MODE_PRIVATE).getInt("timesPerNight", 0) + "/5");
+        if (getActivity().getApplicationContext().getSharedPreferences("questionnaire", Context.MODE_PRIVATE).getInt("timesPerNight", 0) >= 3){
+            change = change + "/ " + "times waking up";
+        }
 
         TextView nightTerrors = (TextView) dataView.findViewById(R.id.nightTerrors);
         nightTerrors.setText("Night terrors: " + getActivity().getApplicationContext().getSharedPreferences("questionnaire", Context.MODE_PRIVATE).getInt("nightTerrors", 0) + "/5");
+        if (getActivity().getApplicationContext().getSharedPreferences("questionnaire", Context.MODE_PRIVATE).getInt("nightTerrors", 0) >= 3){
+            change = change + "/ " + "night terrors";
+        }
 
         TextView waking = (TextView) dataView.findViewById(R.id.wakingUp);
         waking.setText("Falling asleep: " + getActivity().getApplicationContext().getSharedPreferences("questionnaire", Context.MODE_PRIVATE).getInt("wakeUp", 0) + "/5");
+        if (getActivity().getApplicationContext().getSharedPreferences("questionnaire", Context.MODE_PRIVATE).getInt("wakeUp", 0) >= 3){
+            change = change + "/ " + "waking up";
+        }
 
         TextView fall = (TextView) dataView.findViewById(R.id.fallasleep);
         fall.setText("Waking up: " + getActivity().getApplicationContext().getSharedPreferences("questionnaire", Context.MODE_PRIVATE).getInt("fallAsleep", 0) + "/5");
+        if (getActivity().getApplicationContext().getSharedPreferences("questionnaire", Context.MODE_PRIVATE).getInt("fallAsleep", 0) >= 3){
+            change = change + "/ " + "falling sleep";
+        }
 
         TextView fresh = (TextView) dataView.findViewById(R.id.fresh);
         fresh.setText("Fresh: " + getActivity().getApplicationContext().getSharedPreferences("questionnaire", Context.MODE_PRIVATE).getInt("fresh", 0) + "/5");
+        if (getActivity().getApplicationContext().getSharedPreferences("questionnaire", Context.MODE_PRIVATE).getInt("fresh", 0) >= 3){
+            change = change + "/ " + "freshness";
+        }
 
         TextView sad = (TextView) dataView.findViewById(R.id.sad);
         sad.setText("Sad: " + getActivity().getApplicationContext().getSharedPreferences("questionnaire", Context.MODE_PRIVATE).getInt("sad", 0) + "/5");
+        if (getActivity().getApplicationContext().getSharedPreferences("questionnaire", Context.MODE_PRIVATE).getInt("sad", 0) >= 3){
+            change = change + "/ " + "sadness";
+        }
 
         TextView sleepy = (TextView) dataView.findViewById(R.id.sleepy);
         sleepy.setText("Sleepy: " + getActivity().getApplicationContext().getSharedPreferences("questionnaire", Context.MODE_PRIVATE).getInt("sleepy", 0) + "/5");
+        if (getActivity().getApplicationContext().getSharedPreferences("questionnaire", Context.MODE_PRIVATE).getInt("sleepy", 0) >= 3){
+            change = change + "/ " + "sleepiness";
+        }
 
         TextView tired = (TextView) dataView.findViewById(R.id.tired);
         tired.setText("Tired: " + getActivity().getApplicationContext().getSharedPreferences("questionnaire", Context.MODE_PRIVATE).getInt("tired", 0) + "/5");
+        if (getActivity().getApplicationContext().getSharedPreferences("questionnaire", Context.MODE_PRIVATE).getInt("tired", 0) >= 3){
+            change = change + "/ " + "tiredness";
+        }
 
         TextView stressed = (TextView) dataView.findViewById(R.id.stressed);
         stressed.setText("Stressed: " + getActivity().getApplicationContext().getSharedPreferences("questionnaire", Context.MODE_PRIVATE).getInt("stressed", 0) + "/5");
+        if (getActivity().getApplicationContext().getSharedPreferences("questionnaire", Context.MODE_PRIVATE).getInt("stressed", 0) >= 3){
+            change = change + "/ " + "stress";
+        }
 
         TextView irritable = (TextView) dataView.findViewById(R.id.irritable);
         irritable.setText("Irritable: " + getActivity().getApplicationContext().getSharedPreferences("questionnaire", Context.MODE_PRIVATE).getInt("irritable", 0) + "/5");
+        if (getActivity().getApplicationContext().getSharedPreferences("questionnaire", Context.MODE_PRIVATE).getInt("irritable", 0) >= 3){
+            change = change + "/ " + "irritability";
+        }
 
         TextView concentrate = (TextView) dataView.findViewById(R.id.concentrate);
         concentrate.setText("Concentration: " + getActivity().getApplicationContext().getSharedPreferences("questionnaire", Context.MODE_PRIVATE).getInt("concentrate", 0) + "/5");
+        if (getActivity().getApplicationContext().getSharedPreferences("questionnaire", Context.MODE_PRIVATE).getInt("concentrate", 0) >= 3){
+            change = change + "/ " + "concentration";
+        }
 
         TextView coordinate = (TextView) dataView.findViewById(R.id.coordinate);
         coordinate.setText("Coordination: " + getActivity().getApplicationContext().getSharedPreferences("questionnaire", Context.MODE_PRIVATE).getInt("coordinate", 0) + "/5");
+        if (getActivity().getApplicationContext().getSharedPreferences("questionnaire", Context.MODE_PRIVATE).getInt("coordinate", 0) >= 3){
+            change = change + "/ " + "coordination";
+        }
 
         TextView appetite = (TextView) dataView.findViewById(R.id.appetite);
         appetite.setText("Appetite: " + getActivity().getApplicationContext().getSharedPreferences("questionnaire", Context.MODE_PRIVATE).getInt("apetite", 0) + "/5");
+        if (getActivity().getApplicationContext().getSharedPreferences("questionnaire", Context.MODE_PRIVATE).getInt("apetite", 0) >= 3){
+            change = change + "/ " + "appetite";
+        }
 
-
+        if (change.equals("")){
+            editWorking.setText(result);
+        } else {
+            editWorking.setText(change);
+        }
     }
 
     @Override
