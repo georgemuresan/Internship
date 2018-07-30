@@ -34,7 +34,6 @@ public class Questionnaire4 extends Fragment {
 
     private static final String DATABASE_NAME = "user_db";
     private UserDatabase userDatabase;
-    private String comment;
 
     View questionnaireView;
     @Nullable
@@ -145,7 +144,7 @@ public class Questionnaire4 extends Fragment {
         getActivity().getApplicationContext().getSharedPreferences("MOOD", MODE_PRIVATE).edit().putInt("mood", moodCalculator(timesPerNight, nightTerrors, sad, sleepy, tired, stressed, irritable, concentrate+1, coordinate+1)).apply();
 
         EditText commentBox = (EditText) questionnaireView.findViewById(R.id.yourName2);
-        comment = commentBox.getText().toString();
+        final String comment = commentBox.getText().toString();
 
         startActivity(intent);
 
@@ -177,13 +176,17 @@ public class Questionnaire4 extends Fragment {
                 userDatabase.daoAccess().insertSingleUserQuestionnaire(user);
 
 
+                if (!comment.equals("")) {
 
-                UserDiary userDiary = new UserDiary();
-                userDiary.setUsername(username);
-                userDiary.setDate(formattedDate);
-                userDiary.setComment(comment);
 
-                userDatabase.daoAccess().insertSingleUserDiary(userDiary);
+                    UserDiary userDiary = new UserDiary();
+                    userDiary.setUsername(username);
+                    userDiary.setDate(formattedDate);
+                    userDiary.setComment(comment);
+
+                    userDatabase.daoAccess().insertSingleUserDiary(userDiary);
+                }
+
 
                 Report rep = new Report(userDatabase, getActivity().getApplicationContext());
                 rep.save(username, false, getActivity().getApplicationContext().getSharedPreferences("consent", MODE_PRIVATE).getString("consent", "nothing"));
@@ -230,6 +233,13 @@ public class Questionnaire4 extends Fragment {
 
             editor.putString("trial", json);
             editor.commit();
+        }
+
+        int days =  getActivity().getApplicationContext().getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).getInt("days", 0);
+        if (days % 5 == 1){
+            getActivity().getApplicationContext().getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).edit().putInt("days", days).apply();
+        } else {
+            getActivity().getApplicationContext().getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).edit().putInt("days", days + 1).apply();
         }
 
 

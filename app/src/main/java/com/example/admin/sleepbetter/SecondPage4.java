@@ -27,7 +27,6 @@ public class SecondPage4 extends AppCompatActivity {
     private SeekBarWithIntervals coordinateBar = null;
     private static final String DATABASE_NAME = "user_db";
     private UserDatabase userDatabase;
-    private String comment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,7 +102,7 @@ public class SecondPage4 extends AppCompatActivity {
         startActivity(intent);
 
         EditText commentBox = (EditText) findViewById(R.id.yourName2);
-        comment = commentBox.getText().toString();
+        final String comment = commentBox.getText().toString();
 
         new Thread(new Runnable() {
             @Override
@@ -136,13 +135,16 @@ public class SecondPage4 extends AppCompatActivity {
                 userDatabase.daoAccess().insertSingleUserQuestionnaire(user);
 
 
+                if (!comment.equals("")) {
+
+
                 UserDiary userDiary = new UserDiary();
                 userDiary.setUsername(username);
                 userDiary.setDate(formattedDate);
                 userDiary.setComment(comment);
 
                 userDatabase.daoAccess().insertSingleUserDiary(userDiary);
-
+                }
                 Report rep = new Report(userDatabase, getApplicationContext());
                 rep.save(username, true, getSharedPreferences("consent", MODE_PRIVATE).getString("consent", "nothing"));
             }

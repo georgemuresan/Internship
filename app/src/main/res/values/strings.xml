@@ -117,6 +117,11 @@
 
     <string name="some_explanation_about_the_input">description</string>
     <string name="desc">Description</string>
+    <string name="goalDiaryInput">Goal Diary Input...</string>
+    <string name="name">Your Name...</string>
+    <string name="participant">Participant ID...</string>
+    <string name="firstNoteHint">*First Note*</string>
+
     <string name="title_activity_main_page">MainPage</string>
     <string name="title_section1">Section 1</string>
     <string name="title_section2">Section 2</string>
@@ -135,7 +140,7 @@
     <string name="action_settings">Settings</string>
 
     <string name="factorsTitle">FACTORS</string>
-    <string name="factorsIntroduction">These are the next factors that impact your sleep hygiene. The checked ones are the ones you chose as targeted factors.</string>
+    <string name="factorsIntroduction">These are the next factors and associated experiments that impact your sleep hygiene. The chosen experiment is the one you chose to follow. Please bare in mind that after clicking Submit you will only be able to change the experiment after 5 days."</string>
     <string name="sleepSettings">SLEEP SETTINGS</string>
     <string name="lightCheck">Light</string>
     <string name="temperatureCheck">Temperature</string>
@@ -148,6 +153,7 @@
     <string name="circadianRythms">CIRCADIAN RYTHMS</string>
     <string name="sleepingScheduleCheck">Sleep schedule</string>
     <string name="caffeineCheck">Caffeine</string>
+
 
 
     <string name="sleepSettingsTitle">Sleep Settings</string>
@@ -194,7 +200,7 @@
     <string name="moreInfo">More Information</string>
 
     <string name="dataTitle">DATA</string>
-    <string name="dataIntro">Here you will be able to look at personal data in terms of progress, changes, variations and so on! Below you will find 3 categories of data visualisation:\nProgress bar - where you will be able to see your current state on the way to your goal;\nTimelines - looking at your progress;\nSingle value displays - looking at your current state.  </string>
+    <string name="dataIntro">Here you will be able to look at personal data in terms of progress, changes, variations and so on! Below you will find 3 categories of data visualisation:\nSingle value displays - looking at your current state;\nProgress - where you will be able to see your current state on the way to your goal;\nTimelines - looking at your progress through 3 different types of graphs. </string>
     <string name="progressTitle">Progress</string>
     <string name="timelineTitle">Timelines</string>
     <string name="singleValueDisplayTitle">Single Value Display</string>
@@ -231,7 +237,7 @@
     <string name="drinkCaffeineQuestion">Did you drink any caffeine today?</string>
     <string name="eatQuestion">If yes, did you do it on empty stomach?</string>
 
-    <string name="limitIntro">Your current experiment is: Limit yourself to 4 cups of coffees per day; 10 cans of coke/fanta; 2 energy drinks. Below you are asked to complete the questions on whether you followed the experiment.</string>
+    <string name="limitIntro">Your current experiment is: LIMIT YOURSELF TO 4 CUPS OF COFFEE PER DAY; 10 CANS OF SODA; 2 ENERGY DRINKS. Below you are asked to complete the questions on whether you followed the experiment.</string>
     <string name="cupsQuestion">How many cups of coffee did you have today?</string>
     <string name="cansQuestion">How many cans of soda did you have today??</string>
     <string name="energydrinksQuestion">How many energy drinks did you have today??</string>
@@ -241,7 +247,7 @@
     <string name="whenSleepQuestion">When did you go to sleep?</string>
 
 
-    <string name="relaxIntro">Your current experiment is: Do not go to bed unless you are tired. If you are not, relax with a bath/by reading a book before bed. Below you are asked to complete the questions on whether you followed the experiment.</string>
+    <string name="relaxIntro">Your current experiment is: DO NOT GO TO BED UNLESS YOU ARE TIRED. IF YOU ARE NOT, RELAX WITH A BATH/READING A BOOK BFORE BED. Below you are asked to complete the questions on whether you followed the experiment.</string>
     <string name="tiredQueston">Did you go to sleep fully relaxed/ready to sleep?</string>
     <string name="whatActivityQuestion">What activity of the next did you do before going to sleep?</string>
     <string name="bathAnswer">Took a bath</string>
@@ -250,13 +256,14 @@
     <string name="teaAnswer">Drank hot drink</string>
     <string name="noneAnsswer">None of the above</string>
 
-    <string name="sametimeIntro">Your current experiment is: Usually get up at the same time everyday, even on weekends/vacations. Below you are asked to complete the questions on whether you followed the experiment.</string>
+    <string name="sametimeIntro">Your current experiment is: GET UP AT THE SAME TIME EVERYDAY, EVEN ON WEEKENDS/VACATIONS. Below you are asked to complete the questions on whether you followed the experiment.</string>
     <string name="whenWakeQuestion">When did you wake up?</string>
 
     <string name="sevenIntro">Your current experiment is: SLEEP NO LESS THAN 7 HOURS PER NIGHT. Below you are asked to complete the questions on whether you followed the experiment.</string>
 
 
     <string name="calendarTitle">CALENDAR</string>
+    <string name="calendarIntro">The Calendar shows your progress in time. You will find that ecah day since the beginning of the experiment will be coloured in a representative way: the darker the red, the worse your state was/ the darker the green, the better your state was. By clicking on a specific date you will be able to se the overall mood, the experiment and the comments for that day.</string>
 
     <string name="factorsMenu">Factors</string>
     <string name="data">Data</string>
@@ -270,7 +277,7 @@
     <string name="secondOptionMainMenu">EXPERIMENTS AND FEATURES</string>
     <string name="thirdOptionMainMenu">CHATBOT GUIDE</string>
 
-    <string name="mainMenuUp">Sleep Better works towards a tuning process over your sleeping patterns.</string>
+    <string name="mainMenuUp">Sleep Better works towards a tuning process over your sleeping patterns</string>
     <string name="introUp">FOR A BETTER YOU</string>
     <string name="introUpsub">Find your experiment</string>
     <string name="introDown">Sleep Beter @ Main Menu</string>
