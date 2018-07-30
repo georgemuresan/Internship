@@ -30,7 +30,10 @@
         <activity android:name=".SecondPage3" />
         <activity android:name=".SecondPage4" />
         <activity android:name=".ThirdPage" />
-        <receiver android:name=".MainMenu$B"></receiver>
+
+        <receiver android:name=".MainMenu$Broadcast1" />
+        <receiver android:name=".MainMenu$Broadcast2" />
+        <receiver android:name=".MainMenu$Broadcast3" />
         <activity android:name=".Seek" />
         <activity
             android:name=".MainMenu"
