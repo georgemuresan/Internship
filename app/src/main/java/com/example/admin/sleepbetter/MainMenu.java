@@ -45,6 +45,8 @@ public class MainMenu extends AppCompatActivity
     static Class nextclass = MainMenu.class;
     static String title = "DEFAULT";
     static String message = "DEFAULT MSG";
+    private static final String DATABASE_NAME = "user_db";
+    private UserDatabase userDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -255,7 +257,23 @@ public class MainMenu extends AppCompatActivity
     }
 
     private void setAlarmManager(int hour, int minute, final String title, final String message) {
-        System.out.println("FMM");
+
+    if (title.equals("Oups")){
+        this.title = title;
+        this.message = message;
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.HOUR_OF_DAY, hour);
+        calendar.set(Calendar.MINUTE, minute);
+        calendar.set(Calendar.SECOND, 0);
+
+
+        Intent intent1 = new Intent(MainMenu.this, Broadcast4.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(MainMenu.this, 0, intent1, 0);
+        AlarmManager am = (AlarmManager) MainMenu.this.getSystemService(MainMenu.this.ALARM_SERVICE);
+        am.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_FIFTEEN_MINUTES, pendingIntent);
+    } else {
+
         this.title = title;
         this.message = message;
 
@@ -269,6 +287,7 @@ public class MainMenu extends AppCompatActivity
         PendingIntent pendingIntent = PendingIntent.getBroadcast(MainMenu.this, 0, intent1, 0);
         AlarmManager am = (AlarmManager) MainMenu.this.getSystemService(MainMenu.this.ALARM_SERVICE);
         am.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_FIFTEEN_MINUTES, pendingIntent);
+    }
 
     }
 
@@ -298,13 +317,13 @@ public class MainMenu extends AppCompatActivity
         int experiment = getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).getInt("KEY_SAVED_RADIO_BUTTON_INDEX", 0);
         switch (experiment) {
             case 1: //increase bright light exposure
-                setAlarmManager(12, 0, "Remember:", "Stay out in the sun at least half an hour todday!");
+                setAlarmManager(12, 0, "Remember:", "Stay out in the sun at least half an hour today!");
                 break;
             case 2: //wear glasses that block blue light during the night
                 setAlarmManager(8, 30, "Remember:", "Turn on your \"use the f.lux\" app");
                 break;
             case 3: // turn off any bright lights 2 hours before going to bed
-                setAlarmManager(19, 30, "Going to bed soon?", "Dont forget to turn off yur light");
+                setAlarmManager(19, 30, "Going to bed soon?", "Do not forget to turn off your light");
                 break;
             case 5: // Do not drink caffeine within 6 hours
                 setAlarmManager(15, 0, "Remember:", "Do not drink caffeine with 6 hours before going to sleep");
@@ -328,6 +347,8 @@ public class MainMenu extends AppCompatActivity
                 setAlarmManager(21, 00, "Remember:", "Go to sleep at 10:30 PM the latest");
                 break;
         }
+
+        setAlarmManager(0, 0, "Oups:", "Checking questionnaire");
     }
 
     public static class Broadcast1 extends BroadcastReceiver {
@@ -413,6 +434,71 @@ public class MainMenu extends AppCompatActivity
                     .setAutoCancel(true).setWhen(when)
                     .setContentIntent(pendingIntent);
             notificationManager.notify(21, mNotifyBuilder.build());
+//
+        }
+    }
+
+    public class Broadcast4 extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            //updating day
+                int numberOfDays = getApplicationContext().getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).getInt("numberDays", 0);
+                numberOfDays++;
+                getApplicationContext().getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).edit().putInt("numberDays", numberOfDays).apply();
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Date c = Calendar.getInstance().getTime();
+                        SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
+                        final String formattedDate = df.format(c);
+
+
+                        userDatabase = Room.databaseBuilder(getApplicationContext(), UserDatabase.class, DATABASE_NAME).fallbackToDestructiveMigration().build();
+
+                        int totalQuestionnaires = userDatabase.daoAccess().fetchUserQuestionnaires().size();
+
+                        int fiveDays = getApplicationContext().getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).getInt("days", 0);
+                        int numberOfDays = getApplicationContext().getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).getInt("numberDays", 0);
+
+                        if (numberOfDays >= totalQuestionnaires ){
+
+                            //1 updatam ce se intampla in questionnaire 4
+                            if (fiveDays % 5 == 1){
+                                getApplicationContext().getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).edit().putInt("days", fiveDays).apply();
+                            } else {
+                                getApplicationContext().getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).edit().putInt("days", fiveDays + 1).apply();
+                            }
+                            //2 adaugam -1 in tabel
+
+                            UserQuestionnaire user = new UserQuestionnaire();
+                            String username = getApplicationContext().getSharedPreferences("name", MODE_PRIVATE).getString("username", "nothing");
+                            user.setUsername(username);
+                            user.setDate(formattedDate);
+                            user.setTimesPerNight(-1);
+                            user.setNightTerrors(-1);
+                            user.setFallAsleep(-1);
+                            user.setWakeUp(-1);
+                            user.setFresh(-1);
+                            user.setSad(-1);
+                            user.setSleepy(-1);
+                            user.setTired(-1);
+                            user.setStressed(-1);
+                            user.setApetite(-1);
+                            user.setConcentrate(-1);
+                            user.setCoordinate(-1);
+                            user.setIrritable(-1);
+                            user.setMood(-1);
+
+                            //setting mood value to -1 in shared preferences
+
+                            userDatabase.daoAccess().insertSingleUserQuestionnaire(user);
+
+                            Report rep = new Report(userDatabase, getApplicationContext());
+                            rep.save(username, false, getApplicationContext().getSharedPreferences("consent", MODE_PRIVATE).getString("consent", "nothing"));
+
+                        }
+                    }
+                }).start();
 //
         }
     }

@@ -155,7 +155,7 @@ public class Questionnaire4 extends Fragment {
                 userDatabase = Room.databaseBuilder(getActivity().getApplicationContext(), UserDatabase.class, DATABASE_NAME).fallbackToDestructiveMigration().build();
 
                 UserQuestionnaire user = new UserQuestionnaire();
-                String username = getActivity().getApplicationContext().getSharedPreferences("name", MODE_PRIVATE).getString("username", "nothing");
+                String username = getActivity().getApplicationContext().getSharedPreferences("name", MODE_PRIVATE).getString("participantID", "nothing");
                 user.setUsername(username);
                 user.setDate(formattedDate);
                 user.setTimesPerNight(timesPerNight);

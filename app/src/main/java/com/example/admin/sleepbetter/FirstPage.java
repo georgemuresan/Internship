@@ -19,13 +19,14 @@ import java.util.ArrayList;
 public class FirstPage extends AppCompatActivity {
 
     private EditText nameBox = null;
+    private EditText participantID = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_first_page);
 
         nameBox = (EditText) findViewById(R.id.yourName);
-
+        participantID = (EditText) findViewById(R.id.participantName);
 
         getApplicationContext().getSharedPreferences("MOOD", MODE_PRIVATE).edit().clear().commit();
         getApplicationContext().getSharedPreferences("name", MODE_PRIVATE).edit().clear().commit();
@@ -33,8 +34,8 @@ public class FirstPage extends AppCompatActivity {
         getApplicationContext().getSharedPreferences("questionnaire", MODE_PRIVATE).edit().clear().commit();
        // getApplicationContext().getSharedPreferences("consent", MODE_PRIVATE).edit().clear().commit();
 
-        String text = getSharedPreferences("name", MODE_PRIVATE).getString("username", "nothing");
-
+        getSharedPreferences("name", MODE_PRIVATE).getString("username", "nothing");
+        getSharedPreferences("name", MODE_PRIVATE).getString("participantID", "nothing");
 
         final CheckBox consent = (CheckBox) findViewById(R.id.consentCheckbox);
         final CheckBox bitmoji = (CheckBox) findViewById(R.id.linkedCheckbox);
@@ -112,23 +113,25 @@ public class FirstPage extends AppCompatActivity {
     }
     private void goToSecondActivity() {
 
-        Intent intent = new Intent(this, SecondPage.class);
+        if (nameBox.getText().toString().equals("")){
+            Toast.makeText(getApplicationContext(), "Please input your name", Toast.LENGTH_SHORT).show();
 
-        String name = nameBox.getText().toString();
+        } else if (participantID.getText().toString().equals("")){
+            Toast.makeText(getApplicationContext(), "Please input your participant ID number", Toast.LENGTH_SHORT).show();
 
-        getSharedPreferences("name", MODE_PRIVATE).edit().putString("username", name).apply();
+        } else {
+            Intent intent = new Intent(this, SecondPage.class);
 
+            String name = nameBox.getText().toString();
+            String participant = participantID.getText().toString();
 
+            getSharedPreferences("name", MODE_PRIVATE).edit().putString("username", name).apply();
+            getSharedPreferences("name", MODE_PRIVATE).edit().putString("participantID", participant).apply();
 
+            startActivity(intent);
 
-
-
-
-
-
-        startActivity(intent);
+        }
 
     }
-
 
 }
