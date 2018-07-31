@@ -149,13 +149,14 @@ public class MainMenu extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+         //   super.onBackPressed();
+            moveTaskToBack(true);
         }
-
+ /*
         int count = getFragmentManager().getBackStackEntryCount();
 
         if (count == 0) {
-            super.onBackPressed();
+           super.onBackPressed();
 
             Intent intent = new Intent(this, MainMenu.class);
             startActivity(intent);
@@ -163,7 +164,7 @@ public class MainMenu extends AppCompatActivity
         } else {
             getFragmentManager().popBackStack();
         }
-
+*/
     }
 
     @Override
@@ -441,6 +442,8 @@ public class MainMenu extends AppCompatActivity
     public class Broadcast4 extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
+            getApplicationContext().getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putBoolean("completed", false).apply();
+
             //updating day
                 int numberOfDays = getApplicationContext().getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).getInt("numberDays", 0);
                 numberOfDays++;

@@ -116,6 +116,9 @@ public class Questionnaire4 extends Fragment {
 
         Intent intent = new Intent(getActivity().getApplicationContext(), MainMenu.class);
 
+        getActivity().getApplicationContext().getSharedPreferences("questionnaire", MODE_PRIVATE).getBoolean("completed", false);
+        getActivity().getApplicationContext().getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putBoolean("completed", true).apply();
+
         final int timesPerNight = getActivity().getApplicationContext().getSharedPreferences("questionnaire", MODE_PRIVATE).getInt("timesPerNight", 0);
         final int nightTerrors = getActivity().getApplicationContext().getSharedPreferences("questionnaire", MODE_PRIVATE).getInt("nightTerrors", 0);
 

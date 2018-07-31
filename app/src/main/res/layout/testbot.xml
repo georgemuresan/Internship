@@ -86,7 +86,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_marginBottom="8dp"
             android:background="@drawable/text_bg"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -96,8 +95,8 @@
                 android:id="@+id/et_user_statement"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Your Message:"
                 android:background="@drawable/text_bg"
+                android:hint="Your Message:"
                 android:imeOptions="actionDone"
                 android:inputType="textShortMessage" />
         </android.support.design.widget.TextInputLayout>

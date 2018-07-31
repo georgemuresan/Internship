@@ -53,7 +53,7 @@ public class Update_Caffeine_6hours extends Fragment {
         SimpleDateFormat formatter1 = new SimpleDateFormat("h:mm");
         String currentDate = formatter1.format(calendar1.getTime());
 
-        if(currentDate.compareTo("6:59")<0) {
+        if(currentDate.compareTo("18:59")<0 || getActivity().getApplicationContext().getSharedPreferences("questionnaire", MODE_PRIVATE).getBoolean("completed", false)) {
              ConstraintLayout fr = (ConstraintLayout) updateView.findViewById(R.id.fr);
              disableEnableControls(false, fr);
             Toast.makeText(getActivity().getApplicationContext(), "You cannot do the questionnaire before 7:00 PM.", Toast.LENGTH_SHORT).show();

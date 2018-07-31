@@ -65,7 +65,7 @@
 
         <TextView
             android:id="@+id/lightIntro"
-            android:layout_width="362dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
@@ -110,7 +110,7 @@
                 <android.support.constraint.ConstraintLayout
                     android:id="@+id/fr"
                     android:layout_width="match_parent"
-                    android:layout_height="620dp"
+                    android:layout_height="660dp"
                     tools:layout_editor_absoluteX="8dp"
                     tools:layout_editor_absoluteY="0dp">
 
@@ -278,7 +278,7 @@
                     <TextView
                         android:id="@+id/sunlightQuestion"
                         android:layout_width="match_parent"
-                        android:layout_height="21dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginEnd="24dp"
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="8dp"
