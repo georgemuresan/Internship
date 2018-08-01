@@ -429,7 +429,7 @@ public class MainMenu extends AppCompatActivity
                     .setAutoCancel(true).setWhen(when)
                     .setContentIntent(pendingIntent);
             notificationManager.notify(20, mNotifyBuilder.build());
-//
+
         }
     }
 
