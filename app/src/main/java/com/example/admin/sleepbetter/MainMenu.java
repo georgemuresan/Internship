@@ -250,36 +250,36 @@ public class MainMenu extends AppCompatActivity
 
     private void setAlarmManager(int hour, int minute, final String title, final String message) {
 
-    if (title.equals("Oups")){
-        this.title = title;
-        this.message = message;
+        if (title.equals("Oups")){
+            this.title = title;
+            this.message = message;
 
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.HOUR_OF_DAY, hour);
-        calendar.set(Calendar.MINUTE, minute);
-        calendar.set(Calendar.SECOND, 0);
-
-
-        Intent intent1 = new Intent(MainMenu.this, Broadcast4.class);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(MainMenu.this, 0, intent1, 0);
-        AlarmManager am = (AlarmManager) MainMenu.this.getSystemService(MainMenu.this.ALARM_SERVICE);
-        am.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_FIFTEEN_MINUTES, pendingIntent);
-    } else {
-
-        this.title = title;
-        this.message = message;
-
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.HOUR_OF_DAY, hour);
-        calendar.set(Calendar.MINUTE, minute);
-        calendar.set(Calendar.SECOND, 0);
+            Calendar calendar = Calendar.getInstance();
+            calendar.set(Calendar.HOUR_OF_DAY, hour);
+            calendar.set(Calendar.MINUTE, minute);
+            calendar.set(Calendar.SECOND, 0);
 
 
-        Intent intent1 = new Intent(MainMenu.this, Broadcast1.class);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(MainMenu.this, 0, intent1, 0);
-        AlarmManager am = (AlarmManager) MainMenu.this.getSystemService(MainMenu.this.ALARM_SERVICE);
-        am.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_FIFTEEN_MINUTES, pendingIntent);
-    }
+            Intent intent1 = new Intent(MainMenu.this, Broadcast4.class);
+            PendingIntent pendingIntent = PendingIntent.getBroadcast(MainMenu.this, 0, intent1, 0);
+            AlarmManager am = (AlarmManager) MainMenu.this.getSystemService(MainMenu.this.ALARM_SERVICE);
+            am.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_FIFTEEN_MINUTES, pendingIntent);
+        } else {
+
+            this.title = title;
+            this.message = message;
+
+            Calendar calendar = Calendar.getInstance();
+            calendar.set(Calendar.HOUR_OF_DAY, hour);
+            calendar.set(Calendar.MINUTE, minute);
+            calendar.set(Calendar.SECOND, 0);
+
+
+            Intent intent1 = new Intent(MainMenu.this, Broadcast1.class);
+            PendingIntent pendingIntent = PendingIntent.getBroadcast(MainMenu.this, 0, intent1, 0);
+            AlarmManager am = (AlarmManager) MainMenu.this.getSystemService(MainMenu.this.ALARM_SERVICE);
+            am.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_FIFTEEN_MINUTES, pendingIntent);
+        }
 
     }
 
@@ -340,7 +340,7 @@ public class MainMenu extends AppCompatActivity
                 break;
         }
 
-        setAlarmManager(0, 0, "Oups:", "Checking questionnaire");
+      //  setAlarmManager(0, 0, "Oups:", "Checking questionnaire");
     }
 
     public static class Broadcast1 extends BroadcastReceiver {
@@ -436,63 +436,63 @@ public class MainMenu extends AppCompatActivity
             getApplicationContext().getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putBoolean("completed", false).apply();
 
             //updating day
-                int numberOfDays = getApplicationContext().getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).getInt("numberDays", 0);
-                numberOfDays++;
-                getApplicationContext().getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).edit().putInt("numberDays", numberOfDays).apply();
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        Date c = Calendar.getInstance().getTime();
-                        SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
-                        final String formattedDate = df.format(c);
+            int numberOfDays = getApplicationContext().getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).getInt("numberDays", 0);
+            numberOfDays++;
+            getApplicationContext().getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).edit().putInt("numberDays", numberOfDays).apply();
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    Date c = Calendar.getInstance().getTime();
+                    SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
+                    final String formattedDate = df.format(c);
 
 
-                        userDatabase = Room.databaseBuilder(getApplicationContext(), UserDatabase.class, DATABASE_NAME).fallbackToDestructiveMigration().build();
+                    userDatabase = Room.databaseBuilder(getApplicationContext(), UserDatabase.class, DATABASE_NAME).fallbackToDestructiveMigration().build();
 
-                        int totalQuestionnaires = userDatabase.daoAccess().fetchUserQuestionnaires().size();
+                    int totalQuestionnaires = userDatabase.daoAccess().fetchUserQuestionnaires().size();
 
-                        int fiveDays = getApplicationContext().getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).getInt("days", 0);
-                        int numberOfDays = getApplicationContext().getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).getInt("numberDays", 0);
+                    int fiveDays = getApplicationContext().getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).getInt("days", 0);
+                    int numberOfDays = getApplicationContext().getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).getInt("numberDays", 0);
 
-                        if (numberOfDays >= totalQuestionnaires ){
+                    if (numberOfDays >= totalQuestionnaires ){
 
-                            //1 updatam ce se intampla in questionnaire 4
-                            if (fiveDays % 5 == 1){
-                                getApplicationContext().getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).edit().putInt("days", fiveDays).apply();
-                            } else {
-                                getApplicationContext().getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).edit().putInt("days", fiveDays + 1).apply();
-                            }
-                            //2 adaugam -1 in tabel
-
-                            UserQuestionnaire user = new UserQuestionnaire();
-                            String username = getApplicationContext().getSharedPreferences("name", MODE_PRIVATE).getString("username", "nothing");
-                            user.setUsername(username);
-                            user.setDate(formattedDate);
-                            user.setTimesPerNight(-1);
-                            user.setNightTerrors(-1);
-                            user.setFallAsleep(-1);
-                            user.setWakeUp(-1);
-                            user.setFresh(-1);
-                            user.setSad(-1);
-                            user.setSleepy(-1);
-                            user.setTired(-1);
-                            user.setStressed(-1);
-                            user.setApetite(-1);
-                            user.setConcentrate(-1);
-                            user.setCoordinate(-1);
-                            user.setIrritable(-1);
-                            user.setMood(-1);
-
-                            //setting mood value to -1 in shared preferences
-
-                            userDatabase.daoAccess().insertSingleUserQuestionnaire(user);
-
-                            Report rep = new Report(userDatabase, getApplicationContext());
-                            rep.save(username, false, getApplicationContext().getSharedPreferences("consent", MODE_PRIVATE).getString("consent", "nothing"));
-
+                        //1 updatam ce se intampla in questionnaire 4
+                        if (fiveDays % 5 == 1){
+                            getApplicationContext().getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).edit().putInt("days", fiveDays).apply();
+                        } else {
+                            getApplicationContext().getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).edit().putInt("days", fiveDays + 1).apply();
                         }
+                        //2 adaugam -1 in tabel
+
+                        UserQuestionnaire user = new UserQuestionnaire();
+                        String username = getApplicationContext().getSharedPreferences("name", MODE_PRIVATE).getString("username", "nothing");
+                        user.setUsername(username);
+                        user.setDate(formattedDate);
+                        user.setTimesPerNight(-1);
+                        user.setNightTerrors(-1);
+                        user.setFallAsleep(-1);
+                        user.setWakeUp(-1);
+                        user.setFresh(-1);
+                        user.setSad(-1);
+                        user.setSleepy(-1);
+                        user.setTired(-1);
+                        user.setStressed(-1);
+                        user.setApetite(-1);
+                        user.setConcentrate(-1);
+                        user.setCoordinate(-1);
+                        user.setIrritable(-1);
+                        user.setMood(-1);
+
+                        //setting mood value to -1 in shared preferences
+
+                        userDatabase.daoAccess().insertSingleUserQuestionnaire(user);
+
+                        Report rep = new Report(userDatabase, getApplicationContext());
+                        rep.save(username, false, getApplicationContext().getSharedPreferences("consent", MODE_PRIVATE).getString("consent", "nothing"));
+
                     }
-                }).start();
+                }
+            }).start();
 //
         }
     }
