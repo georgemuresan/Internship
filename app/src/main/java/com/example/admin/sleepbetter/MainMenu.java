@@ -488,6 +488,7 @@ public class MainMenu extends AppCompatActivity
 
                     if (numberOfDays >= totalQuestionnaires ){
 
+                        //daca nu a facut chestionarul
                         //1 updatam ce se intampla in questionnaire 4
                         if (fiveDays % 5 == 1){
                             getApplicationContext().getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).edit().putInt("days", fiveDays).apply();
@@ -524,7 +525,11 @@ public class MainMenu extends AppCompatActivity
 
                     }
                 }
+
+                //scoatem variabila days si verificam: daca se imparte la 5, si nu e locked,
             }).start();
+
+            getApplicationContext().getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).edit().putBoolean("locked", true).apply();
 //
         }
     }

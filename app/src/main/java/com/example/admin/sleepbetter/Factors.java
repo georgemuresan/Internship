@@ -122,17 +122,21 @@ public class Factors extends Fragment {
         int fiveDays = getActivity().getApplicationContext().getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).getInt("days", 0);
 
         if (isLocked && fiveDays % 5 == 0){
+            //daca e blocat si a venit momentul sa se schimbe experimentul
             for (int i = 0; i < radioGroup.getChildCount(); i++) {
                 radioGroup.getChildAt(i).setEnabled(true);
             }
+            //zice ca nu e blocat
             getActivity().getApplicationContext().getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).edit().putBoolean("locked", false).apply();
 
         } else if (isLocked && fiveDays % 5 != 0){
+            //daca e blocat si e na din zilele cand nu are voie sa schimbe
             for (int i = 0; i < radioGroup.getChildCount(); i++) {
                 radioGroup.getChildAt(i).setEnabled(false);
             }
             Toast.makeText(getActivity().getApplicationContext(), "You cannot change the current experiment before the 5-day period ends.", Toast.LENGTH_SHORT).show();
         } else {
+            //daca nu e blocat - prima data cand intra
             for (int i = 0; i < radioGroup.getChildCount(); i++) {
                 radioGroup.getChildAt(i).setEnabled(true);
             }
@@ -173,6 +177,7 @@ public class Factors extends Fragment {
         if (isLocked){
             Toast.makeText(getActivity().getApplicationContext(), "You cannot change the current experiment before the 5-day period ends.", Toast.LENGTH_SHORT).show();
         } else {
+            //daca nu e blocat, atunci se updateaza experimentul, se blocheaza accesul si se incrementeaza nr de zile
             for (int i = 0; i < radioGroup.getChildCount(); i++) {
                 radioGroup.getChildAt(i).setEnabled(false);
             }
