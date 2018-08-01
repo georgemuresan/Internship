@@ -58,26 +58,26 @@ public class FirstPage extends AppCompatActivity {
             }
         });
 
-/* PENTRU BITMOJI
-        String completed = getSharedPreferences("consent", MODE_PRIVATE).getString("consent", "nothing");
+// PENTRU BITMOJI
+        Boolean selected = getSharedPreferences("bit", MODE_PRIVATE).getBoolean("bit", false);
 
-        if (completed.equals("Yes") || completed.equals("No")){
-            consent.setChecked(true);
+        if (selected){
+            bitmoji.setChecked(true);
         } else {
-            consent.setChecked(false);
+            bitmoji.setChecked(false);
         }
-        consent.setClickable(false);
-        TextView cform = (TextView) findViewById(R.id.consentForm);
-        cform.setOnClickListener(new View.OnClickListener(){
+        bitmoji.setClickable(false);
+        TextView cform2 = (TextView) findViewById(R.id.linkedBitmoji);
+        cform2.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-                Intent intent = new Intent(getApplicationContext(), FirstPageConsent.class);
+                Intent intent = new Intent(getApplicationContext(), FirstPageLinkBitmoji.class);
                 startActivity(intent);
 
 
             }
         });
 
-        */
+
         Button button = (Button) findViewById(R.id.submitButton);
         button.setOnClickListener(new View.OnClickListener() {
 
