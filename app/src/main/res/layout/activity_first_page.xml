@@ -109,7 +109,7 @@
         android:layout_height="30dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="76dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/text_input_border"
         android:hint="@string/name"
         android:inputType=""
@@ -117,7 +117,7 @@
         android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/welcomeTo" />
+        app:layout_constraintTop_toBottomOf="@+id/consentForm" />
 
     <CheckBox
         android:id="@+id/linkedCheckbox"
@@ -125,12 +125,12 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="72dp"
         android:text=" "
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.289"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/participantName" />
+        app:layout_constraintTop_toBottomOf="@+id/welcomeTo" />
 
     <TextView
         android:id="@+id/linkedBitmoji"
@@ -138,14 +138,14 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="76dp"
         android:text="@string/linkBitmoji"
         android:textColor="@android:color/black"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/linkedCheckbox"
-        app:layout_constraintTop_toBottomOf="@+id/participantName" />
+        app:layout_constraintTop_toBottomOf="@+id/welcomeTo" />
 
     <TextView
         android:id="@+id/consentForm"

@@ -5,12 +5,14 @@ import android.app.FragmentManager;
 import android.arch.persistence.room.Room;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.constraint.ConstraintLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -45,7 +47,30 @@ public class Update_Light_TurnOffBright extends Fragment {
 
         });
 
+
+        Calendar calendar1 = Calendar.getInstance();
+        SimpleDateFormat formatter1 = new SimpleDateFormat("h:mm");
+        String currentDate = formatter1.format(calendar1.getTime());
+
+        if(currentDate.compareTo("18:59")<0 || getActivity().getApplicationContext().getSharedPreferences("questionnaire", MODE_PRIVATE).getBoolean("completed", false)) {   ConstraintLayout fr = (ConstraintLayout) updateView.findViewById(R.id.fr);
+            disableEnableControls(false, fr);
+            Toast.makeText(getActivity().getApplicationContext(), "You cannot do the questionnaire before 7:00 PM.", Toast.LENGTH_SHORT).show();
+
+        }
+
+
+
         return updateView;
+    }
+
+    private void disableEnableControls(boolean enable, ViewGroup vg){
+        for (int i = 0; i < vg.getChildCount(); i++){
+            View child = vg.getChildAt(i);
+            child.setEnabled(enable);
+            if (child instanceof ViewGroup){
+                disableEnableControls(enable, (ViewGroup)child);
+            }
+        }
     }
 
     public void goToQuestionnaire(){

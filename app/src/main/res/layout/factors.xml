@@ -48,7 +48,7 @@
 
         <TextView
             android:id="@+id/factorsIntro"
-            android:layout_width="362dp"
+            android:layout_width="match_parent"
             android:layout_height="90dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"

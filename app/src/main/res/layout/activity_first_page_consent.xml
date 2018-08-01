@@ -48,7 +48,7 @@
 
         <TextView
             android:id="@+id/factorsIntro"
-            android:layout_width="362dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
@@ -62,7 +62,7 @@
         <ScrollView
             android:id="@+id/ScrollViewQuestionnaire"
             style="@android:style/Widget.Material.ScrollView"
-            android:layout_width="379dp"
+            android:layout_width="match_parent"
             android:layout_height="439dp"
             android:layout_marginBottom="8dp"
             android:layout_marginEnd="8dp"

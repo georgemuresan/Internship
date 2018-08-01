@@ -114,7 +114,7 @@ public class SecondPage4 extends AppCompatActivity {
                 userDatabase.daoAccess().deleteUserDiaryTable();
 
                 UserQuestionnaire user = new UserQuestionnaire();
-                String username = getSharedPreferences("name", MODE_PRIVATE).getString("username", "nothing");
+                String username = getSharedPreferences("name", MODE_PRIVATE).getString("participantID", "nothing");
                 user.setUsername(username);
                 user.setDate(formattedDate);
                 user.setTimesPerNight(timesPerNight);

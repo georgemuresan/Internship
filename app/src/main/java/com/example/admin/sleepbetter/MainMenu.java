@@ -3,6 +3,7 @@ package com.example.admin.sleepbetter;
 
 import android.app.AlarmManager;
 import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -45,6 +46,8 @@ public class MainMenu extends AppCompatActivity
     static Class nextclass = MainMenu.class;
     static String title = "DEFAULT";
     static String message = "DEFAULT MSG";
+    private static final String DATABASE_NAME = "user_db";
+    private UserDatabase userDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -147,29 +150,18 @@ public class MainMenu extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+
+            int count = getFragmentManager().getBackStackEntryCount();
+
+            if (count == 0) {
+                System.out.println("returns");
+                moveTaskToBack(true);
+            } else {
+                getFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+            }
         }
-
-        int count = getFragmentManager().getBackStackEntryCount();
-
-        if (count == 0) {
-            super.onBackPressed();
-
-            Intent intent = new Intent(this, MainMenu.class);
-            startActivity(intent);
-            finish();
-        } else {
-            getFragmentManager().popBackStack();
-        }
-
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu, menu);
-        return true;
-    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -179,9 +171,6 @@ public class MainMenu extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
 
         return super.onOptionsItemSelected(item);
     }
@@ -192,47 +181,52 @@ public class MainMenu extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
         FragmentManager fragmentManager = getFragmentManager();
-
+        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
 
         if (id == R.id.nav_factors) {
-            fragmentManager.beginTransaction().replace(R.id.content_frame, new Factors()).commit();
+            fragmentTransaction.replace(R.id.content_frame, new Factors());
         } else if (id == R.id.nav_goal_diary) {
-            fragmentManager.beginTransaction().replace(R.id.content_frame, new GoalDiary()).commit();
+            fragmentTransaction.replace(R.id.content_frame, new GoalDiary());
         } else if (id == R.id.nav_data) {
-            fragmentManager.beginTransaction().replace(R.id.content_frame, new Data()).commit();
+            fragmentTransaction.replace(R.id.content_frame, new Data());
         } else if (id == R.id.nav_questionnaire) {
 
             String experiment = getSharedPreferences("name", MODE_PRIVATE).getString("experiment", "nothing");
 
+
             if (experiment.equals(getString(R.string.firstLight))) {
-                fragmentManager.beginTransaction().replace(R.id.content_frame, new Update_Light_Bright()).commit();
+                fragmentTransaction.replace(R.id.content_frame, new Update_Light_Bright());
             } else if (experiment.equals(getString(R.string.secondLight))) {
-                fragmentManager.beginTransaction().replace(R.id.content_frame, new Update_Light_Glasses()).commit();
+                fragmentTransaction.replace(R.id.content_frame, new Update_Light_Glasses());
             } else if (experiment.equals(getString(R.string.thirdLight))) {
-                fragmentManager.beginTransaction().replace(R.id.content_frame, new Update_Light_TurnOffBright()).commit();
+                fragmentTransaction.replace(R.id.content_frame, new Update_Light_TurnOffBright());
             } else if (experiment.equals(getString(R.string.firstCaffeine))) {
-                fragmentManager.beginTransaction().replace(R.id.content_frame, new Update_Caffeine_6hours()).commit();
+                fragmentTransaction.replace(R.id.content_frame, new Update_Caffeine_6hours());
             } else if (experiment.equals(getString(R.string.secondCaffeine))) {
-                fragmentManager.beginTransaction().replace(R.id.content_frame, new Update_Caffeine_limit()).commit();
+                fragmentTransaction.replace(R.id.content_frame, new Update_Caffeine_limit());
             } else if (experiment.equals(getString(R.string.thirdCaffeine))) {
-                fragmentManager.beginTransaction().replace(R.id.content_frame, new Update_Caffeine_Empty()).commit();
+                fragmentTransaction.replace(R.id.content_frame, new Update_Caffeine_Empty());
             } else if (experiment.equals(getString(R.string.firstSchedule))) {
-                fragmentManager.beginTransaction().replace(R.id.content_frame, new Update_Schedule_SameTime()).commit();
+                fragmentTransaction.replace(R.id.content_frame, new Update_Schedule_SameTime());
             } else if (experiment.equals(getString(R.string.secondSchedule))) {
-                fragmentManager.beginTransaction().replace(R.id.content_frame, new Update_Schedule_7hours()).commit();
+                fragmentTransaction.replace(R.id.content_frame, new Update_Schedule_7hours());
             } else if (experiment.equals(getString(R.string.thirdSchedule))) {
-                fragmentManager.beginTransaction().replace(R.id.content_frame, new Update_Schedule_Relax()).commit();
+                fragmentTransaction.replace(R.id.content_frame, new Update_Schedule_Relax());
             } else if (experiment.equals(getString(R.string.fourthSchedule))) {
-                fragmentManager.beginTransaction().replace(R.id.content_frame, new Update_Schedule_Midnight()).commit();
+                fragmentTransaction.replace(R.id.content_frame, new Update_Schedule_Midnight());
             } else {
-                fragmentManager.beginTransaction().replace(R.id.content_frame, new Update()).commit();
+                fragmentTransaction.replace(R.id.content_frame, new Update());
             }
 
         } else if (id == R.id.nav_calendar) {
-            fragmentManager.beginTransaction().replace(R.id.content_frame, new CalendarPage()).commit();
+            fragmentTransaction.replace(R.id.content_frame, new CalendarPage());
         } else if (id == R.id.nav_bot) {
-            fragmentManager.beginTransaction().replace(R.id.content_frame, new Help()).commit();
+            fragmentTransaction.replace(R.id.content_frame, new Help());
         }
+
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+        getFragmentManager().executePendingTransactions();
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
@@ -255,20 +249,37 @@ public class MainMenu extends AppCompatActivity
     }
 
     private void setAlarmManager(int hour, int minute, final String title, final String message) {
-        System.out.println("FMM");
-        this.title = title;
-        this.message = message;
 
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.HOUR_OF_DAY, hour);
-        calendar.set(Calendar.MINUTE, minute);
-        calendar.set(Calendar.SECOND, 0);
+        if (title.equals("Oups")){
+            this.title = title;
+            this.message = message;
+
+            Calendar calendar = Calendar.getInstance();
+            calendar.set(Calendar.HOUR_OF_DAY, hour);
+            calendar.set(Calendar.MINUTE, minute);
+            calendar.set(Calendar.SECOND, 0);
 
 
-        Intent intent1 = new Intent(MainMenu.this, Broadcast1.class);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(MainMenu.this, 0, intent1, 0);
-        AlarmManager am = (AlarmManager) MainMenu.this.getSystemService(MainMenu.this.ALARM_SERVICE);
-        am.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_FIFTEEN_MINUTES, pendingIntent);
+            Intent intent1 = new Intent(MainMenu.this, Broadcast4.class);
+            PendingIntent pendingIntent = PendingIntent.getBroadcast(MainMenu.this, 0, intent1, 0);
+            AlarmManager am = (AlarmManager) MainMenu.this.getSystemService(MainMenu.this.ALARM_SERVICE);
+            am.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_FIFTEEN_MINUTES, pendingIntent);
+        } else {
+
+            this.title = title;
+            this.message = message;
+
+            Calendar calendar = Calendar.getInstance();
+            calendar.set(Calendar.HOUR_OF_DAY, hour);
+            calendar.set(Calendar.MINUTE, minute);
+            calendar.set(Calendar.SECOND, 0);
+
+
+            Intent intent1 = new Intent(MainMenu.this, Broadcast1.class);
+            PendingIntent pendingIntent = PendingIntent.getBroadcast(MainMenu.this, 0, intent1, 0);
+            AlarmManager am = (AlarmManager) MainMenu.this.getSystemService(MainMenu.this.ALARM_SERVICE);
+            am.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_FIFTEEN_MINUTES, pendingIntent);
+        }
 
     }
 
@@ -298,13 +309,13 @@ public class MainMenu extends AppCompatActivity
         int experiment = getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).getInt("KEY_SAVED_RADIO_BUTTON_INDEX", 0);
         switch (experiment) {
             case 1: //increase bright light exposure
-                setAlarmManager(12, 0, "Remember:", "Stay out in the sun at least half an hour todday!");
+                setAlarmManager(12, 0, "Remember:", "Stay out in the sun at least half an hour today!");
                 break;
             case 2: //wear glasses that block blue light during the night
                 setAlarmManager(8, 30, "Remember:", "Turn on your \"use the f.lux\" app");
                 break;
             case 3: // turn off any bright lights 2 hours before going to bed
-                setAlarmManager(19, 30, "Going to bed soon?", "Dont forget to turn off yur light");
+                setAlarmManager(19, 30, "Going to bed soon?", "Do not forget to turn off your light");
                 break;
             case 5: // Do not drink caffeine within 6 hours
                 setAlarmManager(15, 0, "Remember:", "Do not drink caffeine with 6 hours before going to sleep");
@@ -328,6 +339,8 @@ public class MainMenu extends AppCompatActivity
                 setAlarmManager(21, 00, "Remember:", "Go to sleep at 10:30 PM the latest");
                 break;
         }
+
+      //  setAlarmManager(0, 0, "Oups:", "Checking questionnaire");
     }
 
     public static class Broadcast1 extends BroadcastReceiver {
@@ -413,6 +426,73 @@ public class MainMenu extends AppCompatActivity
                     .setAutoCancel(true).setWhen(when)
                     .setContentIntent(pendingIntent);
             notificationManager.notify(21, mNotifyBuilder.build());
+//
+        }
+    }
+
+    public class Broadcast4 extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            getApplicationContext().getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putBoolean("completed", false).apply();
+
+            //updating day
+            int numberOfDays = getApplicationContext().getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).getInt("numberDays", 0);
+            numberOfDays++;
+            getApplicationContext().getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).edit().putInt("numberDays", numberOfDays).apply();
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    Date c = Calendar.getInstance().getTime();
+                    SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
+                    final String formattedDate = df.format(c);
+
+
+                    userDatabase = Room.databaseBuilder(getApplicationContext(), UserDatabase.class, DATABASE_NAME).fallbackToDestructiveMigration().build();
+
+                    int totalQuestionnaires = userDatabase.daoAccess().fetchUserQuestionnaires().size();
+
+                    int fiveDays = getApplicationContext().getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).getInt("days", 0);
+                    int numberOfDays = getApplicationContext().getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).getInt("numberDays", 0);
+
+                    if (numberOfDays >= totalQuestionnaires ){
+
+                        //1 updatam ce se intampla in questionnaire 4
+                        if (fiveDays % 5 == 1){
+                            getApplicationContext().getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).edit().putInt("days", fiveDays).apply();
+                        } else {
+                            getApplicationContext().getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).edit().putInt("days", fiveDays + 1).apply();
+                        }
+                        //2 adaugam -1 in tabel
+
+                        UserQuestionnaire user = new UserQuestionnaire();
+                        String username = getApplicationContext().getSharedPreferences("name", MODE_PRIVATE).getString("username", "nothing");
+                        user.setUsername(username);
+                        user.setDate(formattedDate);
+                        user.setTimesPerNight(-1);
+                        user.setNightTerrors(-1);
+                        user.setFallAsleep(-1);
+                        user.setWakeUp(-1);
+                        user.setFresh(-1);
+                        user.setSad(-1);
+                        user.setSleepy(-1);
+                        user.setTired(-1);
+                        user.setStressed(-1);
+                        user.setApetite(-1);
+                        user.setConcentrate(-1);
+                        user.setCoordinate(-1);
+                        user.setIrritable(-1);
+                        user.setMood(-1);
+
+                        //setting mood value to -1 in shared preferences
+
+                        userDatabase.daoAccess().insertSingleUserQuestionnaire(user);
+
+                        Report rep = new Report(userDatabase, getApplicationContext());
+                        rep.save(username, false, getApplicationContext().getSharedPreferences("consent", MODE_PRIVATE).getString("consent", "nothing"));
+
+                    }
+                }
+            }).start();
 //
         }
     }

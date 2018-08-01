@@ -2,6 +2,8 @@ package com.example.admin.sleepbetter;
 
 
 import android.app.Fragment;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.Html;
@@ -117,6 +119,8 @@ public class Help extends Fragment {
                 return false;
             }
         });
+
+
         return view;
     }
 }

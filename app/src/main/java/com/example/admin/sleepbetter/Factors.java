@@ -31,28 +31,6 @@ public class Factors extends Fragment {
         factorsView = inflater.inflate(R.layout.factors, container, false);
 
 
-        /*
-        TextView ssLight = (TextView) factorsView.findViewById(R.id.lightFactor);
-        ssLight.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
-                openFactor("light");
-            }
-        });
-        TextView deCaffeine = (TextView) factorsView.findViewById(R.id.caffeineFactor);
-        deCaffeine.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
-                openFactor("caffeine");
-            }
-        });
-        TextView crSchedule = (TextView) factorsView.findViewById(R.id.sleepingScheduleFactor);
-        crSchedule.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
-                openFactor("schedule");
-            }
-        });
-
-*/
-
         Button button2 = (Button) factorsView.findViewById(R.id.submit);
 
         button2.setOnClickListener(new View.OnClickListener() {

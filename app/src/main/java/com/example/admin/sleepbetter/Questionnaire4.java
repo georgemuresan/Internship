@@ -116,6 +116,9 @@ public class Questionnaire4 extends Fragment {
 
         Intent intent = new Intent(getActivity().getApplicationContext(), MainMenu.class);
 
+        getActivity().getApplicationContext().getSharedPreferences("questionnaire", MODE_PRIVATE).getBoolean("completed", false);
+        getActivity().getApplicationContext().getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putBoolean("completed", true).apply();
+
         final int timesPerNight = getActivity().getApplicationContext().getSharedPreferences("questionnaire", MODE_PRIVATE).getInt("timesPerNight", 0);
         final int nightTerrors = getActivity().getApplicationContext().getSharedPreferences("questionnaire", MODE_PRIVATE).getInt("nightTerrors", 0);
 
@@ -155,7 +158,7 @@ public class Questionnaire4 extends Fragment {
                 userDatabase = Room.databaseBuilder(getActivity().getApplicationContext(), UserDatabase.class, DATABASE_NAME).fallbackToDestructiveMigration().build();
 
                 UserQuestionnaire user = new UserQuestionnaire();
-                String username = getActivity().getApplicationContext().getSharedPreferences("name", MODE_PRIVATE).getString("username", "nothing");
+                String username = getActivity().getApplicationContext().getSharedPreferences("name", MODE_PRIVATE).getString("participantID", "nothing");
                 user.setUsername(username);
                 user.setDate(formattedDate);
                 user.setTimesPerNight(timesPerNight);
