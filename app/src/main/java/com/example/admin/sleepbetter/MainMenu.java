@@ -83,7 +83,7 @@ public class MainMenu extends AppCompatActivity
         this.createNotificationChannel();
         this.setNotifications();
         this.setSpecialNotification();
-///END NOTIFICATION
+///END NOTIFICATIONs
 
         Button button1 = (Button) findViewById(R.id.whatSleep);
 
