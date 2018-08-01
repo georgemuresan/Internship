@@ -3,6 +3,7 @@ package com.example.admin.sleepbetter;
 
 import android.app.AlarmManager;
 import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -149,30 +150,18 @@ public class MainMenu extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-         //   super.onBackPressed();
-            moveTaskToBack(true);
-        }
- /*
-        int count = getFragmentManager().getBackStackEntryCount();
 
-        if (count == 0) {
-           super.onBackPressed();
+            int count = getFragmentManager().getBackStackEntryCount();
 
-            Intent intent = new Intent(this, MainMenu.class);
-            startActivity(intent);
-            finish();
-        } else {
-            getFragmentManager().popBackStack();
+            if (count == 0) {
+                System.out.println("returns");
+                moveTaskToBack(true);
+            } else {
+                getFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+            }
         }
-*/
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu, menu);
-        return true;
-    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -182,9 +171,6 @@ public class MainMenu extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
 
         return super.onOptionsItemSelected(item);
     }
@@ -195,47 +181,52 @@ public class MainMenu extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
         FragmentManager fragmentManager = getFragmentManager();
-
+        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
 
         if (id == R.id.nav_factors) {
-            fragmentManager.beginTransaction().replace(R.id.content_frame, new Factors()).commit();
+            fragmentTransaction.replace(R.id.content_frame, new Factors());
         } else if (id == R.id.nav_goal_diary) {
-            fragmentManager.beginTransaction().replace(R.id.content_frame, new GoalDiary()).commit();
+            fragmentTransaction.replace(R.id.content_frame, new GoalDiary());
         } else if (id == R.id.nav_data) {
-            fragmentManager.beginTransaction().replace(R.id.content_frame, new Data()).commit();
+            fragmentTransaction.replace(R.id.content_frame, new Data());
         } else if (id == R.id.nav_questionnaire) {
 
             String experiment = getSharedPreferences("name", MODE_PRIVATE).getString("experiment", "nothing");
 
+
             if (experiment.equals(getString(R.string.firstLight))) {
-                fragmentManager.beginTransaction().replace(R.id.content_frame, new Update_Light_Bright()).commit();
+                fragmentTransaction.replace(R.id.content_frame, new Update_Light_Bright());
             } else if (experiment.equals(getString(R.string.secondLight))) {
-                fragmentManager.beginTransaction().replace(R.id.content_frame, new Update_Light_Glasses()).commit();
+                fragmentTransaction.replace(R.id.content_frame, new Update_Light_Glasses());
             } else if (experiment.equals(getString(R.string.thirdLight))) {
-                fragmentManager.beginTransaction().replace(R.id.content_frame, new Update_Light_TurnOffBright()).commit();
+                fragmentTransaction.replace(R.id.content_frame, new Update_Light_TurnOffBright());
             } else if (experiment.equals(getString(R.string.firstCaffeine))) {
-                fragmentManager.beginTransaction().replace(R.id.content_frame, new Update_Caffeine_6hours()).commit();
+                fragmentTransaction.replace(R.id.content_frame, new Update_Caffeine_6hours());
             } else if (experiment.equals(getString(R.string.secondCaffeine))) {
-                fragmentManager.beginTransaction().replace(R.id.content_frame, new Update_Caffeine_limit()).commit();
+                fragmentTransaction.replace(R.id.content_frame, new Update_Caffeine_limit());
             } else if (experiment.equals(getString(R.string.thirdCaffeine))) {
-                fragmentManager.beginTransaction().replace(R.id.content_frame, new Update_Caffeine_Empty()).commit();
+                fragmentTransaction.replace(R.id.content_frame, new Update_Caffeine_Empty());
             } else if (experiment.equals(getString(R.string.firstSchedule))) {
-                fragmentManager.beginTransaction().replace(R.id.content_frame, new Update_Schedule_SameTime()).commit();
+                fragmentTransaction.replace(R.id.content_frame, new Update_Schedule_SameTime());
             } else if (experiment.equals(getString(R.string.secondSchedule))) {
-                fragmentManager.beginTransaction().replace(R.id.content_frame, new Update_Schedule_7hours()).commit();
+                fragmentTransaction.replace(R.id.content_frame, new Update_Schedule_7hours());
             } else if (experiment.equals(getString(R.string.thirdSchedule))) {
-                fragmentManager.beginTransaction().replace(R.id.content_frame, new Update_Schedule_Relax()).commit();
+                fragmentTransaction.replace(R.id.content_frame, new Update_Schedule_Relax());
             } else if (experiment.equals(getString(R.string.fourthSchedule))) {
-                fragmentManager.beginTransaction().replace(R.id.content_frame, new Update_Schedule_Midnight()).commit();
+                fragmentTransaction.replace(R.id.content_frame, new Update_Schedule_Midnight());
             } else {
-                fragmentManager.beginTransaction().replace(R.id.content_frame, new Update()).commit();
+                fragmentTransaction.replace(R.id.content_frame, new Update());
             }
 
         } else if (id == R.id.nav_calendar) {
-            fragmentManager.beginTransaction().replace(R.id.content_frame, new CalendarPage()).commit();
+            fragmentTransaction.replace(R.id.content_frame, new CalendarPage());
         } else if (id == R.id.nav_bot) {
-            fragmentManager.beginTransaction().replace(R.id.content_frame, new Help()).commit();
+            fragmentTransaction.replace(R.id.content_frame, new Help());
         }
+
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+        getFragmentManager().executePendingTransactions();
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

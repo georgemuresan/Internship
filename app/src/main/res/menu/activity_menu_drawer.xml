@@ -7,7 +7,7 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_factors"
-            android:title="Factors" />
+            android:title="Experiments" />
         <item
             android:id="@+id/nav_goal_diary"
             android:title="Goal Diary" />
