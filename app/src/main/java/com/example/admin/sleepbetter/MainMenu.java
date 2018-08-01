@@ -48,6 +48,7 @@ public class MainMenu extends AppCompatActivity
     static String message = "DEFAULT MSG";
     private static final String DATABASE_NAME = "user_db";
     private UserDatabase userDatabase;
+    private static int experiment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -248,12 +249,9 @@ public class MainMenu extends AppCompatActivity
         }
     }
 
-    private void setAlarmManager(int hour, int minute, final String title, final String message) {
+    private void setAlarmManager(int hour, int minute, final String title, final String message, int experiment) {
 
         if (title.equals("Oups")){
-            this.title = title;
-            this.message = message;
-
             Calendar calendar = Calendar.getInstance();
             calendar.set(Calendar.HOUR_OF_DAY, hour);
             calendar.set(Calendar.MINUTE, minute);
@@ -263,11 +261,12 @@ public class MainMenu extends AppCompatActivity
             Intent intent1 = new Intent(MainMenu.this, Broadcast4.class);
             PendingIntent pendingIntent = PendingIntent.getBroadcast(MainMenu.this, 0, intent1, 0);
             AlarmManager am = (AlarmManager) MainMenu.this.getSystemService(MainMenu.this.ALARM_SERVICE);
-            am.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_FIFTEEN_MINUTES, pendingIntent);
+            am.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
         } else {
 
             this.title = title;
             this.message = message;
+            this.experiment = experiment;
 
             Calendar calendar = Calendar.getInstance();
             calendar.set(Calendar.HOUR_OF_DAY, hour);
@@ -278,7 +277,7 @@ public class MainMenu extends AppCompatActivity
             Intent intent1 = new Intent(MainMenu.this, Broadcast1.class);
             PendingIntent pendingIntent = PendingIntent.getBroadcast(MainMenu.this, 0, intent1, 0);
             AlarmManager am = (AlarmManager) MainMenu.this.getSystemService(MainMenu.this.ALARM_SERVICE);
-            am.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_FIFTEEN_MINUTES, pendingIntent);
+            am.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
         }
 
     }
@@ -292,7 +291,7 @@ public class MainMenu extends AppCompatActivity
         Intent intent1 = new Intent(MainMenu.this, Broadcast2.class);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(MainMenu.this, 0, intent1, 0);
         AlarmManager am1 = (AlarmManager) MainMenu.this.getSystemService(MainMenu.this.ALARM_SERVICE);
-        am1.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_FIFTEEN_MINUTES, pendingIntent);
+        am1.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
 
         calendar.set(Calendar.HOUR_OF_DAY, 15);
         calendar.set(Calendar.MINUTE, 35);
@@ -300,7 +299,7 @@ public class MainMenu extends AppCompatActivity
         Intent intent2 = new Intent(MainMenu.this, Broadcast3.class);
         PendingIntent pendingIntent2 = PendingIntent.getBroadcast(MainMenu.this, 0, intent2, 0);
         AlarmManager am2 = (AlarmManager) MainMenu.this.getSystemService(MainMenu.this.ALARM_SERVICE);
-        am2.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_FIFTEEN_MINUTES, pendingIntent2);
+        am2.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent2);
 
     }
 
@@ -309,38 +308,38 @@ public class MainMenu extends AppCompatActivity
         int experiment = getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).getInt("KEY_SAVED_RADIO_BUTTON_INDEX", 0);
         switch (experiment) {
             case 1: //increase bright light exposure
-                setAlarmManager(12, 0, "Remember:", "Stay out in the sun at least half an hour today!");
+                setAlarmManager(12, 0, "Remember:", "Stay out in the sun at least half an hour today!", 1);
                 break;
             case 2: //wear glasses that block blue light during the night
-                setAlarmManager(8, 30, "Remember:", "Turn on your \"use the f.lux\" app");
+                setAlarmManager(8, 30, "Remember:", "Turn on your \"use the f.lux\" app", 2);
                 break;
             case 3: // turn off any bright lights 2 hours before going to bed
-                setAlarmManager(19, 30, "Going to bed soon?", "Do not forget to turn off your light");
+                setAlarmManager(19, 30, "Going to bed soon?", "Do not forget to turn off your light", 3);
                 break;
             case 5: // Do not drink caffeine within 6 hours
-                setAlarmManager(15, 0, "Remember:", "Do not drink caffeine with 6 hours before going to sleep");
+                setAlarmManager(15, 0, "Remember:", "Do not drink caffeine with 6 hours before going to sleep", 5);
                 break;
             case 6: // Limit yourself to 4 cups of coffees per day; 10 canss of
-                setAlarmManager(12, 15, "Remember:", "Limit yourself to 4 cups of coffees per day");
+                setAlarmManager(12, 15, "Remember:", "Limit yourself to 4 cups of coffees per day", 6);
                 break;
             case 7: //Do not drink empty stomach
-                setAlarmManager(8, 30, "Remember:", "Try not to drink on an empty stomach");
+                setAlarmManager(8, 30, "Remember:", "Try not to drink on an empty stomach", 7);
                 break;
             case 9://Usually get up at the same time everyday, even on weekends
-                setAlarmManager(18, 30, "Remember:", "Set your alarm at....");
+                setAlarmManager(18, 30, "Remember:", "Set your alarm at....", 9);
                 break;
             case 10: // Sleep no lesss than 7 hours per night
-                setAlarmManager(19, 00, "Remember:", "Sleep no less than 7 hours per night");
+                setAlarmManager(19, 00, "Remember:", "Sleep no less than 7 hours per night", 10);
                 break;
             case 11: //DO not go to bed unless you are tired. If you are not
-                setAlarmManager(20, 00, "Do not go to bed unless you are tired", "You can do some of the next activities to relax");
+                setAlarmManager(20, 00, "Do not go to bed unless you are tired", "You can do some of the next activities to relax", 11);
                 break;
             case 12: //Go to sleep at 22:30 PM the latest
-                setAlarmManager(21, 00, "Remember:", "Go to sleep at 10:30 PM the latest");
+                setAlarmManager(21, 00, "Remember:", "Go to sleep at 10:30 PM the latest", 12);
                 break;
         }
 
-      //  setAlarmManager(0, 0, "Oups:", "Checking questionnaire");
+        setAlarmManager(0, 1, "Oups:", "Checking questionnaire", 0);
     }
 
     public static class Broadcast1 extends BroadcastReceiver {
@@ -380,8 +379,41 @@ public class MainMenu extends AppCompatActivity
             long when = System.currentTimeMillis();
             NotificationManager notificationManager = (NotificationManager) context
                     .getSystemService(Context.NOTIFICATION_SERVICE);
+//AICIII
+            Intent notificationIntent = null;
+            switch (experiment) {
+                case 1: //increase bright light exposure
+                     notificationIntent = new Intent(context, Update_Light_Bright.class);
+                    break;
+                case 2: //wear glasses that block blue light during the night
+                     notificationIntent = new Intent(context, Update_Light_Glasses.class);
+                    break;
+                case 3: // turn off any bright lights 2 hours before going to bed
+                     notificationIntent = new Intent(context, Update_Light_TurnOffBright.class);
+                    break;
+                case 5: // Do not drink caffeine within 6 hours
+                     notificationIntent = new Intent(context, Update_Caffeine_6hours.class);
+                    break;
+                case 6: // Limit yourself to 4 cups of coffees per day; 10 canss of
+                     notificationIntent = new Intent(context, Update_Caffeine_limit.class);
+                    break;
+                case 7: //Do not drink empty stomach
+                     notificationIntent = new Intent(context, Update_Caffeine_Empty.class);
+                    break;
+                case 9://Usually get up at the same time everyday, even on weekends
+                     notificationIntent = new Intent(context, Update_Schedule_SameTime.class);
+                    break;
+                case 10: // Sleep no lesss than 7 hours per night
+                     notificationIntent = new Intent(context, Update_Schedule_7hours.class);
+                    break;
+                case 11: //DO not go to bed unless you are tired. If you are not
+                     notificationIntent = new Intent(context, Update_Schedule_Relax.class);
+                    break;
+                case 12: //Go to sleep at 22:30 PM the latest
+                     notificationIntent = new Intent(context, Update_Schedule_Midnight.class);
+                    break;
+            }
 
-            Intent notificationIntent = new Intent(context, SecondPage.class);
             notificationIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
             PendingIntent pendingIntent = PendingIntent.getActivity(context, 0,
@@ -392,8 +424,8 @@ public class MainMenu extends AppCompatActivity
 
             NotificationCompat.Builder mNotifyBuilder = new NotificationCompat.Builder(context, "13")
                     .setSmallIcon(R.drawable.pill)
-                    .setContentTitle("Questionaire")
-                    .setContentText("Remember to complete your questionaire").setSound(alarmSound)
+                    .setContentTitle("Questionnaire")
+                    .setContentText("Remember to complete your questionnaire").setSound(alarmSound)
                     .setAutoCancel(true).setWhen(when)
                     .setContentIntent(pendingIntent);
             notificationManager.notify(20, mNotifyBuilder.build());
