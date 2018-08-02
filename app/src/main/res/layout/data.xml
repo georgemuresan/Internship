@@ -59,9 +59,10 @@
         android:id="@+id/ScrollViewQuestionnaire"
         style="@android:style/Widget.Material.ScrollView"
         android:layout_width="match_parent"
-        android:layout_height="360dp"
+        android:layout_height="345dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="5dp"
         android:fillViewport="true"
         android:scrollbarStyle="insideOverlay"
         android:visibility="visible"
@@ -69,6 +70,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.454"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dataIntro"
         tools:targetApi="lollipop">
 
         <FrameLayout
