@@ -45,8 +45,10 @@ public class FirstPageConsent extends AppCompatActivity {
         CheckBox p6 = (CheckBox) findViewById(R.id.checkBox7);
         CheckBox p7 = (CheckBox) findViewById(R.id.checkBox8);
 
-        if (p1.isChecked() && p2.isChecked() && p3.isChecked() && p4.isChecked() && p5.isChecked() && p6.isChecked() && p7.isChecked()){
-            RadioGroup rg = (RadioGroup) findViewById(R.id.group);
+        RadioGroup rg = (RadioGroup) findViewById(R.id.group);
+
+        if (p1.isChecked() && p2.isChecked() && p3.isChecked() && p4.isChecked() && p5.isChecked() && p6.isChecked() && p7.isChecked() && rg.getCheckedRadioButtonId() != -1){
+
             int selectedId = rg.getCheckedRadioButtonId();
 
 
@@ -58,7 +60,7 @@ public class FirstPageConsent extends AppCompatActivity {
 
             startActivity(intent);
         } else {
-            Toast.makeText(getApplicationContext(), "In order to run the experiment all 7 boxes need to be ticked.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "In order to run the experiment all 7 boxes need to be ticked and you need to answer the question", Toast.LENGTH_SHORT).show();
         }
 
 

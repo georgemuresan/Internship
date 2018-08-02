@@ -11,6 +11,7 @@ import android.arch.persistence.room.Room;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
@@ -257,6 +258,9 @@ public class MainMenu extends AppCompatActivity
             calendar.set(Calendar.MINUTE, minute);
             calendar.set(Calendar.SECOND, 0);
 
+            if (Calendar.getInstance().after(calendar)) {
+                calendar.add(Calendar.DAY_OF_MONTH, 1);
+            }
 
             Intent intent1 = new Intent(MainMenu.this, Broadcast4.class);
             PendingIntent pendingIntent = PendingIntent.getBroadcast(MainMenu.this, 0, intent1, 0);
@@ -273,6 +277,9 @@ public class MainMenu extends AppCompatActivity
             calendar.set(Calendar.MINUTE, minute);
             calendar.set(Calendar.SECOND, 0);
 
+            if (Calendar.getInstance().after(calendar)) {
+                calendar.add(Calendar.DAY_OF_MONTH, 1);
+            }
 
             Intent intent1 = new Intent(MainMenu.this, Broadcast1.class);
             PendingIntent pendingIntent = PendingIntent.getBroadcast(MainMenu.this, 0, intent1, 0);
@@ -288,6 +295,10 @@ public class MainMenu extends AppCompatActivity
         calendar.set(Calendar.HOUR_OF_DAY, 19);
         calendar.set(Calendar.MINUTE, 30);
         calendar.set(Calendar.SECOND, 0);
+
+        if (Calendar.getInstance().after(calendar)) {
+            calendar.add(Calendar.DAY_OF_MONTH, 1);
+        }
         Intent intent1 = new Intent(MainMenu.this, Broadcast2.class);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(MainMenu.this, 0, intent1, 0);
         AlarmManager am1 = (AlarmManager) MainMenu.this.getSystemService(MainMenu.this.ALARM_SERVICE);
@@ -422,13 +433,30 @@ public class MainMenu extends AppCompatActivity
 
             Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
 
-            NotificationCompat.Builder mNotifyBuilder = new NotificationCompat.Builder(context, "13")
-                    .setSmallIcon(R.drawable.pill)
-                    .setContentTitle("Questionnaire")
-                    .setContentText("Remember to complete your questionnaire").setSound(alarmSound)
-                    .setAutoCancel(true).setWhen(when)
-                    .setContentIntent(pendingIntent);
-            notificationManager.notify(20, mNotifyBuilder.build());
+            boolean isLocked = context.getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).getBoolean("locked", false);
+            int fiveDays = context.getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).getInt("days", 0);
+
+            if (isLocked && fiveDays % 5 == 0){
+                //daca e blocat si a venit momentul sa se schimbe experimentul
+                NotificationCompat.Builder mNotifyBuilder = new NotificationCompat.Builder(context, "13")
+                        .setSmallIcon(R.drawable.pill)
+                        .setContentTitle("Questionnaire")
+                        .setContentText("Remember to complete your questionnaire and change your experiment! *UNLOCKED*").setSound(alarmSound)
+                        .setAutoCancel(true).setWhen(when)
+                        .setContentIntent(pendingIntent);
+                notificationManager.notify(20, mNotifyBuilder.build());
+
+            } else {
+                NotificationCompat.Builder mNotifyBuilder = new NotificationCompat.Builder(context, "13")
+                        .setSmallIcon(R.drawable.pill)
+                        .setContentTitle("Questionnaire")
+                        .setContentText("Remember to complete your questionnaire").setSound(alarmSound)
+                        .setAutoCancel(true).setWhen(when)
+                        .setContentIntent(pendingIntent);
+                notificationManager.notify(20, mNotifyBuilder.build());
+            }
+
+
 
         }
     }
@@ -529,6 +557,7 @@ public class MainMenu extends AppCompatActivity
                 //scoatem variabila days si verificam: daca se imparte la 5, si nu e locked,
             }).start();
 
+            setSpecialNotification();
             getApplicationContext().getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).edit().putBoolean("locked", true).apply();
 //
         }
