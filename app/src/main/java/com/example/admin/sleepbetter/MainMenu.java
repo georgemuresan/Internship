@@ -76,7 +76,10 @@ public class MainMenu extends AppCompatActivity
 // Adding the right bitmoji
         int mood = getSharedPreferences("MOOD", MODE_PRIVATE).getInt("mood", 0);
         ImageView imageView = (ImageView) headerView.findViewById(R.id.imageView);
-        if (mood == 1) imageView.setImageResource(getSharedPreferences("bmhappy", MODE_PRIVATE).getInt("selectedbitmoji",0));
+        if (mood == 1){
+            imageView.setImageResource(getSharedPreferences("bmhappy", MODE_PRIVATE).getInt("selectedbitmoji",0));
+            System.out.println("HERE GOES");
+        }
         if (mood == 2) imageView.setImageResource(getSharedPreferences("bmok", MODE_PRIVATE).getInt("slectedbitmoji", 0));
         if (mood == 3) imageView.setImageResource(getSharedPreferences("bmnotok", MODE_PRIVATE).getInt("slectedbitmoji", 0));
         if (mood == 4 || mood == 5) imageView.setImageResource(getSharedPreferences("bmbad", MODE_PRIVATE).getInt("slectedbitmoji", 0));

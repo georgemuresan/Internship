@@ -19,6 +19,7 @@ import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
@@ -34,16 +35,7 @@ public class Data extends Fragment implements AdapterView.OnItemSelectedListener
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         dataView = inflater.inflate(R.layout.data, container, false);
-/*
-        GraphView graph = (GraphView) dataView.findViewById(R.id.graph);
-        DataPoint[] dp = new DataPoint[2];
-        for(int i=0; i<1; i++){
-            dp[i] = new DataPoint(1, 3);
-            dp[i+1] = new DataPoint(2, 5);
-        }
 
-        LineGraphSeries<DataPoint> series = new LineGraphSeries<>(dp);
-        graph.addSeries(series);*/
 
         new Thread(new Runnable() {
             @Override
@@ -52,21 +44,32 @@ public class Data extends Fragment implements AdapterView.OnItemSelectedListener
                 GraphView graph = (GraphView) dataView.findViewById(R.id.totalMood);
                 userDatabase = Room.databaseBuilder(getActivity().getApplicationContext(), UserDatabase.class, DATABASE_NAME).fallbackToDestructiveMigration().build();
 
-                LinkedHashMap<Boolean, Integer> numberOfGoodMoods = calculateNrMoods(userDatabase.daoAccess().fetchMoods());
+                ArrayList<Integer> numberOfGoodMoods = (ArrayList<Integer>) userDatabase.daoAccess().fetchMoods();
                 int sizeMoods = sizeOfMoods(numberOfGoodMoods);
 
-                DataPoint[] dp = new DataPoint[sizeMoods];
+
+                System.out.println("DATAAAAAAAAAAAAAAAAAAAAa");
+                System.out.println(sizeMoods);
+
+                int sizeToGraph = 0;
+
+                for (int j=0; j<numberOfGoodMoods.size(); j++){
+                    if (numberOfGoodMoods.get(j) != -1){
+                        sizeToGraph++;
+                    }
+                }
+
+                DataPoint[] dp = new DataPoint[sizeToGraph];
 
                 int i=0;
-                int k=0;
-                for (Map.Entry<Boolean, Integer> entry : numberOfGoodMoods.entrySet()) {
+                for (int k=0; k<numberOfGoodMoods.size(); k++) {
 
-                    if (entry.getKey()){
-                        dp[i] = new DataPoint(k, entry.getValue());
+                    if (numberOfGoodMoods.get(k) != -1){
+                        dp[i] = new DataPoint(k, numberOfGoodMoods.get(k));
                         i++;
                     }
-                    k++;
                 }
+
                 LineGraphSeries<DataPoint> series = new LineGraphSeries<>(dp);
                 graph.addSeries(series);
 
@@ -98,28 +101,43 @@ public class Data extends Fragment implements AdapterView.OnItemSelectedListener
 
                 GraphView graph2 = (GraphView) dataView.findViewById(R.id.shortMood);
                 DataPoint[] dp2;
+
+                //diferit pt ca luam doar de la structuri de 5
+
+                int sizeOfSecondGraph = 0;
+
+                int beginning = (numberOfGoodMoods.size() / 5) * 5 + 1;
+
+                for (int g = beginning; g < numberOfGoodMoods.size(); g++){
+                    if (numberOfGoodMoods.get(g) != -1){
+                        sizeOfSecondGraph++;
+                    }
+                }
+
                 if (userDatabase.daoAccess().fetchMoods().size() > 1) {
 
-                    dp2 = new DataPoint[sizeMoods];
+                    dp2 = new DataPoint[sizeOfSecondGraph];
 
                     //cum schimb
+
                     i=0;
-                    k=0;
-                    Iterator it = numberOfGoodMoods.entrySet().iterator();
-                    while (it.hasNext() && i < numberOfGoodMoods.size() % 6) {
-                        Map.Entry<Boolean, Integer> pair = (Map.Entry<Boolean, Integer>)it.next();
-                        if (pair.getKey()){
+                    int k=0;
+                    Iterator it = numberOfGoodMoods.iterator();
+                    while (it.hasNext() && i < numberOfGoodMoods.size() % 6 - 1) {
+                        Integer pair = (Integer) it.next();
+                        if (pair != -1){
                             dp2[i] = new DataPoint(k + 1, userDatabase.daoAccess().fetchMoods().get((userDatabase.daoAccess().fetchMoods().size() / 5) * 5 + k + 1));
                             i++;
                         }
                         k++;
                     }
-
-
-
                 } else {
                     dp2 = new DataPoint[0];
                 }
+
+                System.out.println(dp2[0].getX() + " " + dp2[0].getY());
+                System.out.println(dp2.length);
+
                 LineGraphSeries<DataPoint> series2 = new LineGraphSeries<>(dp2);
                 graph2.addSeries(series2);
 
@@ -173,26 +191,13 @@ public class Data extends Fragment implements AdapterView.OnItemSelectedListener
         return dataView;
     }
 
-    private LinkedHashMap<Boolean, Integer> calculateNrMoods(List<Integer> integers) {
 
-        LinkedHashMap<Boolean, Integer> result = new LinkedHashMap<Boolean, Integer>();
-
-        for (int i=0; i< integers.size(); i++){
-            if (i != -1){
-                result.put(true, integers.get(i));
-            } else {
-                result.put(false, -1);
-            }
-        }
-        return result;
-    }
-
-    private int sizeOfMoods(LinkedHashMap<Boolean, Integer> integers) {
+    private int sizeOfMoods(ArrayList<Integer> integers) {
 
         int size = 0;
 
-        for (Map.Entry<Boolean, Integer> entry : integers.entrySet()){
-            if (entry.getKey()){
+        for (int i=0; i< integers.size(); i++){
+            if (integers.get(i) != -1){
                 size++;
             }
         }
@@ -303,9 +308,12 @@ public class Data extends Fragment implements AdapterView.OnItemSelectedListener
 
                 GraphView graph = (GraphView) dataView.findViewById(R.id.specificMood);
 
-                LinkedHashMap<Boolean, Integer> numberOfGoodMoods = calculateNrMoods(userDatabase.daoAccess().fetchMoods());
+                ArrayList<Integer> numberOfGoodMoods = (ArrayList<Integer>) userDatabase.daoAccess().fetchMoods();
                 int sizeMoods = sizeOfMoods(numberOfGoodMoods);
 
+
+                System.out.println("DATAAAAAAAAAAAAAAAAAAAAa");
+                System.out.println(sizeMoods);
 
                 DataPoint[] dp = new DataPoint[userDatabase.daoAccess().fetchMoods().size()];
 
@@ -313,14 +321,12 @@ public class Data extends Fragment implements AdapterView.OnItemSelectedListener
                 List<Integer> listInNeed = getListFromSpinner(text);
 
                 int i=0;
-                int k=0;
-                for (Map.Entry<Boolean, Integer> entry : numberOfGoodMoods.entrySet()) {
+                for (int k=0; k<numberOfGoodMoods.size(); k++) {
 
-                    if (entry.getKey()){
+                    if (numberOfGoodMoods.get(k) != -1){
                         dp[i] = new DataPoint(k, listInNeed.get(k));
                         i++;
                     }
-                    k++;
                 }
 
                 LineGraphSeries<DataPoint> series = new LineGraphSeries<>(dp);
@@ -395,12 +401,4 @@ public class Data extends Fragment implements AdapterView.OnItemSelectedListener
 
 
     }
-/*
-    public void onBackPressed() {
-        System.out.println("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW");
-        Intent intent = new Intent(getActivity(), MainMenu.class);
-        startActivity(intent);
-        getActivity().finish();
-
-    }*/
 }

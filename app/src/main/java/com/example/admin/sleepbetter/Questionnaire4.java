@@ -113,7 +113,7 @@ public class Questionnaire4 extends Fragment {
 
     public void goToThirdActivity(){
 
-
+System.out.println("test");
         Intent intent = new Intent(getActivity().getApplicationContext(), MainMenu.class);
 
         getActivity().getApplicationContext().getSharedPreferences("questionnaire", MODE_PRIVATE).getBoolean("completed", false);
@@ -155,6 +155,7 @@ public class Questionnaire4 extends Fragment {
             @Override
             public void run() {
 
+                System.out.println("entered thread");
                 userDatabase = Room.databaseBuilder(getActivity().getApplicationContext(), UserDatabase.class, DATABASE_NAME).fallbackToDestructiveMigration().build();
 
                 UserQuestionnaire user = new UserQuestionnaire();
@@ -178,7 +179,8 @@ public class Questionnaire4 extends Fragment {
 
                 userDatabase.daoAccess().insertSingleUserQuestionnaire(user);
 
-
+                System.out.println("mood id " + getActivity().getApplicationContext().getSharedPreferences("MOOD", MODE_PRIVATE).getInt("mood", 0));
+                System.out.println(userDatabase.daoAccess().fetchUserQuestionnaires().size() + " questionnaires");
                 if (!comment.equals("")) {
 
 
@@ -201,7 +203,7 @@ public class Questionnaire4 extends Fragment {
         SimpleDateFormat df2 = new SimpleDateFormat("yyyy-MM-dd");
         final String formattedDate2 = df2.format(c);
 
-
+        System.out.println("passed thread");
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
         String json = sharedPrefs.getString("trial", "");
         Gson gson = new Gson();
