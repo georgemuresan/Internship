@@ -2,10 +2,12 @@ package com.example.admin.sleepbetter;
 
 import android.arch.persistence.room.Room;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -25,9 +27,12 @@ public class SecondPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
 
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second_page);
+
+        SharedPreferences preferences = getSharedPreferences("bmsleep", MODE_PRIVATE);
+        ImageView imageView = findViewById(R.id.imageView6);
+        imageView.setImageResource(preferences.getInt("slectedbitmoji", 0));
 
         Button button = (Button) findViewById(R.id.submitButton);
 
@@ -46,10 +51,6 @@ public class SecondPage extends AppCompatActivity {
 
         List<String> listOne = getIntervals("upToFive");
         getSeekbarWithIntervals("nightTerrors").setIntervals(listOne);
-
-
-
-
 
 
     }
@@ -73,7 +74,6 @@ public class SecondPage extends AppCompatActivity {
         getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).getInt("KEY_SAVED_RADIO_BUTTON_INDEX", 0);
         getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).edit().putInt("KEY_SAVED_RADIO_BUTTON_INDEX", 1).apply();
         startActivity(intent);
-
 
 
     }

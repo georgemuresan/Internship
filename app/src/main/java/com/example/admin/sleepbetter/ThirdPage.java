@@ -1,10 +1,12 @@
 package com.example.admin.sleepbetter;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 
 public class ThirdPage extends AppCompatActivity {
 
@@ -15,6 +17,10 @@ public class ThirdPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_third_page);
+
+        SharedPreferences preferences = getSharedPreferences("MOOD", MODE_PRIVATE);
+        ImageView imageView = findViewById(R.id.imageView30);
+        imageView.setImageResource(preferences.getInt("moodbitmoji", 0));
 
         Button button = (Button) findViewById(R.id.submitButton);
 
@@ -28,6 +34,7 @@ public class ThirdPage extends AppCompatActivity {
 
         });
     }
+
     private void goToMainMenu() {
 
         Intent intent = new Intent(this, MainMenu.class);

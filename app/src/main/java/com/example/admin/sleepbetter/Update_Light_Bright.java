@@ -3,6 +3,7 @@ package com.example.admin.sleepbetter;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.arch.persistence.room.Room;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
@@ -10,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
@@ -33,6 +35,11 @@ public class Update_Light_Bright extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         updateView = inflater.inflate(R.layout.update_light_bright, container, false);
+        SharedPreferences preferences = this.getActivity().getSharedPreferences("bmhappy", MODE_PRIVATE);
+        ImageView imageView = updateView.findViewById(R.id.imageView15);
+        imageView.setImageResource(preferences.getInt("selectedbitmoji",0));
+
+
 
         List<String> listOne = getIntervals("dayReview");
         getSeekbarWithIntervals("dayReviewBar").setIntervals(listOne);
