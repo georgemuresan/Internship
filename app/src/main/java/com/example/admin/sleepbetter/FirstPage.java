@@ -27,6 +27,7 @@ public class FirstPage extends AppCompatActivity {
         setContentView(R.layout.activity_first_page);
 
         nameBox = (EditText) findViewById(R.id.yourName);
+        System.out.println("INPUT IS :" + nameBox.getText().toString());
         participantID = (EditText) findViewById(R.id.participantName);
 /*
         getApplicationContext().getSharedPreferences("MOOD", MODE_PRIVATE).edit().clear().commit();

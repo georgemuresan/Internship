@@ -146,7 +146,7 @@ System.out.println("test");
 
         getActivity().getApplicationContext().getSharedPreferences("MOOD", MODE_PRIVATE).edit().putInt("mood", moodCalculator(timesPerNight, nightTerrors, sad, sleepy, tired, stressed, irritable, concentrate+1, coordinate+1)).apply();
 
-        EditText commentBox = (EditText) questionnaireView.findViewById(R.id.yourName2);
+        EditText commentBox = (EditText) questionnaireView.findViewById(R.id.yourName2); 
         final String comment = commentBox.getText().toString();
 
         startActivity(intent);
