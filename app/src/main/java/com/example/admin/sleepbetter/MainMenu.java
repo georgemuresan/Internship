@@ -42,8 +42,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Calendar;
 
-public class MainMenu extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+public class MainMenu extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     static Class nextclass = MainMenu.class;
     static String title = "DEFAULT";
     static String message = "DEFAULT MSG";
@@ -59,6 +58,7 @@ public class MainMenu extends AppCompatActivity
         SharedPreferences preferences = getSharedPreferences("MOOD", MODE_PRIVATE);
         ImageView imageView = findViewById(R.id.imageView2);
         imageView.setImageResource(preferences.getInt("moodbitmoji", 0));
+
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -82,7 +82,6 @@ public class MainMenu extends AppCompatActivity
         int mood = getSharedPreferences("MOOD", MODE_PRIVATE).getInt("moodbitmoji", 0);
         ImageView imageView2 = (ImageView) headerView.findViewById(R.id.imageView);
         imageView2.setImageResource(mood);
-
 
         //NOTIFICATION DEMO
         this.createNotificationChannel();
@@ -255,7 +254,7 @@ public class MainMenu extends AppCompatActivity
 
     private void setAlarmManager(int hour, int minute, final String title, final String message, int experiment) {
 
-        if (title.equals("Oups")) {
+        if (title.equals("Oups")){
             Calendar calendar = Calendar.getInstance();
             calendar.set(Calendar.HOUR_OF_DAY, hour);
             calendar.set(Calendar.MINUTE, minute);
@@ -439,7 +438,7 @@ public class MainMenu extends AppCompatActivity
             boolean isLocked = context.getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).getBoolean("locked", false);
             int fiveDays = context.getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).getInt("days", 0);
 
-            if (isLocked && fiveDays % 5 == 0) {
+            if (isLocked && fiveDays % 5 == 0){
                 //daca e blocat si a venit momentul sa se schimbe experimentul
                 NotificationCompat.Builder mNotifyBuilder = new NotificationCompat.Builder(context, "13")
                         .setSmallIcon(R.drawable.pill)
@@ -458,6 +457,7 @@ public class MainMenu extends AppCompatActivity
                         .setContentIntent(pendingIntent);
                 notificationManager.notify(20, mNotifyBuilder.build());
             }
+
 
 
         }
@@ -516,11 +516,11 @@ public class MainMenu extends AppCompatActivity
                     int fiveDays = getApplicationContext().getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).getInt("days", 0);
                     int numberOfDays = getApplicationContext().getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).getInt("numberDays", 0);
 
-                    if (numberOfDays >= totalQuestionnaires) {
+                    if (numberOfDays >= totalQuestionnaires ){
 
                         //daca nu a facut chestionarul
                         //1 updatam ce se intampla in questionnaire 4
-                        if (fiveDays % 5 == 1) {
+                        if (fiveDays % 5 == 1){
                             getApplicationContext().getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).edit().putInt("days", fiveDays).apply();
                         } else {
                             getApplicationContext().getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).edit().putInt("days", fiveDays + 1).apply();

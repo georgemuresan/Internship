@@ -37,11 +37,11 @@ public class Questionnaire4 extends Fragment {
     private UserDatabase userDatabase;
 
     View questionnaireView;
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         questionnaireView = inflater.inflate(R.layout.questionnaire_four, container, false);
+
         SharedPreferences preferences = this.getActivity().getSharedPreferences("bmwalk", MODE_PRIVATE);
         ImageView imageView = questionnaireView.findViewById(R.id.imageView9);
         imageView.setImageResource(preferences.getInt("selectedbitmoji", 0));
@@ -79,7 +79,7 @@ public class Questionnaire4 extends Fragment {
                 add("3");
                 add("4/4+");
             }};
-        } else if (command.equals("upToFive")) {
+        } else  if (command.equals("upToFive")) {
             return new ArrayList<String>() {{
                 add("1");
                 add("2");
@@ -116,9 +116,9 @@ public class Questionnaire4 extends Fragment {
     }
 
 
-    public void goToThirdActivity() {
+    public void goToThirdActivity(){
 
-
+        System.out.println("test");
         Intent intent = new Intent(getActivity().getApplicationContext(), MainMenu.class);
 
         getActivity().getApplicationContext().getSharedPreferences("questionnaire", MODE_PRIVATE).getBoolean("completed", false);
@@ -141,7 +141,6 @@ public class Questionnaire4 extends Fragment {
         final int concentrate = concentrateBar.getProgress();
         final int coordinate = coordinateBar.getProgress();
 
-
         getActivity().getApplicationContext().getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("apetite", apetite + 1).apply();
         getActivity().getApplicationContext().getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("concentrate", concentrate + 1).apply();
         getActivity().getApplicationContext().getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("coordinate", coordinate + 1).apply();
@@ -150,9 +149,9 @@ public class Questionnaire4 extends Fragment {
         SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
         final String formattedDate = df.format(c);
 
-        getActivity().getApplicationContext().getSharedPreferences("MOOD", MODE_PRIVATE).edit().putInt("mood", moodCalculator(timesPerNight, nightTerrors, sad, sleepy, tired, stressed, irritable, concentrate + 1, coordinate + 1)).apply();
+        getActivity().getApplicationContext().getSharedPreferences("MOOD", MODE_PRIVATE).edit().putInt("mood", moodCalculator(timesPerNight, nightTerrors, sad, sleepy, tired, stressed, irritable, concentrate+1, coordinate+1)).apply();
 
-        EditText commentBox = (EditText) questionnaireView.findViewById(R.id.yourName2); 
+        EditText commentBox = (EditText) questionnaireView.findViewById(R.id.yourName2);
         final String comment = commentBox.getText().toString();
 
         startActivity(intent);
@@ -160,6 +159,8 @@ public class Questionnaire4 extends Fragment {
         new Thread(new Runnable() {
             @Override
             public void run() {
+
+                System.out.println("entered thread");
                 userDatabase = Room.databaseBuilder(getActivity().getApplicationContext(), UserDatabase.class, DATABASE_NAME).fallbackToDestructiveMigration().build();
 
                 UserQuestionnaire user = new UserQuestionnaire();
@@ -175,15 +176,16 @@ public class Questionnaire4 extends Fragment {
                 user.setSleepy(sleepy);
                 user.setTired(tired);
                 user.setStressed(stressed);
-                user.setApetite(apetite + 1);
-                user.setConcentrate(concentrate + 1);
-                user.setCoordinate(coordinate + 1);
+                user.setApetite(apetite+1);
+                user.setConcentrate(concentrate+1);
+                user.setCoordinate(coordinate+1);
                 user.setIrritable(irritable);
-                user.setMood(getActivity().getApplicationContext().getSharedPreferences("MOOD", MODE_PRIVATE).getInt("moodbitmoji", 0));
+                user.setMood(getActivity().getApplicationContext().getSharedPreferences("MOOD", MODE_PRIVATE).getInt("mood", 0));
 
                 userDatabase.daoAccess().insertSingleUserQuestionnaire(user);
 
-
+                System.out.println("mood id " + getActivity().getApplicationContext().getSharedPreferences("MOOD", MODE_PRIVATE).getInt("mood", 0));
+                System.out.println(userDatabase.daoAccess().fetchUserQuestionnaires().size() + " questionnaires");
                 if (!comment.equals("")) {
 
 
@@ -206,26 +208,25 @@ public class Questionnaire4 extends Fragment {
         SimpleDateFormat df2 = new SimpleDateFormat("yyyy-MM-dd");
         final String formattedDate2 = df2.format(c);
 
-
+        System.out.println("passed thread");
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
         String json = sharedPrefs.getString("trial", "");
         Gson gson = new Gson();
 
-        Type type = new TypeToken<List<HomeCollection>>() {
-        }.getType();
+        Type type = new TypeToken<List<HomeCollection>>() {}.getType();
         List<HomeCollection> arrayList = gson.fromJson(json, type);
 
         HomeCollection.date_collection_arr = (ArrayList<HomeCollection>) arrayList;
-        HomeCollection coll = HomeCollection.date_collection_arr.get(HomeCollection.date_collection_arr.size() - 1);
+        HomeCollection coll = HomeCollection.date_collection_arr.get(HomeCollection.date_collection_arr.size()-1);
         String date = coll.date;
 
-        if (date.equals(formattedDate2)) {
+        if (date.equals(formattedDate2)){
             String commentt = coll.comment;
             commentt = commentt + " / " + comment;
 
-            HomeCollection.date_collection_arr.remove(HomeCollection.date_collection_arr.size() - 1);
+            HomeCollection.date_collection_arr.remove(HomeCollection.date_collection_arr.size()-1);
 
-            HomeCollection.date_collection_arr.add(new HomeCollection(formattedDate2, experiment, String.valueOf(getActivity().getApplicationContext().getSharedPreferences("MOOD", MODE_PRIVATE).getInt("moodbitmoji", 0)), "No experiment started yet", commentt));
+            HomeCollection.date_collection_arr.add(new HomeCollection(formattedDate2, experiment, String.valueOf(getActivity().getApplicationContext().getSharedPreferences("MOOD", MODE_PRIVATE).getInt("mood", 0)), "No experiment started yet", commentt));
 
             SharedPreferences.Editor editor = sharedPrefs.edit();
 
@@ -234,7 +235,7 @@ public class Questionnaire4 extends Fragment {
             editor.putString("trial", json);
             editor.commit();
         } else {
-            HomeCollection.date_collection_arr.add(new HomeCollection(formattedDate2, experiment, String.valueOf(getActivity().getApplicationContext().getSharedPreferences("MOOD", MODE_PRIVATE).getInt("moodbitmoji", 0)), "No experiment started yet", comment));
+            HomeCollection.date_collection_arr.add(new HomeCollection(formattedDate2, experiment,  String.valueOf(getActivity().getApplicationContext().getSharedPreferences("MOOD", MODE_PRIVATE).getInt("mood", 0)), "No experiment started yet", comment));
 
             SharedPreferences.Editor editor = sharedPrefs.edit();
 
@@ -244,8 +245,8 @@ public class Questionnaire4 extends Fragment {
             editor.commit();
         }
 
-        int days = getActivity().getApplicationContext().getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).getInt("days", 0);
-        if (days % 5 == 1) {
+        int days =  getActivity().getApplicationContext().getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).getInt("days", 0);
+        if (days % 5 == 1){
             getActivity().getApplicationContext().getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).edit().putInt("days", days).apply();
         } else {
             getActivity().getApplicationContext().getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).edit().putInt("days", days + 1).apply();
@@ -253,13 +254,13 @@ public class Questionnaire4 extends Fragment {
 
 
     }
-
     private int moodCalculator(int timesNight, int nightmares, int sad, int sleepy, int tired, int stressed, int irritable, int concentrate, int coordinate) {
-        System.out.println(timesNight + " " + nightmares + " " + sad + " " + sleepy + " " + tired + " " + stressed + " " + irritable + " " + concentrate + " " + coordinate);
+        System.out.println( timesNight + " " + nightmares + " " +   sad + " " +   sleepy + " " +   tired + " " +   stressed + " " +   irritable + " " +   concentrate + " " +   coordinate);
         int avgMood = (sad + sleepy + tired + stressed + irritable) / 5;
         int avgNight = (timesNight + nightmares) / 2;
         int avgAction = (concentrate + coordinate) / 2;
         int result = (avgMood * 3 + avgNight + avgAction) / 5;
         return result;
     }
+
 }
