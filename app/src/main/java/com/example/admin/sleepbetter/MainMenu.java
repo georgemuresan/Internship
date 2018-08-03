@@ -254,7 +254,7 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
 
     private void setAlarmManager(int hour, int minute, final String title, final String message, int experiment) {
 
-        if (title.equals("Oups")){
+        if (title.equals("Oups")) {
             Calendar calendar = Calendar.getInstance();
             calendar.set(Calendar.HOUR_OF_DAY, hour);
             calendar.set(Calendar.MINUTE, minute);
@@ -371,12 +371,12 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
                     notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
 
-            Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+            // Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
 
             NotificationCompat.Builder mNotifyBuilder = new NotificationCompat.Builder(context, "13")
                     .setSmallIcon(R.drawable.pill)
                     .setContentTitle(title)
-                    .setContentText(message).setSound(alarmSound)
+                    .setContentText(message)
                     .setAutoCancel(true).setWhen(when)
                     .setContentIntent(pendingIntent);
             notificationManager.notify(13, mNotifyBuilder.build());
@@ -433,17 +433,17 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
                     notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
 
-            Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+            // Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
 
             boolean isLocked = context.getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).getBoolean("locked", false);
             int fiveDays = context.getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).getInt("days", 0);
 
-            if (isLocked && fiveDays % 5 == 0){
+            if (isLocked && fiveDays % 5 == 0) {
                 //daca e blocat si a venit momentul sa se schimbe experimentul
                 NotificationCompat.Builder mNotifyBuilder = new NotificationCompat.Builder(context, "13")
                         .setSmallIcon(R.drawable.pill)
                         .setContentTitle("Questionnaire")
-                        .setContentText("Remember to complete your questionnaire and change your experiment! *UNLOCKED*").setSound(alarmSound)
+                        .setContentText("Remember to complete your questionnaire and change your experiment! *UNLOCKED*")
                         .setAutoCancel(true).setWhen(when)
                         .setContentIntent(pendingIntent);
                 notificationManager.notify(20, mNotifyBuilder.build());
@@ -452,12 +452,11 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
                 NotificationCompat.Builder mNotifyBuilder = new NotificationCompat.Builder(context, "13")
                         .setSmallIcon(R.drawable.pill)
                         .setContentTitle("Questionnaire")
-                        .setContentText("Remember to complete your questionnaire").setSound(alarmSound)
+                        .setContentText("Remember to complete your questionnaire")
                         .setAutoCancel(true).setWhen(when)
                         .setContentIntent(pendingIntent);
                 notificationManager.notify(20, mNotifyBuilder.build());
             }
-
 
 
         }
@@ -479,12 +478,12 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
                     notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
 
-            Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+          //  Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
 
             NotificationCompat.Builder mNotifyBuilder = new NotificationCompat.Builder(context, "13")
                     .setSmallIcon(R.drawable.pill)
                     .setContentTitle("Do you have any question?")
-                    .setContentText("Pam: Ask me something if you are courious").setSound(alarmSound)
+                    .setContentText("Pam: Ask me something if you are courious")
                     .setAutoCancel(true).setWhen(when)
                     .setContentIntent(pendingIntent);
             notificationManager.notify(21, mNotifyBuilder.build());
@@ -516,11 +515,11 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
                     int fiveDays = getApplicationContext().getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).getInt("days", 0);
                     int numberOfDays = getApplicationContext().getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).getInt("numberDays", 0);
 
-                    if (numberOfDays >= totalQuestionnaires ){
+                    if (numberOfDays >= totalQuestionnaires) {
 
                         //daca nu a facut chestionarul
                         //1 updatam ce se intampla in questionnaire 4
-                        if (fiveDays % 5 == 1){
+                        if (fiveDays % 5 == 1) {
                             getApplicationContext().getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).edit().putInt("days", fiveDays).apply();
                         } else {
                             getApplicationContext().getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).edit().putInt("days", fiveDays + 1).apply();

@@ -80,7 +80,7 @@ public class Help extends Fragment {
                                         @Override
                                         public void run() {
                                             chatDisplayTV.append(
-                                                    Html.fromHtml("<p><b>BOT:</b> " +
+                                                    Html.fromHtml("<p><b>ALEX:</b> " +
                                                             botStatement + "</p>")
                                             );
                                         }
@@ -98,7 +98,7 @@ public class Help extends Fragment {
                                                     public void success(Request request, Response response, String body) {
                                                         Log.d(TAG, "" + response + " ; " + body);
                                                         chatDisplayTV.append(
-                                                                Html.fromHtml("<p><b>BOT:</b> " +
+                                                                Html.fromHtml("<p><b>ALEX:</b> " +
                                                                         body + "</p>")
                                                         );
                                                     }
