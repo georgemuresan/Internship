@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.google.gson.Gson;
 
@@ -32,10 +33,13 @@ public class SecondPage4 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
 
-
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_second_page_four);
+
+        SharedPreferences preferences = getSharedPreferences("bmjump", MODE_PRIVATE);
+        ImageView imageView = findViewById(R.id.imageView9);
+        imageView.setImageResource(preferences.getInt("slectedbitmoji", 0));
 
         Button button = (Button) findViewById(R.id.submitButton);
 
@@ -56,8 +60,6 @@ public class SecondPage4 extends AppCompatActivity {
         getSeekbarWithIntervals("coordinate").setIntervals(listOne);
 
         getSeekbarWithIntervals("apetite").setIntervals(listOne);
-
-
 
 
     }
@@ -96,8 +98,11 @@ public class SecondPage4 extends AppCompatActivity {
         SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
         final String formattedDate = df.format(c);
 
-        int mood = getSharedPreferences("MOOD", MODE_PRIVATE).getInt("mood", 0);
-        getSharedPreferences("MOOD", MODE_PRIVATE).edit().putInt("mood", moodCalculator(timesPerNight, nightTerrors, sad, sleepy, tired, stressed, irritable, concentrate+1, coordinate +1)).apply();
+        //CALCULATE THE MOOOD
+        int mood = moodCalculator(timesPerNight, nightTerrors, sad, sleepy, tired, stressed, irritable, concentrate + 1, coordinate + 1);
+        System.out.println("UPPER MOOD is " + mood);
+        this.doMood(mood);
+
 
         startActivity(intent);
 
@@ -126,9 +131,9 @@ public class SecondPage4 extends AppCompatActivity {
                 user.setSleepy(sleepy);
                 user.setTired(tired);
                 user.setStressed(stressed);
-                user.setApetite(apetite +1);
-                user.setConcentrate(concentrate+1);
-                user.setCoordinate(coordinate+1);
+                user.setApetite(apetite + 1);
+                user.setConcentrate(concentrate + 1);
+                user.setCoordinate(coordinate + 1);
                 user.setIrritable(irritable);
                 user.setMood(getSharedPreferences("MOOD", MODE_PRIVATE).getInt("mood", 0));
 
@@ -138,12 +143,12 @@ public class SecondPage4 extends AppCompatActivity {
                 if (!comment.equals("")) {
 
 
-                UserDiary userDiary = new UserDiary();
-                userDiary.setUsername(username);
-                userDiary.setDate(formattedDate);
-                userDiary.setComment(comment);
+                    UserDiary userDiary = new UserDiary();
+                    userDiary.setUsername(username);
+                    userDiary.setDate(formattedDate);
+                    userDiary.setComment(comment);
 
-                userDatabase.daoAccess().insertSingleUserDiary(userDiary);
+                    userDatabase.daoAccess().insertSingleUserDiary(userDiary);
                 }
                 Report rep = new Report(userDatabase, getApplicationContext());
                 rep.save(username, true, getSharedPreferences("consent", MODE_PRIVATE).getString("consent", "nothing"));
@@ -201,7 +206,7 @@ public class SecondPage4 extends AppCompatActivity {
 
     private SeekBarWithIntervals getSeekbarWithIntervals(String name) {
 
-      if (name.equals("concentrate")) {
+        if (name.equals("concentrate")) {
             if (concentrateBar == null) {
                 concentrateBar = (SeekBarWithIntervals) findViewById(R.id.concentrateBar);
             }
@@ -221,6 +226,22 @@ public class SecondPage4 extends AppCompatActivity {
             return apetiteBar;
         }
         return null;
+    }
+
+    private void doMood(int mood) {
+        System.out.println("MOOD is " + mood);
+        int happy = getSharedPreferences("bmhappy", MODE_PRIVATE).getInt("slectedbitmoji", 0);
+        int ok = getSharedPreferences("bmok", MODE_PRIVATE).getInt("slectedbitmoji", 0);
+        int notok = getSharedPreferences("bmnotok", MODE_PRIVATE).getInt("slectedbitmoji", 0);
+        int bad = getSharedPreferences("bmbad", MODE_PRIVATE).getInt("slectedbitmoji", 0);
+
+        SharedPreferences preferences = getSharedPreferences("MOOD", MODE_PRIVATE);
+        if (mood == 1 || mood == 0) preferences.edit().putInt("moodbitmoji", happy).apply();
+        if (mood == 2) preferences.edit().putInt("moodbitmoji", ok).apply();
+        if (mood == 3) preferences.edit().putInt("moodbitmoji", notok).apply();
+        if (mood == 4 || mood == 5) preferences.edit().putInt("moodbitmoji", bad).apply();
+
+
     }
 /*
     public void onBackPressed() {

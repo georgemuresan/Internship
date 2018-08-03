@@ -176,8 +176,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.501"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/yourGoal"
-            app:srcCompat="@drawable/happy" />
+            app:layout_constraintTop_toBottomOf="@+id/yourGoal" />
 
         <Button
             android:id="@+id/button"

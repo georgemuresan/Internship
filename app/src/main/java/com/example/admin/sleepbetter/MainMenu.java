@@ -55,6 +55,11 @@ public class MainMenu extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
+
+        SharedPreferences preferences = getSharedPreferences("MOOD", MODE_PRIVATE);
+        ImageView imageView = findViewById(R.id.imageView2);
+        imageView.setImageResource(preferences.getInt("moodbitmoji", 0));
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -74,12 +79,10 @@ public class MainMenu extends AppCompatActivity
         String name = getSharedPreferences("name", MODE_PRIVATE).getString("username", "nothing");
         navUsername.setText(name);
 // Adding the right bitmoji
-        int mood = getSharedPreferences("MOOD", MODE_PRIVATE).getInt("mood", 0);
-        ImageView imageView = (ImageView) headerView.findViewById(R.id.imageView);
-        if (mood == 1) imageView.setImageResource(getSharedPreferences("bmhappy", MODE_PRIVATE).getInt("selectedbitmoji",0));
-        if (mood == 2) imageView.setImageResource(getSharedPreferences("bmok", MODE_PRIVATE).getInt("slectedbitmoji", 0));
-        if (mood == 3) imageView.setImageResource(getSharedPreferences("bmnotok", MODE_PRIVATE).getInt("slectedbitmoji", 0));
-        if (mood == 4 || mood == 5) imageView.setImageResource(getSharedPreferences("bmbad", MODE_PRIVATE).getInt("slectedbitmoji", 0));
+        int mood = getSharedPreferences("MOOD", MODE_PRIVATE).getInt("moodbitmoji", 0);
+        ImageView imageView2 = (ImageView) headerView.findViewById(R.id.imageView);
+        imageView2.setImageResource(mood);
+
 
         //NOTIFICATION DEMO
         this.createNotificationChannel();
@@ -252,7 +255,7 @@ public class MainMenu extends AppCompatActivity
 
     private void setAlarmManager(int hour, int minute, final String title, final String message, int experiment) {
 
-        if (title.equals("Oups")){
+        if (title.equals("Oups")) {
             Calendar calendar = Calendar.getInstance();
             calendar.set(Calendar.HOUR_OF_DAY, hour);
             calendar.set(Calendar.MINUTE, minute);
@@ -394,34 +397,34 @@ public class MainMenu extends AppCompatActivity
             Intent notificationIntent = null;
             switch (experiment) {
                 case 1: //increase bright light exposure
-                     notificationIntent = new Intent(context, Update_Light_Bright.class);
+                    notificationIntent = new Intent(context, Update_Light_Bright.class);
                     break;
                 case 2: //wear glasses that block blue light during the night
-                     notificationIntent = new Intent(context, Update_Light_Glasses.class);
+                    notificationIntent = new Intent(context, Update_Light_Glasses.class);
                     break;
                 case 3: // turn off any bright lights 2 hours before going to bed
-                     notificationIntent = new Intent(context, Update_Light_TurnOffBright.class);
+                    notificationIntent = new Intent(context, Update_Light_TurnOffBright.class);
                     break;
                 case 5: // Do not drink caffeine within 6 hours
-                     notificationIntent = new Intent(context, Update_Caffeine_6hours.class);
+                    notificationIntent = new Intent(context, Update_Caffeine_6hours.class);
                     break;
                 case 6: // Limit yourself to 4 cups of coffees per day; 10 canss of
-                     notificationIntent = new Intent(context, Update_Caffeine_limit.class);
+                    notificationIntent = new Intent(context, Update_Caffeine_limit.class);
                     break;
                 case 7: //Do not drink empty stomach
-                     notificationIntent = new Intent(context, Update_Caffeine_Empty.class);
+                    notificationIntent = new Intent(context, Update_Caffeine_Empty.class);
                     break;
                 case 9://Usually get up at the same time everyday, even on weekends
-                     notificationIntent = new Intent(context, Update_Schedule_SameTime.class);
+                    notificationIntent = new Intent(context, Update_Schedule_SameTime.class);
                     break;
                 case 10: // Sleep no lesss than 7 hours per night
-                     notificationIntent = new Intent(context, Update_Schedule_7hours.class);
+                    notificationIntent = new Intent(context, Update_Schedule_7hours.class);
                     break;
                 case 11: //DO not go to bed unless you are tired. If you are not
-                     notificationIntent = new Intent(context, Update_Schedule_Relax.class);
+                    notificationIntent = new Intent(context, Update_Schedule_Relax.class);
                     break;
                 case 12: //Go to sleep at 22:30 PM the latest
-                     notificationIntent = new Intent(context, Update_Schedule_Midnight.class);
+                    notificationIntent = new Intent(context, Update_Schedule_Midnight.class);
                     break;
             }
 
@@ -436,7 +439,7 @@ public class MainMenu extends AppCompatActivity
             boolean isLocked = context.getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).getBoolean("locked", false);
             int fiveDays = context.getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).getInt("days", 0);
 
-            if (isLocked && fiveDays % 5 == 0){
+            if (isLocked && fiveDays % 5 == 0) {
                 //daca e blocat si a venit momentul sa se schimbe experimentul
                 NotificationCompat.Builder mNotifyBuilder = new NotificationCompat.Builder(context, "13")
                         .setSmallIcon(R.drawable.pill)
@@ -455,7 +458,6 @@ public class MainMenu extends AppCompatActivity
                         .setContentIntent(pendingIntent);
                 notificationManager.notify(20, mNotifyBuilder.build());
             }
-
 
 
         }
@@ -514,11 +516,11 @@ public class MainMenu extends AppCompatActivity
                     int fiveDays = getApplicationContext().getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).getInt("days", 0);
                     int numberOfDays = getApplicationContext().getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).getInt("numberDays", 0);
 
-                    if (numberOfDays >= totalQuestionnaires ){
+                    if (numberOfDays >= totalQuestionnaires) {
 
                         //daca nu a facut chestionarul
                         //1 updatam ce se intampla in questionnaire 4
-                        if (fiveDays % 5 == 1){
+                        if (fiveDays % 5 == 1) {
                             getApplicationContext().getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).edit().putInt("days", fiveDays).apply();
                         } else {
                             getApplicationContext().getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).edit().putInt("days", fiveDays + 1).apply();

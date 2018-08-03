@@ -109,6 +109,7 @@ public class FirstPage extends AppCompatActivity {
         });
 
 
+
         String name = getSharedPreferences("name", MODE_PRIVATE).getString("username", "nothing");
         String participant = getSharedPreferences("name", MODE_PRIVATE).getString("participantID", "nothing");
 

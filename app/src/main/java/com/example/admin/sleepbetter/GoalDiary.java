@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -40,7 +41,9 @@ public class GoalDiary extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         goalDiaryView = inflater.inflate(R.layout.goal_diary, container, false);
-
+        ImageView imageView = (ImageView) goalDiaryView.findViewById(R.id.imageView29);
+        SharedPreferences preferences = this.getActivity().getSharedPreferences("bmdiary", Context.MODE_PRIVATE);
+        imageView.setImageResource(preferences.getInt("slectedbitmoji", 0));
         Button button = (Button) goalDiaryView.findViewById(R.id.button);
 
         button.setOnClickListener(new View.OnClickListener() {
@@ -61,23 +64,22 @@ public class GoalDiary extends Fragment {
             public void run() {
 
 
-
                 userDatabase = Room.databaseBuilder(getActivity().getApplicationContext(), UserDatabase.class, DATABASE_NAME).fallbackToDestructiveMigration().build();
 
                 List<UserDiary> diaries = userDatabase.daoAccess().fetchDiary();
                 final TableLayout tableLayout = (TableLayout) goalDiaryView.findViewById(R.id.table);
 
                 int colorBlack = Color.BLACK;
-                for (int i=0; i< diaries.size(); i++){
-                        // Creation row
-                        final TableRow tableRow = new TableRow(getActivity().getApplicationContext());
-                        tableRow.setLayoutParams(new TableLayout.LayoutParams(TableLayout.LayoutParams.WRAP_CONTENT, TableLayout.LayoutParams.WRAP_CONTENT,2));
+                for (int i = 0; i < diaries.size(); i++) {
+                    // Creation row
+                    final TableRow tableRow = new TableRow(getActivity().getApplicationContext());
+                    tableRow.setLayoutParams(new TableLayout.LayoutParams(TableLayout.LayoutParams.WRAP_CONTENT, TableLayout.LayoutParams.WRAP_CONTENT, 2));
                     tableRow.setWeightSum(2);
-                        // Creation textView
-                        final TextView text = new TextView(getActivity().getApplicationContext());
-                        text.setText(diaries.get(i).getDate());
-                        text.setTextColor(colorBlack);
-                        text.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT,1));
+                    // Creation textView
+                    final TextView text = new TextView(getActivity().getApplicationContext());
+                    text.setText(diaries.get(i).getDate());
+                    text.setTextColor(colorBlack);
+                    text.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT, 1));
 
                     // Creation textView
                     final TextView text2 = new TextView(getActivity().getApplicationContext());
@@ -85,48 +87,48 @@ public class GoalDiary extends Fragment {
                     text2.setTextColor(colorBlack);
                     text2.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT, 1));
 
-                        tableRow.addView(text);
-                        tableRow.addView(text2);
+                    tableRow.addView(text);
+                    tableRow.addView(text2);
 
-                        tableLayout.addView(tableRow);
-                    }
+                    tableLayout.addView(tableRow);
+                }
 
             }
         }).start();
         return goalDiaryView;
     }
 
-    public void updateDiary(String notee){
+    public void updateDiary(String notee) {
 
         Date c = Calendar.getInstance().getTime();
         SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
         final String formattedDate = df.format(c);
 
-      final String note = notee;
+        final String note = notee;
 
         final TableLayout tableLayout = (TableLayout) goalDiaryView.findViewById(R.id.table);
 
-                int colorBlack = Color.BLACK;
-                    // Creation row
-                    final TableRow tableRow = new TableRow(getActivity().getApplicationContext());
-                    tableRow.setLayoutParams(new TableLayout.LayoutParams(TableLayout.LayoutParams.WRAP_CONTENT, TableLayout.LayoutParams.WRAP_CONTENT,2));
-                    tableRow.setWeightSum(2);
-                    // Creation textView
-                    final TextView text = new TextView(getActivity().getApplicationContext());
-                    text.setText(formattedDate);
-                    text.setTextColor(colorBlack);
-                    text.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT,1));
+        int colorBlack = Color.BLACK;
+        // Creation row
+        final TableRow tableRow = new TableRow(getActivity().getApplicationContext());
+        tableRow.setLayoutParams(new TableLayout.LayoutParams(TableLayout.LayoutParams.WRAP_CONTENT, TableLayout.LayoutParams.WRAP_CONTENT, 2));
+        tableRow.setWeightSum(2);
+        // Creation textView
+        final TextView text = new TextView(getActivity().getApplicationContext());
+        text.setText(formattedDate);
+        text.setTextColor(colorBlack);
+        text.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT, 1));
 
-                    // Creation textView
-                    final TextView text2 = new TextView(getActivity().getApplicationContext());
-                    text2.setText(note);
-                    text2.setTextColor(colorBlack);
-                    text2.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT, 1));
+        // Creation textView
+        final TextView text2 = new TextView(getActivity().getApplicationContext());
+        text2.setText(note);
+        text2.setTextColor(colorBlack);
+        text2.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT, 1));
 
-                    tableRow.addView(text);
-                    tableRow.addView(text2);
+        tableRow.addView(text);
+        tableRow.addView(text2);
 
-                    tableLayout.addView(tableRow);
+        tableLayout.addView(tableRow);
 
         String experiment = getActivity().getApplicationContext().getSharedPreferences("name", MODE_PRIVATE).getString("experiment", " ");
 
@@ -137,20 +139,21 @@ public class GoalDiary extends Fragment {
         String json = sharedPrefs.getString("trial", "");
         Gson gson = new Gson();
 
-        Type type = new TypeToken<List<HomeCollection>>() {}.getType();
+        Type type = new TypeToken<List<HomeCollection>>() {
+        }.getType();
         List<HomeCollection> arrayList = gson.fromJson(json, type);
 
         HomeCollection.date_collection_arr = (ArrayList<HomeCollection>) arrayList;
-        HomeCollection coll = HomeCollection.date_collection_arr.get(HomeCollection.date_collection_arr.size()-1);
+        HomeCollection coll = HomeCollection.date_collection_arr.get(HomeCollection.date_collection_arr.size() - 1);
         String date = coll.date;
 
-        if (date.equals(formattedDate2)){
+        if (date.equals(formattedDate2)) {
             String comment = coll.comment;
             comment = comment + " / " + note;
 
             String lastExp = coll.experiment;
-            HomeCollection.date_collection_arr.remove(HomeCollection.date_collection_arr.size()-1);
-            if (lastExp.equals(experiment)){
+            HomeCollection.date_collection_arr.remove(HomeCollection.date_collection_arr.size() - 1);
+            if (lastExp.equals(experiment)) {
 
                 HomeCollection.date_collection_arr.add(new HomeCollection(formattedDate2, experiment, String.valueOf(getActivity().getApplicationContext().getSharedPreferences("MOOD", MODE_PRIVATE).getInt("mood", 0)), "No experiment started yet", comment));
             } else {

@@ -3,6 +3,7 @@ package com.example.admin.sleepbetter;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.arch.persistence.room.Room;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
@@ -10,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -26,10 +28,16 @@ public class Update_Schedule_SameTime extends Fragment {
     private static final String DATABASE_NAME = "user_db";
     private UserDatabase userDatabase;
     View updateView;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         updateView = inflater.inflate(R.layout.update_schedule_sametime, container, false);
+        SharedPreferences preferences = this.getActivity().getSharedPreferences("bmcalendar", MODE_PRIVATE);
+        ImageView imageView = updateView.findViewById(R.id.imageView20);
+        imageView.setImageResource(preferences.getInt("selectedbitmoji", 0));
+
+
         List<String> listOne = getIntervals("dayReview");
         getSeekbarWithIntervals("dayReviewBar").setIntervals(listOne);
         Button button = (Button) updateView.findViewById(R.id.submitUpdate);
@@ -48,28 +56,28 @@ public class Update_Schedule_SameTime extends Fragment {
         SimpleDateFormat formatter1 = new SimpleDateFormat("h:mm");
         String currentDate = formatter1.format(calendar1.getTime());
 
-        if(currentDate.compareTo("18:59")<0 || getActivity().getApplicationContext().getSharedPreferences("questionnaire", MODE_PRIVATE).getBoolean("completed", false)) {    ConstraintLayout fr = (ConstraintLayout) updateView.findViewById(R.id.fr);
+        if (currentDate.compareTo("18:59") < 0 || getActivity().getApplicationContext().getSharedPreferences("questionnaire", MODE_PRIVATE).getBoolean("completed", false)) {
+            ConstraintLayout fr = (ConstraintLayout) updateView.findViewById(R.id.fr);
             disableEnableControls(false, fr);
             Toast.makeText(getActivity().getApplicationContext(), "You cannot do the questionnaire before 7:00 PM.", Toast.LENGTH_SHORT).show();
 
         }
 
 
-
         return updateView;
     }
 
-    private void disableEnableControls(boolean enable, ViewGroup vg){
-        for (int i = 0; i < vg.getChildCount(); i++){
+    private void disableEnableControls(boolean enable, ViewGroup vg) {
+        for (int i = 0; i < vg.getChildCount(); i++) {
             View child = vg.getChildAt(i);
             child.setEnabled(enable);
-            if (child instanceof ViewGroup){
-                disableEnableControls(enable, (ViewGroup)child);
+            if (child instanceof ViewGroup) {
+                disableEnableControls(enable, (ViewGroup) child);
             }
         }
     }
 
-    public void goToQuestionnaire(){
+    public void goToQuestionnaire() {
 
         Date c = Calendar.getInstance().getTime();
         SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
