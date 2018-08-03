@@ -231,7 +231,7 @@
 
     <TextView
         android:id="@+id/welcomeTitle"
-        android:layout_width="274dp"
+        android:layout_width="272dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
@@ -240,11 +240,10 @@
         android:text="@string/whatExeriments"
         android:textAllCaps="false"
         android:textColor="@android:color/black"
-        android:textSize="22sp"
+        android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/topView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintEnd_toStartOf="@+id/logoPlace"
         app:layout_constraintStart_toStartOf="@+id/topView"
         app:layout_constraintTop_toTopOf="@+id/topView"
         app:layout_constraintVertical_bias="0.0" />

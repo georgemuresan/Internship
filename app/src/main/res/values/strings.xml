@@ -138,7 +138,7 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
 
-    <string name="factorsTitle">FACTORS</string>
+    <string name="factorsTitle">EXPERIMENTS</string>
     <string name="factorsIntroduction">These are the next factors and associated experiments that impact your sleep hygiene. The chosen experiment is the one you chose to follow. Please bare in mind that after clicking Submit you will only be able to change the experiment after 5 days."</string>
     <string name="sleepSettings">SLEEP SETTINGS</string>
     <string name="lightCheck">Light</string>
