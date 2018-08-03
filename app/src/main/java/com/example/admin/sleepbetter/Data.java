@@ -38,6 +38,9 @@ public class Data extends Fragment implements AdapterView.OnItemSelectedListener
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+
+
+
         dataView = inflater.inflate(R.layout.data, container, false);
         ImageView imageView1 = (ImageView) dataView.findViewById(R.id.imageView28);
         ImageView imageView2 = (ImageView) dataView.findViewById(R.id.imageView26);
@@ -48,9 +51,6 @@ public class Data extends Fragment implements AdapterView.OnItemSelectedListener
         imageView1.setImageResource(moodpreference.getInt("moodbitmoji", 0));
         imageView2.setImageResource(moodpreference.getInt("moodbitmoji", 0));
         imageView3.setImageResource(preferences.getInt("slectedbitmoji", 0));
-
-
-
 
 
 
