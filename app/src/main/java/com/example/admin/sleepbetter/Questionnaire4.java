@@ -151,6 +151,12 @@ public class Questionnaire4 extends Fragment {
 
         getActivity().getApplicationContext().getSharedPreferences("MOOD", MODE_PRIVATE).edit().putInt("mood", moodCalculator(timesPerNight, nightTerrors, sad, sleepy, tired, stressed, irritable, concentrate+1, coordinate+1)).apply();
 
+        int mood = moodCalculator(timesPerNight, nightTerrors, sad, sleepy, tired, stressed, irritable, concentrate + 1, coordinate + 1);
+        System.out.println("UPPER MOOD is " + mood);
+        this.doMood(mood);
+
+
+
         EditText commentBox = (EditText) questionnaireView.findViewById(R.id.yourName2);
         final String comment = commentBox.getText().toString();
 
@@ -263,4 +269,21 @@ public class Questionnaire4 extends Fragment {
         return result;
     }
 
+    private void doMood(int mood) {
+        System.out.println("MOOD is " + mood);
+        int happy = getActivity().getApplicationContext().getSharedPreferences("bmhappy", MODE_PRIVATE).getInt("slectedbitmoji", 0);
+        int ok = getActivity().getApplicationContext().getSharedPreferences("bmok", MODE_PRIVATE).getInt("slectedbitmoji", 0);
+        int notok = getActivity().getApplicationContext().getSharedPreferences("bmnotok", MODE_PRIVATE).getInt("slectedbitmoji", 0);
+        int bad = getActivity().getApplicationContext().getSharedPreferences("bmbad", MODE_PRIVATE).getInt("slectedbitmoji", 0);
+
+        SharedPreferences preferences = getActivity().getApplicationContext().getSharedPreferences("MOOD", MODE_PRIVATE);
+        if (mood == 1 || mood == 0) preferences.edit().putInt("moodbitmoji", happy).apply();
+        if (mood == 2) preferences.edit().putInt("moodbitmoji", ok).apply();
+        if (mood == 3) preferences.edit().putInt("moodbitmoji", notok).apply();
+        if (mood == 4 || mood == 5) preferences.edit().putInt("moodbitmoji", bad).apply();
+
+        getActivity().getApplicationContext().getSharedPreferences("MOOD", MODE_PRIVATE).getInt("mood", 0);
+        getActivity().getApplicationContext().getSharedPreferences("MOOD", MODE_PRIVATE).edit().putInt("mood", mood).apply();
+
+    }
 }
