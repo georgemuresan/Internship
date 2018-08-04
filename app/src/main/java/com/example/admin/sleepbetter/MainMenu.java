@@ -86,7 +86,8 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
         //NOTIFICATION DEMO
         this.createNotificationChannel();
         this.setNotifications();
-        this.setSpecialNotification();
+        this.setFirstSpecialNotification();
+        this.setSecondSpecialNotification();
 ///END NOTIFICATIONs
 
         Button button1 = (Button) findViewById(R.id.whatSleep);
@@ -291,7 +292,7 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
 
     }
 
-    private void setSpecialNotification() {
+    private void setFirstSpecialNotification() {
         System.out.println("SPECIALK");
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.HOUR_OF_DAY, 19);
@@ -306,15 +307,26 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
         AlarmManager am1 = (AlarmManager) MainMenu.this.getSystemService(MainMenu.this.ALARM_SERVICE);
         am1.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
 
+    }
+
+    private void setSecondSpecialNotification() {
+        System.out.println("SPECIALK");
+        Calendar calendar = Calendar.getInstance();
+
         calendar.set(Calendar.HOUR_OF_DAY, 15);
         calendar.set(Calendar.MINUTE, 35);
         calendar.set(Calendar.SECOND, 0);
+
+        if (Calendar.getInstance().after(calendar)) {
+            calendar.add(Calendar.DAY_OF_MONTH, 1);
+        }
         Intent intent2 = new Intent(MainMenu.this, Broadcast3.class);
         PendingIntent pendingIntent2 = PendingIntent.getBroadcast(MainMenu.this, 0, intent2, 0);
         AlarmManager am2 = (AlarmManager) MainMenu.this.getSystemService(MainMenu.this.ALARM_SERVICE);
         am2.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent2);
 
     }
+
 
     //produce the required notifications
     private void setNotifications() {
@@ -385,6 +397,8 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
     }
 
     public static class Broadcast2 extends BroadcastReceiver {
+
+        //intrebarea este daca, aunci cand va veni momentul a schimbe si experimentul - daca o sa ii dea si alarma veche cu complete questionnaire si cea noua cu both complete the questionnaire and the experiment
         @Override
         public void onReceive(Context context, Intent intent) {
             System.out.println("HERE I AM 2!!");
@@ -558,7 +572,7 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
                 //scoatem variabila days si verificam: daca se imparte la 5, si nu e locked,
             }).start();
 
-            setSpecialNotification();
+            setFirstSpecialNotification();
             getApplicationContext().getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).edit().putBoolean("locked", true).apply();
 //
         }

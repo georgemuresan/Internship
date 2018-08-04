@@ -72,7 +72,7 @@
     <string name="offapetiteUsually">How would you rate your appetite for today?</string>
 
 
-    <string name="goalDiaryTitle">GOAL DIARY</string>
+    <string name="goalDiaryTitle">CURRENT STATE</string>
     <string name="greatText">GREAT! Here is your current avatar, reflecting your current state:</string>
     <string name="pleaseInputGoal">Please input either a goal, a wish, or any note. You can return to this section later.</string>
     <string name="goalInput">Goal Diary input...</string>
@@ -139,7 +139,11 @@
     <string name="nav_header_desc">Navigation header</string>
 
     <string name="factorsTitle">EXPERIMENTS</string>
-    <string name="factorsIntroduction">These are the next factors and associated experiments that impact your sleep hygiene. The chosen experiment is the one you chose to follow. Please bare in mind that after clicking Submit you will only be able to change the experiment after 5 days."</string>
+    <string name="factorsIntroduction">
+        These are the next factors and associated experiments that impact your sleep hygiene. The chosen experiment is the one you chose to follow.
+        <font fgcolor="red"><b>Please bare in mind that after clicking Submit you will only be able to change the experiment after 5 days.</b></font>
+        </string>
+
     <string name="sleepSettings">SLEEP SETTINGS</string>
     <string name="lightCheck">Light</string>
     <string name="temperatureCheck">Temperature</string>
@@ -193,7 +197,7 @@
     <string name="persInputSchedule"> </string>
 
 
-    <string name="goalDiaryIntro">Welcome to your Goal Diary! Here you will abe to note any particular changes you want to reflect on/any goals you wish to accomplice and any other observations. You can also see previous notes.</string>
+    <string name="goalDiaryIntro">Welcome to your Goal Diary! Here you will able to note any particular changes you want to reflect on/any goals you wish to accomplice and any other observations. You can also see previous notes.</string>
     <string name="previousGoals">Previous notes</string>
 
     <string name="moreInfo">More Information</string>
@@ -230,7 +234,7 @@
 
     <string name="glassesIntro">Your current experiment is: WEAR GLASSES THAT BLOCK ANY LIGHT DURING THE NIGHT. Below you are asked to complete the questions on whether you followed the experiment.</string>
     <string name="dayQuestion">Did you use the f.lx app on the computer during  the day?</string>
-    <string name="nightQuestion">Did you use any glasses to block blue light durign the night?</string>
+    <string name="nightQuestion">Did you use any glasses to block blue light during the night?</string>
 
     <string name="stomachIntro">Your current experiment is: DO NOT DRINK CAFFEINE ON EMPTY STOMACH. Below you are asked to complete the questions on whether you followed the experiment.</string>
     <string name="drinkCaffeineQuestion">Did you drink any caffeine today?</string>
@@ -238,20 +242,20 @@
 
     <string name="limitIntro">Your current experiment is: LIMIT YOURSELF TO 4 CUPS OF COFFEE PER DAY; 10 CANS OF SODA; 2 ENERGY DRINKS. Below you are asked to complete the questions on whether you followed the experiment.</string>
     <string name="cupsQuestion">How many cups of coffee did you have today?</string>
-    <string name="cansQuestion">How many cans of soda did you have today??</string>
-    <string name="energydrinksQuestion">How many energy drinks did you have today??</string>
+    <string name="cansQuestion">How many cans of soda did you have today?</string>
+    <string name="energydrinksQuestion">How many energy drinks did you have today?</string>
 
     <string name="sixIntro">Your current experiment is: DO NOT DRINK CAFFEINE WITHIN 6 HOURS OF GOING TO SLEEP. Below you are asked to complete the questions on whether you followed the experiment.</string>
     <string name="lastCoffeeQuestion">When did you have your last drink of caffeine? (soda/coffee/energy drink)</string>
     <string name="whenSleepQuestion">When did you go to sleep?</string>
 
 
-    <string name="relaxIntro">Your current experiment is: DO NOT GO TO BED UNLESS YOU ARE TIRED. IF YOU ARE NOT, RELAX WITH A BATH/READING A BOOK BFORE BED. Below you are asked to complete the questions on whether you followed the experiment.</string>
+    <string name="relaxIntro">Your current experiment is: DO NOT GO TO BED UNLESS YOU ARE TIRED. IF YOU ARE NOT, RELAX WITH A BATH/READING A BOOK BEFORE BED. Below you are asked to complete the questions on whether you followed the experiment.</string>
     <string name="tiredQueston">Did you go to sleep fully relaxed/ready to sleep?</string>
     <string name="whatActivityQuestion">What activity of the next did you do before going to sleep?</string>
     <string name="bathAnswer">Took a bath</string>
     <string name="readAnswer">Read a book</string>
-    <string name="stretchAnswer">Streched/Short exercise</string>
+    <string name="stretchAnswer">Stretched/Short exercise</string>
     <string name="teaAnswer">Drank hot drink</string>
     <string name="noneAnsswer">None of the above</string>
 

@@ -131,12 +131,14 @@
         android:text="@string/linkBitmojiTitle"
         android:textAllCaps="false"
         android:textColor="@android:color/black"
-        android:textSize="30sp"
+        android:textSize="22sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/topView"
         app:layout_constraintEnd_toStartOf="@+id/logoPlace"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/topView"
-        app:layout_constraintTop_toTopOf="@+id/topView" />
+        app:layout_constraintTop_toTopOf="@+id/topView"
+        app:layout_constraintVertical_bias="0.62" />
 
     <ImageView
         android:id="@+id/logoPlace"

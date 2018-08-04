@@ -147,7 +147,6 @@ public class Data extends Fragment implements AdapterView.OnItemSelectedListener
                     dp2 = new DataPoint[0];
                 }
 
-                System.out.println(dp2[0].getX() + " " + dp2[0].getY());
                 System.out.println(dp2.length);
 
                 LineGraphSeries<DataPoint> series2 = new LineGraphSeries<>(dp2);

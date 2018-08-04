@@ -58,10 +58,12 @@ public class Update_Light_Bright extends Fragment {
 
 
         Calendar calendar1 = Calendar.getInstance();
-        SimpleDateFormat formatter1 = new SimpleDateFormat("h:mm");
+        SimpleDateFormat formatter1 = new SimpleDateFormat("HH:mm");
         String currentDate = formatter1.format(calendar1.getTime());
 
-        if(currentDate.compareTo("18:59")<0 || getActivity().getApplicationContext().getSharedPreferences("questionnaire", MODE_PRIVATE).getBoolean("completed", false)) {   ConstraintLayout fr = (ConstraintLayout) updateView.findViewById(R.id.fr);
+        if(currentDate.compareTo("18:59")<0 || getActivity().getApplicationContext().getSharedPreferences("questionnaire", MODE_PRIVATE).getBoolean("completed", false)) {
+            System.out.println("AICI ");
+            ConstraintLayout fr = (ConstraintLayout) updateView.findViewById(R.id.fr);
             disableEnableControls(false, fr);
             Toast.makeText(getActivity().getApplicationContext(), "You cannot do the questionnaire before 7:00 PM.", Toast.LENGTH_SHORT).show();
 
