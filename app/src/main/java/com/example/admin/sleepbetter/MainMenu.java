@@ -331,6 +331,7 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
     //produce the required notifications
     private void setNotifications() {
         int experiment = getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).getInt("KEY_SAVED_RADIO_BUTTON_INDEX", 0);
+       System.out.println(experiment);
         switch (experiment) {
             case 1: //increase bright light exposure
                 setAlarmManager(12, 0, "Remember:", "Stay out in the sun at least half an hour today!", 1);
@@ -408,6 +409,8 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
                     .getSystemService(Context.NOTIFICATION_SERVICE);
 //AICIII
             Intent notificationIntent = null;
+            int experiment = context.getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).getInt("KEY_SAVED_RADIO_BUTTON_INDEX", 0);
+
             switch (experiment) {
                 case 1: //increase bright light exposure
                     notificationIntent = new Intent(context, Update_Light_Bright.class);
@@ -452,7 +455,7 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
             boolean isLocked = context.getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).getBoolean("locked", false);
             int fiveDays = context.getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).getInt("days", 0);
 
-            if (isLocked && fiveDays % 5 == 0) {
+            if (isLocked && fiveDays % 2 == 0) {
                 //daca e blocat si a venit momentul sa se schimbe experimentul
                 NotificationCompat.Builder mNotifyBuilder = new NotificationCompat.Builder(context, "13")
                         .setSmallIcon(R.drawable.pill)
@@ -533,7 +536,7 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
 
                         //daca nu a facut chestionarul
                         //1 updatam ce se intampla in questionnaire 4
-                        if (fiveDays % 5 == 1) {
+                        if (fiveDays % 2 == 1) {
                             getApplicationContext().getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).edit().putInt("days", fiveDays).apply();
                         } else {
                             getApplicationContext().getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).edit().putInt("days", fiveDays + 1).apply();

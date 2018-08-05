@@ -78,6 +78,7 @@ public class Data extends Fragment implements AdapterView.OnItemSelectedListener
 
                     if (numberOfGoodMoods.get(k) != -1){
                         dp[i] = new DataPoint(k, numberOfGoodMoods.get(k));
+                        System.out.println("POINT FIST IS " + dp[i].getX() + " " + dp[i].getY());
                         i++;
                     }
                 }
@@ -118,7 +119,13 @@ public class Data extends Fragment implements AdapterView.OnItemSelectedListener
 
                 int sizeOfSecondGraph = 0;
 
-                int beginning = (numberOfGoodMoods.size() / 5) * 5 + 1;
+                int beginning;
+                if ((numberOfGoodMoods.size() -1) % 2 == 0){
+                    beginning = numberOfGoodMoods.size() - 2;
+                } else {
+                    beginning = ((numberOfGoodMoods.size() - 1) / 2) * 2 + 1;
+                }
+
 
                 for (int g = beginning; g < numberOfGoodMoods.size(); g++){
                     if (numberOfGoodMoods.get(g) != -1){
@@ -135,19 +142,31 @@ public class Data extends Fragment implements AdapterView.OnItemSelectedListener
                     i=0;
                     int k=0;
                     Iterator it = numberOfGoodMoods.iterator();
-                    while (it.hasNext() && i < numberOfGoodMoods.size() % 6 - 1) {
-                        Integer pair = (Integer) it.next();
-                        if (pair != -1){
-                            dp2[i] = new DataPoint(k + 1, userDatabase.daoAccess().fetchMoods().get((userDatabase.daoAccess().fetchMoods().size() / 5) * 5 + k + 1));
-                            i++;
+                    if ((numberOfGoodMoods.size() - 1) % 2 == 0){
+                        while (it.hasNext() && i < 2) {
+                            Integer pair = (Integer) it.next();
+                            if (pair != -1) {
+                                dp2[i] = new DataPoint(k + 1, userDatabase.daoAccess().fetchMoods().get(((userDatabase.daoAccess().fetchMoods().size() - 1) / 2) * 2 - 2 + k + 1));
+                                i++;
+                            }
+                            k++;
                         }
-                        k++;
+                    } else {
+                        while (it.hasNext() && i < (numberOfGoodMoods.size() - 1) % 2) {
+                            Integer pair = (Integer) it.next();
+                            if (pair != -1) {
+
+                                dp2[i] = new DataPoint(k + 1, userDatabase.daoAccess().fetchMoods().get(((userDatabase.daoAccess().fetchMoods().size() - 1) / 2) * 2 + k + 1));
+                                i++;
+                            }
+                            k++;
+                        }
                     }
                 } else {
                     dp2 = new DataPoint[0];
                 }
 
-                System.out.println(dp2.length);
+
 
                 LineGraphSeries<DataPoint> series2 = new LineGraphSeries<>(dp2);
                 graph2.addSeries(series2);
@@ -166,8 +185,8 @@ public class Data extends Fragment implements AdapterView.OnItemSelectedListener
                 //   graph2.setTitleTextSize(13);
 
                 graph2.getViewport().setMinX(1);
-                graph2.getViewport().setMaxX(5);
-                graph2.getViewport().setMaxXAxisSize(5);
+                graph2.getViewport().setMaxX(2);
+                graph2.getViewport().setMaxXAxisSize(2);
                 graph2.getViewport().setMinY(1);
                 graph2.getViewport().setMaxY(5);
 
