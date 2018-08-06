@@ -43,7 +43,7 @@
 
             <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="1425dp"
+                android:layout_height="1475dp"
                 tools:layout_editor_absoluteX="8dp"
                 tools:layout_editor_absoluteY="0dp">
 
@@ -140,7 +140,8 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView5" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView5"
+                    app:layout_constraintVertical_bias="0.457" />
 
                 <TextView
                     android:id="@+id/textView7"
@@ -219,7 +220,7 @@
 
     <TextView
         android:id="@+id/welcomeTitle"
-        android:layout_width="274dp"
+        android:layout_width="258dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
@@ -228,11 +229,10 @@
         android:text="@string/whatExeriments"
         android:textAllCaps="false"
         android:textColor="@android:color/black"
-        android:textSize="22sp"
+        android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/topView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintEnd_toStartOf="@+id/logoPlace"
         app:layout_constraintStart_toStartOf="@+id/topView"
         app:layout_constraintTop_toTopOf="@+id/topView"
         app:layout_constraintVertical_bias="0.0" />

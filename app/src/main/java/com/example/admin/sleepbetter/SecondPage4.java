@@ -241,6 +241,8 @@ public class SecondPage4 extends AppCompatActivity {
         if (mood == 3) preferences.edit().putInt("moodbitmoji", notok).apply();
         if (mood == 4 || mood == 5) preferences.edit().putInt("moodbitmoji", bad).apply();
 
+        getSharedPreferences("MOOD", MODE_PRIVATE).getInt("mood", 0);
+        getSharedPreferences("MOOD", MODE_PRIVATE).edit().putInt("mood", mood).apply();
 
     }
 /*

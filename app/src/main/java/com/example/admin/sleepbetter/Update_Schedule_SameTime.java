@@ -53,7 +53,7 @@ public class Update_Schedule_SameTime extends Fragment {
         });
 
         Calendar calendar1 = Calendar.getInstance();
-        SimpleDateFormat formatter1 = new SimpleDateFormat("h:mm");
+        SimpleDateFormat formatter1 = new SimpleDateFormat("HH:mm");
         String currentDate = formatter1.format(calendar1.getTime());
 
         if (currentDate.compareTo("18:59") < 0 || getActivity().getApplicationContext().getSharedPreferences("questionnaire", MODE_PRIVATE).getBoolean("completed", false)) {

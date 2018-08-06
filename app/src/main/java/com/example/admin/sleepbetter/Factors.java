@@ -2,6 +2,7 @@ package com.example.admin.sleepbetter;
 
 import android.app.FragmentManager;
 import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -99,9 +100,6 @@ public class Factors extends Fragment {
                     getActivity().getSharedPreferences("name", MODE_PRIVATE).edit().putString("experiment", getString(R.string.fourthSchedule)).apply();
                     SavePreferences("KEY_SAVED_RADIO_BUTTON_INDEX", 12);
                 }
-
-
-
             }
         });
 
@@ -150,9 +148,13 @@ public class Factors extends Fragment {
     }
 
     private void goHelpPage() {
+        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.content_frame, new Help());
 
-        FragmentManager fragmentManager = getFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.content_frame, new Help()).commit();
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+        getFragmentManager().executePendingTransactions();
+
 
     }
 
