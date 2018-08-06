@@ -3,12 +3,14 @@ package com.example.admin.sleepbetter;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +33,12 @@ public class Questionnaire3 extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         questionnaireView = inflater.inflate(R.layout.questionnaire_three, container, false);
+
+        SharedPreferences preferences = this.getActivity().getSharedPreferences("bmok", MODE_PRIVATE);
+        ImageView imageView = questionnaireView.findViewById(R.id.imageView8);
+        imageView.setImageResource(preferences.getInt("selectedbitmoji", 0));
+
+
 
         Button button = (Button) questionnaireView.findViewById(R.id.submitButton);
 
