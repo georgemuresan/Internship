@@ -49,7 +49,7 @@ public class Questionnaire extends Fragment {
 
             }
 
-        }); 
+        });
 
         List<String> seekbarIntervals = getIntervals("upToFour", "times");
         getSeekbarWithIntervals("times").setIntervals(seekbarIntervals);
