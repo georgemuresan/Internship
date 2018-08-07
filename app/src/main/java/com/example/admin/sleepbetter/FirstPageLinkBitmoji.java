@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class FirstPageLinkBitmoji extends AppCompatActivity {
@@ -15,6 +16,8 @@ public class FirstPageLinkBitmoji extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_first_page_bitmoji);
+
+
         Button button = (Button) findViewById(R.id.submitButton);
         button.setOnClickListener(new View.OnClickListener() {
 
