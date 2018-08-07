@@ -83,7 +83,6 @@ public class ThirdPage extends AppCompatActivity {
         }).start();
 */
     }
-
     private void setCorrectText(int mood, TextView textView) {
 //        int happy = getSharedPreferences("bmhappy", MODE_PRIVATE).getInt("selectedbitmoji", 0);
 //        int ok = getSharedPreferences("bmok", MODE_PRIVATE).getInt("selectedbitmoji", 0);
