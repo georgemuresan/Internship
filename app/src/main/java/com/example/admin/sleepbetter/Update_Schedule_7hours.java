@@ -111,6 +111,12 @@ public class Update_Schedule_7hours extends Fragment {
             }
         }).start();
 
+        getActivity().getApplicationContext().getSharedPreferences("proof", MODE_PRIVATE).getString("proof", "No proof logged in yet.");
+
+        String proof = "Went to sleep at: " + textSleep + "/Woke up at:" + textWake;
+        getActivity().getApplicationContext().getSharedPreferences("proof", MODE_PRIVATE).edit().putString("proof", proof).apply();
+
+
 
         FragmentManager fragmentManager = getFragmentManager();
 

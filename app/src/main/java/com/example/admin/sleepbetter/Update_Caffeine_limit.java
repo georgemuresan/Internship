@@ -128,6 +128,11 @@ public class Update_Caffeine_limit extends Fragment {
             }
         }).start();
 
+        getActivity().getApplicationContext().getSharedPreferences("proof", MODE_PRIVATE).getString("proof", "No proof logged in yet.");
+
+        String proof = "Cups of coffee: " + coffee + "/Cans of soda:" + soda + "/Energy drinks: " + energy;
+        getActivity().getApplicationContext().getSharedPreferences("proof", MODE_PRIVATE).edit().putString("proof", proof).apply();
+
 
         FragmentManager fragmentManager = getFragmentManager();
 
