@@ -5,6 +5,7 @@ import android.app.FragmentManager;
 import android.arch.persistence.room.Room;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -12,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.ImageView;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -34,7 +36,9 @@ public class Questionnaire extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         questionnaireView = inflater.inflate(R.layout.questionnaire, container, false);
-
+        SharedPreferences preferences = this.getActivity().getSharedPreferences("bmsleep", MODE_PRIVATE);
+        ImageView imageView = questionnaireView.findViewById(R.id.imageView6);
+        imageView.setImageResource(preferences.getInt("selectedbitmoji", 0));
         Button button = (Button) questionnaireView.findViewById(R.id.submitButton);
 
         button.setOnClickListener(new View.OnClickListener() {

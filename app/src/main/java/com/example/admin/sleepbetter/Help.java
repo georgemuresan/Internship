@@ -75,7 +75,12 @@ public class Help extends Fragment {
                             .enqueue(new ServiceCallback<MessageResponse>() {
                                 @Override
                                 public void onResponse(MessageResponse response) {
-                                    final String botStatement = response.getText().get(0);
+                                    String botstatement = null;
+                                    for(String string : response.getText()){
+                                        botstatement += string;
+                                    }
+                                  //  final String botStatement = response.getText().get(0);
+                                    final String botStatement = botstatement;
                                     getActivity().runOnUiThread(new Runnable() {
                                         @Override
                                         public void run() {
