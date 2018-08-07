@@ -3,6 +3,7 @@ package com.example.admin.sleepbetter;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.arch.persistence.room.Room;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -10,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -45,11 +47,11 @@ public class Questionnaire extends Fragment {
 
         });
 
-        List<String> seekbarIntervals = getIntervals("upToFour");
+        List<String> seekbarIntervals = getIntervals("upToFour", "times");
         getSeekbarWithIntervals("times").setIntervals(seekbarIntervals);
 
-        List<String> listOne = getIntervals("upToFive");
-        getSeekbarWithIntervals("nightTerrors").setIntervals(listOne);
+        List<String> seekbarIntervals2 = getIntervals("upToFour", "terrors");
+        getSeekbarWithIntervals("nightTerrors").setIntervals(seekbarIntervals);
 
 
 
@@ -57,23 +59,45 @@ public class Questionnaire extends Fragment {
         return questionnaireView;
     }
 
-    private List<String> getIntervals(String command) {
+    private List<String> getIntervals(String command, final String question) {
+
+        final int previousTimes = getActivity().getApplicationContext().getSharedPreferences("questionnaire", Context.MODE_PRIVATE).getInt("timesPerNight", 0);
+        final int previousTerrors = getActivity().getApplicationContext().getSharedPreferences("questionnaire", Context.MODE_PRIVATE).getInt("nightTerrors", 0);
 
         if (command.equals("upToFour")) {
+
             return new ArrayList<String>() {{
                 add("0");
                 add("1");
                 add("2");
                 add("3");
                 add("4/4+");
-            }};
-        } else  if (command.equals("upToFive")) {
-            return new ArrayList<String>() {{
-                add("1");
-                add("2");
-                add("3");
-                add("4");
-                add("5");
+                 if(question.equals("times")){
+                     if (previousTimes == 1){
+                         add("0");
+                     } else  if (previousTimes == 2){
+                         add("1");
+                     } else if (previousTimes == 3){
+                         add("2");
+                     } else if (previousTimes == 4){
+                         add("3");
+                     } else if (previousTimes == 5){
+                         add("4/4+");
+                     }
+                 } else {
+                     if (previousTerrors == 1){
+                         add("0");
+                     } else  if (previousTerrors == 2){
+                         add("1");
+                     } else if (previousTerrors == 3){
+                         add("2");
+                     } else if (previousTerrors == 4){
+                         add("3");
+                     } else if (previousTerrors == 5){
+                         add("4/4+");
+                     }
+                 }
+
             }};
         }
         return null;

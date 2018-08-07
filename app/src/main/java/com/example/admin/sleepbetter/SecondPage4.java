@@ -1,9 +1,15 @@
 package com.example.admin.sleepbetter;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.app.DialogFragment;
 import android.arch.persistence.room.Room;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
@@ -11,9 +17,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -47,7 +55,9 @@ public class SecondPage4 extends AppCompatActivity {
 
             public void onClick(View v) {
 
-                goToThirdActivity();
+                loopForSending();
+
+
 
             }
 
@@ -62,6 +72,46 @@ public class SecondPage4 extends AppCompatActivity {
         getSeekbarWithIntervals("apetite").setIntervals(listOne);
 
 
+    }
+
+    private void loopForSending(){
+   //     System.out.println("IS NETWORK : " + isConnected());
+            if (isConnected()){
+                goToThirdActivity();
+            } else {
+                InternetDialog dial = new InternetDialog();
+                dial.show(getFragmentManager(), "dialog");
+            }
+    }
+
+    public boolean isConnected() {
+        ConnectivityManager
+                cm = (ConnectivityManager) getApplicationContext()
+                .getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        return activeNetwork != null
+                && activeNetwork.isConnectedOrConnecting();
+    }
+
+    public static class InternetDialog extends DialogFragment {
+
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+            // Use the Builder class for convenient dialog construction
+            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+
+            builder.setMessage("You need to have internet connection to proceed.");
+            builder.setPositiveButton("Close", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    // FIRE ZE MISSILES!
+                    dialog.dismiss();
+
+
+                }
+            });
+            // Create the AlertDialog object and return it
+            return builder.create();
+        }
     }
 
     private void goToThirdActivity() {
@@ -191,6 +241,7 @@ public class SecondPage4 extends AppCompatActivity {
                 add("2");
                 add("3");
                 add("4/4+");
+                add("-1");
             }};
         } else if (command.equals("upToFive")) {
             return new ArrayList<String>() {{
@@ -199,6 +250,7 @@ public class SecondPage4 extends AppCompatActivity {
                 add("3");
                 add("4");
                 add("5");
+                add("-1");
             }};
         }
         return null;

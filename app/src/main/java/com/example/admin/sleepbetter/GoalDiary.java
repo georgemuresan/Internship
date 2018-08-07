@@ -157,8 +157,12 @@ public class GoalDiary extends Fragment {
 
                 HomeCollection.date_collection_arr.add(new HomeCollection(formattedDate2, experiment, String.valueOf(getActivity().getApplicationContext().getSharedPreferences("MOOD", MODE_PRIVATE).getInt("mood", 0)), "No experiment started yet", comment));
             } else {
-                HomeCollection.date_collection_arr.add(new HomeCollection(formattedDate2, lastExp, String.valueOf(getActivity().getApplicationContext().getSharedPreferences("MOOD", MODE_PRIVATE).getInt("mood", 0)), "No experiment started yet", comment));
-            }
+                if (lastExp.contains("yesterday")){
+                    HomeCollection.date_collection_arr.add(new HomeCollection(formattedDate2, lastExp, "(yesterday) " + String.valueOf(getActivity().getApplicationContext().getSharedPreferences("MOOD", MODE_PRIVATE).getInt("mood", 0)), "(yesterday) " + "No experiment started yet", comment));
+                } else {
+                    HomeCollection.date_collection_arr.add(new HomeCollection(formattedDate2, lastExp, String.valueOf(getActivity().getApplicationContext().getSharedPreferences("MOOD", MODE_PRIVATE).getInt("mood", 0)), "No experiment started yet", comment));
+                }
+                }
 
             SharedPreferences.Editor editor = sharedPrefs.edit();
 

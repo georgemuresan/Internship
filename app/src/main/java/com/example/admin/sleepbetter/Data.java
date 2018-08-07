@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,10 +18,13 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -61,7 +65,14 @@ public class Data extends Fragment implements AdapterView.OnItemSelectedListener
 
 
                 System.out.println("DATAAAAAAAAAAAAAAAAAAAAa");
-                System.out.println(sizeMoods);
+                System.out.println(numberOfGoodMoods.size());
+
+                SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
+                Gson gson = new Gson();
+                String json = sharedPrefs.getString("trial", "");
+                Type type = new TypeToken<List<HomeCollection>>() {}.getType();
+                List<HomeCollection> arrayList = gson.fromJson(json, type);
+                System.out.println("SIZE IS " + arrayList.size());
 
                 int sizeToGraph = 0;
 
@@ -96,7 +107,7 @@ public class Data extends Fragment implements AdapterView.OnItemSelectedListener
                 series.setThickness(8);
 
                 int blackValue = Color.BLACK;
-                graph.setTitle("Overall mood over time");
+                graph.setTitle("Overall mood over time - the lower the better you felt");
                 graph.setTitleColor(blackValue);
                 // graph.setTitleTextSize(13);
                 graph.getViewport().setMinX(0);
@@ -117,23 +128,25 @@ public class Data extends Fragment implements AdapterView.OnItemSelectedListener
 
                 //diferit pt ca luam doar de la structuri de 5
 
-                int sizeOfSecondGraph = 0;
 
-                int beginning;
-                if ((numberOfGoodMoods.size() -1) % 2 == 0){
-                    beginning = numberOfGoodMoods.size() - 2;
-                } else {
-                    beginning = ((numberOfGoodMoods.size() - 1) / 2) * 2 + 1;
-                }
-
-
-                for (int g = beginning; g < numberOfGoodMoods.size(); g++){
-                    if (numberOfGoodMoods.get(g) != -1){
-                        sizeOfSecondGraph++;
-                    }
-                }
 
                 if (userDatabase.daoAccess().fetchMoods().size() > 1) {
+
+                    int sizeOfSecondGraph = 0;
+
+                    int beginning;
+                    if ((numberOfGoodMoods.size() -1) % 2 == 0){
+                        beginning = numberOfGoodMoods.size() - 2;
+                    } else {
+                        beginning = ((numberOfGoodMoods.size() - 1) / 2) * 2 + 1;
+                    }
+
+
+                    for (int g = beginning; g < numberOfGoodMoods.size(); g++){
+                        if (numberOfGoodMoods.get(g) != -1){
+                            sizeOfSecondGraph++;
+                        }
+                    }
 
                     dp2 = new DataPoint[sizeOfSecondGraph];
 
@@ -193,7 +206,7 @@ public class Data extends Fragment implements AdapterView.OnItemSelectedListener
                 graph2.getViewport().setYAxisBoundsManual(true);
                 graph2.getViewport().setXAxisBoundsManual(true);
 
-                graph2.getGridLabelRenderer().setHorizontalAxisTitle("Overall mood over time");
+                graph2.getGridLabelRenderer().setHorizontalAxisTitle("Overall mood over time - the lower the better you felt");
                 graph2.getGridLabelRenderer().setHorizontalAxisTitleColor(blackValue);
 
 
@@ -372,7 +385,7 @@ public class Data extends Fragment implements AdapterView.OnItemSelectedListener
                 series.setThickness(8);
 
                 int blackValue = Color.BLACK;
-                graph.setTitle("Overall mood over time");
+                graph.setTitle("Overall mood over time - the lower the better you felt");
                 graph.setTitleColor(blackValue);
                 // graph.setTitleTextSize(13);
                 graph.getViewport().setMinX(0);

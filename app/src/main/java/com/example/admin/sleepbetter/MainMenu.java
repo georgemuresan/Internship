@@ -44,15 +44,15 @@ import java.util.Calendar;
 
 public class MainMenu extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     static Class nextclass = MainMenu.class;
-    static String title = "DEFAULT";
-    static String message = "DEFAULT MSG";
+    static String title = "CHECK";
+    static String message = "Time is up! Now checking today's questionnaire.";
     private static final String DATABASE_NAME = "user_db";
-    private UserDatabase userDatabase;
     private static int experiment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_menu);
 
         SharedPreferences preferences = getSharedPreferences("MOOD", MODE_PRIVATE);
@@ -337,31 +337,31 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
                 setAlarmManager(12, 0, "Remember:", "Stay out in the sun at least half an hour today!", 1);
                 break;
             case 2: //wear glasses that block blue light during the night
-                setAlarmManager(8, 30, "Remember:", "Turn on your \"use the f.lux\" app", 2);
+                setAlarmManager(8, 30, "Remember:", "Use the \"f.lux\" app!", 2);
                 break;
             case 3: // turn off any bright lights 2 hours before going to bed
-                setAlarmManager(19, 30, "Going to bed soon?", "Do not forget to turn off your light", 3);
+                setAlarmManager(19, 30, "Going to bed soon?", "Do not forget to turn off your light with 2 hours before bed!", 3);
                 break;
             case 5: // Do not drink caffeine within 6 hours
-                setAlarmManager(15, 0, "Remember:", "Do not drink caffeine with 6 hours before going to sleep", 5);
+                setAlarmManager(15, 0, "Remember:", "Do not drink caffeine with 6 hours before going to sleep!", 5);
                 break;
             case 6: // Limit yourself to 4 cups of coffees per day; 10 canss of
-                setAlarmManager(12, 15, "Remember:", "Limit yourself to 4 cups of coffees per day", 6);
+                setAlarmManager(12, 15, "Remember:", "Limit yourself to 4 cups of coffee per day/10 cans of soda or 2 energy drink!", 6);
                 break;
             case 7: //Do not drink empty stomach
-                setAlarmManager(8, 30, "Remember:", "Try not to drink on an empty stomach", 7);
+                setAlarmManager(8, 30, "Remember:", "Try not to drink caffeine on an empty stomach!", 7);
                 break;
             case 9://Usually get up at the same time everyday, even on weekends
-                setAlarmManager(18, 30, "Remember:", "Set your alarm at....", 9);
+                setAlarmManager(18, 30, "Remember:", "Do not forget! Go to bed and wake up at the same time as yesterday!", 9);
                 break;
             case 10: // Sleep no lesss than 7 hours per night
-                setAlarmManager(19, 00, "Remember:", "Sleep no less than 7 hours per night", 10);
+                setAlarmManager(19, 00, "Remember:", "Sleep no less than 7 hours per night!", 10);
                 break;
             case 11: //DO not go to bed unless you are tired. If you are not
-                setAlarmManager(20, 00, "Do not go to bed unless you are tired", "You can do some of the next activities to relax", 11);
+                setAlarmManager(20, 00, "Remember", "Do not go to bed unless you are tired. Read a book, take a bath, stretch or drink tea to relax!", 11);
                 break;
             case 12: //Go to sleep at 22:30 PM the latest
-                setAlarmManager(21, 00, "Remember:", "Go to sleep at 10:30 PM the latest", 12);
+                setAlarmManager(21, 00, "Remember:", "Go to sleep at 10:30 PM the latest!", 12);
                 break;
         }
 
@@ -371,7 +371,6 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
     public static class Broadcast1 extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
-            System.out.println("HERE I AM!!");
 
             long when = System.currentTimeMillis();
             NotificationManager notificationManager = (NotificationManager) context
@@ -402,7 +401,6 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
         //intrebarea este daca, aunci cand va veni momentul a schimbe si experimentul - daca o sa ii dea si alarma veche cu complete questionnaire si cea noua cu both complete the questionnaire and the experiment
         @Override
         public void onReceive(Context context, Intent intent) {
-            System.out.println("HERE I AM 2!!");
 
             long when = System.currentTimeMillis();
             NotificationManager notificationManager = (NotificationManager) context
@@ -482,7 +480,6 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
     public static class Broadcast3 extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
-            System.out.println("HERE I AM!3!");
 
             long when = System.currentTimeMillis();
             NotificationManager notificationManager = (NotificationManager) context
@@ -500,7 +497,7 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
             NotificationCompat.Builder mNotifyBuilder = new NotificationCompat.Builder(context, "13")
                     .setSmallIcon(R.drawable.pill)
                     .setContentTitle("Do you have any question?")
-                    .setContentText("Pam: Ask me something if you are courious")
+                    .setContentText("Pam: Ask me something if you are curious")
                     .setAutoCancel(true).setWhen(when)
                     .setContentIntent(pendingIntent);
             notificationManager.notify(21, mNotifyBuilder.build());
@@ -508,15 +505,15 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
         }
     }
 
-    public class Broadcast4 extends BroadcastReceiver {
+    public static class Broadcast4 extends BroadcastReceiver {
         @Override
-        public void onReceive(Context context, Intent intent) {
-            getApplicationContext().getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putBoolean("completed", false).apply();
+        public void onReceive(final Context context, Intent intent) {
+            context.getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putBoolean("completed", false).apply();
 
             //updating day
-            int numberOfDays = getApplicationContext().getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).getInt("numberDays", 0);
+            int numberOfDays = context.getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).getInt("numberDays", 0);
             numberOfDays++;
-            getApplicationContext().getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).edit().putInt("numberDays", numberOfDays).apply();
+            context.getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).edit().putInt("numberDays", numberOfDays).apply();
             new Thread(new Runnable() {
                 @Override
                 public void run() {
@@ -525,26 +522,30 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
                     final String formattedDate = df.format(c);
 
 
-                    userDatabase = Room.databaseBuilder(getApplicationContext(), UserDatabase.class, DATABASE_NAME).fallbackToDestructiveMigration().build();
+                    UserDatabase uDatabase = Room.databaseBuilder(context, UserDatabase.class, DATABASE_NAME).fallbackToDestructiveMigration().build();
 
-                    int totalQuestionnaires = userDatabase.daoAccess().fetchUserQuestionnaires().size();
+                    int totalQuestionnaires = uDatabase.daoAccess().fetchUserQuestionnaires().size();
 
-                    int fiveDays = getApplicationContext().getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).getInt("days", 0);
-                    int numberOfDays = getApplicationContext().getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).getInt("numberDays", 0);
+                    int fiveDays = context.getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).getInt("days", 0);
+                    int numberOfDays = context.getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).getInt("numberDays", 0);
 
-                    if (numberOfDays >= totalQuestionnaires) {
+                    Boolean wasRightAfterChangeOfExperiment = context.getApplicationContext().getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).getBoolean("afterExperiment", true);;
+
+                    if (numberOfDays > totalQuestionnaires) {
 
                         //daca nu a facut chestionarul
                         //1 updatam ce se intampla in questionnaire 4
-                        if (fiveDays % 2 == 1) {
-                            getApplicationContext().getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).edit().putInt("days", fiveDays).apply();
+                        if (fiveDays % 2 == 1 && wasRightAfterChangeOfExperiment) {
+                            context.getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).edit().putInt("days", fiveDays).apply();
+                            context.getApplicationContext().getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).edit().putBoolean("afterExperiment", false).apply();
+
                         } else {
-                            getApplicationContext().getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).edit().putInt("days", fiveDays + 1).apply();
+                            context.getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).edit().putInt("days", fiveDays + 1).apply();
                         }
                         //2 adaugam -1 in tabel
 
                         UserQuestionnaire user = new UserQuestionnaire();
-                        String username = getApplicationContext().getSharedPreferences("name", MODE_PRIVATE).getString("username", "nothing");
+                        String username = context.getSharedPreferences("name", MODE_PRIVATE).getString("username", "nothing");
                         user.setUsername(username);
                         user.setDate(formattedDate);
                         user.setTimesPerNight(-1);
@@ -564,10 +565,10 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
 
                         //setting mood value to -1 in shared preferences
 
-                        userDatabase.daoAccess().insertSingleUserQuestionnaire(user);
+                        uDatabase.daoAccess().insertSingleUserQuestionnaire(user);
 
-                        Report rep = new Report(userDatabase, getApplicationContext());
-                        rep.save(username, false, getApplicationContext().getSharedPreferences("consent", MODE_PRIVATE).getString("consent", "nothing"));
+                        Report rep = new Report(uDatabase, context);
+                        rep.save(username, false, context.getSharedPreferences("consent", MODE_PRIVATE).getString("consent", "nothing"));
 
                     }
                 }
@@ -575,8 +576,7 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
                 //scoatem variabila days si verificam: daca se imparte la 5, si nu e locked,
             }).start();
 
-            setFirstSpecialNotification();
-            getApplicationContext().getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).edit().putBoolean("locked", true).apply();
+            context.getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).edit().putBoolean("locked", true).apply();
 //
         }
     }

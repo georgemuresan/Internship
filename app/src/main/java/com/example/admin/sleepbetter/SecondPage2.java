@@ -91,21 +91,14 @@ public class SecondPage2 extends AppCompatActivity {
 
     private List<String> getIntervals(String command) {
 
-        if (command.equals("upToFour")) {
-            return new ArrayList<String>() {{
-                add("0");
-                add("1");
-                add("2");
-                add("3");
-                add("4/4+");
-            }};
-        } else if (command.equals("upToFive")) {
+        if (command.equals("upToFive")) {
             return new ArrayList<String>() {{
                 add("1");
                 add("2");
                 add("3");
                 add("4");
                 add("5");
+                add("-1");
             }};
         }
         return null;

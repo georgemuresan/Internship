@@ -17,7 +17,7 @@
     <string name="chooseBitmojiTitle">Please choose one of the Bitmojis bellow as your companion.</string>
 
     <string name="consentPageTitle">CONSENT FORM</string>
-    <string name="consentIntro">Please initial the box(es) if you agree with the statement(s):</string>
+    <string name="consentIntro">In order to proceed with the experiment, we will kindly ask you to look over the next paragraphs to understand your involvement into this study. Please initial the box(es) if you agree with the statement(s):</string>
     <string name="permissionOne">I have read and understood the information sheet (20/07/2018 /Version 1.0) and have had the opportunity to ask questions about the study.</string>
     <string name="permissionTwo">I agree to take part in this research project and agree for my data to be used for the purpose of this study.</string>
     <string name="permissionThree">I understand my participation is voluntary and I may withdraw at any time for any reason without my rights being affected.</string>
@@ -54,7 +54,9 @@
     <string name="firstNote">*First note*</string>
     <string name="yourNote">Your note...</string>
 
-    <string name="offquestionnaireHelp">How would you rate the following aspects of your day?</string>
+    <string name="offquestionnaireHelp">How would you rate the following aspects of your day?
+         <font fgcolor="red"><b> The blue color represents your previous answer to that question.</b></font>
+       </string>
     <string name="offtimesWakingUp">How many times did you wake up last night?</string>
     <string name="offnightTerrorUsually">How many night terrors did you have last night?</string>
     <string name="offfallAsleepUsually">How easily did you fall asleep last night?</string>
@@ -72,7 +74,8 @@
     <string name="offapetiteUsually">How would you rate your appetite for today?</string>
 
 
-    <string name="goalDiaryTitle">CURRENT STATE</string>
+    <string name="goalDiaryTitle">GOAL DIARY</string>
+    <string name="currentStateTitle">CURRENT STATE</string>
     <string name="greatText">GREAT! Here is your current avatar, reflecting your current state:</string>
     <string name="pleaseInputGoal">Please input either a goal, a wish, or any note. You can return to this section later.</string>
     <string name="goalInput">Goal Diary input...</string>
@@ -223,7 +226,7 @@
     <string name="brightExposureIntro">Your current experiment is: INCREASE BRIGHT LIGHT EXPOSURE DURING THE DAY. Below you are asked to complete the questions on whether you followed the experiment.</string>
     <string name="morningQuestion">Did you get sunlight exposure in the morning?</string>
     <string name="outQuestion">Did you stay at least half an hour in the sun today?</string>
-    <string name="sunlightQuestion">Did you keep your room so that it captures sunlight?</string>
+    <string name="sunlightQuestion">Did your room capture the sunlight today?</string>
 
 
     <string name="stopTVIntro">Your current experiment is: STOP WATCHING THE TV/THE COMPUTER WITHIN 2 HOURS OF GOING TO SLEEP. Below you are asked to complete the questions on whether you followed the experiment.</string>
@@ -266,7 +269,7 @@
 
 
     <string name="calendarTitle">CALENDAR</string>
-    <string name="calendarIntro">The Calendar shows your progress in time. You will find that ecah day since the beginning of the experiment will be coloured in a representative way: the darker the red, the worse your state was/ the darker the green, the better your state was. By clicking on a specific date you will be able to se the overall mood, the experiment and the comments for that day.</string>
+    <string name="calendarIntro">The Calendar shows your progress in time. You will find that each day since the beginning of the experiment will be coloured in a representative way: the darker the red, the worse your state was/ the darker the green, the better your state was. By clicking on a specific date you will be able to see the overall mood, the experiment and the comments for that day.</string>
 
     <string name="factorsMenu">Factors</string>
     <string name="data">Data</string>
@@ -294,14 +297,15 @@
     <string name="ourMissionn">Our mission with Sleep Better is to help you and guide you through a series of experiments that are proved to have an impact over your sleep hygiene. We want to confer an easy-to-use, straightforward, friendly interface for you to use that would not only drive you through a self-experimentation tuning process but also help us identify the most impactful factors over your sleeping hygiene.</string>
 
 
-    <string name="appIntro">Welcome! Sleep Better is a mobile application that guides you through a series of experiments that you can run in a definite period of time in order to start a tuning process over your sleeping patterns.</string>
+    <string name="appIntro">Welcome! Sleep Better is a mobile application that guides you through a series of experiments that you can run in a definite period of time in order to start a tuning process over your sleeping patterns. You will be able to change/choose your experiment once every 5 days, where at the end of each day you will have to log on your experience. You will also be able to analyse the data and interact with the other features of the app.\nTo begin with, please select a companion, complete the consent form, input your name (that only YOU will be able to see), and your given participant ID.
+</string>
 
     <string name="ourMissionTitle">Our Mission?</string>
 
     <string name="whatExeriments">WHAT EXPERIMENTS AND FEATURES?</string>
     <string name="experimentsTitle">Experiments</string>
     <string name="experiments">For the duration of the self-experimentation study, you will be able to choose which experiments you wish to conduct among the 10 options you have. At every 5 days, you will be required to either change the experiment or stick with it for another 5 days. You will be able to look at the data concerning your well-being in the DATA meu.</string>
-    <string name="experiments2">The experiments will be split into 3 categories - LIGHT, CAFFEINE and SLEEP SCHEDULE. Each of them cover a different contextual factor  that has a direct impact on your sleep hygiene.\n  - Light looks at how either sunlight exposure and blue light impact your sleeping patterns;\n  - Caffeine looks at how drugs impact your system when it comes to bedtime;\n  - Sleep Schedule looks at how important a persistent schedule is towards a good seep.</string>
+    <string name="experiments2">The experiments will be split into 3 categories - <b>LIGHT, CAFFEINE and SLEEP SCHEDULE</b>. Each of them cover a different contextual factor  that has a direct impact on your sleep hygiene.\n  - Light looks at how either sunlight exposure and blue light impact your sleeping patterns;\n  - Caffeine looks at how drugs impact your system when it comes to bedtime;\n  - Sleep Schedule looks at how important a persistent schedule is towards a good seep.</string>
     <string name="loggingTitle">Logging</string>
     <string name="loggingExp">At the end of each day, you will be required to complete 2 short questionnaires (2-3 minutes in total) that would look at both how you approached the experiment in that day AND what is the outcome. The experiment logging asks you to rate whether you feel better/worse than yesterday, but also to answer a short series of questions on how you approached the chosen experiment (1-3 questions).</string>
 
