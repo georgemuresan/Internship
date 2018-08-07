@@ -14,7 +14,7 @@
     <string name="linkBitmoji">Linked Bitmoji</string>
 
     <string name="linkBitmojiTitle">LINK YOUR BITMOJI</string>
-    <string name="chooseBitmojiTitle">Please choose one of the Bitmojis bellow as your companion.</string>
+    <string name="chooseBitmojiTitle">Please choose one of the Bitmojis bellow as your companion. The bitmoji will reflect your state throughout the experiment changing everyday depending on your answers to the questionnaire. </string>
 
     <string name="consentPageTitle">CONSENT FORM</string>
     <string name="consentIntro">Please initial the box(es) if you agree with the statement(s):</string>
@@ -73,7 +73,9 @@
 
 
     <string name="goalDiaryTitle">CURRENT STATE</string>
-    <string name="greatText">GREAT! Here is your current avatar, reflecting your current state:</string>
+    <!--<string name="greatText">GREAT! My name is Alex and I will do this experiment together with you. As your companion, I will reflect your mood:</string>-->
+    <string name="greatText1">GREAT! My name is Alex and I will do this experiment together with you. As your companion, I will reflect your mood. I can see you are ok at the moment. That’s great! We’ll work together to keep it like this and even improve your state :D</string>
+    <string name="greatText2">GREAT! My name is Alex and I will do this experiment together with you. As your companion, I will reflect your mood. I see that you feel blue. We’ll work together to make you feel better and you’ll see, it is not hard at all :D.</string>
     <string name="pleaseInputGoal">Please input either a goal, a wish, or any note. You can return to this section later.</string>
     <string name="goalInput">Goal Diary input...</string>
     <string-array name="targetGraph">

@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 public class ThirdPage extends AppCompatActivity {
 
@@ -21,6 +22,10 @@ public class ThirdPage extends AppCompatActivity {
         SharedPreferences preferences = getSharedPreferences("MOOD", MODE_PRIVATE);
         ImageView imageView = findViewById(R.id.imageView30);
         imageView.setImageResource(preferences.getInt("moodbitmoji", 0));
+
+        TextView textView = findViewById(R.id.welcomeTo);
+        setCorrectText(preferences.getInt("mood", 0), textView);
+
 
         Button button = (Button) findViewById(R.id.submitButton);
 
@@ -77,5 +82,21 @@ public class ThirdPage extends AppCompatActivity {
             }
         }).start();
 */
+    }
+
+    private void setCorrectText(int mood, TextView textView) {
+//        int happy = getSharedPreferences("bmhappy", MODE_PRIVATE).getInt("selectedbitmoji", 0);
+//        int ok = getSharedPreferences("bmok", MODE_PRIVATE).getInt("selectedbitmoji", 0);
+//        int notok = getSharedPreferences("bmnotok", MODE_PRIVATE).getInt("selectedbitmoji", 0);
+//        int bad = getSharedPreferences("bmbad", MODE_PRIVATE).getInt("selectedbitmoji", 0);
+
+        if (mood == 1 || mood == 0 || mood == 2) {
+            textView.setText(R.string.greatText1);
+            System.out.println("MOOD OK>!");
+        }
+        if (mood == 4 || mood == 5 || mood == 3) {
+            textView.setText(R.string.greatText2);
+            System.out.println("MOOD BAD>!");
+        }
     }
 }
