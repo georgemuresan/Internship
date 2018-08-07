@@ -5,6 +5,8 @@ import android.arch.persistence.room.Room;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
@@ -52,40 +54,58 @@ public class Questionnaire4 extends Fragment {
 
             public void onClick(View v) {
 
-                goToThirdActivity();
+                loopForSending();
 
             }
 
         });
 
-        List<String> listOne = getIntervals("upToFive");
+        List<String> listOne = getIntervals("upToFive", "concentrate");
 
         getSeekbarWithIntervals("concentrate").setIntervals(listOne);
 
-        getSeekbarWithIntervals("coordinate").setIntervals(listOne);
+        List<String> listOne2 = getIntervals("upToFive", "coordinate");
 
-        getSeekbarWithIntervals("apetite").setIntervals(listOne);
+        getSeekbarWithIntervals("coordinate").setIntervals(listOne2);
+
+        List<String> listOne3 = getIntervals("upToFive", "apetite");
+
+        getSeekbarWithIntervals("apetite").setIntervals(listOne3);
 
         return questionnaireView;
     }
 
-    private List<String> getIntervals(String command) {
+    private void loopForSending(){
+        //     System.out.println("IS NETWORK : " + isConnected());
+        if (isConnected()){
+            goToThirdActivity();
+        } else {
+            SecondPage4.InternetDialog dial = new SecondPage4.InternetDialog();
+            dial.show(getFragmentManager(), "dialog");
+        }
+    }
 
-        if (command.equals("upToFour")) {
-            return new ArrayList<String>() {{
-                add("0");
-                add("1");
-                add("2");
-                add("3");
-                add("4/4+");
-            }};
-        } else  if (command.equals("upToFive")) {
+    private List<String> getIntervals(String command, final String question) {
+
+        final int previousConcentrate = getActivity().getApplicationContext().getSharedPreferences("questionnaire", Context.MODE_PRIVATE).getInt("concentrate", 0);
+        final int previousCoordinate = getActivity().getApplicationContext().getSharedPreferences("questionnaire", Context.MODE_PRIVATE).getInt("coordinate", 0);
+        final int previousAppetite = getActivity().getApplicationContext().getSharedPreferences("questionnaire", Context.MODE_PRIVATE).getInt("apetite", 0);
+
+
+        if (command.equals("upToFive")) {
             return new ArrayList<String>() {{
                 add("1");
                 add("2");
                 add("3");
                 add("4");
                 add("5");
+                if(question.equals("concentrate")){
+                    add(String.valueOf(previousConcentrate));
+                } else  if(question.equals("coordinate")){
+                    add(String.valueOf(previousCoordinate));
+                } else  if(question.equals("apetite")){
+                    add(String.valueOf(previousAppetite));
+                }
             }};
         }
         return null;
@@ -252,14 +272,28 @@ public class Questionnaire4 extends Fragment {
         }
 
         int days =  getActivity().getApplicationContext().getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).getInt("days", 0);
-        if (days % 2 == 1){
+        Boolean wasRightAfterChangeOfExperiment = getActivity().getApplicationContext().getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).getBoolean("afterExperiment", true);;
+
+        if (days % 2 == 1 && wasRightAfterChangeOfExperiment){
             getActivity().getApplicationContext().getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).edit().putInt("days", days).apply();
+            getActivity().getApplicationContext().getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).edit().putBoolean("afterExperiment", false).apply();
+
         } else {
             getActivity().getApplicationContext().getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).edit().putInt("days", days + 1).apply();
         }
 
 
     }
+
+    public boolean isConnected() {
+        ConnectivityManager
+                cm = (ConnectivityManager) getActivity().getApplicationContext()
+                .getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        return activeNetwork != null
+                && activeNetwork.isConnectedOrConnecting();
+    }
+
     private int moodCalculator(int timesNight, int nightmares, int sad, int sleepy, int tired, int stressed, int irritable, int concentrate, int coordinate) {
         System.out.println( timesNight + " " + nightmares + " " +   sad + " " +   sleepy + " " +   tired + " " +   stressed + " " +   irritable + " " +   concentrate + " " +   coordinate);
         int avgMood = (sad + sleepy + tired + stressed + irritable) / 5;

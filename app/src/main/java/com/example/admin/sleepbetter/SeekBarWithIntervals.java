@@ -3,6 +3,7 @@ package com.example.admin.sleepbetter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -134,19 +135,22 @@ public class SeekBarWithIntervals extends LinearLayout {
 
     public void setIntervals(List<String> intervals) {
         displayIntervals(intervals);
-        getSeekbar().setMax(intervals.size() - 1);
+        getSeekbar().setMax(intervals.size() - 2);
     }
 
     private void displayIntervals(List<String> intervals) {
         int idOfPreviousInterval = 0;
 
         if (getRelativeLayout().getChildCount() == 0) {
-            for (String interval : intervals) {
-                TextView textViewInterval = createInterval(interval);
+            for (int i=0; i<intervals.size() - 1; i++) {
+                TextView textViewInterval = createInterval(intervals.get(i));
                 alignTextViewToRightOfPreviousInterval(textViewInterval, idOfPreviousInterval);
 
                 idOfPreviousInterval = textViewInterval.getId();
 
+                if (intervals.get(i).equals(intervals.get(intervals.size() - 1))){
+                    textViewInterval.setTextColor(Color.BLUE);
+                }
                 getRelativeLayout().addView(textViewInterval);
             }
         }

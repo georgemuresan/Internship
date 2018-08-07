@@ -2,6 +2,7 @@ package com.example.admin.sleepbetter;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -53,17 +54,27 @@ public class Questionnaire3 extends Fragment {
         });
 
 
-        List<String> listOne = getIntervals("upToFive");
+        List<String> listOne = getIntervals("upToFive", "sad");
 
         getSeekbarWithIntervals("sad").setIntervals(listOne);
 
-        getSeekbarWithIntervals("sleepy").setIntervals(listOne);
+        List<String> listOne2 = getIntervals("upToFive", "sleepy");
 
-        getSeekbarWithIntervals("tired").setIntervals(listOne);
+        getSeekbarWithIntervals("sleepy").setIntervals(listOne2);
 
-        getSeekbarWithIntervals("stressed").setIntervals(listOne);
+        List<String> listOne3 = getIntervals("upToFive", "tired");
 
-        getSeekbarWithIntervals("irritable").setIntervals(listOne);
+        getSeekbarWithIntervals("tired").setIntervals(listOne3);
+
+
+        List<String> listOne4 = getIntervals("upToFive", "stressed");
+
+        getSeekbarWithIntervals("stressed").setIntervals(listOne4);
+
+
+        List<String> listOne5 = getIntervals("upToFive", "irritable");
+
+        getSeekbarWithIntervals("irritable").setIntervals(listOne5);
 
 
 
@@ -72,23 +83,33 @@ public class Questionnaire3 extends Fragment {
         return questionnaireView;
     }
 
-    private List<String> getIntervals(String command) {
+    private List<String> getIntervals(String command, final String question) {
+        final int prebiousSad = getActivity().getApplicationContext().getSharedPreferences("questionnaire", Context.MODE_PRIVATE).getInt("sad", 0);
+        final int previousSleeppy = getActivity().getApplicationContext().getSharedPreferences("questionnaire", Context.MODE_PRIVATE).getInt("sleepy", 0);
+        final int previousTired = getActivity().getApplicationContext().getSharedPreferences("questionnaire", Context.MODE_PRIVATE).getInt("tired", 0);
+        final int previousStressed = getActivity().getApplicationContext().getSharedPreferences("questionnaire", Context.MODE_PRIVATE).getInt("stressed", 0);
+        final int previousIrritable = getActivity().getApplicationContext().getSharedPreferences("questionnaire", Context.MODE_PRIVATE).getInt("irritable", 0);
 
-        if (command.equals("upToFour")) {
-            return new ArrayList<String>() {{
-                add("0");
-                add("1");
-                add("2");
-                add("3");
-                add("4/4+");
-            }};
-        } else  if (command.equals("upToFive")) {
+
+        if (command.equals("upToFive")) {
             return new ArrayList<String>() {{
                 add("1");
                 add("2");
                 add("3");
                 add("4");
                 add("5");
+                if(question.equals("sad")){
+                    add(String.valueOf(prebiousSad));
+                } else  if(question.equals("sleepy")){
+                    add(String.valueOf(previousSleeppy));
+                } else  if(question.equals("tired")){
+                    add(String.valueOf(previousTired));
+                } else  if(question.equals("stressed")){
+                    add(String.valueOf(previousStressed));
+                } else  if(question.equals("irritable")){
+                    add(String.valueOf(previousIrritable));
+                }
+
             }};
         }
         return null;

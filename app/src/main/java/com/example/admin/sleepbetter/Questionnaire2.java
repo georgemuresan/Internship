@@ -2,6 +2,7 @@ package com.example.admin.sleepbetter;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -50,35 +51,42 @@ public class Questionnaire2 extends Fragment {
         });
 
 
-        List<String> listOne = getIntervals("upToFive");
+        List<String> listOne = getIntervals("upToFive", "fall");
 
         getSeekbarWithIntervals("fallAsleep").setIntervals(listOne);
 
-        getSeekbarWithIntervals("wakeUp").setIntervals(listOne);
+        List<String> listOne2 = getIntervals("upToFive", "wake");
 
-        getSeekbarWithIntervals("fresh").setIntervals(listOne);
+        getSeekbarWithIntervals("wakeUp").setIntervals(listOne2);
+
+        List<String> listOne3 = getIntervals("upToFive", "fresh");
+
+        getSeekbarWithIntervals("fresh").setIntervals(listOne3);
 
 
         return questionnaireView;
     }
 
-    private List<String> getIntervals(String command) {
+    private List<String> getIntervals(String command, final String question) {
 
-        if (command.equals("upToFour")) {
-            return new ArrayList<String>() {{
-                add("0");
-                add("1");
-                add("2");
-                add("3");
-                add("4/4+");
-            }};
-        } else if (command.equals("upToFive")) {
+        final int previousWake = getActivity().getApplicationContext().getSharedPreferences("questionnaire", Context.MODE_PRIVATE).getInt("wakeUp", 0);
+        final int previousFall = getActivity().getApplicationContext().getSharedPreferences("questionnaire", Context.MODE_PRIVATE).getInt("fallAsleep", 0);
+        final int previousFresh = getActivity().getApplicationContext().getSharedPreferences("questionnaire", Context.MODE_PRIVATE).getInt("fresh", 0);
+
+        if (command.equals("upToFive")) {
             return new ArrayList<String>() {{
                 add("1");
                 add("2");
                 add("3");
                 add("4");
                 add("5");
+                if(question.equals("fall")){
+                    add(String.valueOf(previousFall));
+                } else  if(question.equals("wake")){
+                    add(String.valueOf(previousWake));
+                } else  if(question.equals("fresh")){
+                    add(String.valueOf(previousFresh));
+                }
             }};
         }
         return null;

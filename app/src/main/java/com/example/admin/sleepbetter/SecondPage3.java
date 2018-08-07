@@ -105,6 +105,7 @@ public class SecondPage3 extends AppCompatActivity {
                 add("2");
                 add("3");
                 add("4/4+");
+                add("-1");
             }};
         } else if (command.equals("upToFive")) {
             return new ArrayList<String>() {{
@@ -113,6 +114,7 @@ public class SecondPage3 extends AppCompatActivity {
                 add("3");
                 add("4");
                 add("5");
+                add("-1");
             }};
         }
         return null;

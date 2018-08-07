@@ -207,6 +207,8 @@ class HwAdapter extends BaseAdapter {
                             v.setBackgroundResource(R.drawable.rounded_calender_four);
                         } else if (cal_obj.overall.equals("5")){
                             v.setBackgroundResource(R.drawable.rounded_calender_five);
+                        } else if (cal_obj.overall.contains("yesterday")){
+                            v.setBackgroundResource(R.drawable.rounded_calender_one);
                         }
 
                         txt.setTextColor(Color.parseColor("#696969"));

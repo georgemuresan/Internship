@@ -1,7 +1,10 @@
 package com.example.admin.sleepbetter;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -153,6 +156,10 @@ public class FirstPage extends AppCompatActivity {
 
 
     }
+
+
+
+
     private void goToSecondActivity() {
 
         if (nameBox.getText().toString().equals("")){
