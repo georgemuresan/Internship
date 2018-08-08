@@ -252,7 +252,9 @@ public class Questionnaire4 extends Fragment {
 
             HomeCollection.date_collection_arr.remove(HomeCollection.date_collection_arr.size()-1);
 
-            HomeCollection.date_collection_arr.add(new HomeCollection(formattedDate2, experiment, String.valueOf(getActivity().getApplicationContext().getSharedPreferences("MOOD", MODE_PRIVATE).getInt("mood", 0)), "No experiment started yet", commentt));
+            String proof = getActivity().getApplicationContext().getSharedPreferences("proof", MODE_PRIVATE).getString("proof", "No proof logged in yet.");
+
+            HomeCollection.date_collection_arr.add(new HomeCollection(formattedDate2, experiment, String.valueOf(getActivity().getApplicationContext().getSharedPreferences("MOOD", MODE_PRIVATE).getInt("mood", 0)), proof, commentt));
 
             SharedPreferences.Editor editor = sharedPrefs.edit();
 
@@ -261,7 +263,9 @@ public class Questionnaire4 extends Fragment {
             editor.putString("trial", json);
             editor.commit();
         } else {
-            HomeCollection.date_collection_arr.add(new HomeCollection(formattedDate2, experiment,  String.valueOf(getActivity().getApplicationContext().getSharedPreferences("MOOD", MODE_PRIVATE).getInt("mood", 0)), "No experiment started yet", comment));
+            String proof = getActivity().getApplicationContext().getSharedPreferences("proof", MODE_PRIVATE).getString("proof", "No proof logged in yet.");
+
+            HomeCollection.date_collection_arr.add(new HomeCollection(formattedDate2, experiment,  String.valueOf(getActivity().getApplicationContext().getSharedPreferences("MOOD", MODE_PRIVATE).getInt("mood", 0)), proof, comment));
 
             SharedPreferences.Editor editor = sharedPrefs.edit();
 

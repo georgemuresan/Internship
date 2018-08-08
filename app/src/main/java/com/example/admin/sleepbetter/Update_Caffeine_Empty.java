@@ -125,6 +125,11 @@ public class Update_Caffeine_Empty extends Fragment {
             }
         }).start();
 
+        getActivity().getApplicationContext().getSharedPreferences("proof", MODE_PRIVATE).getString("proof", "No proof logged in yet.");
+
+        String proof = "Drank caffeine: " + textDrink + "/On empty stomach: " + textEmpty;
+        getActivity().getApplicationContext().getSharedPreferences("proof", MODE_PRIVATE).edit().putString("proof", proof).apply();
+
 
         FragmentManager fragmentManager = getFragmentManager();
 

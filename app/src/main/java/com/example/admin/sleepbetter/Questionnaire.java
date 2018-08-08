@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -139,6 +140,12 @@ public class Questionnaire extends Fragment {
         FragmentManager fragmentManager = getFragmentManager();
 
         fragmentManager.beginTransaction().replace(R.id.content_frame, new Questionnaire2()).commit();
+    }
+
+    public void onBackPressed() {
+        // super.onBackPressed(); commented this line in order to disable back press
+        //Write your code here
+        Toast.makeText(getActivity().getApplicationContext(), "Cannot go back to the experiment proof. Please finish the short questionnaire!", Toast.LENGTH_SHORT).show();
     }
 
 

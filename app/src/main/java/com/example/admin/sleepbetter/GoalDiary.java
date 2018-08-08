@@ -147,20 +147,25 @@ public class GoalDiary extends Fragment {
         HomeCollection coll = HomeCollection.date_collection_arr.get(HomeCollection.date_collection_arr.size() - 1);
         String date = coll.date;
 
+
+        String proof = getActivity().getApplicationContext().getSharedPreferences("proof", MODE_PRIVATE).getString("proof", "No proof logged in yet.");
+
         if (date.equals(formattedDate2)) {
             String comment = coll.comment;
             comment = comment + " / " + note;
 
             String lastExp = coll.experiment;
+            String lastProof = coll.proof;
+
             HomeCollection.date_collection_arr.remove(HomeCollection.date_collection_arr.size() - 1);
             if (lastExp.equals(experiment)) {
 
-                HomeCollection.date_collection_arr.add(new HomeCollection(formattedDate2, experiment, String.valueOf(getActivity().getApplicationContext().getSharedPreferences("MOOD", MODE_PRIVATE).getInt("mood", 0)), "No experiment started yet", comment));
+                HomeCollection.date_collection_arr.add(new HomeCollection(formattedDate2, experiment, String.valueOf(getActivity().getApplicationContext().getSharedPreferences("MOOD", MODE_PRIVATE).getInt("mood", 0)), proof, comment));
             } else {
                 if (lastExp.contains("yesterday")){
-                    HomeCollection.date_collection_arr.add(new HomeCollection(formattedDate2, lastExp, "(yesterday) " + String.valueOf(getActivity().getApplicationContext().getSharedPreferences("MOOD", MODE_PRIVATE).getInt("mood", 0)), "(yesterday) " + "No experiment started yet", comment));
+                    HomeCollection.date_collection_arr.add(new HomeCollection(formattedDate2, lastExp, "(yesterday) " + String.valueOf(getActivity().getApplicationContext().getSharedPreferences("MOOD", MODE_PRIVATE).getInt("mood", 0)), "(yesterday) " + lastProof, comment));
                 } else {
-                    HomeCollection.date_collection_arr.add(new HomeCollection(formattedDate2, lastExp, String.valueOf(getActivity().getApplicationContext().getSharedPreferences("MOOD", MODE_PRIVATE).getInt("mood", 0)), "No experiment started yet", comment));
+                    HomeCollection.date_collection_arr.add(new HomeCollection(formattedDate2, lastExp, String.valueOf(getActivity().getApplicationContext().getSharedPreferences("MOOD", MODE_PRIVATE).getInt("mood", 0)), proof, comment));
                 }
                 }
 
@@ -172,7 +177,7 @@ public class GoalDiary extends Fragment {
             editor.commit();
 
         } else {
-            HomeCollection.date_collection_arr.add(new HomeCollection(formattedDate2, "(yesterday) " + experiment, "(yesterday) " + String.valueOf(getActivity().getApplicationContext().getSharedPreferences("MOOD", MODE_PRIVATE).getInt("mood", 0)), "(yesterday) " + "No experiment started yet", note));
+            HomeCollection.date_collection_arr.add(new HomeCollection(formattedDate2, "(yesterday) " + experiment, "(yesterday) " + String.valueOf(getActivity().getApplicationContext().getSharedPreferences("MOOD", MODE_PRIVATE).getInt("mood", 0)), "(yesterday) " + proof, note));
 
             SharedPreferences.Editor editor = sharedPrefs.edit();
 

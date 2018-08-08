@@ -122,6 +122,12 @@ public class Update_Schedule_Relax extends Fragment {
             }
         }).start();
 
+        getActivity().getApplicationContext().getSharedPreferences("proof", MODE_PRIVATE).getString("proof", "No proof logged in yet.");
+
+        String proof = "Went to sleep relaxed: " + textRelaxed + "/Activity chosen:" + txtActivity;
+        getActivity().getApplicationContext().getSharedPreferences("proof", MODE_PRIVATE).edit().putString("proof", proof).apply();
+
+
 
         FragmentManager fragmentManager = getFragmentManager();
 

@@ -123,6 +123,11 @@ public class Update_Light_TurnOffBright extends Fragment {
             }
         }).start();
 
+        getActivity().getApplicationContext().getSharedPreferences("proof", MODE_PRIVATE).getString("proof", "No proof logged in yet.");
+
+        String proof = "Turned off bright lights: " + textTurnOff + "/Turned off TV:" + textTV;
+        getActivity().getApplicationContext().getSharedPreferences("proof", MODE_PRIVATE).edit().putString("proof", proof).apply();
+
 
         FragmentManager fragmentManager = getFragmentManager();
 

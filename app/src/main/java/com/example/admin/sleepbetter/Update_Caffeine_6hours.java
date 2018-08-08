@@ -109,6 +109,11 @@ public class Update_Caffeine_6hours extends Fragment {
             }
         }).start();
 
+        getActivity().getApplicationContext().getSharedPreferences("proof", MODE_PRIVATE).getString("proof", "No proof logged in yet.");
+
+        String proof = "Last coffee at " + lastDrink + "/Went to sleep at " + whenSleep;
+        getActivity().getApplicationContext().getSharedPreferences("proof", MODE_PRIVATE).edit().putString("proof", proof).apply();
+
 
         FragmentManager fragmentManager = getFragmentManager();
 

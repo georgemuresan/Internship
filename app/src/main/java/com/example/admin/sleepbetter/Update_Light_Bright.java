@@ -136,6 +136,13 @@ public class Update_Light_Bright extends Fragment {
         }).start();
 
 
+        getActivity().getApplicationContext().getSharedPreferences("proof", MODE_PRIVATE).getString("proof", "No proof logged in yet.");
+
+        String proof = "Morning sunlight exposure: " + textSunlight + "/Half an hour in the sun:" + textHalf + "/Room captured sunlight: " + textRoom;
+        getActivity().getApplicationContext().getSharedPreferences("proof", MODE_PRIVATE).edit().putString("proof", proof).apply();
+
+
+
         FragmentManager fragmentManager = getFragmentManager();
 
         fragmentManager.beginTransaction().replace(R.id.content_frame, new Questionnaire()).commit();

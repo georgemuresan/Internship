@@ -125,6 +125,12 @@ public class Update_Light_Glasses extends Fragment {
             }
         }).start();
 
+        getActivity().getApplicationContext().getSharedPreferences("proof", MODE_PRIVATE).getString("proof", "No proof logged in yet.");
+
+        String proof = "USed the f.lux app: " + textApp + "/Wore night glasses:" + textGlasses;
+        getActivity().getApplicationContext().getSharedPreferences("proof", MODE_PRIVATE).edit().putString("proof", proof).apply();
+
+
 
         FragmentManager fragmentManager = getFragmentManager();
 

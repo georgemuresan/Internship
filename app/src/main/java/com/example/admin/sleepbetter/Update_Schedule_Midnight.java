@@ -100,6 +100,12 @@ public class Update_Schedule_Midnight extends Fragment {
             }
         }).start();
 
+        getActivity().getApplicationContext().getSharedPreferences("proof", MODE_PRIVATE).getString("proof", "No proof logged in yet.");
+
+        String proof = "Went to sleep at: " + textSleep;
+        getActivity().getApplicationContext().getSharedPreferences("proof", MODE_PRIVATE).edit().putString("proof", proof).apply();
+
+
 
         FragmentManager fragmentManager = getFragmentManager();
 
