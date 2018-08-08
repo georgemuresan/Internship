@@ -84,34 +84,34 @@ public class FirstPage extends AppCompatActivity {
             }
         });
 
-// PENTRU BITMOJI
-        if (completedBitmoji != -1){
-            bitmoji.setChecked(true);
-        } else {
-            bitmoji.setChecked(false);
-        }
-        bitmoji.setClickable(false);
-        TextView cform2 = (TextView) findViewById(R.id.linkedBitmoji);
-        cform2.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
-                Intent intent = new Intent(getApplicationContext(), FirstPageLinkBitmoji.class);
-
-                String name = nameBox.getText().toString();
-                String participant = participantID.getText().toString();
-
-                if (!name.equals("")){
-                    getSharedPreferences("name", MODE_PRIVATE).edit().putString("username", name).apply();
-                }
-                if (!participant.equals("")){
-                    getSharedPreferences("name", MODE_PRIVATE).edit().putString("participantID", participant).apply();
-                }
-
-                startActivity(intent);
-
-
-            }
-        });
-
+//// PENTRU BITMOJI
+//        if (completedBitmoji != -1){
+//            bitmoji.setChecked(true);
+//        } else {
+//            bitmoji.setChecked(false);
+//        }
+//        bitmoji.setClickable(false);
+//        TextView cform2 = (TextView) findViewById(R.id.linkedBitmoji);
+//        cform2.setOnClickListener(new View.OnClickListener(){
+//            public void onClick(View v){
+//                Intent intent = new Intent(getApplicationContext(), FirstPageLinkBitmoji.class);
+//
+//                String name = nameBox.getText().toString();
+//                String participant = participantID.getText().toString();
+//
+//                if (!name.equals("")){
+//                    getSharedPreferences("name", MODE_PRIVATE).edit().putString("username", name).apply();
+//                }
+//                if (!participant.equals("")){
+//                    getSharedPreferences("name", MODE_PRIVATE).edit().putString("participantID", participant).apply();
+//                }
+//
+//                startActivity(intent);
+//
+//
+//            }
+//        });
+//
 
 
         String name = getSharedPreferences("name", MODE_PRIVATE).getString("username", "nothing");
@@ -129,7 +129,7 @@ public class FirstPage extends AppCompatActivity {
 
             public void onClick(View v) {
 
-                if (consent.isChecked() && bitmoji.isChecked()) {
+                if (consent.isChecked() ) {
                     goToSecondActivity();
                 } else {
                 Toast.makeText(getApplicationContext(), "You need to choose a Bitmoji and read the consent page.", Toast.LENGTH_SHORT).show();

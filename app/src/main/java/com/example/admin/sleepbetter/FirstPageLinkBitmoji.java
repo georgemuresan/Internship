@@ -100,21 +100,21 @@ public class FirstPageLinkBitmoji extends AppCompatActivity {
     public void putimgs(int happy, int ok, int notok, int bad, int bedtime, int calendar,
                         int diary, int eat, int jump, int laptop, int sleep, int soda, int sun, int sunglas,
                         int walking) {
-        getSharedPreferences("bmhappy", MODE_PRIVATE).edit().putInt("slectedbitmoji", happy).apply();
-        getSharedPreferences("bmok", MODE_PRIVATE).edit().putInt("slectedbitmoji", ok).apply();
-        getSharedPreferences("bmnotok", MODE_PRIVATE).edit().putInt("slectedbitmoji", notok).apply();
-        getSharedPreferences("bmbad", MODE_PRIVATE).edit().putInt("slectedbitmoji", bad).apply();
-        getSharedPreferences("bmbedtime", MODE_PRIVATE).edit().putInt("slectedbitmoji", bedtime).apply();
-        getSharedPreferences("bmcalendar", MODE_PRIVATE).edit().putInt("slectedbitmoji", calendar).apply();
-        getSharedPreferences("bmdiary", MODE_PRIVATE).edit().putInt("slectedbitmoji", diary).apply();
-        getSharedPreferences("bmeat", MODE_PRIVATE).edit().putInt("slectedbitmoji", eat).apply();
-        getSharedPreferences("bmjump", MODE_PRIVATE).edit().putInt("slectedbitmoji", jump).apply();
-        getSharedPreferences("bmlaptop", MODE_PRIVATE).edit().putInt("slectedbitmoji", laptop).apply();
-        getSharedPreferences("bmsleep", MODE_PRIVATE).edit().putInt("slectedbitmoji", sleep).apply();
-        getSharedPreferences("bmsoda", MODE_PRIVATE).edit().putInt("slectedbitmoji", soda).apply();
-        getSharedPreferences("bmsun", MODE_PRIVATE).edit().putInt("slectedbitmoji", sun).apply();
-        getSharedPreferences("bmsunglas", MODE_PRIVATE).edit().putInt("slectedbitmoji", sunglas).apply();
-        getSharedPreferences("bmwalking", MODE_PRIVATE).edit().putInt("slectedbitmoji", walking).apply();
+        getSharedPreferences("bmhappy", MODE_PRIVATE).edit().putInt("s", happy).apply();
+        getSharedPreferences("bmok", MODE_PRIVATE).edit().putInt("s", ok).apply();
+        getSharedPreferences("bmnotok", MODE_PRIVATE).edit().putInt("s", notok).apply();
+        getSharedPreferences("bmbad", MODE_PRIVATE).edit().putInt("s", bad).apply();
+        getSharedPreferences("bmbedtime", MODE_PRIVATE).edit().putInt("s", bedtime).apply();
+        getSharedPreferences("bmcalendar", MODE_PRIVATE).edit().putInt("s", calendar).apply();
+        getSharedPreferences("bmdiary", MODE_PRIVATE).edit().putInt("s", diary).apply();
+        getSharedPreferences("bmeat", MODE_PRIVATE).edit().putInt("s", eat).apply();
+        getSharedPreferences("bmjump", MODE_PRIVATE).edit().putInt("s", jump).apply();
+        getSharedPreferences("bmlaptop", MODE_PRIVATE).edit().putInt("s", laptop).apply();
+        getSharedPreferences("bmsleep", MODE_PRIVATE).edit().putInt("s", sleep).apply();
+        getSharedPreferences("bmsoda", MODE_PRIVATE).edit().putInt("s", soda).apply();
+        getSharedPreferences("bmsun", MODE_PRIVATE).edit().putInt("s", sun).apply();
+        getSharedPreferences("bmsunglas", MODE_PRIVATE).edit().putInt("s", sunglas).apply();
+        getSharedPreferences("bmwalking", MODE_PRIVATE).edit().putInt("s", walking).apply();
 
     }
 
