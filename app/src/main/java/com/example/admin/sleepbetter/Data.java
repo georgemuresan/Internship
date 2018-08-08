@@ -107,7 +107,7 @@ public class Data extends Fragment implements AdapterView.OnItemSelectedListener
                 series.setThickness(8);
 
                 int blackValue = Color.BLACK;
-                graph.setTitle("Overall mood over time - the lower the better you felt");
+                graph.setTitle("Mood over time - the lower the better");
                 graph.setTitleColor(blackValue);
                 // graph.setTitleTextSize(13);
                 graph.getViewport().setMinX(0);
@@ -134,6 +134,7 @@ public class Data extends Fragment implements AdapterView.OnItemSelectedListener
 
                     int sizeOfSecondGraph = 0;
 
+                    System.out.println("nr" + numberOfGoodMoods.size());
                     int beginning;
                     if ((numberOfGoodMoods.size() -1) % 2 == 0){
                         beginning = numberOfGoodMoods.size() - 2;
@@ -156,20 +157,24 @@ public class Data extends Fragment implements AdapterView.OnItemSelectedListener
                     int k=0;
                     Iterator it = numberOfGoodMoods.iterator();
                     if ((numberOfGoodMoods.size() - 1) % 2 == 0){
-                        while (it.hasNext() && i < 2) {
-                            Integer pair = (Integer) it.next();
-                            if (pair != -1) {
-                                dp2[i] = new DataPoint(k + 1, userDatabase.daoAccess().fetchMoods().get(((userDatabase.daoAccess().fetchMoods().size() - 1) / 2) * 2 - 2 + k + 1));
+                        while (it.hasNext() && k < 2) {
+                            it.next();
+                            Integer moodToSee = userDatabase.daoAccess().fetchMoods().get(((userDatabase.daoAccess().fetchMoods().size() - 1) / 2) * 2 - 2 + k + 1);
+
+                            if (moodToSee != -1) {
+                                dp2[i] = new DataPoint(k + 1, moodToSee);
                                 i++;
                             }
                             k++;
                         }
                     } else {
-                        while (it.hasNext() && i < (numberOfGoodMoods.size() - 1) % 2) {
-                            Integer pair = (Integer) it.next();
-                            if (pair != -1) {
+                        while (it.hasNext() && k < (numberOfGoodMoods.size() - 1) % 2) {
+                            it.next();
+                            Integer moodToSee = userDatabase.daoAccess().fetchMoods().get(((userDatabase.daoAccess().fetchMoods().size() - 1) / 2) * 2 + k + 1);
 
-                                dp2[i] = new DataPoint(k + 1, userDatabase.daoAccess().fetchMoods().get(((userDatabase.daoAccess().fetchMoods().size() - 1) / 2) * 2 + k + 1));
+                            if (moodToSee != -1) {
+
+                                dp2[i] = new DataPoint(k + 1, moodToSee);
                                 i++;
                             }
                             k++;
@@ -206,7 +211,7 @@ public class Data extends Fragment implements AdapterView.OnItemSelectedListener
                 graph2.getViewport().setYAxisBoundsManual(true);
                 graph2.getViewport().setXAxisBoundsManual(true);
 
-                graph2.getGridLabelRenderer().setHorizontalAxisTitle("Overall mood over time - the lower the better you felt");
+                graph2.getGridLabelRenderer().setHorizontalAxisTitle("Mood over time - the lower the better");
                 graph2.getGridLabelRenderer().setHorizontalAxisTitleColor(blackValue);
 
 
@@ -358,7 +363,15 @@ public class Data extends Fragment implements AdapterView.OnItemSelectedListener
                 System.out.println("DATAAAAAAAAAAAAAAAAAAAAa");
                 System.out.println(sizeMoods);
 
-                DataPoint[] dp = new DataPoint[userDatabase.daoAccess().fetchMoods().size()];
+                int sizeToGraph = 0;
+
+                for (int j=0; j<numberOfGoodMoods.size(); j++){
+                    if (numberOfGoodMoods.get(j) != -1){
+                        sizeToGraph++;
+                    }
+                }
+
+                DataPoint[] dp = new DataPoint[sizeToGraph];
 
                 String text = spinner.getSelectedItem().toString();
                 List<Integer> listInNeed = getListFromSpinner(text);
@@ -385,7 +398,7 @@ public class Data extends Fragment implements AdapterView.OnItemSelectedListener
                 series.setThickness(8);
 
                 int blackValue = Color.BLACK;
-                graph.setTitle("Overall mood over time - the lower the better you felt");
+                graph.setTitle("Mood over time - the lower the better");
                 graph.setTitleColor(blackValue);
                 // graph.setTitleTextSize(13);
                 graph.getViewport().setMinX(0);

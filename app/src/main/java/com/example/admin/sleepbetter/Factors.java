@@ -139,7 +139,8 @@ public class Factors extends Fragment {
             //zice ca nu e blocat
             getActivity().getApplicationContext().getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).edit().putBoolean("locked", false).apply();
 
-        } else if (isLocked && (fiveDays - 1) % 2 == 0 && currentDate.compareTo("18:59")<0){
+            //Amm schimbat in plus
+        } else if (isLocked && (fiveDays + 1) % 2 == 0 && currentDate.compareTo("18:59")<0){
             for (int i = 0; i < radioGroup.getChildCount(); i++) {
                 radioGroup.getChildAt(i).setEnabled(false);
             }

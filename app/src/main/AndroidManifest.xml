@@ -7,6 +7,10 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.NEW_OUTGOING_CALL" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
     <application
 
         android:allowBackup="true"
@@ -34,6 +38,7 @@
         <receiver android:name=".MainMenu$Broadcast1" />
         <receiver android:name=".MainMenu$Broadcast2" />
         <receiver android:name=".MainMenu$Broadcast3" />
+        <receiver android:name=".MainMenu$Broadcast4" />
         <activity android:name=".Seek" />
         <activity
             android:name=".MainMenu"
