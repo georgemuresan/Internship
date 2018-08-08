@@ -288,8 +288,10 @@
     <string name="introDown">Sleep Beter @ Main Menu</string>
 
     <string name="whatISTitle">WHAT IS SLEEP BETTER?</string>
+    <string name="WhatIsChatbot">You can ask Alex questions about sleep hygiene and other cool facts about sleep. Or, you can ask it to tell you a joke. Give it a try and have some fun.</string>
 
-    <string name="sleepHygienetitle">Sleep Hygiene?</string>
+
+    <string name="sleepHygienetitle">Wanna chat?</string>
     <string name="tuningTitle">Tuning?</string>
     <string name="tuning">Tuning is about the options you have towards self-exploration - having the knowledge, the skills and the context to find what best works for you. It is more complex than behavior change as it addresses the whole environment and it is not straightly associated with the individual.</string>
     <string name="sleepDescription">According to National Sleep Foundations, sleep hygiene is a variety of different practices and habits that are necessary to have good nighttime sleep quality and full daytime alertness. Obtaining healthy sleep is important for both physical and mental health. It can also improve productivity and overall quality of life. Everyone, from children to older adults, can benefit from practicing good sleep habits.</string>
@@ -298,7 +300,8 @@
 
     <string name="appIntro">Welcome! Sleep Better is a mobile application that guides you through a series of experiments that you can run in a definite period of time in order to start a tuning process over your sleeping patterns.</string>
 
-    <string name="ourMissionTitle">Our Mission?</string>
+    <string name="ourMissionTitle">How it works?</string>
+    <string name="howItWorks"> You can ask it to tell you about the following topics: Blue Screens, Caffeine, Circadian Rhythms, Energy drinks. Just write : Tell me a joke or Fact or Tell me about... and complete with one of the topics. And don’t forget to start with a Hi!</string>
 
     <string name="whatExeriments">WHAT EXPERIMENTS AND FEATURES?</string>
     <string name="experimentsTitle">Experiments</string>
@@ -313,7 +316,7 @@
     <string name="chatbotGuide">CHATBOT GUIDE</string>
 
 
-    <string name="chatbotintro">CHATBOT intro</string>
+    <string name="chatbotintro">Start the conversation with a Hi then ask me about sleep hygiene topics (check the guide if you are not sure). If I do not reply, make sure you are connected to the internet :D</string>
 
 
 
