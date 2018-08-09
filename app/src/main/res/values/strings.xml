@@ -17,7 +17,8 @@
     <string name="chooseBitmojiTitle">Please choose one of the Bitmojis bellow as your companion. The bitmoji will reflect your state throughout the experiment changing everyday depending on your answers to the questionnaire. </string>
 
     <string name="consentPageTitle">CONSENT FORM</string>
-    <string name="consentIntro">Please initial the box(es) if you agree with the statement(s):</string>
+    <string name="consentIntro">In order to proceed with the experiment, we will kindly ask you to look over the next paragraphs to understand your involvement into this study. Please initial the box(es) if you agree with the statement(s):
+</string>
     <string name="permissionOne">I have read and understood the information sheet (20/07/2018 /Version 1.0) and have had the opportunity to ask questions about the study.</string>
     <string name="permissionTwo">I agree to take part in this research project and agree for my data to be used for the purpose of this study.</string>
     <string name="permissionThree">I understand my participation is voluntary and I may withdraw at any time for any reason without my rights being affected.</string>
@@ -29,12 +30,17 @@
 
 
     <string name="questionnaireTitle">QUESTIONNAIRE</string>
-    <string name="questionnaireHelp">First, how would you rate the following aspects of your everyday life?</string>
+    <string name="questionnaireHelp">First, how would you rate the following aspects of your sleep and daily experience?</string>
+    <string name="questionnaireHelpSecond">For the question "How quickly do you usually fall asleep?", please bare in mind that 1 means "as soon as getingt into bed", 2 is "within 20 minutes", 3 is "up to one hour", 4 is "1/1.30 hours" and 5 is "more than that". Also, for the "How easily do you usually wake up?", notice that 1 means "waking up with no alarm", 2 is "using the alarm only sometimes", 3 is "using the alarm but I get up easily", 4 is "using the snooze button once", 5 is "using the snooze button more than once".</string>
+
+    <string name="questionnaireUsuallyHelpSecond">For the question "How easily did you fall asleep last night?", please bare in mind that 1 means "as soon as got into bed", 2 is "within 20 minutes", 3 is "up to one hour", 4 is "1/1.30 hours" and 5 is "more than that". Also, for the "How easily did you wake up this morning?", notice that 1 means "woke up with no alarm", 2 is "used the alarm", 3 is "used the alarm and hit snooze", 4 is "used the snooze button more than once", 5 is "could not wake up even wih alarm".</string>
+
+
     <string name="nocturnalTitle">Night-time</string>
-    <string name="timesWakingUp">How many times do you wake up per night?</string>
-    <string name="nightTerrorUsually">How often do you have night terrors?</string>
+    <string name="timesWakingUp">How many times do you wake up per night in average?</string>
+    <string name="nightTerrorUsually">Do you ever have night terrors? If yes, how many times a week?</string>
     <string name="beforeAfter">Before and after</string>
-    <string name="fallAsleepUsually">How easily do you usually fall asleep?</string>
+    <string name="fallAsleepUsually">How quickly do you usually fall asleep?</string>
     <string name="wakeUpUsually">How easily do you usually wake up?</string>
     <string name="freshUsually">How fresh do you usually feel after you wake up?</string>
     <string name="mood">Mood</string>
@@ -55,6 +61,7 @@
     <string name="yourNote">Your note...</string>
 
     <string name="offquestionnaireHelp">How would you rate the following aspects of your day?</string>
+
     <string name="offtimesWakingUp">How many times did you wake up last night?</string>
     <string name="offnightTerrorUsually">How many night terrors did you have last night?</string>
     <string name="offfallAsleepUsually">How easily did you fall asleep last night?</string>
@@ -292,13 +299,16 @@
 
 
     <string name="sleepHygienetitle">Wanna chat?</string>
-    <string name="tuningTitle">Tuning?</string>
-    <string name="tuning">Tuning is about the options you have towards self-exploration - having the knowledge, the skills and the context to find what best works for you. It is more complex than behavior change as it addresses the whole environment and it is not straightly associated with the individual.</string>
-    <string name="sleepDescription">According to National Sleep Foundations, sleep hygiene is a variety of different practices and habits that are necessary to have good nighttime sleep quality and full daytime alertness. Obtaining healthy sleep is important for both physical and mental health. It can also improve productivity and overall quality of life. Everyone, from children to older adults, can benefit from practicing good sleep habits.</string>
-    <string name="ourMissionn">Our mission with Sleep Better is to help you and guide you through a series of experiments that are proved to have an impact over your sleep hygiene. We want to confer an easy-to-use, straightforward, friendly interface for you to use that would not only drive you through a self-experimentation tuning process but also help us identify the most impactful factors over your sleeping hygiene.</string>
+    <string name="tuningTitle">Tuning - a process that works for you</string>
+    <string name="tuning">What these sleep experiments are for, is to test the options that might work best for you to sleep better. You already sleep every day so you already have lots of practice sleeping - the goal in these experiments is to help you dial in ways that will help you sleep better.</string>
+    <string name="sleepDescription">According to National Sleep Foundations, sleep hygiene is a variety of different practices and habits that are necessary to have good nighttime sleep quality and full daytime alertness. Obtaining healthy sleep is important for both physical and mental health. It can also improve productivity and overall quality of life. Everyone, from children to older adults, can benefit from developing a good sleep practice.</string>
+    <string name="ourMissionn">Our mission with Sleep Better is to help you and guide you through a series of experiments that are proved to let you explore sleep hygiene. The Sleep Better app offers an easy-to-use, straightforward, friendly interface for you to use that would not only drive you through a self-experimentation tuning process but also help us identify the most impactful factors over your sleeping hygiene.</string>
 
 
-    <string name="appIntro">Welcome! Sleep Better is a mobile application that guides you through a series of experiments that you can run in a definite period of time in order to start a tuning process over your sleeping patterns.</string>
+    <string name="appIntro">Welcome! Sleep Better is a mobile application that guides you through a series of experiments that you can run in a definite period of time in order to start a tuning process over your sleeping patterns.
+You will be able to change/choose your experiment once every 5 days, where at the end of each day you will have to log on your experience. You will also be able to analyse the data and interact with the other features of the app.
+To begin with, please select a companion, complete the consent form, input your name (that only YOU will be able to see), and your given participant number.
+</string>
 
     <string name="ourMissionTitle">How it works?</string>
     <string name="howItWorks"> You can ask it to tell you about the following topics: Blue Screens, Caffeine, Circadian Rhythms, Energy drinks. Just write : Tell me a joke or Fact or Tell me about... and complete with one of the topics. And don’t forget to start with a Hi!</string>

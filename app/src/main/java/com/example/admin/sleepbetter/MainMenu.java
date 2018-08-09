@@ -54,7 +54,7 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_menu);
-
+        
 /*
         new Thread(new Runnable() {
             @Override
