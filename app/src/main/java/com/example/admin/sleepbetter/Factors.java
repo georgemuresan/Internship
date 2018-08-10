@@ -149,6 +149,12 @@ public class Factors extends Fragment {
             }
             Toast.makeText(getActivity().getApplicationContext(), "You will be able to change the experiment, after you complete today's questionnaire.", Toast.LENGTH_SHORT).show();
 
+        } else if (isLocked && (fiveDays + 1) % 2 == 0 && currentDate.compareTo("18:59")>0){
+            for (int i = 0; i < radioGroup.getChildCount(); i++) {
+                radioGroup.getChildAt(i).setEnabled(false);
+            }
+            Toast.makeText(getActivity().getApplicationContext(), "You will be able to change the experiment, after you complete today's questionnaire.", Toast.LENGTH_SHORT).show();
+
         } else if (isLocked && fiveDays % 2 != 0){
             //daca e blocat si e na din zilele cand nu are voie sa schimbe
             for (int i = 0; i < radioGroup.getChildCount(); i++) {
