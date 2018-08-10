@@ -131,6 +131,9 @@ public class Factors extends Fragment {
         SimpleDateFormat formatter1 = new SimpleDateFormat("HH:mm");
         String currentDate = formatter1.format(calendar1.getTime());
 
+        System.out.println(fiveDays + " IS DAYS");
+        System.out.println(isLocked + " IS LOCKED");
+
         if (isLocked && fiveDays % 2 == 0 && currentDate.compareTo("18:59")>0){
             //daca e blocat si a venit momentul sa se schimbe experimentul
             for (int i = 0; i < radioGroup.getChildCount(); i++) {
