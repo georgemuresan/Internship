@@ -117,7 +117,7 @@ public class SecondPage4 extends AppCompatActivity {
     private void goToThirdActivity() {
 
 
-        Intent intent = new Intent(this, ThirdPage.class);
+        Intent intent = new Intent(this, MainMenu.class);
 
         final int timesPerNight = getSharedPreferences("questionnaire", MODE_PRIVATE).getInt("timesPerNight", 0);
         final int nightTerrors = getSharedPreferences("questionnaire", MODE_PRIVATE).getInt("nightTerrors", 0);

@@ -103,7 +103,7 @@ public class Help extends Fragment {
                                                     public void success(Request request, Response response, String body) {
                                                         Log.d(TAG, "" + response + " ; " + body);
                                                         chatDisplayTV.append(
-                                                                Html.fromHtml("<p><b>ALEX:</b> " +
+                                                                Html.fromHtml("<p><b>BOT:</b> " +
                                                                         body + "</p>")
                                                         );
                                                     }

@@ -48,7 +48,7 @@ public class FirstPage extends AppCompatActivity {
         getSharedPreferences("name", MODE_PRIVATE).getString("participantID", "nothing");
 
         final CheckBox consent = (CheckBox) findViewById(R.id.consentCheckbox);
-        final CheckBox bitmoji = (CheckBox) findViewById(R.id.linkedCheckbox);
+
 
         String completed = getSharedPreferences("consent", MODE_PRIVATE).getString("consent", "nothing");
         int completedBitmoji = getSharedPreferences("bmhappy", MODE_PRIVATE).getInt("slectedbitmoji", -1);
@@ -146,7 +146,7 @@ public class FirstPage extends AppCompatActivity {
         Boolean isFirstRun = getSharedPreferences("PREFERENCE", MODE_PRIVATE)
                 .getBoolean("isFirstRun", true);
 
-        if (!isFirstRun && consent.isChecked() && bitmoji.isChecked() && !nameBox.getText().toString().equals("") && !participantID.getText().toString().equals("")) {
+        if (!isFirstRun && consent.isChecked() && !nameBox.getText().toString().equals("") && !participantID.getText().toString().equals("")) {
             //show start activity
             startActivity(new Intent(this, MainMenu.class));
 
