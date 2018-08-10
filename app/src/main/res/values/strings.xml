@@ -30,11 +30,10 @@
 
 
     <string name="questionnaireTitle">QUESTIONNAIRE</string>
-    <string name="questionnaireHelp">First, how would you rate the following aspects of your sleep and daily experience?</string>
+    <string name="questionnaireHelp">First, how would you rate the following aspects of your sleep and daily experience? 1 represents the lowest and 5 the highest.</string>
     <string name="questionnaireHelpSecond">For the question \"How quickly do you usually fall asleep?\", please bare in mind that 1 means \"as soon as getingt into bed\", 2 is \"within 20 minutes\", 3 is \"up to one hour\", 4 is \"1/1.30 hours\" and 5 is \"more than that\". Also, for the \"How easily do you usually wake up?\", notice that 1 means \"waking up with no alarm\", 2 is \"using the alarm only sometimes\", 3 is \"using the alarm but I get up easily\", 4 is \"using the snooze button once\", 5 is \"using the snooze button more than once\".</string>
 
     <string name="questionnaireUsuallyHelpSecond">For the question \"How easily did you fall asleep last night?\", please bare in mind that 1 means \"as soon as got into bed\", 2 is \"within 20 minutes\", 3 is \"up to one hour\", 4 is \"1/1.30 hours\" and 5 is \"more than that\". Also, for the \"How easily did you wake up this morning?\", notice that 1 means \"woke up with no alarm\", 2 is \"used the alarm\", 3 is \"used the alarm and hit snooze\", 4 is \"used the snooze button more than once\", 5 is \"could not wake up even wih alarm\".</string>
-
 
     <string name="nocturnalTitle">Night-time</string>
     <string name="timesWakingUp">How many times do you wake up per night in average?</string>
@@ -60,7 +59,7 @@
     <string name="firstNote">*First note*</string>
     <string name="yourNote">Your note...</string>
 
-    <string name="offquestionnaireHelp">How would you rate the following aspects of your day?</string>
+    <string name="offquestionnaireHelp">How would you rate the following aspects of your day? 1 represents the lowest and 5 the highest.</string>
 
     <string name="offtimesWakingUp">How many times did you wake up last night?</string>
     <string name="offnightTerrorUsually">How many night terrors did you have last night?</string>
@@ -81,8 +80,8 @@
 
     <string name="goalDiaryTitle">CURRENT STATE</string>
     <!--<string name="greatText">GREAT! My name is Alex and I will do this experiment together with you. As your companion, I will reflect your mood:</string>-->
-    <string name="greatText1">GREAT! My name is Alex and I will do this experiment together with you. As your companion, I will reflect your mood. I can see you are ok at the moment. That’s great! We’ll work together to keep it like this and even improve your state :D</string>
-    <string name="greatText2">GREAT! My name is Alex and I will do this experiment together with you. As your companion, I will reflect your mood. I see that you feel blue. We’ll work together to make you feel better and you’ll see, it is not hard at all :D.</string>
+    <string name="greatText1">GREAT! My name is Alex and I will do this experiment together with you. As your companion, I will reflect your mood. I can see you are ok at the moment. That is great! We will work together to keep it like this and even improve your state.</string>
+    <string name="greatText2">GREAT! My name is Alex and I will do this experiment together with you. As your companion, I will reflect your mood. I see that you feel blue. We will work together to make you feel better and you will see, it is not hard at all.</string>
     <string name="pleaseInputGoal">Please input either a goal, a wish, or any note. You can return to this section later.</string>
     <string name="goalInput">Goal Diary input...</string>
     <string-array name="targetGraph">
@@ -295,10 +294,12 @@
     <string name="introDown">Sleep Beter @ Main Menu</string>
 
     <string name="whatISTitle">WHAT IS SLEEP BETTER?</string>
-    <string name="WhatIsChatbot">You can ask Alex questions about sleep hygiene and other cool facts about sleep. Or, you can ask it to tell you a joke. Give it a try and have some fun.</string>
+    <string name="WhatIsChatbot">You can ask Alex questions about sleep hygiene and other cool, interesting facts about sleep. For fun, you can also ask your companion to tell you a joke. just give it a try and have some fun!</string>
 
 
-    <string name="sleepHygienetitle">Wanna chat?</string>
+    <string name="sleepHygienetitle">Sleep Hygiene?</string>
+    <string name="wannachatTitle">Wanna chat?</string>
+
     <string name="tuningTitle">Tuning - a process that works for you</string>
     <string name="tuning">What these sleep experiments are for, is to test the options that might work best for you to sleep better. You already sleep every day so you already have lots of practice sleeping - the goal in these experiments is to help you dial in ways that will help you sleep better.</string>
     <string name="sleepDescription">According to National Sleep Foundations, sleep hygiene is a variety of different practices and habits that are necessary to have good nighttime sleep quality and full daytime alertness. Obtaining healthy sleep is important for both physical and mental health. It can also improve productivity and overall quality of life. Everyone, from children to older adults, can benefit from developing a good sleep practice.</string>
@@ -310,8 +311,11 @@ You will be able to change/choose your experiment once every 5 days, where at th
 To begin with, please select a companion, complete the consent form, input your name (that only YOU will be able to see), and your given participant number.
 </string>
 
-    <string name="ourMissionTitle">How it works?</string>
-    <string name="howItWorks"> You can ask it to tell you about the following topics: Blue Screens, Caffeine, Circadian Rhythms, Energy drinks. Just write : Tell me a joke or Fact or Tell me about... and complete with one of the topics. And don’t forget to start with a Hi!</string>
+    <string name="ourMissionTitle">Our mission?</string>
+    <string name="howItWorksTitle">How it works?</string>
+
+
+    <string name="howItWorks"> You can ask for more information on the following topics: Blue Screen, Caffeine, Circadian Rhythms, Energy drinks, etc! Simply ask your companion: \"Tell me about...\" and complete the question with one of the topics. You can also ask your companion for random facts about sleep: \"Tell me a fact\"! And do not forget to start with a Hi!</string>
 
     <string name="whatExeriments">WHAT EXPERIMENTS AND FEATURES?</string>
     <string name="experimentsTitle">Experiments</string>
@@ -326,7 +330,7 @@ To begin with, please select a companion, complete the consent form, input your 
     <string name="chatbotGuide">CHATBOT GUIDE</string>
 
 
-    <string name="chatbotintro">Start the conversation with a Hi then ask me about sleep hygiene topics (check the guide if you are not sure). If I do not reply, make sure you are connected to the internet :D</string>
+    <string name="chatbotintro">Start the conversation with a Hi, and then ask me about sleep hygiene topics (check the guide if you are not sure). If I do not reply, make sure you are connected to the internet.</string>
 
 
 
