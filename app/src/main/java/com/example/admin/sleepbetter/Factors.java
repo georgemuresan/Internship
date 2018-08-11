@@ -134,7 +134,7 @@ public class Factors extends Fragment {
         System.out.println(fiveDays + " IS DAYS");
         System.out.println(isLocked + " IS LOCKED");
 
-        if (isLocked && fiveDays % 2 == 0 && currentDate.compareTo("18:59")>0){
+        if (isLocked && fiveDays % 5 == 0 && currentDate.compareTo("18:59")>0){
             //daca e blocat si a venit momentul sa se schimbe experimentul
             for (int i = 0; i < radioGroup.getChildCount(); i++) {
                 radioGroup.getChildAt(i).setEnabled(true);
@@ -143,19 +143,19 @@ public class Factors extends Fragment {
             getActivity().getApplicationContext().getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).edit().putBoolean("locked", false).apply();
 
             //Amm schimbat in plus
-        } else if (isLocked && (fiveDays + 1) % 2 == 0 && currentDate.compareTo("18:59")<0){
+        } else if (isLocked && (fiveDays + 1) % 5 == 0 && currentDate.compareTo("18:59")<0){
             for (int i = 0; i < radioGroup.getChildCount(); i++) {
                 radioGroup.getChildAt(i).setEnabled(false);
             }
             Toast.makeText(getActivity().getApplicationContext(), "You will be able to change the experiment, after you complete today's questionnaire.", Toast.LENGTH_SHORT).show();
 
-        } else if (isLocked && (fiveDays + 1) % 2 == 0 && currentDate.compareTo("18:59")>0){
+        } else if (isLocked && (fiveDays + 1) % 5 == 0 && currentDate.compareTo("18:59")>0){
             for (int i = 0; i < radioGroup.getChildCount(); i++) {
                 radioGroup.getChildAt(i).setEnabled(false);
             }
             Toast.makeText(getActivity().getApplicationContext(), "You will be able to change the experiment, after you complete today's questionnaire.", Toast.LENGTH_SHORT).show();
 
-        } else if (isLocked && fiveDays % 2 != 0){
+        } else if (isLocked && fiveDays % 5 != 0){
             //daca e blocat si e na din zilele cand nu are voie sa schimbe
             for (int i = 0; i < radioGroup.getChildCount(); i++) {
                 radioGroup.getChildAt(i).setEnabled(false);

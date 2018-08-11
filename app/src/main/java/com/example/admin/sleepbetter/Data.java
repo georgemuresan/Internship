@@ -111,8 +111,8 @@ public class Data extends Fragment implements AdapterView.OnItemSelectedListener
                 graph.setTitleColor(blackValue);
                 // graph.setTitleTextSize(13);
                 graph.getViewport().setMinX(0);
-                graph.getViewport().setMaxX(30);
-                graph.getViewport().setMaxXAxisSize(30);
+                graph.getViewport().setMaxX(20);
+                graph.getViewport().setMaxXAxisSize(20);
                 graph.getViewport().setMinY(1);
                 graph.getViewport().setMaxY(5);
 
@@ -136,10 +136,10 @@ public class Data extends Fragment implements AdapterView.OnItemSelectedListener
 
                     System.out.println("nr" + numberOfGoodMoods.size());
                     int beginning;
-                    if ((numberOfGoodMoods.size() -1) % 2 == 0){
-                        beginning = numberOfGoodMoods.size() - 2;
+                    if ((numberOfGoodMoods.size() -1) % 5 == 0){
+                        beginning = numberOfGoodMoods.size() - 5;
                     } else {
-                        beginning = ((numberOfGoodMoods.size() - 1) / 2) * 2 + 1;
+                        beginning = ((numberOfGoodMoods.size() - 1) / 5) * 5 + 1;
                     }
 
 
@@ -156,10 +156,10 @@ public class Data extends Fragment implements AdapterView.OnItemSelectedListener
                     i=0;
                     int k=0;
                     Iterator it = numberOfGoodMoods.iterator();
-                    if ((numberOfGoodMoods.size() - 1) % 2 == 0){
-                        while (it.hasNext() && k < 2) {
+                    if ((numberOfGoodMoods.size() - 1) % 5 == 0){
+                        while (it.hasNext() && k < 5) {
                             it.next();
-                            Integer moodToSee = userDatabase.daoAccess().fetchMoods().get(((userDatabase.daoAccess().fetchMoods().size() - 1) / 2) * 2 - 2 + k + 1);
+                            Integer moodToSee = userDatabase.daoAccess().fetchMoods().get(((userDatabase.daoAccess().fetchMoods().size() - 1) / 5) * 5 - 5 + k + 1);
 
                             if (moodToSee != -1) {
                                 dp2[i] = new DataPoint(k + 1, moodToSee);
@@ -168,9 +168,9 @@ public class Data extends Fragment implements AdapterView.OnItemSelectedListener
                             k++;
                         }
                     } else {
-                        while (it.hasNext() && k < (numberOfGoodMoods.size() - 1) % 2) {
+                        while (it.hasNext() && k < (numberOfGoodMoods.size() - 1) % 5) {
                             it.next();
-                            Integer moodToSee = userDatabase.daoAccess().fetchMoods().get(((userDatabase.daoAccess().fetchMoods().size() - 1) / 2) * 2 + k + 1);
+                            Integer moodToSee = userDatabase.daoAccess().fetchMoods().get(((userDatabase.daoAccess().fetchMoods().size() - 1) / 5) * 5 + k + 1);
 
                             if (moodToSee != -1) {
 
@@ -203,8 +203,8 @@ public class Data extends Fragment implements AdapterView.OnItemSelectedListener
                 //   graph2.setTitleTextSize(13);
 
                 graph2.getViewport().setMinX(1);
-                graph2.getViewport().setMaxX(2);
-                graph2.getViewport().setMaxXAxisSize(2);
+                graph2.getViewport().setMaxX(5);
+                graph2.getViewport().setMaxXAxisSize(5);
                 graph2.getViewport().setMinY(1);
                 graph2.getViewport().setMaxY(5);
 
@@ -402,8 +402,8 @@ public class Data extends Fragment implements AdapterView.OnItemSelectedListener
                 graph.setTitleColor(blackValue);
                 // graph.setTitleTextSize(13);
                 graph.getViewport().setMinX(0);
-                graph.getViewport().setMaxX(30);
-                graph.getViewport().setMaxXAxisSize(30);
+                graph.getViewport().setMaxX(20);
+                graph.getViewport().setMaxXAxisSize(20);
                 graph.getViewport().setMinY(1);
                 graph.getViewport().setMaxY(5);
 

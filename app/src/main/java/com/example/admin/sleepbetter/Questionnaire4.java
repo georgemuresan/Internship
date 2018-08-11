@@ -278,7 +278,7 @@ public class Questionnaire4 extends Fragment {
         int days =  getActivity().getApplicationContext().getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).getInt("days", 0);
         Boolean wasRightAfterChangeOfExperiment = getActivity().getApplicationContext().getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).getBoolean("afterExperiment", true);;
 
-        if (days % 2 == 1 && wasRightAfterChangeOfExperiment){
+        if (days % 5 == 1 && wasRightAfterChangeOfExperiment){
             getActivity().getApplicationContext().getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).edit().putInt("days", days).apply();
             getActivity().getApplicationContext().getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).edit().putBoolean("afterExperiment", false).apply();
 
