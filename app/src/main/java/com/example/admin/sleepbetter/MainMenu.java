@@ -520,7 +520,7 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
             boolean isLocked = context.getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).getBoolean("locked", false);
             int fiveDays = context.getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).getInt("days", 0);
 
-            if (isLocked && fiveDays % 2 == 0) {
+            if (isLocked && fiveDays % 5 == 0) {
                 //daca e blocat si a venit momentul sa se schimbe experimentul
                 NotificationCompat.Builder mNotifyBuilder = new NotificationCompat.Builder(context, "13")
                         .setSmallIcon(R.drawable.pill)
@@ -607,7 +607,7 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
 
                         //daca nu a facut chestionarul
                         //1 updatam ce se intampla in questionnaire 4
-                        if (fiveDays % 2 == 1 && wasRightAfterChangeOfExperiment) {
+                        if (fiveDays % 5 == 1 && wasRightAfterChangeOfExperiment) {
                             context.getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).edit().putInt("days", fiveDays).apply();
                             context.getApplicationContext().getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).edit().putBoolean("afterExperiment", false).apply();
 
