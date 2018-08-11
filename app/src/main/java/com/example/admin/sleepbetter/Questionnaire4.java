@@ -44,9 +44,8 @@ public class Questionnaire4 extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         questionnaireView = inflater.inflate(R.layout.questionnaire_four, container, false);
 
-        SharedPreferences preferences = this.getActivity().getSharedPreferences("bmjump", MODE_PRIVATE);
         ImageView imageView = questionnaireView.findViewById(R.id.imageView9);
-        imageView.setImageResource(preferences.getInt("selectedbitmoji", 0));
+        imageView.setImageResource(R.drawable.actions);
 
         Button button = (Button) questionnaireView.findViewById(R.id.submitButton);
 

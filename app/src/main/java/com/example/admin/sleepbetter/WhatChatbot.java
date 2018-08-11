@@ -15,13 +15,11 @@ public class WhatChatbot extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.what_is_chatbot);
 
-        SharedPreferences preferences = getSharedPreferences("bmdiary", MODE_PRIVATE);
         ImageView imageView = findViewById(R.id.imageView5);
-        imageView.setImageResource(preferences.getInt("slectedbitmoji", 0));
+        imageView.setImageResource(R.drawable.chat);
 
-        preferences = getSharedPreferences("bmlaptop", MODE_PRIVATE);
         imageView = findViewById(R.id.imageView4);
-        imageView.setImageResource(preferences.getInt("slectedbitmoji", 0));
+        imageView.setImageResource(R.drawable.facts);
 
         Button button = (Button) findViewById(R.id.back);
 

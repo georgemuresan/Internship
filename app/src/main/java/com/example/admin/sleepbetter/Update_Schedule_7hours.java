@@ -32,9 +32,8 @@ public class Update_Schedule_7hours extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         updateView = inflater.inflate(R.layout.update_schedule_seven, container, false);
-        SharedPreferences preferences = this.getActivity().getSharedPreferences("bmsleep", MODE_PRIVATE);
         ImageView imageView = updateView.findViewById(R.id.imageView21);
-        imageView.setImageResource(preferences.getInt("selectedbitmoji",0));
+        imageView.setImageResource(R.drawable.sleeep_clock);
 
         List<String> listOne = getIntervals("dayReview");
         getSeekbarWithIntervals("dayReviewBar").setIntervals(listOne);

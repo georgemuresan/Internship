@@ -15,13 +15,11 @@ public class WhatIsSleep extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.what_is_sleep);
 
-        SharedPreferences preferences = getSharedPreferences("bmjump", MODE_PRIVATE);
         ImageView imageView = findViewById(R.id.imageView4);
-        imageView.setImageResource(preferences.getInt("slectedbitmoji", 0));
+        imageView.setImageResource(R.drawable.sleepmoon);
 
-        preferences = getSharedPreferences("bmhappy", MODE_PRIVATE);
         imageView = findViewById(R.id.imageView5);
-        imageView.setImageResource(preferences.getInt("slectedbitmoji", 0));
+        imageView.setImageResource(R.drawable.mission);
 
         Button button = (Button) findViewById(R.id.back);
 

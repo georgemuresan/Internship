@@ -34,9 +34,8 @@ public class SecondPage3 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second_page_three);
 
-        SharedPreferences preferences = getSharedPreferences("bmok", MODE_PRIVATE);
         ImageView imageView = findViewById(R.id.imageView8);
-        imageView.setImageResource(preferences.getInt("slectedbitmoji", 0));
+        imageView.setImageResource(R.drawable.mood_dice);
 
         Button button = (Button) findViewById(R.id.submitButton);
 

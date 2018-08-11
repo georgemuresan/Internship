@@ -32,9 +32,8 @@ public class SecondPage2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second_page_two);
 
-        SharedPreferences preferences = getSharedPreferences("bmwalking", MODE_PRIVATE);
         ImageView imageView = findViewById(R.id.imageView7);
-        imageView.setImageResource(preferences.getInt("slectedbitmoji", 0));
+        imageView.setImageResource(R.drawable.day_and_night);
 
         Button button = (Button) findViewById(R.id.submitButton);
 

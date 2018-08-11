@@ -117,9 +117,8 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
             }
             }).start();
 */
-        SharedPreferences preferences = getSharedPreferences("MOOD", MODE_PRIVATE);
-        ImageView imageView = findViewById(R.id.imageView2);
-        imageView.setImageResource(preferences.getInt("moodbitmoji", 0));
+       ImageView imageView = findViewById(R.id.imageView2);
+        imageView.setImageResource(R.drawable.sleep);
 
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -141,9 +140,8 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
         String name = getSharedPreferences("name", MODE_PRIVATE).getString("username", "nothing");
         navUsername.setText(name);
 // Adding the right bitmoji
-        int mood = getSharedPreferences("MOOD", MODE_PRIVATE).getInt("moodbitmoji", 0);
         ImageView imageView2 = (ImageView) headerView.findViewById(R.id.imageView);
-        imageView2.setImageResource(mood);
+        imageView2.setImageResource(R.drawable.stickman);
 
         //NOTIFICATION DEMO
         this.createNotificationChannel();

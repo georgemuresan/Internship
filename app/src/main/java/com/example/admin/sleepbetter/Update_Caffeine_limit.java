@@ -39,9 +39,8 @@ public class Update_Caffeine_limit extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         updateView = inflater.inflate(R.layout.update_caffeine_limit, container, false);
 
-        SharedPreferences preferences = this.getActivity().getSharedPreferences("bmsoda", MODE_PRIVATE);
         ImageView imageView = updateView.findViewById(R.id.imageView13);
-        imageView.setImageResource(preferences.getInt("selectedbitmoji", 0));
+        imageView.setImageResource(R.drawable.caffeine);
 
 
         List<String> listOne = getIntervals("dayReview");

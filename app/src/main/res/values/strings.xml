@@ -31,7 +31,7 @@
 
     <string name="questionnaireTitle">QUESTIONNAIRE</string>
     <string name="questionnaireHelp">First, how would you rate the following aspects of your sleep and daily experience? 1 represents the lowest and 5 the highest.</string>
-    <string name="questionnaireHelpSecond">For the question \"How quickly do you usually fall asleep?\", please bare in mind that 1 means \"as soon as getingt into bed\", 2 is \"within 20 minutes\", 3 is \"up to one hour\", 4 is \"1/1.30 hours\" and 5 is \"more than that\". Also, for the \"How easily do you usually wake up?\", notice that 1 means \"waking up with no alarm\", 2 is \"using the alarm only sometimes\", 3 is \"using the alarm but I get up easily\", 4 is \"using the snooze button once\", 5 is \"using the snooze button more than once\".</string>
+    <string name="questionnaireHelpSecond">For the question \"How quickly do you usually fall asleep?\", please bare in mind that 1 means \"as soon as getting into bed\", 2 is \"within 20 minutes\", 3 is \"up to one hour\", 4 is \"1/1.30 hours\" and 5 is \"more than that\". Also, for the \"How easily do you usually wake up?\", notice that 1 means \"waking up with no alarm\", 2 is \"using the alarm only sometimes\", 3 is \"using the alarm but I get up easily\", 4 is \"using the snooze button once\", 5 is \"using the snooze button more than once\".</string>
 
     <string name="questionnaireUsuallyHelpSecond">For the question \"How easily did you fall asleep last night?\", please bare in mind that 1 means \"as soon as got into bed\", 2 is \"within 20 minutes\", 3 is \"up to one hour\", 4 is \"1/1.30 hours\" and 5 is \"more than that\". Also, for the \"How easily did you wake up this morning?\", notice that 1 means \"woke up with no alarm\", 2 is \"used the alarm\", 3 is \"used the alarm and hit snooze\", 4 is \"used the snooze button more than once\", 5 is \"could not wake up even wih alarm\".</string>
 
@@ -308,7 +308,7 @@
 
     <string name="appIntro">Welcome! Sleep Better is a mobile application that guides you through a series of experiments that you can run in a definite period of time in order to start a tuning process over your sleeping patterns.
 You will be able to change/choose your experiment once every 5 days, where at the end of each day you will have to log on your experience. You will also be able to analyse the data and interact with the other features of the app.
-To begin with, please select a companion, complete the consent form, input your name (that only YOU will be able to see), and your given participant number.
+To begin with, complete the consent form, input your name (that only YOU will be able to see), and your given participant number.
 </string>
 
     <string name="ourMissionTitle">Our mission?</string>

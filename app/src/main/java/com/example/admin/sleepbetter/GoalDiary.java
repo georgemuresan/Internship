@@ -42,8 +42,7 @@ public class GoalDiary extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         goalDiaryView = inflater.inflate(R.layout.goal_diary, container, false);
         ImageView imageView = (ImageView) goalDiaryView.findViewById(R.id.imageView29);
-        SharedPreferences preferences = this.getActivity().getSharedPreferences("bmdiary", Context.MODE_PRIVATE);
-        imageView.setImageResource(preferences.getInt("slectedbitmoji", 0));
+        imageView.setImageResource(R.drawable.diary);
         Button button = (Button) goalDiaryView.findViewById(R.id.button);
 
         button.setOnClickListener(new View.OnClickListener() {

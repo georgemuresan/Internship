@@ -130,7 +130,7 @@
                 app:layout_constraintHorizontal_bias="0.502"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/WhatExperiments"
-                app:srcCompat="@drawable/happy" />
+                app:srcCompat="@drawable/sleep" />
 
             <TextView
                 android:id="@+id/textView4"

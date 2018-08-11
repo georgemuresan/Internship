@@ -33,9 +33,8 @@ public class Update_Schedule_SameTime extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         updateView = inflater.inflate(R.layout.update_schedule_sametime, container, false);
-        SharedPreferences preferences = this.getActivity().getSharedPreferences("bmcalendar", MODE_PRIVATE);
         ImageView imageView = updateView.findViewById(R.id.imageView20);
-        imageView.setImageResource(preferences.getInt("selectedbitmoji", 0));
+        imageView.setImageResource(R.drawable.sleeep_clock);
 
 
         List<String> listOne = getIntervals("dayReview");

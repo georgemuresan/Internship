@@ -34,9 +34,8 @@ public class Questionnaire2 extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         questionnaireView = inflater.inflate(R.layout.questionnaire_two, container, false);
 
-        SharedPreferences preferences = this.getActivity().getSharedPreferences("bmwalking", MODE_PRIVATE);
-        ImageView imageView = questionnaireView.findViewById(R.id.imageView7);
-        imageView.setImageResource(preferences.getInt("selectedbitmoji", 0));
+       ImageView imageView = questionnaireView.findViewById(R.id.imageView7);
+        imageView.setImageResource(R.drawable.day_and_night);
 
         Button button = (Button) questionnaireView.findViewById(R.id.submitButton);
 

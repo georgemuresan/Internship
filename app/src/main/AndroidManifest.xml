@@ -28,12 +28,10 @@
         </activity>
         <!--<receiver android:name=".NotifyService"/>-->
         <activity android:name=".FirstPageConsent" />
-        <activity android:name=".FirstPageLinkBitmoji" />
         <activity android:name=".SecondPage" />
         <activity android:name=".SecondPage2" />
         <activity android:name=".SecondPage3" />
         <activity android:name=".SecondPage4" />
-        <activity android:name=".ThirdPage" />
 
         <receiver android:name=".MainMenu$Broadcast1" />
         <receiver android:name=".MainMenu$Broadcast2" />

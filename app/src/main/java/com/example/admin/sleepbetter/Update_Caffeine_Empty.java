@@ -35,9 +35,8 @@ public class Update_Caffeine_Empty extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         updateView = inflater.inflate(R.layout.update_caffeine_empty, container, false);
-        SharedPreferences preferences = this.getActivity().getSharedPreferences("bmeat", MODE_PRIVATE);
-        ImageView imageView = updateView.findViewById(R.id.imageView22);
-        imageView.setImageResource(preferences.getInt("selectedbitmoji", 0));
+         ImageView imageView = updateView.findViewById(R.id.imageView22);
+        imageView.setImageResource(R.drawable.stomach);
 
         List<String> listOne = getIntervals("dayReview");
         getSeekbarWithIntervals("dayReviewBar").setIntervals(listOne);

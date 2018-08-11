@@ -45,9 +45,8 @@ public class SecondPage4 extends AppCompatActivity {
 
         setContentView(R.layout.activity_second_page_four);
 
-        SharedPreferences preferences = getSharedPreferences("bmjump", MODE_PRIVATE);
         ImageView imageView = findViewById(R.id.imageView9);
-        imageView.setImageResource(preferences.getInt("slectedbitmoji", 0));
+        imageView.setImageResource(R.drawable.actions);
 
         Button button = (Button) findViewById(R.id.submitButton);
 

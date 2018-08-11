@@ -34,9 +34,8 @@ public class Update_Light_Glasses extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         updateView = inflater.inflate(R.layout.update_light_glasses, container, false);
-        SharedPreferences preferences = this.getActivity().getSharedPreferences("bmsunglas", MODE_PRIVATE);
         ImageView imageView = updateView.findViewById(R.id.imageView16);
-        imageView.setImageResource(preferences.getInt("selectedbitmoji", 0));
+        imageView.setImageResource(R.drawable.glasses);
 
         List<String> listOne = getIntervals("dayReview");
         getSeekbarWithIntervals("dayReviewBar").setIntervals(listOne);

@@ -35,9 +35,8 @@ public class Update_Light_Bright extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         updateView = inflater.inflate(R.layout.update_light_bright, container, false);
-        SharedPreferences preferences = this.getActivity().getSharedPreferences("bmhappy", MODE_PRIVATE);
         ImageView imageView = updateView.findViewById(R.id.imageView15);
-        imageView.setImageResource(preferences.getInt("selectedbitmoji",0));
+        imageView.setImageResource(R.drawable.sun);
 
 
 

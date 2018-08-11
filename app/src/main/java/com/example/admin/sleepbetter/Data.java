@@ -44,14 +44,8 @@ public class Data extends Fragment implements AdapterView.OnItemSelectedListener
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         dataView = inflater.inflate(R.layout.data, container, false);
         ImageView imageView1 = (ImageView) dataView.findViewById(R.id.imageView28);
-        ImageView imageView2 = (ImageView) dataView.findViewById(R.id.imageView26);
-        ImageView imageView3 = (ImageView) dataView.findViewById(R.id.imageView27);
-        SharedPreferences preferences = this.getActivity().getSharedPreferences("bmhappy", MODE_PRIVATE);
-        SharedPreferences moodpreference = this.getActivity().getSharedPreferences("MOOD", MODE_PRIVATE);
 
-        imageView1.setImageResource(moodpreference.getInt("moodbitmoji", 0));
-        imageView2.setImageResource(moodpreference.getInt("moodbitmoji", 0));
-        imageView3.setImageResource(preferences.getInt("slectedbitmoji", 0));
+        imageView1.setImageResource(R.drawable.you);
 
         new Thread(new Runnable() {
             @Override

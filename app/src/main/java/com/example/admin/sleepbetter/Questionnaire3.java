@@ -35,9 +35,8 @@ public class Questionnaire3 extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         questionnaireView = inflater.inflate(R.layout.questionnaire_three, container, false);
 
-        SharedPreferences preferences = this.getActivity().getSharedPreferences("bmok", MODE_PRIVATE);
         ImageView imageView = questionnaireView.findViewById(R.id.imageView8);
-        imageView.setImageResource(preferences.getInt("selectedbitmoji", 0));
+        imageView.setImageResource(R.drawable.mood_dice);
 
 
 

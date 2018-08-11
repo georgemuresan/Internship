@@ -15,17 +15,14 @@ public class WhatExperiments extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.what_experiments);
 
-        SharedPreferences preferences = getSharedPreferences("bmwalking", MODE_PRIVATE);
-        ImageView imageView = findViewById(R.id.imageView23);
-        imageView.setImageResource(preferences.getInt("slectedbitmoji", 0));
+       ImageView imageView = findViewById(R.id.imageView23);
+        imageView.setImageResource(R.drawable.phone);
 
-        preferences = getSharedPreferences("bmbad", MODE_PRIVATE);
-        imageView = findViewById(R.id.imageView24);
-        imageView.setImageResource(preferences.getInt("slectedbitmoji", 0));
+         imageView = findViewById(R.id.imageView24);
+        imageView.setImageResource(R.drawable.moon);
 
-        preferences = getSharedPreferences("bmhappy", MODE_PRIVATE);
         imageView = findViewById(R.id.imageView25);
-        imageView.setImageResource(preferences.getInt("slectedbitmoji", 0));
+        imageView.setImageResource(R.drawable.ques);
 
         Button button = (Button) findViewById(R.id.back);
 

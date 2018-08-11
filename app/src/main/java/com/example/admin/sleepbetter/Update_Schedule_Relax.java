@@ -36,9 +36,8 @@ public class Update_Schedule_Relax extends Fragment {
         updateView = inflater.inflate(R.layout.update_schedule_relax, container, false);
         List<String> listOne = getIntervals("dayReview");
         getSeekbarWithIntervals("dayReviewBar").setIntervals(listOne);
-        SharedPreferences preferences = this.getActivity().getSharedPreferences("bmbedtime", MODE_PRIVATE);
         ImageView imageView = updateView.findViewById(R.id.imageView19);
-        imageView.setImageResource(preferences.getInt("selectedbitmoji", 0));
+        imageView.setImageResource(R.drawable.relax);
 
         Button button = (Button) updateView.findViewById(R.id.submitUpdate);
 
