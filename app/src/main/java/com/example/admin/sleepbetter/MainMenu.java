@@ -44,10 +44,7 @@ import java.util.Calendar;
 
 public class MainMenu extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     static Class nextclass = MainMenu.class;
-    static String title = "DEFAULT";
-    static String message = "DEFAULT_MESSAGE";
     private static final String DATABASE_NAME = "user_db";
-    private static int experiment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -318,12 +315,12 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
         }
     }
 
-    private void setAlarmManager(int hour, int minute, final String title, final String message, int experiment) {
+    private void setAlarmManager(int hour, int minute, final String title, final String message) {
 
-
-            this.title = title;
-            this.message = message;
-            this.experiment = experiment;
+        getSharedPreferences("notification", MODE_PRIVATE).getString("title", "nothing");
+        getSharedPreferences("notification", MODE_PRIVATE).edit().putString("title", title).apply();
+        getSharedPreferences("notification", MODE_PRIVATE).getString("message", "nothing");
+        getSharedPreferences("notification", MODE_PRIVATE).edit().putString("message", message).apply();
 
             Calendar calendar = Calendar.getInstance();
             calendar.set(Calendar.HOUR_OF_DAY, hour);
@@ -340,7 +337,7 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
             am.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
     }
 
-    private void setSpecialAlarmManager(int hour, int minute, final String title, final String message, int experiment) {
+    private void setSpecialAlarmManager(int hour, int minute, final String title, final String message) {
 
         Calendar calendar = Calendar.getInstance();
             calendar.set(Calendar.HOUR_OF_DAY, hour);
@@ -396,47 +393,51 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
     //produce the required notifications
     private void setNotifications() {
         int experiment = getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).getInt("KEY_SAVED_RADIO_BUTTON_INDEX", 0);
-       System.out.println(experiment);
+
         switch (experiment) {
             case 1: //increase bright light exposure
-                setAlarmManager(12, 0, "Remember:", "Stay out in the sun at least half an hour today!", 1);
+                setAlarmManager(12, 0, "Remember:", "Stay out in the sun at least half an hour today!");
                 break;
             case 2: //wear glasses that block blue light during the night
-                setAlarmManager(8, 30, "Remember:", "Use the \"f.lux\" app!", 2);
+                setAlarmManager(8, 30, "Remember:", "Use the \"f.lux\" app!");
                 break;
             case 3: // turn off any bright lights 2 hours before going to bed
-                setAlarmManager(19, 30, "Going to bed soon?", "Do not forget to turn off your light with 2 hours before bed!", 3);
+                setAlarmManager(19, 30, "Going to bed soon?", "Do not forget to turn off your light with 2 hours before bed!");
                 break;
             case 5: // Do not drink caffeine within 6 hours
-                setAlarmManager(15, 0, "Remember:", "Do not drink caffeine with 6 hours before going to sleep!", 5);
+                setAlarmManager(15, 0, "Remember:", "Do not drink caffeine with 6 hours before going to sleep!");
                 break;
             case 6: // Limit yourself to 4 cups of coffees per day; 10 canss of
-                setAlarmManager(12, 15, "Remember:", "Limit yourself to 4 cups of coffee per day/10 cans of soda or 2 energy drink!", 6);
+                setAlarmManager(16, 24, "Remember:", "Limit yourself to 4 cups of coffee per day/10 cans of soda or 2 energy drinks!");
                 break;
             case 7: //Do not drink empty stomach
-                setAlarmManager(8, 30, "Remember:", "Try not to drink caffeine on an empty stomach!", 7);
+                setAlarmManager(8, 30, "Remember:", "Try not to drink caffeine on an empty stomach!");
                 break;
             case 9://Usually get up at the same time everyday, even on weekends
-                setAlarmManager(18, 30, "Remember:", "Do not forget! Go to bed and wake up at the same time as yesterday!", 9);
+                setAlarmManager(18, 30, "Remember:", "Do not forget! Go to bed and wake up at the same time as yesterday!");
                 break;
             case 10: // Sleep no lesss than 7 hours per night
                 System.out.println("should be");
-                setAlarmManager(19, 50, "Remember:", "Sleep no less than 7 hours per night!", 10);
+                setAlarmManager(19, 50, "Remember:", "Sleep no less than 7 hours per night!");
                 break;
             case 11: //DO not go to bed unless you are tired. If you are not
-                setAlarmManager(20, 00, "Remember", "Do not go to bed unless you are tired. Read a book, take a bath, stretch or drink tea to relax!", 11);
+                setAlarmManager(20, 00, "Remember", "Do not go to bed unless you are tired. Read a book, take a bath, stretch or drink tea to relax!");
                 break;
             case 12: //Go to sleep at 22:30 PM the latest
-                setAlarmManager(21, 00, "Remember:", "Go to sleep at 10:30 PM the latest!", 12);
+                setAlarmManager(21, 00, "Remember:", "Go to sleep at 10:30 PM the latest!");
                 break;
         }
 
-        setSpecialAlarmManager(0, 1, "Oups:", "Checking questionnaire", 0);
+        setSpecialAlarmManager(0, 1, "Oups:", "Checking questionnaire");
     }
 
     public static class Broadcast1 extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
+
+            String titleM = context.getSharedPreferences("notification", MODE_PRIVATE).getString("title", "nothing");
+            String messageM = context.getSharedPreferences("notification", MODE_PRIVATE).getString("message", "nothing");
+
 
             long when = System.currentTimeMillis();
             NotificationManager notificationManager = (NotificationManager) context
@@ -453,8 +454,10 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
 
             NotificationCompat.Builder mNotifyBuilder = new NotificationCompat.Builder(context, "13")
                     .setSmallIcon(R.drawable.pill)
-                    .setContentTitle(title)
-                    .setContentText(message)
+                    .setContentTitle(titleM)
+                    .setStyle(new NotificationCompat.BigTextStyle()
+                            .bigText(messageM))
+                    .setContentText(messageM)
                     .setAutoCancel(true).setWhen(when)
                     .setContentIntent(pendingIntent);
             notificationManager.notify(13, mNotifyBuilder.build());
@@ -524,6 +527,8 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
                 NotificationCompat.Builder mNotifyBuilder = new NotificationCompat.Builder(context, "13")
                         .setSmallIcon(R.drawable.pill)
                         .setContentTitle("Questionnaire")
+                        .setStyle(new NotificationCompat.BigTextStyle()
+                                .bigText("Remember to complete your questionnaire and change your experiment! *UNLOCKED*"))
                         .setContentText("Remember to complete your questionnaire and change your experiment! *UNLOCKED*")
                         .setAutoCancel(true).setWhen(when)
                         .setContentIntent(pendingIntent);
