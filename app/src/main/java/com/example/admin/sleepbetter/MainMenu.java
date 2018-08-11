@@ -399,7 +399,7 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
                 setAlarmManager(12, 0, "Remember:", "Stay out in the sun at least half an hour today!");
                 break;
             case 2: //wear glasses that block blue light during the night
-                setAlarmManager(8, 30, "Remember:", "Use the \"f.lux\" app!");
+                setAlarmManager(12, 30, "Remember:", "Use the \"f.lux\" app!");
                 break;
             case 3: // turn off any bright lights 2 hours before going to bed
                 setAlarmManager(19, 30, "Going to bed soon?", "Do not forget to turn off your light with 2 hours before bed!");
@@ -411,7 +411,7 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
                 setAlarmManager(16, 24, "Remember:", "Limit yourself to 4 cups of coffee per day/10 cans of soda or 2 energy drinks!");
                 break;
             case 7: //Do not drink empty stomach
-                setAlarmManager(8, 30, "Remember:", "Try not to drink caffeine on an empty stomach!");
+                setAlarmManager(8, 0, "Remember:", "Try not to drink caffeine on an empty stomach!");
                 break;
             case 9://Usually get up at the same time everyday, even on weekends
                 setAlarmManager(18, 30, "Remember:", "Do not forget! Go to bed and wake up at the same time as yesterday!");
