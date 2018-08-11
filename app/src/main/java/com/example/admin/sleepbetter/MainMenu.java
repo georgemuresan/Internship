@@ -428,7 +428,7 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
                 break;
         }
 
-        setSpecialAlarmManager(21, 45, "Oups:", "Checking questionnaire");
+        setSpecialAlarmManager(0, 1, "Oups:", "Checking questionnaire");
     }
 
     public static class Broadcast1 extends BroadcastReceiver {
