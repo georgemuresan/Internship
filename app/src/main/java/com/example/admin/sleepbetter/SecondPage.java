@@ -49,8 +49,7 @@ public class SecondPage extends AppCompatActivity {
         List<String> seekbarIntervals = getIntervals("upToFour");
         getSeekbarWithIntervals("times").setIntervals(seekbarIntervals);
 
-        List<String> listOne = getIntervals("upToFive");
-        getSeekbarWithIntervals("nightTerrors").setIntervals(listOne);
+        getSeekbarWithIntervals("nightTerrors").setIntervals(seekbarIntervals);
 
 
     }
@@ -87,15 +86,6 @@ public class SecondPage extends AppCompatActivity {
                 add("2");
                 add("3");
                 add("4/4+");
-                add("-1");
-            }};
-        } else if (command.equals("upToFive")) {
-            return new ArrayList<String>() {{
-                add("1");
-                add("2");
-                add("3");
-                add("4");
-                add("5");
                 add("-1");
             }};
         }

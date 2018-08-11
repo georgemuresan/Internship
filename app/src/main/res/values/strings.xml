@@ -231,7 +231,7 @@
     <string name="brightExposureIntro">Your current experiment is: INCREASE BRIGHT LIGHT EXPOSURE DURING THE DAY. Below you are asked to complete the questions on whether you followed the experiment.</string>
     <string name="morningQuestion">Did you get sunlight exposure in the morning?</string>
     <string name="outQuestion">Did you stay at least half an hour in the sun today?</string>
-    <string name="sunlightQuestion">Did you keep your room so that it captures sunlight?</string>
+    <string name="sunlightQuestion">Did your room capture the sunlight today?</string>
 
 
     <string name="stopTVIntro">Your current experiment is: STOP WATCHING THE TV/THE COMPUTER WITHIN 2 HOURS OF GOING TO SLEEP. Below you are asked to complete the questions on whether you followed the experiment.</string>
