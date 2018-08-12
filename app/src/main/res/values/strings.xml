@@ -79,6 +79,7 @@
 
 
     <string name="goalDiaryTitle">CURRENT STATE</string>
+    <string name="goalDiaryTitlee">GOAL DIARY</string>
     <!--<string name="greatText">GREAT! My name is Alex and I will do this experiment together with you. As your companion, I will reflect your mood:</string>-->
     <string name="greatText1">GREAT! My name is Alex and I will do this experiment together with you. As your companion, I will reflect your mood. I can see you are ok at the moment. That is great! We will work together to keep it like this and even improve your state.</string>
     <string name="greatText2">GREAT! My name is Alex and I will do this experiment together with you. As your companion, I will reflect your mood. I see that you feel blue. We will work together to make you feel better and you will see, it is not hard at all.</string>
