@@ -30,6 +30,11 @@ public class SecondPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second_page);
 
+
+        getSharedPreferences("PREFERENCE", MODE_PRIVATE).edit()
+                .putBoolean("isFirstRun", false).apply();
+
+
         ImageView imageView = findViewById(R.id.imageView6);
         imageView.setImageResource(R.drawable.night_emoticon);
 

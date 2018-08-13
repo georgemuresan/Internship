@@ -119,8 +119,6 @@ public class FirstPage extends AppCompatActivity {
         if (!isFirstRun && consent.isChecked() && !nameBox.getText().toString().equals("") && !participantID.getText().toString().equals("")) {
             //show start activity
 
-            getSharedPreferences("PREFERENCE", MODE_PRIVATE).edit()
-                    .putBoolean("isFirstRun", false).apply();
 
             startActivity(new Intent(this, MainMenu.class));
 
