@@ -190,7 +190,7 @@
                     android:focusableInTouchMode="false"
                     android:hint="@string/some_explanation_about_the_input"
                     android:singleLine="false"
-                    android:inputType="textPersonName"
+                    android:inputType="textMultiLine"
                     android:text="@string/offnightTerrorUsually"
                     android:textSize="12sp"
                     app:layout_constraintEnd_toEndOf="parent"
