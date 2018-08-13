@@ -111,8 +111,8 @@ public class Data extends Fragment implements AdapterView.OnItemSelectedListener
                 graph.setTitleColor(blackValue);
                 // graph.setTitleTextSize(13);
                 graph.getViewport().setMinX(0);
-                graph.getViewport().setMaxX(20);
-                graph.getViewport().setMaxXAxisSize(20);
+                graph.getViewport().setMaxX(15);
+                graph.getViewport().setMaxXAxisSize(15);
                 graph.getViewport().setMinY(1);
                 graph.getViewport().setMaxY(5);
 
@@ -402,8 +402,8 @@ public class Data extends Fragment implements AdapterView.OnItemSelectedListener
                 graph.setTitleColor(blackValue);
                 // graph.setTitleTextSize(13);
                 graph.getViewport().setMinX(0);
-                graph.getViewport().setMaxX(20);
-                graph.getViewport().setMaxXAxisSize(20);
+                graph.getViewport().setMaxX(15);
+                graph.getViewport().setMaxXAxisSize(15);
                 graph.getViewport().setMinY(1);
                 graph.getViewport().setMaxY(5);
 
