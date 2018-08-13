@@ -145,11 +145,10 @@ public class FirstPage extends AppCompatActivity {
         Boolean isFirstRun = getSharedPreferences("PREFERENCE", MODE_PRIVATE)
                 .getBoolean("isFirstRun", true);
 
+
+
         if (!isFirstRun && consent.isChecked() && bitmoji.isChecked() && !nameBox.getText().toString().equals("") && !participantID.getText().toString().equals("")) {
             //show start activity
-
-            getSharedPreferences("PREFERENCE", MODE_PRIVATE).edit()
-                    .putBoolean("isFirstRun", false).apply();
 
             startActivity(new Intent(this, MainMenu.class));
 

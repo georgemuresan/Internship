@@ -30,6 +30,10 @@ public class SecondPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second_page);
 
+        getSharedPreferences("PREFERENCE", MODE_PRIVATE).edit()
+                .putBoolean("isFirstRun", false).apply();
+
+
         SharedPreferences preferences = getSharedPreferences("bmsleep", MODE_PRIVATE);
         ImageView imageView = findViewById(R.id.imageView6);
         imageView.setImageResource(preferences.getInt("slectedbitmoji", 0));
