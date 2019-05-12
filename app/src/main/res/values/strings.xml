@@ -13,9 +13,6 @@
     <string name="participantName">Participant ID...</string>
     <string name="linkBitmoji">Linked Bitmoji</string>
 
-    <string name="linkBitmojiTitle">LINK YOUR BITMOJI</string>
-    <string name="chooseBitmojiTitle">Please choose one of the Bitmojis bellow as your companion. The bitmoji will reflect your state throughout the experiment changing everyday depending on your answers to the questionnaire. </string>
-
     <string name="consentPageTitle">CONSENT FORM</string>
     <string name="consentIntro">In order to proceed with the experiment, we will kindly ask you to look over the next paragraphs to understand your involvement into this study. Please initial the box(es) if you agree with the statement(s):
 </string>
@@ -28,8 +25,27 @@
     <string name="permissionSeven">I understand that information collected about me during my participation in this study will be stored on a password protected computer and that this information will only be used for the purpose of ethically approved research studies.</string>
     <string name="permissionEight">Would you agree on being contacted after the study in regards to possible outcomes/ in order to provide insights from your experience of participating in this experiment?</string>
 
+    <string name="noticeTitle">NOTICE</string>
+    <string name="notice">The next set of questions you will receive aim to assess your sleeping experience before using the SleepBetter app, in order to be able to record your progress. There are 9 questions which should approximately take 1 or 2 minutes max.</string>
+
+
 
     <string name="questionnaireTitle">QUESTIONNAIRE</string>
+
+    <string name="q1desc">This first set of questions refer to a general routine in your daily life. Please choose the most appropriate answer.</string>
+    <string name="s1">How long does it usually take you to fall asleep?</string>
+    <string name="s2">Usually if you wake up one or more times during the night, how long are you awake in total?</string>
+    <string name="s3">If your final wake-up time occurs before you intend to wake up, how much earlier is this?</string>
+    <string name="q2desc">This set of questions efer to your sleep quality in general. Please choose the most appropriate answer.</string>
+    <string name="s4"> If your final wake-up time occurs before you intend to wake up, how much earlier is this?</string>
+    <string name="s5">How would you rate your sleep quality?</string>
+    <string name="q3desc">This set of questions refer to the impact your sleeping pattern usually has on your daily activities and your life in general. Please choose the most appropriate answer.</string>
+    <string name="s6">How do you think sleep impacted your mood, energy, or relationships?</string>
+    <string name="s7">How do you think sleep impacted your concentration, productivity, or ability to stay awake?</string>
+    <string name="s8">How do you think sleep impacted your life in general?</string>
+    <string name="q4desc">This set of questions aim to asses the severity of your sleep problems (if any). Please choose the most appropriate answer.</string>
+    <string name="s9">How long have you had a problem with your sleep?</string>
+
     <string name="questionnaireHelp">First, how would you rate the following aspects of your sleep and daily experience? 1 represents the lowest and 5 the highest.</string>
     <string name="questionnaireHelpSecond">For the question \"How quickly do you usually fall asleep?\", please bare in mind that 1 means \"as soon as getting into bed\", 2 is \"within 20 minutes\", 3 is \"up to one hour\", 4 is \"1/1.30 hours\" and 5 is \"more than that\". Also, for the \"How easily do you usually wake up?\", notice that 1 means \"waking up with no alarm\", 2 is \"using the alarm only sometimes\", 3 is \"using the alarm but I get up easily\", 4 is \"using the snooze button once\", 5 is \"using the snooze button more than once\".</string>
 
