@@ -20,22 +20,18 @@ public class UserQuestionnaire {
     private String username;
 
     private String date;
-    private int timesPerNight;
-    private int nightTerrors;
-    private int fallAsleep;
-    private int wakeUp;
-    private int fresh;
-    private int sad;
-    private int sleepy;
-    private int tired;
-    private int stressed;
-    private int apetite;
-    private int concentrate;
-    private int coordinate;
-    private int irritable;
+    private int howLong;
+    private int awake;
+    private int earlier;
+    private int nightsAWeek;
+    private int quality;
+    private int impactMood;
+    private int impactActivities;
+    private int impactGeneral;
+    private int problem;
 
     @ColumnInfo(name="mood_all")
-    private int mood;
+    private double mood;
 
     public UserQuestionnaire() {
     }
@@ -56,120 +52,83 @@ public class UserQuestionnaire {
         this.date = date;
     }
 
-    public int getTimesPerNight() {
-        return timesPerNight;
+    public int getAwake() {
+        return awake;
     }
 
-    public void setTimesPerNight(int timesPerNight) {
-        this.timesPerNight = timesPerNight;
-    }
-
-
-    public int getNightTerrors() {
-        return nightTerrors;
-    }
-
-    public void setNightTerrors(int nightTerrors) {
-        this.nightTerrors = nightTerrors;
+    public void setAwake(int awake) {
+        this.awake = awake;
     }
 
 
-    public int getFallAsleep() {
-        return fallAsleep;
+    public int getHowLong() {
+        return howLong;
     }
 
-    public void setFallAsleep(int fallAsleep) {
-        this.fallAsleep = fallAsleep;
-    }
-
-    public int getWakeUp() {
-        return wakeUp;
-    }
-
-    public void setWakeUp(int wakeUp) {
-        this.wakeUp = wakeUp;
-    }
-
-    public int getFresh() {
-        return fresh;
-    }
-
-    public void setFresh(int fresh) {
-        this.fresh = fresh;
-    }
-
-    public int getSad() {
-        return sad;
-    }
-
-    public void setSad(int sad) {
-        this.sad = sad;
-    }
-
-    public int getSleepy() {
-        return sleepy;
-    }
-
-    public void setSleepy(int sleepy) {
-        this.sleepy = sleepy;
-    }
-
-    public int getTired() {
-        return tired;
-    }
-
-    public void setTired(int tired) {
-        this.tired = tired;
-    }
-
-    public int getStressed() {
-        return stressed;
-    }
-
-    public void setStressed(int stressed) {
-        this.stressed = stressed;
-    }
-
-    public int getApetite() {
-        return apetite;
-    }
-
-    public void setApetite(int apetite) {
-        this.apetite = apetite;
+    public void setHowLong(int howLong) {
+        this.howLong = howLong;
     }
 
 
-    public int getConcentrate() {
-        return concentrate;
+    public int getEarlier() {
+        return earlier;
     }
 
-    public void setConcentrate(int concentrate) {
-        this.concentrate = concentrate;
+    public void setEarlier(int earlier) {
+        this.earlier = earlier;
     }
 
+    public int getNightsAWeek() { return nightsAWeek; }
 
-    public int getCoordinate() {
-        return coordinate;
+    public void setNightsAWeek(int nightsAWeek) {
+        this.nightsAWeek = nightsAWeek;
     }
 
-    public void setCoordinate(int coordinate) {
-        this.coordinate = coordinate;
+    public int getQuality() {
+        return quality;
     }
 
-
-    public int getIrritable() {
-        return irritable;
+    public void setQuality(int quality) {
+        this.quality = quality;
     }
 
-    public void setIrritable(int irritable) {
-        this.irritable = irritable;
+    public int getImpactMood() {
+        return impactMood;
     }
 
-    public int getMood() {
+    public void setImpactMood(int impactMood) {
+        this.impactMood = impactMood;
+    }
+
+    public int getImpactActivities() {
+        return impactActivities;
+    }
+
+    public void setImpactActivities(int impactActivities) {
+        this.impactActivities = impactActivities;
+    }
+
+    public int getImpactGeneral() {
+        return impactGeneral;
+    }
+
+    public void setImpactGeneral(int impactGeneral) {
+        this.impactGeneral = impactGeneral;
+    }
+
+    public int getProblem() {
+        return problem;
+    }
+
+    public void setProblem(int problem) {
+        this.problem = problem;
+    }
+
+    public double getMood() {
         return mood;
     }
 
-    public void setMood(int mood) {
+    public void setMood(double mood) {
         this.mood = mood;
     }
 

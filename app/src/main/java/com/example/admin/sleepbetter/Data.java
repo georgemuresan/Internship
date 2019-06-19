@@ -13,26 +13,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
-import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
-
-import static android.content.Context.MODE_PRIVATE;
 
 public class Data extends Fragment implements AdapterView.OnItemSelectedListener {
     private UserDatabase userDatabase;
@@ -42,7 +33,7 @@ public class Data extends Fragment implements AdapterView.OnItemSelectedListener
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        dataView = inflater.inflate(R.layout.data, container, false);
+        dataView = inflater.inflate(R.layout.act_Data, container, false);
         ImageView imageView1 = (ImageView) dataView.findViewById(R.id.imageView28);
 
         imageView1.setImageResource(R.drawable.you);
@@ -54,19 +45,10 @@ public class Data extends Fragment implements AdapterView.OnItemSelectedListener
                 GraphView graph = (GraphView) dataView.findViewById(R.id.totalMood);
                 userDatabase = Room.databaseBuilder(getActivity().getApplicationContext(), UserDatabase.class, DATABASE_NAME).fallbackToDestructiveMigration().build();
 
-                ArrayList<Integer> numberOfGoodMoods = (ArrayList<Integer>) userDatabase.daoAccess().fetchMoods();
+                ArrayList<Double> numberOfGoodMoods = (ArrayList<Double>) userDatabase.daoAccess().fetchMoods();
                 int sizeMoods = sizeOfMoods(numberOfGoodMoods);
 
-
-                System.out.println("DATAAAAAAAAAAAAAAAAAAAAa");
-                System.out.println(numberOfGoodMoods.size());
-
                 SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
-                Gson gson = new Gson();
-                String json = sharedPrefs.getString("trial", "");
-                Type type = new TypeToken<List<HomeCollection>>() {}.getType();
-                List<HomeCollection> arrayList = gson.fromJson(json, type);
-                System.out.println("SIZE IS " + arrayList.size());
 
                 int sizeToGraph = 0;
 
@@ -153,7 +135,7 @@ public class Data extends Fragment implements AdapterView.OnItemSelectedListener
                     if ((numberOfGoodMoods.size() - 1) % 5 == 0){
                         while (it.hasNext() && k < 5) {
                             it.next();
-                            Integer moodToSee = userDatabase.daoAccess().fetchMoods().get(((userDatabase.daoAccess().fetchMoods().size() - 1) / 5) * 5 - 5 + k + 1);
+                            Double moodToSee = userDatabase.daoAccess().fetchMoods().get(((userDatabase.daoAccess().fetchMoods().size() - 1) / 5) * 5 - 5 + k + 1);
 
                             if (moodToSee != -1) {
                                 dp2[i] = new DataPoint(k + 1, moodToSee);
@@ -164,7 +146,7 @@ public class Data extends Fragment implements AdapterView.OnItemSelectedListener
                     } else {
                         while (it.hasNext() && k < (numberOfGoodMoods.size() - 1) % 5) {
                             it.next();
-                            Integer moodToSee = userDatabase.daoAccess().fetchMoods().get(((userDatabase.daoAccess().fetchMoods().size() - 1) / 5) * 5 + k + 1);
+                            Double moodToSee = userDatabase.daoAccess().fetchMoods().get(((userDatabase.daoAccess().fetchMoods().size() - 1) / 5) * 5 + k + 1);
 
                             if (moodToSee != -1) {
 
@@ -234,7 +216,7 @@ public class Data extends Fragment implements AdapterView.OnItemSelectedListener
     }
 
 
-    private int sizeOfMoods(ArrayList<Integer> integers) {
+    private int sizeOfMoods(ArrayList<Double> integers) {
 
         int size = 0;
 
@@ -257,82 +239,46 @@ public class Data extends Fragment implements AdapterView.OnItemSelectedListener
         TextView mood = (TextView) dataView.findViewById(R.id.overallMood);
         mood.setText("Overall mood: " + getActivity().getApplicationContext().getSharedPreferences("MOOD", Context.MODE_PRIVATE).getInt("mood", 0) + "/5");
 
-        TextView times = (TextView) dataView.findViewById(R.id.timesWaking);
-        times.setText("Times waking up: " + getActivity().getApplicationContext().getSharedPreferences("questionnaire", Context.MODE_PRIVATE).getInt("timesPerNight", 0) + "/5");
-        if (getActivity().getApplicationContext().getSharedPreferences("questionnaire", Context.MODE_PRIVATE).getInt("timesPerNight", 0) >= 3){
-            change = change + "/ " + "times waking up";
+        TextView times = (TextView) dataView.findViewById(R.id.howLong);
+        times.setText("How log it takes to fall asleep: " + getActivity().getApplicationContext().getSharedPreferences("questionnaire", Context.MODE_PRIVATE).getInt("howLong", 0) + "/5");
+        if (getActivity().getApplicationContext().getSharedPreferences("questionnaire", Context.MODE_PRIVATE).getInt("howLong", 0) >= 3){
+            change = change + "/ " + "hard to fall asleep";
         }
 
-        TextView nightTerrors = (TextView) dataView.findViewById(R.id.nightTerrors);
-        nightTerrors.setText("Night terrors: " + getActivity().getApplicationContext().getSharedPreferences("questionnaire", Context.MODE_PRIVATE).getInt("nightTerrors", 0) + "/5");
-        if (getActivity().getApplicationContext().getSharedPreferences("questionnaire", Context.MODE_PRIVATE).getInt("nightTerrors", 0) >= 3){
-            change = change + "/ " + "night terrors";
+        TextView nightTerrors = (TextView) dataView.findViewById(R.id.awake);
+        nightTerrors.setText("How long you are awake during the night: " + getActivity().getApplicationContext().getSharedPreferences("questionnaire", Context.MODE_PRIVATE).getInt("awake", 0) + "/5");
+        if (getActivity().getApplicationContext().getSharedPreferences("questionnaire", Context.MODE_PRIVATE).getInt("awake", 0) >= 3){
+            change = change + "/ " + "awake during the nights";
         }
 
-        TextView waking = (TextView) dataView.findViewById(R.id.wakingUp);
-        waking.setText("Falling asleep: " + getActivity().getApplicationContext().getSharedPreferences("questionnaire", Context.MODE_PRIVATE).getInt("wakeUp", 0) + "/5");
-        if (getActivity().getApplicationContext().getSharedPreferences("questionnaire", Context.MODE_PRIVATE).getInt("wakeUp", 0) >= 3){
-            change = change + "/ " + "waking up";
+        TextView waking = (TextView) dataView.findViewById(R.id.earlier);
+        waking.setText("How much earlier you wake up than your normal time: " + getActivity().getApplicationContext().getSharedPreferences("questionnaire", Context.MODE_PRIVATE).getInt("earlier", 0) + "/5");
+        if (getActivity().getApplicationContext().getSharedPreferences("questionnaire", Context.MODE_PRIVATE).getInt("earlier", 0) >= 3){
+            change = change + "/ " + "waking up too early";
         }
 
-        TextView fall = (TextView) dataView.findViewById(R.id.fallasleep);
-        fall.setText("Waking up: " + getActivity().getApplicationContext().getSharedPreferences("questionnaire", Context.MODE_PRIVATE).getInt("fallAsleep", 0) + "/5");
-        if (getActivity().getApplicationContext().getSharedPreferences("questionnaire", Context.MODE_PRIVATE).getInt("fallAsleep", 0) >= 3){
-            change = change + "/ " + "falling sleep";
+        TextView fall = (TextView) dataView.findViewById(R.id.quality);
+        fall.setText("Sleep Quality: " + getActivity().getApplicationContext().getSharedPreferences("questionnaire", Context.MODE_PRIVATE).getInt("quality", 0) + "/5");
+        if (getActivity().getApplicationContext().getSharedPreferences("questionnaire", Context.MODE_PRIVATE).getInt("quality", 0) >= 3){
+            change = change + "/ " + "sleep quality";
         }
 
-        TextView fresh = (TextView) dataView.findViewById(R.id.fresh);
-        fresh.setText("Fresh: " + getActivity().getApplicationContext().getSharedPreferences("questionnaire", Context.MODE_PRIVATE).getInt("fresh", 0) + "/5");
-        if (getActivity().getApplicationContext().getSharedPreferences("questionnaire", Context.MODE_PRIVATE).getInt("fresh", 0) >= 3){
-            change = change + "/ " + "freshness";
+        TextView fresh = (TextView) dataView.findViewById(R.id.impactMood);
+        fresh.setText("Affecting mood, energy, or relationships: " + getActivity().getApplicationContext().getSharedPreferences("questionnaire", Context.MODE_PRIVATE).getInt("impactMood", 0) + "/5");
+        if (getActivity().getApplicationContext().getSharedPreferences("questionnaire", Context.MODE_PRIVATE).getInt("impactMood", 0) >= 3){
+            change = change + "/ " + "affecting mood, energy, relationships";
         }
 
-        TextView sad = (TextView) dataView.findViewById(R.id.sad);
-        sad.setText("Sad: " + getActivity().getApplicationContext().getSharedPreferences("questionnaire", Context.MODE_PRIVATE).getInt("sad", 0) + "/5");
-        if (getActivity().getApplicationContext().getSharedPreferences("questionnaire", Context.MODE_PRIVATE).getInt("sad", 0) >= 3){
-            change = change + "/ " + "sadness";
+        TextView sad = (TextView) dataView.findViewById(R.id.impactActivities);
+        sad.setText("Affecting concentration, productivity, or ability to stay awake: " + getActivity().getApplicationContext().getSharedPreferences("questionnaire", Context.MODE_PRIVATE).getInt("impactActivities", 0) + "/5");
+        if (getActivity().getApplicationContext().getSharedPreferences("questionnaire", Context.MODE_PRIVATE).getInt("impactActivities", 0) >= 3){
+            change = change + "/ " + "affecting concentration, productivity";
         }
 
-        TextView sleepy = (TextView) dataView.findViewById(R.id.sleepy);
-        sleepy.setText("Sleepy: " + getActivity().getApplicationContext().getSharedPreferences("questionnaire", Context.MODE_PRIVATE).getInt("sleepy", 0) + "/5");
-        if (getActivity().getApplicationContext().getSharedPreferences("questionnaire", Context.MODE_PRIVATE).getInt("sleepy", 0) >= 3){
-            change = change + "/ " + "sleepiness";
-        }
-
-        TextView tired = (TextView) dataView.findViewById(R.id.tired);
-        tired.setText("Tired: " + getActivity().getApplicationContext().getSharedPreferences("questionnaire", Context.MODE_PRIVATE).getInt("tired", 0) + "/5");
-        if (getActivity().getApplicationContext().getSharedPreferences("questionnaire", Context.MODE_PRIVATE).getInt("tired", 0) >= 3){
-            change = change + "/ " + "tiredness";
-        }
-
-        TextView stressed = (TextView) dataView.findViewById(R.id.stressed);
-        stressed.setText("Stressed: " + getActivity().getApplicationContext().getSharedPreferences("questionnaire", Context.MODE_PRIVATE).getInt("stressed", 0) + "/5");
-        if (getActivity().getApplicationContext().getSharedPreferences("questionnaire", Context.MODE_PRIVATE).getInt("stressed", 0) >= 3){
-            change = change + "/ " + "stress";
-        }
-
-        TextView irritable = (TextView) dataView.findViewById(R.id.irritable);
-        irritable.setText("Irritable: " + getActivity().getApplicationContext().getSharedPreferences("questionnaire", Context.MODE_PRIVATE).getInt("irritable", 0) + "/5");
-        if (getActivity().getApplicationContext().getSharedPreferences("questionnaire", Context.MODE_PRIVATE).getInt("irritable", 0) >= 3){
-            change = change + "/ " + "irritability";
-        }
-
-        TextView concentrate = (TextView) dataView.findViewById(R.id.concentrate);
-        concentrate.setText("Concentration: " + getActivity().getApplicationContext().getSharedPreferences("questionnaire", Context.MODE_PRIVATE).getInt("concentrate", 0) + "/5");
-        if (getActivity().getApplicationContext().getSharedPreferences("questionnaire", Context.MODE_PRIVATE).getInt("concentrate", 0) >= 3){
-            change = change + "/ " + "concentration";
-        }
-
-        TextView coordinate = (TextView) dataView.findViewById(R.id.coordinate);
-        coordinate.setText("Coordination: " + getActivity().getApplicationContext().getSharedPreferences("questionnaire", Context.MODE_PRIVATE).getInt("coordinate", 0) + "/5");
-        if (getActivity().getApplicationContext().getSharedPreferences("questionnaire", Context.MODE_PRIVATE).getInt("coordinate", 0) >= 3){
-            change = change + "/ " + "coordination";
-        }
-
-        TextView appetite = (TextView) dataView.findViewById(R.id.appetite);
-        appetite.setText("Appetite: " + getActivity().getApplicationContext().getSharedPreferences("questionnaire", Context.MODE_PRIVATE).getInt("apetite", 0) + "/5");
-        if (getActivity().getApplicationContext().getSharedPreferences("questionnaire", Context.MODE_PRIVATE).getInt("apetite", 0) >= 3){
-            change = change + "/ " + "appetite";
+        TextView sleepy = (TextView) dataView.findViewById(R.id.impactGeneral);
+        sleepy.setText("Affecting life in general: " + getActivity().getApplicationContext().getSharedPreferences("questionnaire", Context.MODE_PRIVATE).getInt("impactGeneral", 0) + "/5");
+        if (getActivity().getApplicationContext().getSharedPreferences("questionnaire", Context.MODE_PRIVATE).getInt("impactLife", 0) >= 3){
+            change = change + "/ " + "affecting life in general";
         }
 
         if (change.equals("")){
@@ -350,7 +296,7 @@ public class Data extends Fragment implements AdapterView.OnItemSelectedListener
 
                 GraphView graph = (GraphView) dataView.findViewById(R.id.specificMood);
 
-                ArrayList<Integer> numberOfGoodMoods = (ArrayList<Integer>) userDatabase.daoAccess().fetchMoods();
+                ArrayList<Double> numberOfGoodMoods = (ArrayList<Double>) userDatabase.daoAccess().fetchMoods();
                 int sizeMoods = sizeOfMoods(numberOfGoodMoods);
 
 
@@ -413,32 +359,20 @@ public class Data extends Fragment implements AdapterView.OnItemSelectedListener
 
             private List<Integer> getListFromSpinner(String text) {
 
-                if (text.equals("Times waking up per night")){
-                    return userDatabase.daoAccess().fetchTimsPerNight();
-                } else  if (text.equals("Night terrors")){
-                    return userDatabase.daoAccess().fetchNightTerrors();
-                } else if (text.equals("Falling asleep")){
-                    return userDatabase.daoAccess().fetchFallAsleep();
-                } else if (text.equals("Waking up")){
-                    return userDatabase.daoAccess().fetchWakeUp();
-                } else if (text.equals("Fresh")){
-                    return userDatabase.daoAccess().fetchFresh();
-                } else if (text.equals("Sad")){
-                    return userDatabase.daoAccess().fetchSad();
-                } else if (text.equals("Sleepy")){
-                    return userDatabase.daoAccess().fetchSleepy();
-                } else if (text.equals("Tired")){
-                    return userDatabase.daoAccess().fetchTired();
-                } else if (text.equals("Stressed")){
-                    return userDatabase.daoAccess().fetchStressed();
-                } else if (text.equals("Irritable")){
-                    return userDatabase.daoAccess().fetchIrritable();
-                } else if (text.equals("Concentrate")){
-                    return userDatabase.daoAccess().ftchConcentrate();
-                } else if (text.equals("Coordinate")){
-                    return userDatabase.daoAccess().fetchCoordinate();
-                } else if (text.equals("Appetite")){
-                    return userDatabase.daoAccess().fetchApetite();
+                if (text.equals("Falling asleep")){
+                    return userDatabase.daoAccess().fetchHowLong();
+                } else  if (text.equals("Awake at night")){
+                    return userDatabase.daoAccess().fetchAwake();
+                } else if (text.equals("Waking up earlier")){
+                    return userDatabase.daoAccess().fetchEarlier();
+                } else if (text.equals("Sleep quality")){
+                    return userDatabase.daoAccess().fetchQuality();
+                } else if (text.equals("Impacting feelings")){
+                    return userDatabase.daoAccess().fetchImpactMood();
+                } else if (text.equals("Impacting activities")){
+                    return userDatabase.daoAccess().fetchImpactActivities();
+                } else if (text.equals("Impacting life")){
+                    return userDatabase.daoAccess().fetchImpactGeneral();
                 }
                 return null;
 

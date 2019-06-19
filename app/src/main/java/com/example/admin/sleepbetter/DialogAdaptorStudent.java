@@ -45,7 +45,7 @@ class DialogAdaptorStudent extends BaseAdapter {
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = context.getLayoutInflater();
-        View listViewItem = inflater.inflate(R.layout.row_addapt, null, true);
+        View listViewItem = inflater.inflate(R.layout.extra_row_addapt, null, true);
 
         TextView tvExperiment=(TextView)listViewItem.findViewById(R.id.tv_experiment);
         TextView tvOverall=(TextView)listViewItem.findViewById(R.id.tv_overall);

@@ -3,7 +3,6 @@ package com.example.admin.sleepbetter;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.arch.persistence.room.Room;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
@@ -12,8 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
@@ -37,7 +34,7 @@ public class Update_Caffeine_limit extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        updateView = inflater.inflate(R.layout.update_caffeine_limit, container, false);
+        updateView = inflater.inflate(R.layout.act_update_caffeine_limit, container, false);
 
         ImageView imageView = updateView.findViewById(R.id.imageView13);
         imageView.setImageResource(R.drawable.caffeine);

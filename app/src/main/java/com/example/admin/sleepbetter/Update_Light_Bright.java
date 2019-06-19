@@ -3,7 +3,6 @@ package com.example.admin.sleepbetter;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.arch.persistence.room.Room;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
@@ -34,7 +33,7 @@ public class Update_Light_Bright extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        updateView = inflater.inflate(R.layout.update_light_bright, container, false);
+        updateView = inflater.inflate(R.layout.act_update_light_bright, container, false);
         ImageView imageView = updateView.findViewById(R.id.imageView15);
         imageView.setImageResource(R.drawable.sun);
 

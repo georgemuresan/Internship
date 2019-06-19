@@ -28,16 +28,12 @@
         </activity>
         <!--<receiver android:name=".NotifyService"/>-->
         <activity android:name=".FirstPageConsent" />
-        <activity android:name=".SecondPage" />
-        <activity android:name=".SecondPage2" />
-        <activity android:name=".SecondPage3" />
-        <activity android:name=".SecondPage4" />
 
         <receiver android:name=".MainMenu$Broadcast1" />
         <receiver android:name=".MainMenu$Broadcast2" />
         <receiver android:name=".MainMenu$Broadcast3" />
         <receiver android:name=".MainMenu$Broadcast4" />
-        <activity android:name=".Seek" />
+
         <activity
             android:name=".MainMenu"
             android:label="@string/app_name"

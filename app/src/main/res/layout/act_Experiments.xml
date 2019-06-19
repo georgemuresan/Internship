@@ -104,19 +104,6 @@
                     tools:layout_editor_absoluteY="0dp">
 
 
-                    <Button
-                        android:id="@+id/moreInfo"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginTop="32dp"
-                        android:text="@string/moreInfo"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.868"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/experimentsGroup" />
-
                     <RadioGroup
                         android:id="@+id/experimentsGroup"
                         android:layout_width="match_parent"
@@ -262,12 +249,10 @@
                         android:id="@+id/submit"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="40dp"
-                        android:layout_marginStart="32dp"
-                        android:layout_marginTop="32dp"
+                        android:layout_marginEnd="120dp"
+                        android:layout_marginStart="120dp"
                         android:text="@string/submitUpdate"
-                        app:layout_constraintEnd_toStartOf="@+id/moreInfo"
-                        app:layout_constraintHorizontal_bias="1.0"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/experimentsGroup" />
 

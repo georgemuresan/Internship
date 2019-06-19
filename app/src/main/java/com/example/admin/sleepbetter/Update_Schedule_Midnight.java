@@ -29,7 +29,7 @@ public class Update_Schedule_Midnight extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        updateView = inflater.inflate(R.layout.update_schedule_midnight, container, false);
+        updateView = inflater.inflate(R.layout.act_update_schedule_midnight, container, false);
         List<String> listOne = getIntervals("dayReview");
         getSeekbarWithIntervals("dayReviewBar").setIntervals(listOne);
         Button button = (Button) updateView.findViewById(R.id.submitUpdate);

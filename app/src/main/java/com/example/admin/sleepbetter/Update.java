@@ -13,7 +13,7 @@ public class Update extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        helpView = inflater.inflate(R.layout.update, container, false);
+        helpView = inflater.inflate(R.layout.act_update, container, false);
 
         return helpView;
     }

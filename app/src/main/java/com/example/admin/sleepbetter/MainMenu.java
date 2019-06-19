@@ -11,14 +11,9 @@ import android.arch.persistence.room.Room;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.media.RingtoneManager;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.SystemClock;
 import android.support.v4.app.NotificationCompat;
-import android.support.v4.app.NotificationManagerCompat;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -26,20 +21,14 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.GridView;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.Calendar;
 
 public class MainMenu extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -50,73 +39,115 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_menu);
+        setContentView(R.layout.act_Menu);
 
-/*
+        System.out.println("RECEIVDDDD");
+
         new Thread(new Runnable() {
             @Override
             public void run() {
                 Date c = Calendar.getInstance().getTime();
                 SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
-                final String formattedDate = df.format(c);
+                final String currentDate = df.format(c);
+
+                String startingDate = getSharedPreferences("date", MODE_PRIVATE).getString("startingDate", "");
+
+                Date date1 = null;
+                Date date2 = null;
+
+                SimpleDateFormat dates = new SimpleDateFormat("dd-MMM-yyyy");
+
+                //Setting dates
+                try {
+                    date1 = dates.parse(currentDate);
+                    date2 = dates.parse(startingDate);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
+                Calendar c1 = Calendar.getInstance();
+                c1.setTime(date1);
+
+                Calendar c2 = Calendar.getInstance();
+                c2.setTime(date2);
+
+                int shouldBe = c1.get(Calendar.DAY_OF_YEAR) - c2.get(Calendar.DAY_OF_YEAR);
 
                 UserDatabase uDatabase = Room.databaseBuilder(getApplicationContext(), UserDatabase.class, DATABASE_NAME).fallbackToDestructiveMigration().build();
-                uDatabase.daoAccess().deleteUserQuestonnaire(uDatabase.daoAccess().fetchUserQuestionnaires().get(3));
+                int loggedIn = uDatabase.daoAccess().fetchUserQuestionnaires().size();
 
-                    UserQuestionnaire user = new UserQuestionnaire();
-                String username = getApplicationContext().getSharedPreferences("name", MODE_PRIVATE).getString("participantID", "nothing"); user.setUsername(username);
-                user.setUsername(username);
-                    user.setDate(formattedDate);
-                    user.setTimesPerNight(-1);
-                    user.setNightTerrors(-1);
-                    user.setFallAsleep(-1);
-                    user.setWakeUp(-1);
-                    user.setFresh(-1);
-                    user.setSad(-1);
-                    user.setSleepy(-1);
-                    user.setTired(-1);
-                    user.setStressed(-1);
-                    user.setApetite(-1);
-                    user.setConcentrate(-1);
-                    user.setCoordinate(-1);
-                    user.setIrritable(-1);
-                    user.setMood(-1);
+                int misses = shouldBe -loggedIn;
 
-                    //setting mood value to -1 in shared preferences
+                if (misses >=1){
 
-                    uDatabase.daoAccess().insertSingleUserQuestionnaire(user);
+                    for (int i=1; i<misses; i++){
+                    // adaugam -1 in tabel
 
-                    Report rep = new Report(uDatabase, getApplicationContext());
-                    rep.save(username, false, getApplicationContext().getSharedPreferences("consent", MODE_PRIVATE).getString("consent", "nothing"));
+                        UserQuestionnaire user = new UserQuestionnaire();
+                        String username = getApplicationContext().getSharedPreferences("name", MODE_PRIVATE).getString("participantID", "nothing"); user.setUsername(username);
+                        user.setDate(currentDate);
+                        user.setUsername(username);
+                        user.setHowLong(-1);
+                        user.setAwake(-1);
+                        user.setEarlier(-1);
+                        user.setNightsAWeek(-1);
+                        user.setQuality(-1);
+                        user.setImpactMood(-1);
+                        user.setImpactActivities(-1);
+                        user.setImpactGeneral(-1);
+                        user.setProblem(-1);
+                        user.setMood(-1);
 
+                        getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("howLong", -1).apply();
+                        getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("awake", -1).apply();
+                        getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("earlier", -1).apply();
+                        getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("quality", -1).apply();
+                        getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("impactMood", -1).apply();
+                        getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("impactActivities", -1).apply();
+                        getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("impactGeneral", -1).apply();
+                        getSharedPreferences("MOOD", MODE_PRIVATE).edit().putFloat("mood", (float) -1).apply();
+
+                        //setting mood value to -1 in shared preferences
+
+                        uDatabase.daoAccess().insertSingleUserQuestionnaire(user);
+
+                        Report rep = new Report(uDatabase, getApplicationContext());
+                        rep.save(username, false, getSharedPreferences("consent", MODE_PRIVATE).getString("consent", "nothing"));
+                    }
+                }
+
+                //update experiments
+
+                //including day 0
+                shouldBe++;
+
+                String experiments = getSharedPreferences("experiments", MODE_PRIVATE).getString("experiments", "");
+
+                String[] experimentsArray = experiments.split("$^");
+
+                if (shouldBe > experimentsArray.length){
+                    String currentExperiment = getSharedPreferences("name", MODE_PRIVATE).getString("experiment", "nothing");
+
+                    experimentsArray[experimentsArray.length] = currentExperiment + ".";
+
+                    StringBuilder sb = new StringBuilder();
+                    for (int i = 0; i < experimentsArray.length; i++) {
+                        sb.append(experimentsArray[i]).append("$^");
+                    }
+                    sb.setLength(sb.length() - 2);
+                    getSharedPreferences("experiments", MODE_PRIVATE).edit().putString("experiments", sb.toString()).apply();
+
+                }
+                //updating day
             }
 
             //scoatem variabila days si verificam: daca se imparte la 5, si nu e locked,
         }).start();
 
-        getApplicationContext().getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putBoolean("completed", false).apply();
+        //context.getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putBoolean("completed", false).apply();
+        //context.getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).edit().putBoolean("locked", true).apply();
 
-        getApplicationContext().getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).edit().putBoolean("locked", true).apply();
-//
-
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-
-                UserDatabase uDatabase = Room.databaseBuilder(getApplicationContext(), UserDatabase.class, DATABASE_NAME).fallbackToDestructiveMigration().build();
-
-                int totalQuestionnaires = uDatabase.daoAccess().fetchUserQuestionnaires().size();
-
-                int fiveDays = getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).getInt("days", 0);
-                int numberOfDays = getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).getInt("numberDays", 0);
-
-                System.out.println("questionnairs: " + totalQuestionnaires);
-                System.out.println("fivedays: " + fiveDays);
-
-                System.out.println("nrofdayss: " + numberOfDays);
-            }
-            }).start();
-*/
+            //scoatem variabila days si verificam: daca se imparte la 5, si nu e locked,
        ImageView imageView = findViewById(R.id.imageView2);
         imageView.setImageResource(R.drawable.sleep);
 
@@ -139,15 +170,11 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
 
         String name = getSharedPreferences("name", MODE_PRIVATE).getString("username", "nothing");
         navUsername.setText(name);
-// Adding the right bitmoji
-        ImageView imageView2 = (ImageView) headerView.findViewById(R.id.imageView);
-        imageView2.setImageResource(R.drawable.stickman);
 
         //NOTIFICATION DEMO
         this.createNotificationChannel();
         this.setNotifications();
         this.setFirstSpecialNotification();
-        this.setSecondSpecialNotification();
 ///END NOTIFICATIONs
 
         Button button1 = (Button) findViewById(R.id.whatSleep);
@@ -157,18 +184,6 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
             public void onClick(View v) {
 
                 goToWhatIsSleep();
-
-            }
-
-        });
-
-        Button button2 = (Button) findViewById(R.id.WhatChabot);
-
-        button2.setOnClickListener(new View.OnClickListener() {
-
-            public void onClick(View v) {
-
-                goToWhatIsChatbot();
 
             }
 
@@ -190,13 +205,6 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
 
     private void goToWhatIsSleep() {
         Intent intent = new Intent(this, WhatIsSleep.class);
-
-        startActivity(intent);
-
-    }
-
-    private void goToWhatIsChatbot() {
-        Intent intent = new Intent(this, WhatChatbot.class);
 
         startActivity(intent);
 
@@ -285,8 +293,6 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
 
         } else if (id == R.id.nav_calendar) {
             fragmentTransaction.replace(R.id.content_frame, new CalendarPage());
-        } else if (id == R.id.nav_bot) {
-            fragmentTransaction.replace(R.id.content_frame, new Help());
         }
 
         fragmentTransaction.addToBackStack(null);
@@ -335,25 +341,7 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
             am.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
     }
 
-    private void setSpecialAlarmManager(int hour, int minute, final String title, final String message) {
-
-        Calendar calendar = Calendar.getInstance();
-            calendar.set(Calendar.HOUR_OF_DAY, hour);
-            calendar.set(Calendar.MINUTE, minute);
-            calendar.set(Calendar.SECOND, 0);
-
-            if (Calendar.getInstance().after(calendar)) {
-                calendar.add(Calendar.DAY_OF_MONTH, 1);
-            }
-
-            Intent intent1 = new Intent(MainMenu.this, Broadcast4.class);
-            PendingIntent pendingIntent = PendingIntent.getBroadcast(MainMenu.this, 0, intent1, 0);
-            AlarmManager am = (AlarmManager) MainMenu.this.getSystemService(MainMenu.this.ALARM_SERVICE);
-            am.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
-
-    }
     private void setFirstSpecialNotification() {
-        System.out.println("SPECIALK");
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.HOUR_OF_DAY, 19);
         calendar.set(Calendar.MINUTE, 0);
@@ -368,25 +356,6 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
         am1.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
 
     }
-
-    private void setSecondSpecialNotification() {
-        System.out.println("SPECIALK");
-        Calendar calendar = Calendar.getInstance();
-
-        calendar.set(Calendar.HOUR_OF_DAY, 15);
-        calendar.set(Calendar.MINUTE, 35);
-        calendar.set(Calendar.SECOND, 0);
-
-        if (Calendar.getInstance().after(calendar)) {
-            calendar.add(Calendar.DAY_OF_MONTH, 1);
-        }
-        Intent intent2 = new Intent(MainMenu.this, Broadcast3.class);
-        PendingIntent pendingIntent2 = PendingIntent.getBroadcast(MainMenu.this, 0, intent2, 0);
-        AlarmManager am2 = (AlarmManager) MainMenu.this.getSystemService(MainMenu.this.ALARM_SERVICE);
-        am2.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent2);
-
-    }
-
 
     //produce the required notifications
     private void setNotifications() {
@@ -426,7 +395,6 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
                 break;
         }
 
-        setSpecialAlarmManager(0, 1, "Oups:", "Checking questionnaire");
     }
 
     public static class Broadcast1 extends BroadcastReceiver {
@@ -543,114 +511,6 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
             }
 
 
-        }
-    }
-
-    public static class Broadcast3 extends BroadcastReceiver {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-
-            long when = System.currentTimeMillis();
-            NotificationManager notificationManager = (NotificationManager) context
-                    .getSystemService(Context.NOTIFICATION_SERVICE);
-
-            Intent notificationIntent = new Intent(context, Help.class);
-            notificationIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-
-            PendingIntent pendingIntent = PendingIntent.getActivity(context, 0,
-                    notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-
-
-          //  Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-
-            NotificationCompat.Builder mNotifyBuilder = new NotificationCompat.Builder(context, "13")
-                    .setSmallIcon(R.drawable.pill)
-                    .setContentTitle("Do you have any question?")
-                    .setContentText("Pam: Ask me something if you are curious!")
-                    .setAutoCancel(true).setWhen(when)
-                    .setContentIntent(pendingIntent);
-            notificationManager.notify(21, mNotifyBuilder.build());
-//
-        }
-    }
-
-    public static class Broadcast4 extends BroadcastReceiver {
-        @Override
-        public void onReceive(final Context context, Intent intent) {
-
-            System.out.println("RECEIVDDDD");
-
-            //updating day
-            int numberOfDays = context.getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).getInt("numberDays", 0);
-            numberOfDays++;
-            context.getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).edit().putInt("numberDays", numberOfDays).apply();
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    System.out.println("RECEIVDDDD222");
-                    Date c = Calendar.getInstance().getTime();
-                    SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
-                    final String formattedDate = df.format(c);
-
-
-                    UserDatabase uDatabase = Room.databaseBuilder(context, UserDatabase.class, DATABASE_NAME).fallbackToDestructiveMigration().build();
-
-                    int totalQuestionnaires = uDatabase.daoAccess().fetchUserQuestionnaires().size();
-
-                    int fiveDays = context.getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).getInt("days", 0);
-                    int numberOfDays = context.getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).getInt("numberDays", 0);
-
-                    Boolean wasRightAfterChangeOfExperiment = context.getApplicationContext().getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).getBoolean("afterExperiment", true);;
-
-                    System.out.println("here is fiveDays: " + fiveDays);
-                    if (numberOfDays > totalQuestionnaires) {
-
-                        //daca nu a facut chestionarul
-                        //1 updatam ce se intampla in questionnaire 4
-                        if (fiveDays % 5 == 1 && wasRightAfterChangeOfExperiment) {
-                            context.getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).edit().putInt("days", fiveDays).apply();
-                            context.getApplicationContext().getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).edit().putBoolean("afterExperiment", false).apply();
-
-                        } else {
-                            context.getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).edit().putInt("days", fiveDays + 1).apply();
-                        }
-                        //2 adaugam -1 in tabel
-
-                        UserQuestionnaire user = new UserQuestionnaire();
-                        String username = context.getSharedPreferences("name", MODE_PRIVATE).getString("participantID", "nothing"); user.setUsername(username);
-                        user.setDate(formattedDate);
-                        user.setTimesPerNight(-1);
-                        user.setNightTerrors(-1);
-                        user.setFallAsleep(-1);
-                        user.setWakeUp(-1);
-                        user.setFresh(-1);
-                        user.setSad(-1);
-                        user.setSleepy(-1);
-                        user.setTired(-1);
-                        user.setStressed(-1);
-                        user.setApetite(-1);
-                        user.setConcentrate(-1);
-                        user.setCoordinate(-1);
-                        user.setIrritable(-1);
-                        user.setMood(-1);
-
-                        //setting mood value to -1 in shared preferences
-
-                        uDatabase.daoAccess().insertSingleUserQuestionnaire(user);
-
-                        Report rep = new Report(uDatabase, context);
-                        rep.save(username, false, context.getSharedPreferences("consent", MODE_PRIVATE).getString("consent", "nothing"));
-
-                    }
-                }
-
-                //scoatem variabila days si verificam: daca se imparte la 5, si nu e locked,
-            }).start();
-
-            context.getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putBoolean("completed", false).apply();
-
-            context.getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).edit().putBoolean("locked", true).apply();
-//
         }
     }
 

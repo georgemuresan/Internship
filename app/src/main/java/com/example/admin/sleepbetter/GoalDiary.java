@@ -2,7 +2,6 @@ package com.example.admin.sleepbetter;
 
 import android.app.Fragment;
 import android.arch.persistence.room.Room;
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -22,6 +21,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -40,7 +40,7 @@ public class GoalDiary extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        goalDiaryView = inflater.inflate(R.layout.goal_diary, container, false);
+        goalDiaryView = inflater.inflate(R.layout.act_Diary, container, false);
         ImageView imageView = (ImageView) goalDiaryView.findViewById(R.id.imageView29);
         imageView.setImageResource(R.drawable.diary);
         Button button = (Button) goalDiaryView.findViewById(R.id.button);
@@ -68,28 +68,30 @@ public class GoalDiary extends Fragment {
                 List<UserDiary> diaries = userDatabase.daoAccess().fetchDiary();
                 final TableLayout tableLayout = (TableLayout) goalDiaryView.findViewById(R.id.table);
 
+
+                Date c = Calendar.getInstance().getTime();
+                SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
+                final String currentDate = df.format(c);
+
                 int colorBlack = Color.BLACK;
                 for (int i = 0; i < diaries.size(); i++) {
-                    // Creation row
-                    final TableRow tableRow = new TableRow(getActivity().getApplicationContext());
-                    tableRow.setLayoutParams(new TableLayout.LayoutParams(TableLayout.LayoutParams.WRAP_CONTENT, TableLayout.LayoutParams.WRAP_CONTENT, 2));
-                    tableRow.setWeightSum(2);
-                    // Creation textView
-                    final TextView text = new TextView(getActivity().getApplicationContext());
-                    text.setText(diaries.get(i).getDate());
-                    text.setTextColor(colorBlack);
-                    text.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT, 1));
 
-                    // Creation textView
-                    final TextView text2 = new TextView(getActivity().getApplicationContext());
-                    text2.setText(diaries.get(i).getComment());
-                    text2.setTextColor(colorBlack);
-                    text2.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT, 1));
+                    if (diaries.get(i).getDate().equals(currentDate)) {
+                        // Creation row
+                        final TableRow tableRow = new TableRow(getActivity().getApplicationContext());
+                        tableRow.setLayoutParams(new TableLayout.LayoutParams(TableLayout.LayoutParams.WRAP_CONTENT, TableLayout.LayoutParams.WRAP_CONTENT, 1));
+                        tableRow.setWeightSum(1);
 
-                    tableRow.addView(text);
-                    tableRow.addView(text2);
+                        // Creation textView
+                        final TextView text2 = new TextView(getActivity().getApplicationContext());
+                        text2.setText(diaries.get(i).getComment());
+                        text2.setTextColor(colorBlack);
+                        text2.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT, 1));
 
-                    tableLayout.addView(tableRow);
+                        tableRow.addView(text2);
+
+                        tableLayout.addView(tableRow);
+                    }
                 }
 
             }
@@ -101,7 +103,7 @@ public class GoalDiary extends Fragment {
 
         Date c = Calendar.getInstance().getTime();
         SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
-        final String formattedDate = df.format(c);
+        final String currentDate = df.format(c);
 
         final String note = notee;
 
@@ -110,13 +112,8 @@ public class GoalDiary extends Fragment {
         int colorBlack = Color.BLACK;
         // Creation row
         final TableRow tableRow = new TableRow(getActivity().getApplicationContext());
-        tableRow.setLayoutParams(new TableLayout.LayoutParams(TableLayout.LayoutParams.WRAP_CONTENT, TableLayout.LayoutParams.WRAP_CONTENT, 2));
-        tableRow.setWeightSum(2);
-        // Creation textView
-        final TextView text = new TextView(getActivity().getApplicationContext());
-        text.setText(formattedDate);
-        text.setTextColor(colorBlack);
-        text.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT, 1));
+        tableRow.setLayoutParams(new TableLayout.LayoutParams(TableLayout.LayoutParams.WRAP_CONTENT, TableLayout.LayoutParams.WRAP_CONTENT, 1));
+        tableRow.setWeightSum(1);
 
         // Creation textView
         final TextView text2 = new TextView(getActivity().getApplicationContext());
@@ -124,67 +121,41 @@ public class GoalDiary extends Fragment {
         text2.setTextColor(colorBlack);
         text2.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT, 1));
 
-        tableRow.addView(text);
         tableRow.addView(text2);
 
         tableLayout.addView(tableRow);
 
-        String experiment = getActivity().getApplicationContext().getSharedPreferences("name", MODE_PRIVATE).getString("experiment", " ");
+        //Update array of comments
 
-        SimpleDateFormat df2 = new SimpleDateFormat("yyyy-MM-dd");
-        final String formattedDate2 = df2.format(c);
-
-        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
-        String json = sharedPrefs.getString("trial", "");
-        Gson gson = new Gson();
-
-        Type type = new TypeToken<List<HomeCollection>>() {
-        }.getType();
-        List<HomeCollection> arrayList = gson.fromJson(json, type);
-
-        HomeCollection.date_collection_arr = (ArrayList<HomeCollection>) arrayList;
-        HomeCollection coll = HomeCollection.date_collection_arr.get(HomeCollection.date_collection_arr.size() - 1);
-        String date = coll.date;
-
-
-        String proof = getActivity().getApplicationContext().getSharedPreferences("proof", MODE_PRIVATE).getString("proof", "No proof logged in yet.");
-
-        if (date.equals(formattedDate2)) {
-            String comment = coll.comment;
-            comment = comment + " / " + note;
-
-            String lastExp = coll.experiment;
-            String lastProof = coll.proof;
-
-            HomeCollection.date_collection_arr.remove(HomeCollection.date_collection_arr.size() - 1);
-            if (lastExp.equals(experiment)) {
-
-                HomeCollection.date_collection_arr.add(new HomeCollection(formattedDate2, experiment, String.valueOf(getActivity().getApplicationContext().getSharedPreferences("MOOD", MODE_PRIVATE).getInt("mood", 0)), proof, comment));
-            } else {
-                if (lastExp.contains("yesterday")){
-                    HomeCollection.date_collection_arr.add(new HomeCollection(formattedDate2, lastExp, "(yesterday) " + String.valueOf(getActivity().getApplicationContext().getSharedPreferences("MOOD", MODE_PRIVATE).getInt("mood", 0)), "(yesterday) " + lastProof, comment));
-                } else {
-                    HomeCollection.date_collection_arr.add(new HomeCollection(formattedDate2, lastExp, String.valueOf(getActivity().getApplicationContext().getSharedPreferences("MOOD", MODE_PRIVATE).getInt("mood", 0)), proof, comment));
-                }
-                }
-
-            SharedPreferences.Editor editor = sharedPrefs.edit();
-
-            json = gson.toJson(HomeCollection.date_collection_arr);
-
-            editor.putString("trial", json);
-            editor.commit();
-
-        } else {
-            HomeCollection.date_collection_arr.add(new HomeCollection(formattedDate2, "(yesterday) " + experiment, "(yesterday) " + String.valueOf(getActivity().getApplicationContext().getSharedPreferences("MOOD", MODE_PRIVATE).getInt("mood", 0)), "(yesterday) " + proof, note));
-
-            SharedPreferences.Editor editor = sharedPrefs.edit();
-
-            json = gson.toJson(HomeCollection.date_collection_arr);
-
-            editor.putString("trial", json);
-            editor.commit();
+        String startingDate= getActivity().getApplicationContext().getSharedPreferences("date", MODE_PRIVATE).getString("startingDate", "");
+        Date date1 = null;
+        Date date2 = null;
+        SimpleDateFormat dates = new SimpleDateFormat("dd-MMM-yyyy");
+        //Setting dates
+        try {
+            date1 = dates.parse(currentDate);
+            date2 = dates.parse(startingDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
         }
+        Calendar c1 = Calendar.getInstance();
+        c1.setTime(date1);
+        Calendar c2 = Calendar.getInstance();
+        c2.setTime(date2);
+
+        int differenceOfDates = c1.get(Calendar.DAY_OF_YEAR) - c2.get(Calendar.DAY_OF_YEAR);
+
+        String diary_comments = getActivity().getApplicationContext().getSharedPreferences("diary", MODE_PRIVATE).getString("diary", "");
+
+               String[] diaries = diary_comments.split("$^");
+        diaries[differenceOfDates] = diaries[differenceOfDates] + note + ".";
+
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < diaries.length; i++) {
+            sb.append(diaries[i]).append("$^");
+        }
+        sb.setLength(sb.length() - 2);
+        getActivity().getApplicationContext().getSharedPreferences("diary", MODE_PRIVATE).edit().putString("diary", sb.toString()).apply();
 
         new Thread(new Runnable() {
             @Override
@@ -196,7 +167,7 @@ public class GoalDiary extends Fragment {
 
                 UserDiary userDiary = new UserDiary();
                 userDiary.setUsername(username);
-                userDiary.setDate(formattedDate);
+                userDiary.setDate(currentDate);
                 userDiary.setComment(note);
 
                 userDatabase.daoAccess().insertSingleUserDiary(userDiary);

@@ -30,7 +30,7 @@ class HwAdapter extends BaseAdapter {
     private java.util.Calendar month;
     public GregorianCalendar pmonth;
     /**
-     * calendar instance for previous month for getting complete view
+     * act_Calendar instance for previous month for getting complete view
      */
     public GregorianCalendar pmonthmaxset;
     private GregorianCalendar selectedDate;
@@ -84,7 +84,7 @@ class HwAdapter extends BaseAdapter {
         if (convertView == null) { // if it's not recycled, initialize some
             // attributes
             LayoutInflater vi = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            v = vi.inflate(R.layout.cal_item, null);
+            v = vi.inflate(R.layout.extra_cal_Item, null);
 
         }
 
@@ -147,7 +147,7 @@ class HwAdapter extends BaseAdapter {
         // allocating maximum row number for the gridview.
         mnthlength = maxWeeknumber * 7;
         maxP = getMaxP(); // previous month maximum day 31,30....
-        calMaxP = maxP - (firstDay - 1);// calendar offday starting 24,25 ...
+        calMaxP = maxP - (firstDay - 1);// act_Calendar offday starting 24,25 ...
         pmonthmaxset = (GregorianCalendar) pmonth.clone();
 
         pmonthmaxset.set(GregorianCalendar.DAY_OF_MONTH, calMaxP + 1);
@@ -196,7 +196,7 @@ class HwAdapter extends BaseAdapter {
 
                     } else {
                         v.setBackgroundColor(Color.parseColor("#343434"));
-                        if (cal_obj.overall.equals("1")){
+                  /*      if (cal_obj.overall.equals("1")){
                             v.setBackgroundResource(R.drawable.rounded_calender_one);
                         } else if (cal_obj.overall.equals("2")){
                             v.setBackgroundResource(R.drawable.rounded_calender_two);
@@ -210,8 +210,8 @@ class HwAdapter extends BaseAdapter {
                         } else if (cal_obj.overall.contains("yesterday")){
                             v.setBackgroundResource(R.drawable.rounded_calender_one);
                         }
-
-                        txt.setTextColor(Color.parseColor("#696969"));
+*/
+                        txt.setTextColor(Color.parseColor("#180A63"));
                     }
 
                 }
@@ -227,7 +227,6 @@ class HwAdapter extends BaseAdapter {
                 HashMap<String, String> maplist = new HashMap<String, String>();
                 maplist.put("hexperiment",HomeCollection.date_collection_arr.get(j).experiment);
                 maplist.put("hoverall",HomeCollection.date_collection_arr.get(j).overall);
-                maplist.put("hproof",HomeCollection.date_collection_arr.get(j).proof);
                 maplist.put("hcomment",HomeCollection.date_collection_arr.get(j).comment);
                 JSONObject json1 = new JSONObject(maplist);
                 jbarrays.put(json1);
@@ -235,7 +234,7 @@ class HwAdapter extends BaseAdapter {
         }
         if (jbarrays.length()!=0) {
             final Dialog dialogs = new Dialog(context);
-            dialogs.setContentView(R.layout.dialog_inform);
+            dialogs.setContentView(R.layout.extra_dialog_inform);
             listTeachers = (ListView) dialogs.findViewById(R.id.list_teachers);
             ImageView imgCross = (ImageView) dialogs.findViewById(R.id.img_cross);
             listTeachers.setAdapter(new DialogAdaptorStudent(context, getMatchList(jbarrays + "")));
@@ -263,7 +262,6 @@ class HwAdapter extends BaseAdapter {
 
                 pojo.setExperiments(jsonObject.optString("hexperiment"));
                 pojo.setOveralls(jsonObject.optString("hoverall"));
-                pojo.setProofs(jsonObject.optString("hproof"));
                 pojo.setComments(jsonObject.optString("hcomment"));
 
                 alCustom.add(pojo);

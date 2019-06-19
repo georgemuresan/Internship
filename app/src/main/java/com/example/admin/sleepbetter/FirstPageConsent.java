@@ -2,12 +2,10 @@ package com.example.admin.sleepbetter;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
@@ -17,7 +15,7 @@ public class FirstPageConsent extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_first_page_consent);
+        setContentView(R.layout.act_Consent);
 
         Button button = (Button) findViewById(R.id.submit);
 

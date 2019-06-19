@@ -32,46 +32,34 @@ public interface DaoAccess {
     List<UserExperiment> fetchUserExperiments();
 
     @Query("SELECT mood_all FROM UserQuestionnaire")
-    List<Integer> fetchMoods();
+    List<Double> fetchMoods();
 
-    @Query("SELECT timesPerNight FROM UserQuestionnaire")
-    List<Integer> fetchTimsPerNight();
+    @Query("SELECT awake FROM UserQuestionnaire")
+    List<Integer> fetchAwake();
 
-    @Query("SELECT nightTerrors FROM UserQuestionnaire")
-    List<Integer> fetchNightTerrors();
+    @Query("SELECT earlier FROM UserQuestionnaire")
+    List<Integer> fetchEarlier();
 
-    @Query("SELECT fallAsleep FROM UserQuestionnaire")
-    List<Integer> fetchFallAsleep();
+    @Query("SELECT howLong FROM UserQuestionnaire")
+    List<Integer> fetchHowLong();
 
-    @Query("SELECT wakeUp FROM UserQuestionnaire")
-    List<Integer> fetchWakeUp();
+    @Query("SELECT nightsAWeek FROM UserQuestionnaire")
+    List<Integer> fetchNightsAWeek();
 
-    @Query("SELECT fresh FROM UserQuestionnaire")
-    List<Integer> fetchFresh();
+    @Query("SELECT quality FROM UserQuestionnaire")
+    List<Integer> fetchQuality();
 
-    @Query("SELECT sad FROM UserQuestionnaire")
-    List<Integer> fetchSad();
+    @Query("SELECT impactMood FROM UserQuestionnaire")
+    List<Integer> fetchImpactMood();
 
-    @Query("SELECT sleepy FROM UserQuestionnaire")
-    List<Integer> fetchSleepy();
+    @Query("SELECT impactActivities FROM UserQuestionnaire")
+    List<Integer> fetchImpactActivities();
 
-    @Query("SELECT tired FROM UserQuestionnaire")
-    List<Integer> fetchTired();
+    @Query("SELECT impactGeneral FROM UserQuestionnaire")
+    List<Integer> fetchImpactGeneral();
 
-    @Query("SELECT stressed FROM UserQuestionnaire")
-    List<Integer> fetchStressed();
-
-    @Query("SELECT apetite FROM UserQuestionnaire")
-    List<Integer> fetchApetite();
-
-    @Query("SELECT concentrate FROM UserQuestionnaire")
-    List<Integer> ftchConcentrate();
-
-    @Query("SELECT coordinate FROM UserQuestionnaire")
-    List<Integer> fetchCoordinate();
-
-    @Query("SELECT irritable FROM UserQuestionnaire")
-    List<Integer> fetchIrritable();
+    @Query("SELECT problem FROM UserQuestionnaire")
+    List<Integer> fetchProblem();
 
     @Query("SELECT * FROM UserDiary")
     List<UserDiary> fetchDiary();

@@ -1,7 +1,6 @@
 package com.example.admin.sleepbetter;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -13,7 +12,7 @@ public class WhatExperiments extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.what_experiments);
+        setContentView(R.layout.act_what_experiments);
 
        ImageView imageView = findViewById(R.id.imageView23);
         imageView.setImageResource(R.drawable.phone);

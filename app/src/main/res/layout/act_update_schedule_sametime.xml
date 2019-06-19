@@ -67,12 +67,12 @@
             app:srcCompat="@drawable/pill" />
 
         <TextView
-            android:id="@+id/sevenIntro"
+            android:id="@+id/sametimeIntro"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
-            android:text="@string/sevenIntro"
+            android:text="@string/sametimeIntro"
             android:textColor="@android:color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -90,9 +90,9 @@
             android:scrollbarStyle="insideOverlay"
             android:visibility="visible"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.454"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/sevenIntro"
+            app:layout_constraintTop_toBottomOf="@+id/sametimeIntro"
             tools:targetApi="lollipop">
 
             <FrameLayout
@@ -113,7 +113,7 @@
                 <android.support.constraint.ConstraintLayout
                     android:id="@+id/fr"
                     android:layout_width="match_parent"
-                    android:layout_height="748dp"
+                    android:layout_height="737dp"
                     tools:layout_editor_absoluteX="8dp"
                     tools:layout_editor_absoluteY="0dp">
 
@@ -155,8 +155,56 @@
                         android:inputType="textPersonName"
                         android:text="@string/logging"
                         app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/relativeLayout9" />
+                        app:layout_constraintTop_toBottomOf="@+id/radioGroup2" />
+
+                    <RadioGroup
+                        android:id="@+id/radioGroup2"
+                        android:layout_width="327dp"
+                        android:layout_height="128dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/questionDay">
+
+                        <RadioButton
+                            android:id="@+id/radioButton52"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/op1.6" />
+
+                        <RadioButton
+                            android:id="@+id/radioButton51"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/op2.6" />
+
+                        <RadioButton
+                            android:id="@+id/radioButton53"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/op3.6" />
+
+                        <RadioButton
+                            android:id="@+id/radioButton54"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/op4.6" />
+
+                        <RadioButton
+                            android:id="@+id/radioButton55"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/op5.6" />
+                    </RadioGroup>
 
                     <EditText
                         android:id="@+id/dayReview"
@@ -203,7 +251,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="24dp"
                         android:layout_marginStart="8dp"
-                        android:layout_marginTop="12dp"
                         android:background="@android:color/transparent"
                         android:clickable="false"
                         android:ems="10"
@@ -218,36 +265,16 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/loggngTitle" />
 
-                    <RelativeLayout
-                        android:id="@+id/relativeLayout9"
-                        android:layout_width="match_parent"
-                        android:layout_height="35dp"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginTop="8dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/questionDay">
-
-                        <com.example.admin.sleepbetter.SeekBarWithIntervals
-                            android:id="@+id/dayReviewBar"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_alignParentTop="true"
-                            android:layout_centerHorizontal="true" />
-                    </RelativeLayout>
-
                     <Button
                         android:id="@+id/submitUpdate"
                         android:layout_width="wrap_content"
-                        android:layout_height="44dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginEnd="8dp"
                         android:layout_marginStart="8dp"
-                        android:layout_marginTop="8dp"
                         android:text="@string/nextButton"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/imageView21" />
+                        app:layout_constraintTop_toBottomOf="@+id/whenSleep" />
 
                     <TimePicker
                         android:id="@+id/lastDrink"
@@ -272,17 +299,6 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/appGroup" />
-
-                    <ImageView
-                        android:id="@+id/imageView21"
-                        android:layout_width="133dp"
-                        android:layout_height="133dp"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginTop="8dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/whenSleep" />
 
 
                 </android.support.constraint.ConstraintLayout>

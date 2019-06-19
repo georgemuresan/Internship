@@ -1,7 +1,6 @@
 package com.example.admin.sleepbetter;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -13,7 +12,7 @@ public class WhatIsSleep extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.what_is_sleep);
+        setContentView(R.layout.act_what_is_sleep);
 
         ImageView imageView = findViewById(R.id.imageView4);
         imageView.setImageResource(R.drawable.sleepmoon);

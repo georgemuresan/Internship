@@ -3,7 +3,6 @@ package com.example.admin.sleepbetter;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.arch.persistence.room.Room;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
@@ -14,7 +13,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.TimePicker;
 import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
@@ -34,7 +32,7 @@ public class Update_Caffeine_Empty extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        updateView = inflater.inflate(R.layout.update_caffeine_empty, container, false);
+        updateView = inflater.inflate(R.layout.act_update_caffeine_empty, container, false);
          ImageView imageView = updateView.findViewById(R.id.imageView22);
         imageView.setImageResource(R.drawable.stomach);
 

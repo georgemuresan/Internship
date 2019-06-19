@@ -1,11 +1,6 @@
 package com.example.admin.sleepbetter;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -15,10 +10,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.gson.Gson;
-
-import java.util.ArrayList;
-
 public class FirstPage extends AppCompatActivity {
 
     private EditText nameBox = null;
@@ -27,7 +18,7 @@ public class FirstPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_first_page);
+        setContentView(R.layout.act_Welcome);
 
         nameBox = (EditText) findViewById(R.id.yourName);
         System.out.println("INPUT IS :" + nameBox.getText().toString());
@@ -51,11 +42,6 @@ public class FirstPage extends AppCompatActivity {
 
 
         String completed = getSharedPreferences("consent", MODE_PRIVATE).getString("consent", "nothing");
-        int completedBitmoji = getSharedPreferences("bmhappy", MODE_PRIVATE).getInt("slectedbitmoji", -1);
-        getSharedPreferences("bmok", MODE_PRIVATE).getInt("slectedbitmoji", 0);
-        getSharedPreferences("bmnotok", MODE_PRIVATE).getInt("slectedbitmoji", 0);
-        getSharedPreferences("bmbad", MODE_PRIVATE).getInt("slectedbitmoji", 0);
-
 
         if (completed.equals("Yes") || completed.equals("No")){
             consent.setChecked(true);
@@ -140,7 +126,7 @@ public class FirstPage extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Please input your participant ID number", Toast.LENGTH_SHORT).show();
 
         } else {
-            Intent intent = new Intent(this, SecondPage.class);
+            Intent intent = new Intent(this, Notice.class);
 
             String name = nameBox.getText().toString();
             String participant = participantID.getText().toString();

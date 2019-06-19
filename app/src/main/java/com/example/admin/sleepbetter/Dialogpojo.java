@@ -27,8 +27,6 @@ public class Dialogpojo {
         this.duedates = duedates;
     }
 
-    public void setProofs(String proofs) { this.proofs = proofs;  }
-
     public void setComments(String comments) {
         this.comments = comments;
     }
@@ -51,10 +49,6 @@ public class Dialogpojo {
 
     public String getDuedates() {
         return duedates;
-    }
-
-    public String getProofs() {
-        return proofs;
     }
 
     public String getComments() {

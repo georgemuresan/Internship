@@ -29,6 +29,44 @@
     <string name="notice">The next set of questions you will receive aim to assess your sleeping experience before using the SleepBetter app, in order to be able to record your progress. There are 9 questions which should approximately take 1 or 2 minutes max.</string>
 
 
+    <string name="op1">0-15 min</string>
+    <string name="op1.1">I don\'t wake up too early/Up to 15 min</string>
+    <string name="op2">16-30 min</string>
+    <string name="op3">31-45 min</string>
+    <string name="op4">46-60 min</string>
+    <string name="op5">>60 min</string>
+
+    <string name="op1.2">0-1</string>
+    <string name="op2.2">2</string>
+    <string name="op3.2">3</string>
+    <string name="op4.2">4</string>
+    <string name="op5.2">5/more</string>
+
+    <string name="op1.3">Very good</string>
+    <string name="op2.3">Good</string>
+    <string name="op3.3">Average</string>
+    <string name="op4.3">Poor</string>
+    <string name="op5.3">Very poor</string>
+
+
+    <string name="op1.4">Not at all</string>
+    <string name="op2.4">A little</string>
+    <string name="op3.4">Somewhat</string>
+    <string name="op4.4">Much</string>
+    <string name="op5.4">Very much</string>
+
+    <string name="op1.5">I don\'t have a problem/less than 1 month</string>
+    <string name="op2.5">1-2 months</string>
+    <string name="op3.5">3-6 months</string>
+    <string name="op4.5">7-12 months</string>
+    <string name="op5.5">>1 year</string>
+
+
+    <string name="op1.6">A lot worse</string>
+    <string name="op2.6">Worse</string>
+    <string name="op3.6">The same</string>
+    <string name="op4.6">Better</string>
+    <string name="op5.6">A lot better</string>
 
     <string name="questionnaireTitle">QUESTIONNAIRE</string>
 
@@ -36,8 +74,8 @@
     <string name="s1">How long does it usually take you to fall asleep?</string>
     <string name="s2">Usually if you wake up one or more times during the night, how long are you awake in total?</string>
     <string name="s3">If your final wake-up time occurs before you intend to wake up, how much earlier is this?</string>
-    <string name="q2desc">This set of questions efer to your sleep quality in general. Please choose the most appropriate answer.</string>
-    <string name="s4"> If your final wake-up time occurs before you intend to wake up, how much earlier is this?</string>
+    <string name="q2desc">This set of questions refer to your sleep quality in general. Please choose the most appropriate answer.</string>
+    <string name="s4">How many nights a week do you have a problem with your sleep?</string>
     <string name="s5">How would you rate your sleep quality?</string>
     <string name="q3desc">This set of questions refer to the impact your sleeping pattern usually has on your daily activities and your life in general. Please choose the most appropriate answer.</string>
     <string name="s6">How do you think sleep impacted your mood, energy, or relationships?</string>
@@ -45,6 +83,14 @@
     <string name="s8">How do you think sleep impacted your life in general?</string>
     <string name="q4desc">This set of questions aim to asses the severity of your sleep problems (if any). Please choose the most appropriate answer.</string>
     <string name="s9">How long have you had a problem with your sleep?</string>
+
+    <string name="s1.1">How long did it take you to fall asleep last night?</string>
+    <string name="s2.1">If you woke up one or more times during last night, how long are you awake in total?</string>
+    <string name="s3.1">If your final wake-up time occurred before you intended to wake up, how much earlier was this?</string>
+    <string name="s5.1">How would you rate the quality of last night\'s sleep?</string>
+    <string name="s6.1">How do you think last night\'s sleep impacted your mood, energy, or relationships?</string>
+    <string name="s7.1">How do you think last night\'s sleep impacted your concentration, productivity, or ability to stay awake?</string>
+    <string name="s8.1">How do you think last night\'s sleep impacted your life in general?</string>
 
     <string name="questionnaireHelp">First, how would you rate the following aspects of your sleep and daily experience? 1 represents the lowest and 5 the highest.</string>
     <string name="questionnaireHelpSecond">For the question \"How quickly do you usually fall asleep?\", please bare in mind that 1 means \"as soon as getting into bed\", 2 is \"within 20 minutes\", 3 is \"up to one hour\", 4 is \"1/1.30 hours\" and 5 is \"more than that\". Also, for the \"How easily do you usually wake up?\", notice that 1 means \"waking up with no alarm\", 2 is \"using the alarm only sometimes\", 3 is \"using the alarm but I get up easily\", 4 is \"using the snooze button once\", 5 is \"using the snooze button more than once\".</string>
@@ -102,13 +148,13 @@
     <string name="pleaseInputGoal">Please input either a goal, a wish, or any note. You can return to this section later.</string>
     <string name="goalInput">Goal Diary input...</string>
     <string-array name="targetGraph">
-            <item>Times waking up per night</item>
-            <item>Night terrors</item>
             <item>Falling asleep</item>
-            <item>Waking up</item>
-        <item>Fresh</item>
-        <item>Sad</item>
-        <item>Sleepy</item>
+            <item>Awake at night</item>
+            <item>Waking up earlier</item>
+            <item>Sleep quality</item>
+        <item>Impacting feelings</item>
+        <item>Impacting activities</item>
+        <item>Impacting life</item>
         <item>Tired</item>
         <item>Stressed</item>
         <item>Irritable</item>
@@ -118,23 +164,17 @@
     </string-array>
     <string name="currentStatus">Current Status</string>
     <string name="goalStatus">Goal Status</string>
-    <string name="youNeedToWorkOn">You need to work on:</string>
+    <string name="youNeedToWorkOn">Fields that can be improved:</string>
     <string name="thingsToChange">Edit</string>
 
     <string name="svdyourOverall">Overall mood: edit</string>
-    <string name="svdTimes">Times waking up: edit</string>
-    <string name="svdnightTerrors">Night terrors: edit</string>
-    <string name="svdfallAsleep">Falling asleep: edit</string>
-    <string name="svdwakeUp">Waking up: edit</string>
-    <string name="svdFresh">Fresh: edit</string>
-    <string name="svdSad">Sad: edit</string>
-    <string name="svdSleepy">Sleepy: edit</string>
-    <string name="svdTired">Tired: edit</string>
-    <string name="svdStressed">Stressed: edit</string>
-    <string name="svdIrritable">Irritable: edit</string>
-    <string name="svdConcenrate">Concentration: edit</string>
-    <string name="svdCoordinate">Coordination: edit</string>
-    <string name="svdAppetite">Appetite: edit</string>
+    <string name="svdHowLong">How log it takes to fall asleep: edit</string>
+    <string name="svdAwake">How long you are awake during the night: edit</string>
+    <string name="svdEarlier">How much earlier you wake up than your normal time: edit</string>
+    <string name="svdQuality">Sleep Quality: edit</string>
+    <string name="svdImpactMood">Affecting mood, energy, or relationships: edit</string>
+    <string name="svdImpactActivities">Affecting concentration, productivity, or ability to stay awake: edit</string>
+    <string name="svdImpactGeneral">Affecting life in general: edit</string>
     <string name="svdExperiment">Experiment: edit</string>
 
     <string name="main">MAIN</string>
@@ -223,13 +263,13 @@
 
 
     <string name="goalDiaryIntro">Welcome to your Goal Diary! Here you will able to note any particular changes you want to reflect on/any goals you wish to accomplice and any other observations. You can also see previous notes.</string>
-    <string name="previousGoals">Previous notes</string>
+    <string name="previousGoals">Today\'s notes</string>
 
     <string name="moreInfo">More Information</string>
 
     <string name="dataTitle">DATA</string>
-    <string name="dataIntro">Here you will be able to look at personal data in terms of progress, changes, variations and so on! Below you will find 3 categories of data visualisation:\nSingle value displays - looking at your current state;\nProgress - where you will be able to see your current state on the way to your goal;\nTimelines - looking at your progress through 3 different types of graphs. </string>
-    <string name="progressTitle">Progress</string>
+    <string name="dataIntro">Here you will be able to look at personal data in terms of progress, changes, variations and so on!\nSingle value displays - looking at your current state;\nImprovements - where you will be able to see what fields could be improved;\nTimelines - looking at your progress through 3 different types of graphs. </string>
+    <string name="progressTitle">Improvements</string>
     <string name="timelineTitle">Timelines</string>
     <string name="singleValueDisplayTitle">Single Value Display</string>
     <string name="chooseTitle">Choose a timeline target!</string>
@@ -315,7 +355,6 @@
 
 
     <string name="sleepHygienetitle">Sleep Hygiene?</string>
-    <string name="wannachatTitle">Wanna chat?</string>
 
     <string name="tuningTitle">Tuning - a process that works for you</string>
     <string name="tuning">What these sleep experiments are for, is to test the options that might work best for you to sleep better. You already sleep every day so you already have lots of practice sleeping - the goal in these experiments is to help you dial in ways that will help you sleep better.</string>
@@ -342,7 +381,7 @@ To begin with, complete the consent form, input your name (that only YOU will be
     <string name="loggingExp">At the end of each day, you will be required to complete 2 short questionnaires (2-3 minutes in total) that would look at both how you approached the experiment in that day AND what is the outcome. The experiment logging asks you to rate whether you feel better/worse than yesterday, but also to answer a short series of questions on how you approached the chosen experiment (1-3 questions).</string>
 
     <string name="featuresTitle">Other Features</string>
-    <string name="features">By easily navigating through the Sleep Better menu you can access each category that helps you explore your self-experimentation.\n \n FACTORS helps you choose you preffered experiment, at every 5 days.\n \n GOAL DIARY keeps track of every note you save regarding your experience. You are free to add whatever observation you might have at anytme. \n \n DATA gives you insights on how your well-being changed for the duration of the experiments - you can look at graphs, progress bars and current states. \n \n QUESTIONNAIRE will only be able to be accessed at the end of each day, when you will be asked to log in your status. \n \n CALENDAR will look on your progress throughout the experiment, where colors suggest your overall well-being for the day. You are also able to look at the status of that day by clicking on it. \n \n HELP represents the Chatbot, that can help you by answering short questions about the experiments, the terms we are using and any other curiosity - check the Chatbot Guide on the first page.</string>
+    <string name="features">By easily navigating through the Sleep Better menu you can access each category that helps you explore your self-experimentation.\n \n FACTORS helps you choose you preffered experiment, at every 5 days.\n \n GOAL DIARY keeps track of every note you save regarding your experience. You are free to add whatever observation you might have at anytme. \n \n DATA gives you insights on how your well-being changed for the duration of the experiments - you can look at graphs, progress bars and current states. \n \n QUESTIONNAIRE will only be able to be accessed at the end of each day, when you will be asked to log in your status. \n \n CALENDAR will look on your progress throughout the experiment. You are also able to look at the status of that day by clicking on it.</string>
 
     <string name="chatbotGuide">CHATBOT GUIDE</string>
 

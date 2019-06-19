@@ -36,18 +36,6 @@
             app:layout_constraintTop_toTopOf="@+id/topView"
             app:layout_constraintVertical_bias="0.72" />
 
-        <ImageView
-            android:id="@+id/logoPlace"
-            android:layout_width="91dp"
-            android:layout_height="81dp"
-            android:layout_marginEnd="16dp"
-            android:contentDescription="@string/desc"
-            app:layout_constraintBottom_toBottomOf="@+id/topView"
-            app:layout_constraintEnd_toEndOf="@+id/topView"
-            app:layout_constraintTop_toTopOf="@+id/topView"
-            app:layout_constraintVertical_bias="0.533"
-            app:srcCompat="@drawable/pill" />
-
         <TextView
             android:id="@+id/experimentTitle"
             android:layout_width="wrap_content"
@@ -66,13 +54,25 @@
             app:layout_constraintTop_toTopOf="@+id/topView"
             app:layout_constraintVertical_bias="0.205" />
 
+        <ImageView
+            android:id="@+id/logoPlace"
+            android:layout_width="91dp"
+            android:layout_height="81dp"
+            android:layout_marginEnd="16dp"
+            android:contentDescription="@string/desc"
+            app:layout_constraintBottom_toBottomOf="@+id/topView"
+            app:layout_constraintEnd_toEndOf="@+id/topView"
+            app:layout_constraintTop_toTopOf="@+id/topView"
+            app:layout_constraintVertical_bias="0.533"
+            app:srcCompat="@drawable/pill" />
+
         <TextView
             android:id="@+id/lightIntro"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
-            android:text="@string/limitIntro"
+            android:text="@string/stomachIntro"
             android:textColor="@android:color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -99,7 +99,6 @@
                 android:id="@+id/FrameForScrollView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
@@ -113,18 +112,46 @@
                 <android.support.constraint.ConstraintLayout
                     android:id="@+id/fr"
                     android:layout_width="match_parent"
-                    android:layout_height="617dp"
+                    android:layout_height="552dp"
                     tools:layout_editor_absoluteX="8dp"
                     tools:layout_editor_absoluteY="0dp">
 
 
+                    <RadioGroup
+                        android:id="@+id/relaxedGroup"
+                        android:layout_width="match_parent"
+                        android:layout_height="43dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/turnOffQuestion">
+
+                        <RadioButton
+                            android:id="@+id/noCaffeine"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/noAnswer"
+                            android:textSize="12sp" />
+
+                        <RadioButton
+                            android:id="@+id/yesCaffeine"
+                            android:layout_width="125dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/yesAnswer"
+                            android:textSize="12sp" />
+                    </RadioGroup>
+
                     <TextView
                         android:id="@+id/appGroup"
                         android:layout_width="match_parent"
-                        android:layout_height="36dp"
+                        android:layout_height="20dp"
                         android:layout_marginEnd="8dp"
                         android:layout_marginStart="8dp"
-                        android:layout_marginTop="8dp"
+                        android:layout_marginTop="16dp"
                         android:background="@android:color/transparent"
                         android:clickable="false"
                         android:ems="10"
@@ -132,33 +159,12 @@
                         android:focusableInTouchMode="false"
                         android:hint="@string/some_explanation_about_the_input"
                         android:inputType=""
-                        android:text="@string/energydrinksQuestion"
-                        android:textColor="@android:color/black"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/relativeLayout16" />
-
-                    <TextView
-                        android:id="@+id/tvQuestion2"
-                        android:layout_width="match_parent"
-                        android:layout_height="36dp"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginTop="8dp"
-                        android:background="@android:color/transparent"
-                        android:clickable="false"
-                        android:ems="10"
-                        android:focusable="false"
-                        android:focusableInTouchMode="false"
-                        android:hint="@string/some_explanation_about_the_input"
-                        android:inputType=""
-                        android:text="@string/cansQuestion"
+                        android:text="@string/eatQuestion"
                         android:textColor="@android:color/black"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.111"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/relativeLayout15" />
+                        app:layout_constraintTop_toBottomOf="@+id/relaxedGroup" />
 
                     <EditText
                         android:id="@+id/loggngTitle"
@@ -176,8 +182,9 @@
                         android:inputType="textPersonName"
                         android:text="@string/logging"
                         app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/relativeLayout9" />
+                        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
 
                     <EditText
                         android:id="@+id/dayReview"
@@ -221,10 +228,10 @@
                     <TextView
                         android:id="@+id/turnOffQuestion"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="0dp"
                         android:layout_marginEnd="24dp"
                         android:layout_marginStart="8dp"
-                        android:layout_marginTop="8dp"
+                        android:layout_marginTop="4dp"
                         android:background="@android:color/transparent"
                         android:clickable="false"
                         android:ems="10"
@@ -232,84 +239,17 @@
                         android:focusableInTouchMode="false"
                         android:hint="@string/some_explanation_about_the_input"
                         android:inputType=""
-                        android:text="@string/cupsQuestion"
+                        android:text="@string/drinkCaffeineQuestion"
                         android:textColor="@android:color/black"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/loggngTitle" />
 
-                    <RelativeLayout
-                        android:id="@+id/relativeLayout9"
+                    <RadioGroup
+                        android:id="@+id/activityGroup"
                         android:layout_width="match_parent"
-                        android:layout_height="35dp"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginTop="8dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/questionDay">
-
-                        <com.example.admin.sleepbetter.SeekBarWithIntervals
-                            android:id="@+id/dayReviewBar"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_centerHorizontal="true" />
-                    </RelativeLayout>
-
-                    <Button
-                        android:id="@+id/submitUpdate"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginTop="8dp"
-                        android:text="@string/nextButton"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/imageView13" />
-
-                    <RelativeLayout
-                        android:id="@+id/relativeLayout15"
-                        android:layout_width="match_parent"
-                        android:layout_height="35dp"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginTop="8dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="1.0"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/turnOffQuestion">
-
-                        <com.example.admin.sleepbetter.SeekBarWithIntervals
-                            android:id="@+id/cupsBar"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_centerHorizontal="true" />
-                    </RelativeLayout>
-
-                    <RelativeLayout
-                        android:id="@+id/relativeLayout16"
-                        android:layout_width="match_parent"
-                        android:layout_height="35dp"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginTop="8dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/tvQuestion2">
-
-                        <com.example.admin.sleepbetter.SeekBarWithIntervals
-                            android:id="@+id/cansBar"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_centerHorizontal="true" />
-                    </RelativeLayout>
-
-                    <RelativeLayout
-                        android:id="@+id/relativeLayout17"
-                        android:layout_width="match_parent"
-                        android:layout_height="35dp"
+                        android:layout_height="43dp"
                         android:layout_marginEnd="8dp"
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="8dp"
@@ -317,24 +257,82 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/appGroup">
 
-                        <com.example.admin.sleepbetter.SeekBarWithIntervals
-                            android:id="@+id/energyBar"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_alignParentBottom="true"
-                            android:layout_centerHorizontal="true" />
-                    </RelativeLayout>
+                        <RadioButton
+                            android:id="@+id/noStomach"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/noAnswer"
+                            android:textColor="@android:color/holo_green_dark"
+                            android:textSize="12sp" />
 
-                    <ImageView
-                        android:id="@+id/imageView13"
-                        android:layout_width="133dp"
-                        android:layout_height="133dp"
+                        <RadioButton
+                            android:id="@+id/yesStomach"
+                            android:layout_width="125dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/yesAnswer"
+                            android:textColor="@android:color/holo_red_dark"
+                            android:textSize="12sp" />
+                    </RadioGroup>
+
+                    <Button
+                        android:id="@+id/submitUpdate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        android:text="@string/nextButton"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/activityGroup" />
+
+                    <RadioGroup
+                        android:id="@+id/radioGroup"
+                        android:layout_width="327dp"
+                        android:layout_height="128dp"
                         android:layout_marginEnd="8dp"
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="8dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/relativeLayout17" />
+                        app:layout_constraintTop_toBottomOf="@+id/questionDay">
+
+                        <RadioButton
+                            android:id="@+id/radioButton48"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/op1.6" />
+
+                        <RadioButton
+                            android:id="@+id/radioButton46"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/op2.6" />
+
+                        <RadioButton
+                            android:id="@+id/radioButton47"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/op3.6" />
+
+                        <RadioButton
+                            android:id="@+id/radioButton49"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/op4.6" />
+
+                        <RadioButton
+                            android:id="@+id/radioButton50"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/op5.6" />
+                    </RadioGroup>
 
 
                 </android.support.constraint.ConstraintLayout>

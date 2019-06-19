@@ -10,7 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.FrameLayout;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -31,7 +30,7 @@ public class Update_Caffeine_6hours extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        updateView = inflater.inflate(R.layout.update_caffeine_six, container, false);
+        updateView = inflater.inflate(R.layout.act_update_caffeine_six, container, false);
 
         List<String> listOne = getIntervals("dayReview");
         getSeekbarWithIntervals("dayReviewBar").setIntervals(listOne);
