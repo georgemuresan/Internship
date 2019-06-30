@@ -12,7 +12,7 @@ public class Notice extends AppCompatActivity {
 
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.act_Notice);
+        setContentView(R.layout.act_notice);
 
 
         Button button = (Button) findViewById(R.id.submitButton);

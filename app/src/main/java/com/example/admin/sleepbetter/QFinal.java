@@ -14,16 +14,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.RadioGroup;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -39,7 +39,7 @@ public class QFinal extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        questionnaireView = inflater.inflate(R.layout.act_QuesIFinal, container, false);
+        questionnaireView = inflater.inflate(R.layout.act_ques_final, container, false);
 
 
         Button button = (Button) questionnaireView.findViewById(R.id.submitButton);
@@ -131,21 +131,23 @@ public class QFinal extends Fragment {
 
         mood = mood/9;
 
-        Intent intent = new Intent(getActivity().getApplicationContext(), MainMenu.class);
+        DecimalFormat formatting = new DecimalFormat("#.##");
+        mood = Double.parseDouble(formatting.format(mood));
 
-        getActivity().getApplicationContext().getSharedPreferences("questionnaire", MODE_PRIVATE).getInt("apetite", 0);
-        getActivity().getApplicationContext().getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("apetite", 1).apply();
+
+        String participantID = getActivity().getApplicationContext().getSharedPreferences("name", MODE_PRIVATE).getString("participantID", "nothing");
+
+        if (participantID.contains("B")){
+            startActivity(new Intent(getActivity().getApplicationContext(), B_MainMenu.class));
+        } else {
+            startActivity(new Intent(getActivity().getApplicationContext(), MainMenu.class));
+        }
 
 
         Date c = Calendar.getInstance().getTime();
         SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
         final String quesDate = df.format(c);
 
-        getActivity().getApplicationContext().getSharedPreferences("date", MODE_PRIVATE).getString("currentDate", "");
-        getActivity().getApplicationContext().getSharedPreferences("date", MODE_PRIVATE).edit().putString("currentDate", quesDate).apply();
-
-
-        startActivity(intent);
 
         final double finalMood = mood;
 
@@ -186,62 +188,23 @@ public class QFinal extends Fragment {
             }
         }).start();
 
-        String experiment = getActivity().getApplicationContext().getSharedPreferences("name", Context.MODE_PRIVATE).getString("experiment", " ");
 
-        SimpleDateFormat df2 = new SimpleDateFormat("yyyy-MM-dd");
-        final String formattedDate2 = df2.format(c);
 
-        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
-        String json = sharedPrefs.getString("trial", "");
-        Gson gson = new Gson();
+        String moods_string = getActivity().getApplicationContext().getSharedPreferences("moods", MODE_PRIVATE).getString("moods", "");
 
-        Type type = new TypeToken<List<HomeCollection>>() {}.getType();
-        List<HomeCollection> arrayList = gson.fromJson(json, type);
+        String[] moods = moods_string.split("gcm");
 
-        HomeCollection.date_collection_arr = (ArrayList<HomeCollection>) arrayList;
-        HomeCollection coll = HomeCollection.date_collection_arr.get(HomeCollection.date_collection_arr.size()-1);
-        String date = coll.date;
+        ArrayList<String> moodsArrayList = new ArrayList<String>(Arrays.asList(moods));
 
-        if (date.equals(formattedDate2)){
-            String commentt = coll.comment;
-            commentt = commentt + " / " + "";
+        moodsArrayList.add(String.valueOf(mood));
 
-            HomeCollection.date_collection_arr.remove(HomeCollection.date_collection_arr.size()-1);
+        moods = moodsArrayList.toArray(moods);
 
-            String proof = getActivity().getApplicationContext().getSharedPreferences("proof", MODE_PRIVATE).getString("proof", "No proof logged in yet.");
-
-            HomeCollection.date_collection_arr.add(new HomeCollection(formattedDate2, experiment, String.valueOf(getActivity().getApplicationContext().getSharedPreferences("MOOD", MODE_PRIVATE).getInt("mood", 0)), proof, commentt));
-
-            SharedPreferences.Editor editor = sharedPrefs.edit();
-
-            json = gson.toJson(HomeCollection.date_collection_arr);
-
-            editor.putString("trial", json);
-            editor.commit();
-        } else {
-            String proof = getActivity().getApplicationContext().getSharedPreferences("proof", MODE_PRIVATE).getString("proof", "No proof logged in yet.");
-
-            HomeCollection.date_collection_arr.add(new HomeCollection(formattedDate2, experiment,  String.valueOf(getActivity().getApplicationContext().getSharedPreferences("MOOD", MODE_PRIVATE).getInt("mood", 0)), proof, ""));
-
-            SharedPreferences.Editor editor = sharedPrefs.edit();
-
-            json = gson.toJson(HomeCollection.date_collection_arr);
-
-            editor.putString("trial", json);
-            editor.commit();
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < moods.length; i++) {
+            sb.append(moods[i]).append("gcm");
         }
-
-        int days =  getActivity().getApplicationContext().getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).getInt("days", 0);
-        Boolean wasRightAfterChangeOfExperiment = getActivity().getApplicationContext().getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).getBoolean("afterExperiment", true);;
-
-        if (days % 5 == 1 && wasRightAfterChangeOfExperiment){
-            getActivity().getApplicationContext().getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).edit().putInt("days", days).apply();
-            getActivity().getApplicationContext().getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).edit().putBoolean("afterExperiment", false).apply();
-
-        } else {
-            getActivity().getApplicationContext().getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).edit().putInt("days", days + 1).apply();
-        }
-
+        getActivity().getApplicationContext().getSharedPreferences("moods", MODE_PRIVATE).edit().putString("moods", sb.toString()).apply();
 
     }
 

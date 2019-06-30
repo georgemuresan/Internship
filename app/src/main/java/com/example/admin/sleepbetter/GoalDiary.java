@@ -2,10 +2,8 @@ package com.example.admin.sleepbetter;
 
 import android.app.Fragment;
 import android.arch.persistence.room.Room;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,13 +15,10 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
-import java.lang.reflect.Type;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -40,7 +35,7 @@ public class GoalDiary extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        goalDiaryView = inflater.inflate(R.layout.act_Diary, container, false);
+        goalDiaryView = inflater.inflate(R.layout.act_diary, container, false);
         ImageView imageView = (ImageView) goalDiaryView.findViewById(R.id.imageView29);
         imageView.setImageResource(R.drawable.diary);
         Button button = (Button) goalDiaryView.findViewById(R.id.button);
@@ -147,14 +142,16 @@ public class GoalDiary extends Fragment {
 
         String diary_comments = getActivity().getApplicationContext().getSharedPreferences("diary", MODE_PRIVATE).getString("diary", "");
 
-               String[] diaries = diary_comments.split("$^");
+
+
+        String[] diaries = diary_comments.split("gcm");
+
         diaries[differenceOfDates] = diaries[differenceOfDates] + note + ".";
 
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < diaries.length; i++) {
-            sb.append(diaries[i]).append("$^");
+            sb.append(diaries[i]).append("gcm");
         }
-        sb.setLength(sb.length() - 2);
         getActivity().getApplicationContext().getSharedPreferences("diary", MODE_PRIVATE).edit().putString("diary", sb.toString()).apply();
 
         new Thread(new Runnable() {

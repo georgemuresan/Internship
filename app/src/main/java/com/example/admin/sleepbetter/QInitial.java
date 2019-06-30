@@ -15,20 +15,16 @@ import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.Toast;
 
 import com.google.gson.Gson;
 
-import java.io.IOException;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 
 public class QInitial extends AppCompatActivity {
 
@@ -42,7 +38,7 @@ public class QInitial extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.act_QuesInitial);
+        setContentView(R.layout.act_ques_initial);
 
         Button button = (Button) findViewById(R.id.submitButton);
 
@@ -162,7 +158,12 @@ public class QInitial extends AppCompatActivity {
         mood += problem;
 
         mood = mood/9;
+
+        DecimalFormat formatting = new DecimalFormat("#.##");
+        mood = Double.parseDouble(formatting.format(mood));
+
         Intent intent = new Intent(this, MainMenu.class);
+        Intent intentB = new Intent(this, B_MainMenu.class);
 
     //    getSharedPreferences("questionnaire", MODE_PRIVATE).getInt("apetite", 0);
    //     getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("apetite", 1).apply();
@@ -175,8 +176,14 @@ public class QInitial extends AppCompatActivity {
         getSharedPreferences("date", MODE_PRIVATE).getString("startingDate", "");
         getSharedPreferences("date", MODE_PRIVATE).edit().putString("startingDate", currentDate).apply();
 
+        String participantID = getSharedPreferences("name", MODE_PRIVATE).getString("participantID", "nothing");
 
-        startActivity(intent);
+        if (participantID.contains("B")){
+            startActivity(intentB);
+        } else {
+            startActivity(intent);
+        }
+
 
         final double finalMood = mood;
         new Thread(new Runnable() {
@@ -219,7 +226,7 @@ public class QInitial extends AppCompatActivity {
 
              //   ArrayList<String> diary_comments = new ArrayList<String>();
             //    diary_comments.add("");
-                String diary_comments = "$^$^$^$^$^$^$^$^$^$^$^$^$^$^$^$^";
+                String diary_comments = "gcm gcm gcm gcm gcm gcm gcm gcm gcm gcm gcm gcm gcm gcm gcm gcm";
                 getSharedPreferences("diary", MODE_PRIVATE).edit().putString("diary", diary_comments).apply();
                 String experiments = "No experiment for the initial day.";
                 getSharedPreferences("experiments", MODE_PRIVATE).edit().putString("experiments", experiments).apply();
@@ -227,21 +234,21 @@ public class QInitial extends AppCompatActivity {
         }).start();
 
 
-        String experiment = getSharedPreferences("name", Context.MODE_PRIVATE).getString("experiment", " ");
+        String moods_string = getApplicationContext().getSharedPreferences("moods", MODE_PRIVATE).getString("moods", "");
 
-        SimpleDateFormat df2 = new SimpleDateFormat("yyyy-MM-dd");
-        final String formattedDate2 = df2.format(c);
+        String[] moods = new String[0];
 
-        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        SharedPreferences.Editor editor = sharedPrefs.edit();
-        Gson gson = new Gson();
+        ArrayList<String> moodsArrayList = new ArrayList<String>();
 
-        HomeCollection.date_collection_arr = new ArrayList<HomeCollection>();
-        HomeCollection.date_collection_arr.add(new HomeCollection(formattedDate2, "No experiment started yet", String.valueOf(getSharedPreferences("MOOD", MODE_PRIVATE).getInt("mood", 0)), ""));
-        String json = gson.toJson(HomeCollection.date_collection_arr);
+        moodsArrayList.add(String.valueOf(mood));
 
-        editor.putString("trial", json);
-        editor.commit();
+        moods = moodsArrayList.toArray(moods);
+
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < moods.length; i++) {
+            sb.append(moods[i]).append("gcm");
+        }
+        getApplicationContext().getSharedPreferences("moods", MODE_PRIVATE).edit().putString("moods", sb.toString()).apply();
 
     }
 

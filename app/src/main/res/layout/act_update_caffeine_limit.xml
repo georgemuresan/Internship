@@ -137,7 +137,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="1.0"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/radioGroup8" />
+                        app:layout_constraintTop_toBottomOf="@+id/sodaGroup" />
 
                     <TextView
                         android:id="@+id/tvQuestion2"
@@ -158,7 +158,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/radioGroup7" />
+                        app:layout_constraintTop_toBottomOf="@+id/coffeeGroup" />
 
                     <EditText
                         android:id="@+id/loggngTitle"
@@ -203,8 +203,9 @@
                         android:id="@+id/questionDay"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="24dp"
+                        android:layout_marginEnd="8dp"
                         android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
                         android:background="@android:color/transparent"
                         android:clickable="false"
                         android:ems="10"
@@ -223,7 +224,7 @@
                         android:id="@+id/turnOffQuestion"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="24dp"
+                        android:layout_marginEnd="8dp"
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="8dp"
                         android:background="@android:color/transparent"
@@ -250,7 +251,7 @@
                         android:text="@string/nextButton"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/radioGroup9" />
+                        app:layout_constraintTop_toBottomOf="@+id/energyGroup" />
 
                     <RadioGroup
                         android:id="@+id/radioGroup2"
@@ -300,37 +301,82 @@
                     </RadioGroup>
 
                     <RadioGroup
-                        android:id="@+id/radioGroup7"
+                        android:id="@+id/coffeeGroup"
                         android:layout_width="327dp"
-                        android:layout_height="128dp"
+                        android:layout_height="50dp"
                         android:layout_marginEnd="8dp"
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="8dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/turnOffQuestion" />
+                        app:layout_constraintTop_toBottomOf="@+id/turnOffQuestion">
+
+                        <RadioButton
+                            android:id="@+id/radioButton56"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/coffee1" />
+
+                        <RadioButton
+                            android:id="@+id/radioButton57"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/coffee2" />
+                    </RadioGroup>
 
                     <RadioGroup
-                        android:id="@+id/radioGroup8"
+                        android:id="@+id/sodaGroup"
                         android:layout_width="327dp"
-                        android:layout_height="128dp"
+                        android:layout_height="50dp"
                         android:layout_marginEnd="8dp"
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="8dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/tvQuestion2" />
+                        app:layout_constraintTop_toBottomOf="@+id/tvQuestion2" >
+
+                        <RadioButton
+                            android:id="@+id/radioButton58"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/soda1" />
+
+                        <RadioButton
+                            android:id="@+id/radioButton59"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/soda2" />
+                    </RadioGroup>
 
                     <RadioGroup
-                        android:id="@+id/radioGroup9"
+                        android:id="@+id/energyGroup"
                         android:layout_width="327dp"
-                        android:layout_height="128dp"
+                        android:layout_height="50dp"
                         android:layout_marginEnd="8dp"
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="8dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/appGroup" />
+                        app:layout_constraintTop_toBottomOf="@+id/appGroup" >
+
+                        <RadioButton
+                            android:id="@+id/radioButton60"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/energy1" />
+
+                        <RadioButton
+                            android:id="@+id/radioButton61"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/energy1" />
+                    </RadioGroup>
 
 
                 </android.support.constraint.ConstraintLayout>

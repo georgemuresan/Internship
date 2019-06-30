@@ -49,15 +49,14 @@ public class Report {
 
             BufferedWriter bw = null;
             bw = new BufferedWriter(new FileWriter(f));
-            bw.write("Username, Date, times of waking up per night, nr of night terrors, fall asleep rate, wake up rate, fresh rate, sad rate, sleepy rate, tired rate, stressed rate, irritable rate, concentrate level, coordinate rate, appetite level, mood, \n");
+            bw.write("Username, Date, How long, Awake, Earlier, Nights A Week, Quality, Impact mood, Impact activities, Impact general, Problem, mood, \n");
 
             for (int i = 0; i < uq.size(); i++) {
-                bw.append(uq.get(i).getUsername() + ", " + uq.get(i).getDate() + ", " + uq.get(i).getTimesPerNight() +
-                        ", " + uq.get(i).getNightTerrors() + ", " + uq.get(i).getFallAsleep() + ", " + uq.get(i).getWakeUp() +
-                        ", " + uq.get(i).getFresh() + ", " + uq.get(i).getSad() +
-                        ", " + uq.get(i).getSleepy() + ", " + uq.get(i).getTired() + ", " + uq.get(i).getStressed() + ", " +
-                        uq.get(i).getIrritable() + ", " + uq.get(i).getConcentrate() + ", " + uq.get(i).getCoordinate() + ", "
-                        + uq.get(i).getApetite() + ", " + uq.get(i).getMood() + "\n");
+                bw.append(uq.get(i).getUsername() + ", " + uq.get(i).getDate() + ", " + uq.get(i).getHowLong() +
+                        ", " + uq.get(i).getAwake() + ", " + uq.get(i).getEarlier() + ", " + uq.get(0).getNightsAWeek() +
+                        ", " + uq.get(i).getQuality() + ", " + uq.get(i).getImpactMood() +
+                        ", " + uq.get(i).getImpactActivities() + ", " + uq.get(i).getImpactGeneral() + ", " + uq.get(0).getProblem() + ", " +
+                        uq.get(i).getMood() + "\n");
             }
 
             bw.close();

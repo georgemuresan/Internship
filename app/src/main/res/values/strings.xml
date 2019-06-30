@@ -155,12 +155,6 @@
         <item>Impacting feelings</item>
         <item>Impacting activities</item>
         <item>Impacting life</item>
-        <item>Tired</item>
-        <item>Stressed</item>
-        <item>Irritable</item>
-        <item>Concentrate</item>
-        <item>Coordinate</item>
-        <item>Appetite</item>
     </string-array>
     <string name="currentStatus">Current Status</string>
     <string name="goalStatus">Goal Status</string>
@@ -271,9 +265,9 @@
     <string name="dataIntro">Here you will be able to look at personal data in terms of progress, changes, variations and so on!\nSingle value displays - looking at your current state;\nImprovements - where you will be able to see what fields could be improved;\nTimelines - looking at your progress through 3 different types of graphs. </string>
     <string name="progressTitle">Improvements</string>
     <string name="timelineTitle">Timelines</string>
-    <string name="singleValueDisplayTitle">Single Value Display</string>
+    <string name="singleValueDisplayTitle">Ratings</string>
     <string name="chooseTitle">Choose a timeline target!</string>
-
+    <string name="info">INFO</string>
 
 
     <string name="experimentTitle">EXPERIMENT</string>
@@ -309,6 +303,13 @@
     <string name="cupsQuestion">How many cups of coffee did you have today?</string>
     <string name="cansQuestion">How many cans of soda did you have today?</string>
     <string name="energydrinksQuestion">How many energy drinks did you have today?</string>
+
+    <string name="coffee1">Less than 4 or 4</string>
+    <string name="coffee2">More than 4</string>
+    <string name="soda1">Less than 10 or 10</string>
+    <string name="soda2">More than 10</string>
+    <string name="energy1">Less than 2 or 2</string>
+    <string name="energy2">More than 2</string>
 
     <string name="sixIntro">Your current experiment is: DO NOT DRINK CAFFEINE WITHIN 6 HOURS OF GOING TO SLEEP. Below you are asked to complete the questions on whether you followed the experiment.</string>
     <string name="lastCoffeeQuestion">When did you have your last drink of caffeine? (soda/coffee/energy drink)</string>
@@ -363,7 +364,7 @@
 
 
     <string name="appIntro">Welcome! Sleep Better is a mobile application that guides you through a series of experiments that you can run in a definite period of time in order to start a tuning process over your sleeping patterns.
-You will be able to change/choose your experiment once every 5 days, where at the end of each day you will have to log on your experience. You will also be able to analyse the data and interact with the other features of the app.
+You will be able to change/choose your experiment once every 5 days, where (if you\'re in group A) at the end of each day you will have to log on your experience and analyse the data and interact with the other features of the app.
 To begin with, complete the consent form, input your name (that only YOU will be able to see), and your given participant number.
 </string>
 
@@ -376,6 +377,8 @@ To begin with, complete the consent form, input your name (that only YOU will be
     <string name="whatExeriments">WHAT EXPERIMENTS AND FEATURES?</string>
     <string name="experimentsTitle">Experiments</string>
     <string name="experiments">For the duration of the self-experimentation study, you will be able to choose which experiments you wish to conduct among the 10 options you have. At every 5 days, you will be required to either change the experiment or stick with it for another 5 days. You will be able to look at the data concerning your well-being in the DATA meu.</string>
+    <string name="experimentsB">For the duration of the self-experimentation study, you will be able to choose which experiments you wish to conduct among the 10 options you have. At every 5 days, you will be required to either change the experiment or stick with it for another 5 days.</string>
+
     <string name="experiments2">The experiments will be split into 3 categories - LIGHT, CAFFEINE and SLEEP SCHEDULE. Each of them cover a different contextual factor  that has a direct impact on your sleep hygiene.\n  - Light looks at how either sunlight exposure and blue light impact your sleeping patterns;\n  - Caffeine looks at how drugs impact your system when it comes to bedtime;\n  - Sleep Schedule looks at how important a persistent schedule is towards a good seep.</string>
     <string name="loggingTitle">Logging</string>
     <string name="loggingExp">At the end of each day, you will be required to complete 2 short questionnaires (2-3 minutes in total) that would look at both how you approached the experiment in that day AND what is the outcome. The experiment logging asks you to rate whether you feel better/worse than yesterday, but also to answer a short series of questions on how you approached the chosen experiment (1-3 questions).</string>

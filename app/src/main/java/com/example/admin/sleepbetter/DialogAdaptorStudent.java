@@ -49,15 +49,11 @@ class DialogAdaptorStudent extends BaseAdapter {
 
         TextView tvExperiment=(TextView)listViewItem.findViewById(R.id.tv_experiment);
         TextView tvOverall=(TextView)listViewItem.findViewById(R.id.tv_overall);
-        TextView tvDuedate=(TextView)listViewItem.findViewById(R.id.tv_desc);
-        TextView tvProof=(TextView)listViewItem.findViewById(R.id.tv_proof);
         TextView tvComment=(TextView)listViewItem.findViewById(R.id.tv_comment);
 
-        tvExperiment.setText("Experiment : "+alCustom.get(position).getExperiments());
-        tvOverall.setText("Overall Mood : "+alCustom.get(position).getOveralls() + "/5");
-        tvDuedate.setText("Due Date : "+alCustom.get(position).getDuedates());
-        tvProof.setText("Proof : "+alCustom.get(position).getProofs());
-        tvComment.setText("Comment : "+alCustom.get(position).getComments());
+        tvExperiment.setText("Experiment: "+alCustom.get(position).getExperiments());
+        tvOverall.setText("Overall Mood: "+alCustom.get(position).getOveralls() + "/5");
+        tvComment.setText("Comment: "+alCustom.get(position).getComments());
 
         return  listViewItem;
     }

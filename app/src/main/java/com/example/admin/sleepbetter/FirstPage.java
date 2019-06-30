@@ -18,7 +18,7 @@ public class FirstPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.act_Welcome);
+        setContentView(R.layout.act_welcome);
 
         nameBox = (EditText) findViewById(R.id.yourName);
         System.out.println("INPUT IS :" + nameBox.getText().toString());
@@ -106,7 +106,14 @@ public class FirstPage extends AppCompatActivity {
             //show start activity
 
 
-            startActivity(new Intent(this, MainMenu.class));
+            String participantID = getSharedPreferences("name", MODE_PRIVATE).getString("participantID", "nothing");
+
+            if (participantID.contains("B")){
+                startActivity(new Intent(this, B_MainMenu.class));
+            } else {
+                startActivity(new Intent(this, MainMenu.class));
+            }
+
 
         }
 
@@ -133,6 +140,7 @@ public class FirstPage extends AppCompatActivity {
 
             getSharedPreferences("name", MODE_PRIVATE).edit().putString("username", name).apply();
             getSharedPreferences("name", MODE_PRIVATE).edit().putString("participantID", participant).apply();
+            getSharedPreferences("PREFERENCE", MODE_PRIVATE).edit().putBoolean("isFirstRun", false).apply();
 
             startActivity(intent);
 

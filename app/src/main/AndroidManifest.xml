@@ -31,16 +31,15 @@
 
         <receiver android:name=".MainMenu$Broadcast1" />
         <receiver android:name=".MainMenu$Broadcast2" />
-        <receiver android:name=".MainMenu$Broadcast3" />
-        <receiver android:name=".MainMenu$Broadcast4" />
 
         <activity
             android:name=".MainMenu"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity android:name=".WhatExperiments"></activity>
-        <activity android:name=".WhatChatbot"></activity>
         <activity android:name=".WhatIsSleep"></activity>
+        <activity android:name=".Notice"></activity>
+        <activity android:name=".QInitial"></activity>
     </application>
 
 </manifest>

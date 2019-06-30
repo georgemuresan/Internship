@@ -169,23 +169,21 @@
 
                 <ImageView
                     android:id="@+id/imageView4"
-                    android:layout_width="101dp"
+                    android:layout_width="79dp"
                     android:layout_height="101dp"
                     android:layout_marginEnd="16dp"
+                    android:layout_marginStart="5dp"
                     android:layout_marginTop="8dp"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/textView6"
                     app:layout_constraintTop_toBottomOf="@+id/sleepHygieneTitle"
                     app:srcCompat="@drawable/sleepmoon" />
 
                 <ImageView
                     android:id="@+id/imageView5"
-                    android:layout_width="148dp"
-                    android:layout_height="248dp"
-                    android:layout_marginEnd="260dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="12dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.39"
+                    android:layout_width="102dp"
+                    android:layout_height="202dp"
+                    app:layout_constraintEnd_toStartOf="@+id/textView5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/missionTitle"
                     app:srcCompat="@drawable/mission" />

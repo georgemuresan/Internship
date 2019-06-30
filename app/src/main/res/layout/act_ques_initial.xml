@@ -85,7 +85,7 @@
 
             <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="1484dp"
+                android:layout_height="1895dp"
                 tools:layout_editor_absoluteX="8dp"
                 tools:layout_editor_absoluteY="0dp">
 
@@ -116,7 +116,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
                     android:layout_marginStart="8dp"
-                    android:layout_marginTop="572dp"
+                    android:layout_marginTop="8dp"
                     android:clickable="false"
                     android:cursorVisible="false"
                     android:ems="10"
@@ -130,7 +130,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toBottomOf="@+id/q3Group" />
 
                 <EditText
                     android:id="@+id/thirdSet"
@@ -138,7 +138,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
                     android:layout_marginStart="8dp"
-                    android:layout_marginTop="792dp"
+                    android:layout_marginTop="8dp"
                     android:clickable="false"
                     android:cursorVisible="false"
                     android:ems="10"
@@ -152,7 +152,29 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toBottomOf="@+id/q5Group" />
+
+                <EditText
+                    android:id="@+id/fourthSet"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:clickable="false"
+                    android:cursorVisible="false"
+                    android:ems="10"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:hint="@string/some_explanation_about_the_input"
+                    android:inputType="textMultiLine"
+                    android:text="@string/q4desc"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/q8Group" />
 
                 <Button
                     android:id="@+id/submitButton"
@@ -160,14 +182,37 @@
                     android:layout_height="43dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginStart="8dp"
+                    android:layout_marginTop="24dp"
                     android:text="@string/nextButton"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/q8Group" />
+                    app:layout_constraintTop_toBottomOf="@+id/q9Group" />
 
 
                 <EditText
                     android:id="@+id/fallAsleepUsually"
+                    android:layout_width="match_parent"
+                    android:layout_height="14dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@android:color/transparent"
+                    android:clickable="false"
+                    android:cursorVisible="false"
+                    android:ems="10"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:hint="@string/some_explanation_about_the_input"
+                    android:inputType="textMultiLine|textUri"
+                    android:text="@string/s1"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.428"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/firstSet" />
+
+                <EditText
+                    android:id="@+id/s4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
@@ -181,12 +226,12 @@
                     android:focusableInTouchMode="false"
                     android:hint="@string/some_explanation_about_the_input"
                     android:inputType="textMultiLine|textUri"
-                    android:text="@string/s1.1"
+                    android:text="@string/s4"
                     android:textSize="12sp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.428"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/firstSet" />
+                    app:layout_constraintTop_toBottomOf="@+id/secondSet" />
 
                 <EditText
                     android:id="@+id/s5"
@@ -194,7 +239,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
                     android:layout_marginStart="8dp"
-                    android:layout_marginTop="572dp"
+                    android:layout_marginTop="8dp"
                     android:background="@android:color/transparent"
                     android:clickable="false"
                     android:cursorVisible="false"
@@ -203,12 +248,12 @@
                     android:focusableInTouchMode="false"
                     android:hint="@string/some_explanation_about_the_input"
                     android:inputType="textMultiLine|textUri"
-                    android:text="@string/s5.1"
+                    android:text="@string/s5"
                     android:textSize="12sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/firstSet" />
+                    app:layout_constraintTop_toBottomOf="@+id/q4Group" />
 
                 <EditText
                     android:id="@+id/s6"
@@ -216,7 +261,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
                     android:layout_marginStart="8dp"
-                    android:layout_marginTop="800dp"
+                    android:layout_marginTop="8dp"
                     android:background="@android:color/transparent"
                     android:clickable="false"
                     android:cursorVisible="false"
@@ -225,12 +270,12 @@
                     android:focusableInTouchMode="false"
                     android:hint="@string/some_explanation_about_the_input"
                     android:inputType="textMultiLine|textUri"
-                    android:text="@string/s6.1"
+                    android:text="@string/s6"
                     android:textSize="12sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/firstSet" />
+                    app:layout_constraintTop_toBottomOf="@+id/thirdSet" />
 
                 <EditText
                     android:id="@+id/s7"
@@ -238,7 +283,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
                     android:layout_marginStart="8dp"
-                    android:layout_marginTop="972dp"
+                    android:layout_marginTop="8dp"
                     android:background="@android:color/transparent"
                     android:clickable="false"
                     android:cursorVisible="false"
@@ -247,12 +292,12 @@
                     android:focusableInTouchMode="false"
                     android:hint="@string/some_explanation_about_the_input"
                     android:inputType="textMultiLine|textUri"
-                    android:text="@string/s7.1"
+                    android:text="@string/s7"
                     android:textSize="12sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/firstSet" />
+                    app:layout_constraintTop_toBottomOf="@+id/q6Group" />
 
                 <EditText
                     android:id="@+id/s8"
@@ -260,7 +305,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
                     android:layout_marginStart="8dp"
-                    android:layout_marginTop="1148dp"
+                    android:layout_marginTop="8dp"
                     android:background="@android:color/transparent"
                     android:clickable="false"
                     android:cursorVisible="false"
@@ -269,12 +314,34 @@
                     android:focusableInTouchMode="false"
                     android:hint="@string/some_explanation_about_the_input"
                     android:inputType="textMultiLine|textUri"
-                    android:text="@string/s8.1"
+                    android:text="@string/s8"
                     android:textSize="12sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/firstSet" />
+                    app:layout_constraintTop_toBottomOf="@+id/q7Group" />
+
+                <EditText
+                    android:id="@+id/s9"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@android:color/transparent"
+                    android:clickable="false"
+                    android:cursorVisible="false"
+                    android:ems="10"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:hint="@string/some_explanation_about_the_input"
+                    android:inputType="textMultiLine|textUri"
+                    android:text="@string/s9"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/fourthSet" />
 
                 <EditText
                     android:id="@+id/wakeUpUsually"
@@ -291,7 +358,7 @@
                     android:focusableInTouchMode="false"
                     android:hint="@string/some_explanation_about_the_input"
                     android:inputType="textMultiLine"
-                    android:text="@string/s2.1"
+                    android:text="@string/s2"
                     android:textSize="12sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
@@ -313,7 +380,7 @@
                     android:focusableInTouchMode="false"
                     android:hint="@string/some_explanation_about_the_input"
                     android:inputType="textMultiLine"
-                    android:text="@string/s3.1"
+                    android:text="@string/s3"
                     android:textSize="12sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
@@ -462,12 +529,61 @@
                 </RadioGroup>
 
                 <RadioGroup
+                    android:id="@+id/q4Group"
+                    android:layout_width="327dp"
+                    android:layout_height="128dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/s4">
+
+                    <RadioButton
+                        android:id="@+id/radioButton19"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/op1.2" />
+
+                    <RadioButton
+                        android:id="@+id/radioButton20"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/op2.2" />
+
+                    <RadioButton
+                        android:id="@+id/radioButton16"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/op3.2" />
+
+                    <RadioButton
+                        android:id="@+id/radioButton17"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/op4.2" />
+
+                    <RadioButton
+                        android:id="@+id/radioButton18"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/op5.2" />
+                </RadioGroup>
+
+                <RadioGroup
                     android:id="@+id/q5Group"
                     android:layout_width="327dp"
                     android:layout_height="128dp"
                     android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/s5">
 
                     <RadioButton
@@ -645,6 +761,53 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="@string/op5.4" />
+                </RadioGroup>
+
+                <RadioGroup
+                    android:id="@+id/q9Group"
+                    android:layout_width="327dp"
+                    android:layout_height="128dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/s9">
+
+                    <RadioButton
+                        android:id="@+id/radioButton42"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/op1.5" />
+
+                    <RadioButton
+                        android:id="@+id/radioButton43"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/op2.5" />
+
+                    <RadioButton
+                        android:id="@+id/radioButton45"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/op3.5" />
+
+                    <RadioButton
+                        android:id="@+id/radioButton41"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/op4.5" />
+
+                    <RadioButton
+                        android:id="@+id/radioButton44"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/op5.5" />
                 </RadioGroup>
 
 

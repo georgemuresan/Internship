@@ -15,7 +15,7 @@ public class FirstPageConsent extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.act_Consent);
+        setContentView(R.layout.act_consent);
 
         Button button = (Button) findViewById(R.id.submit);
 

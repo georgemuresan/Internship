@@ -30,7 +30,7 @@ class HwAdapter extends BaseAdapter {
     private java.util.Calendar month;
     public GregorianCalendar pmonth;
     /**
-     * act_Calendar instance for previous month for getting complete view
+     * act_calendar instance for previous month for getting complete view
      */
     public GregorianCalendar pmonthmaxset;
     private GregorianCalendar selectedDate;
@@ -84,7 +84,7 @@ class HwAdapter extends BaseAdapter {
         if (convertView == null) { // if it's not recycled, initialize some
             // attributes
             LayoutInflater vi = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            v = vi.inflate(R.layout.extra_cal_Item, null);
+            v = vi.inflate(R.layout.extra_cal_item, null);
 
         }
 
@@ -147,7 +147,7 @@ class HwAdapter extends BaseAdapter {
         // allocating maximum row number for the gridview.
         mnthlength = maxWeeknumber * 7;
         maxP = getMaxP(); // previous month maximum day 31,30....
-        calMaxP = maxP - (firstDay - 1);// act_Calendar offday starting 24,25 ...
+        calMaxP = maxP - (firstDay - 1);// act_calendar offday starting 24,25 ...
         pmonthmaxset = (GregorianCalendar) pmonth.clone();
 
         pmonthmaxset.set(GregorianCalendar.DAY_OF_MONTH, calMaxP + 1);
@@ -182,6 +182,7 @@ class HwAdapter extends BaseAdapter {
 
     public void setEventView(View v, int pos, TextView txt){
 
+
         int len=HomeCollection.date_collection_arr.size();
         for (int i = 0; i < len; i++) {
             HomeCollection cal_obj=HomeCollection.date_collection_arr.get(i);
@@ -195,22 +196,7 @@ class HwAdapter extends BaseAdapter {
                     } else if ((Integer.parseInt(gridvalue) < 7) && (pos > 28)) {
 
                     } else {
-                        v.setBackgroundColor(Color.parseColor("#343434"));
-                  /*      if (cal_obj.overall.equals("1")){
-                            v.setBackgroundResource(R.drawable.rounded_calender_one);
-                        } else if (cal_obj.overall.equals("2")){
-                            v.setBackgroundResource(R.drawable.rounded_calender_two);
-                        } else if (cal_obj.overall.equals("3")){
-                            v.setBackgroundResource(R.drawable.rounded_calender_three);
-                        } else if (cal_obj.overall.equals("4")){
-                            System.out.println("HER");
-                            v.setBackgroundResource(R.drawable.rounded_calender_four);
-                        } else if (cal_obj.overall.equals("5")){
-                            v.setBackgroundResource(R.drawable.rounded_calender_five);
-                        } else if (cal_obj.overall.contains("yesterday")){
-                            v.setBackgroundResource(R.drawable.rounded_calender_one);
-                        }
-*/
+                        v.setBackgroundColor(Color.parseColor("#dfdeea"));
                         txt.setTextColor(Color.parseColor("#180A63"));
                     }
 
@@ -221,7 +207,7 @@ class HwAdapter extends BaseAdapter {
     public void getPositionList(String date, final Activity act){
 
         int len= HomeCollection.date_collection_arr.size();
-        JSONArray jbarrays=new JSONArray();
+         JSONArray jbarrays=new JSONArray();
         for (int j=0; j<len; j++){
             if (HomeCollection.date_collection_arr.get(j).date.equals(date)){
                 HashMap<String, String> maplist = new HashMap<String, String>();

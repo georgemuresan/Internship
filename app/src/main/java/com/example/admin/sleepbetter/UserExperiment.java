@@ -24,9 +24,9 @@ public class UserExperiment {
     private String lightThreeTV;
     private String caffeineOneWhenDrink;
     private String caffeineOneWhenSleep;
-    private int caffeineTwoCups;
-    private int caffeineTwoCans;
-    private int caffeineTwoEnergy;
+    private String caffeineTwoCups;
+    private String caffeineTwoCans;
+    private String caffeineTwoEnergy;
     private String caffeineThreeDrink;
     private String caffeineThreeEmpty;
     private String scheduleOneWhenSleep;
@@ -36,7 +36,7 @@ public class UserExperiment {
     private String scheduleThreeRelaxed;
     private String scheduleThreeActivity;
     private String scheduleFourWhenSleep;
-    private int overallBetter;
+    private String overallBetter;
 
     public UserExperiment() {
     }
@@ -126,29 +126,29 @@ public class UserExperiment {
 
     public void setCaffeineOneWhenSleep(String caffeineOneWhenSleep) { this.caffeineOneWhenSleep = caffeineOneWhenSleep; }
 
-    public int getCaffeineTwoCups() {
+    public String getCaffeineTwoCups() {
         return caffeineTwoCups;
     }
 
-    public void setCaffeineTwoCups(int caffeineTwoCups) {
+    public void setCaffeineTwoCups(String caffeineTwoCups) {
         this.caffeineTwoCups = caffeineTwoCups;
     }
 
 
-    public int getCaffeineTwoCans() {
+    public String getCaffeineTwoCans() {
         return caffeineTwoCans;
     }
 
-    public void setCaffeineTwoCans(int caffeineTwoCans) {
+    public void setCaffeineTwoCans(String caffeineTwoCans) {
         this.caffeineTwoCans = caffeineTwoCans;
     }
 
 
-    public int getCaffeineTwoEnergy() {
+    public String getCaffeineTwoEnergy() {
         return caffeineTwoEnergy;
     }
 
-    public void setCaffeineTwoEnergy(int caffeineTwoEnergy) { this.caffeineTwoEnergy = caffeineTwoEnergy; }
+    public void setCaffeineTwoEnergy(String caffeineTwoEnergy) { this.caffeineTwoEnergy = caffeineTwoEnergy; }
 
 
     public String getCaffeineThreeDrink() {
@@ -203,9 +203,9 @@ public class UserExperiment {
 
     public void setScheduleFourWhenSleep(String scheduleFourWhenSleep) { this.scheduleFourWhenSleep = scheduleFourWhenSleep; }
 
-    public int getOverallBetter() { return overallBetter; }
+    public String getOverallBetter() { return overallBetter; }
 
-    public void setOverallBetter(int overallBetter) { this.overallBetter = overallBetter; }
+    public void setOverallBetter(String overallBetter) { this.overallBetter = overallBetter; }
 
     public int getNumberID() {
         return numberID;

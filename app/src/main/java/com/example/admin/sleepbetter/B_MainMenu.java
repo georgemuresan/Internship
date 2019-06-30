@@ -13,48 +13,47 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.constraint.ConstraintLayout;
-import android.support.v4.app.NotificationCompat;
-import android.view.View;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.NotificationCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.Calendar;
+import java.util.Date;
 
-public class MainMenu extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-    static Class nextclass = MainMenu.class;
+public class B_MainMenu extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+    static Class nextclass = B_MainMenu.class;
     private static final String DATABASE_NAME = "user_db";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.act_menu);
+        setContentView(R.layout.act_b_menu);
 
 
-        String moods_string = getApplicationContext().getSharedPreferences("moods", MODE_PRIVATE).getString("moods", "");
+/*
+        String experimentss = "No experiment for the initial day.gcmNo experiment for the initial day.gcm gcm";
 
-        String[] moods = moods_string.split("gcm");
+        String[] s = experimentss.split("gcm");
 
-        System.out.println("MOODS       " + moods_string);
-        System.out.println(moods.length);
+        System.out.println(s[0] + " RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR");
+        System.out.println(s.length);
 
+*/
         Date c = Calendar.getInstance().getTime();
         SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
         final String currentDate = df.format(c);
@@ -161,24 +160,19 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
 
         //update experiments
 
+        //including day 0
+        shouldBe++;
 
         String experiments = getSharedPreferences("experiments", MODE_PRIVATE).getString("experiments", "");
 
         String[] experimentsArray = experiments.split("gcm");
 
-        System.out.println(shouldBe);
-        System.out.println(experimentsArray.length);
-        System.out.println(shouldBe >= experimentsArray.length);
-
-        //+1 to include dy 0
-        if ((shouldBe +1)> experimentsArray.length){
+        if (shouldBe > experimentsArray.length){
             String currentExperiment = getSharedPreferences("name", MODE_PRIVATE).getString("experiment", "nothing");
 
 
             ArrayList<String> experimentsArrayList = new ArrayList<String>(Arrays.asList(experimentsArray));
-            for (int i=0; i<= (shouldBe - experimentsArray.length); i++){
-                experimentsArrayList.add(currentExperiment + ".");
-            }
+            experimentsArrayList.add(currentExperiment + ".");
 
             experimentsArray = experimentsArrayList.toArray(experimentsArray);
 
@@ -247,46 +241,6 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
 
         });
 
-
-        String expStartDate = getSharedPreferences("date", MODE_PRIVATE).getString("startExperiment", "");
-
-        TextView remainedDaysText = (TextView) findViewById(R.id.youHave);
-
-        if (expStartDate.equals("")){
-            remainedDaysText.setText("Please choose your experiment in the Experiments section.");
-        } else {
-            Date date3 = null;
-
-            //Setting dates
-            try {
-                date1 = dates.parse(currentDate);
-                date3 = dates.parse(expStartDate);
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-
-            Calendar c3 = Calendar.getInstance();
-            c3.setTime(date3);
-
-            int experimentDaysDifference = c1.get(Calendar.DAY_OF_YEAR) - c2.get(Calendar.DAY_OF_YEAR);
-
-            int difference = 5 - experimentDaysDifference;
-
-
-            remainedDaysText.setText("You have " + difference + " days left of the current experiment.");
-
-
-            if (expStartDate.equals(startingDate)) {
-                remainedDaysText.setText("You have 5 days left of the current experiment.");
-            } else if (difference < 5 && difference != 0){
-                remainedDaysText.setText(difference + " days left of the current experiment.");
-            } else {
-                remainedDaysText.setText(difference + " days left of the current experiment. When available, change your experiment in the Experiments section.");
-            }
-
-        }
-
-
     }
 
     private void goToWhatIsSleep() {
@@ -297,7 +251,7 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
     }
 
     private void goToWhatExperiments() {
-        Intent intent = new Intent(this, WhatExperiments.class);
+        Intent intent = new Intent(this, B_WhatExperiments.class);
 
         startActivity(intent);
 
@@ -344,45 +298,6 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
 
         if (id == R.id.nav_factors) {
             fragmentTransaction.replace(R.id.content_frame, new Factors());
-        } else if (id == R.id.nav_goal_diary) {
-            fragmentTransaction.replace(R.id.content_frame, new GoalDiary());
-        } else if (id == R.id.nav_data) {
-            fragmentTransaction.replace(R.id.content_frame, new Data());
-        } else if (id == R.id.nav_questionnaire) {
-
-            String experiment = getSharedPreferences("name", MODE_PRIVATE).getString("experiment", "nothing");
-
-            if (checkIfAllowsQuestionnaire()) {
-
-                if (experiment.equals(getString(R.string.firstLight))) {
-                    fragmentTransaction.replace(R.id.content_frame, new Update_Light_Bright());
-                } else if (experiment.equals(getString(R.string.secondLight))) {
-                    fragmentTransaction.replace(R.id.content_frame, new Update_Light_Glasses());
-                } else if (experiment.equals(getString(R.string.thirdLight))) {
-                    fragmentTransaction.replace(R.id.content_frame, new Update_Light_TurnOffBright());
-                } else if (experiment.equals(getString(R.string.firstCaffeine))) {
-                    fragmentTransaction.replace(R.id.content_frame, new Update_Caffeine_6hours());
-                } else if (experiment.equals(getString(R.string.secondCaffeine))) {
-                    fragmentTransaction.replace(R.id.content_frame, new Update_Caffeine_limit());
-                } else if (experiment.equals(getString(R.string.thirdCaffeine))) {
-                    fragmentTransaction.replace(R.id.content_frame, new Update_Caffeine_Empty());
-                } else if (experiment.equals(getString(R.string.firstSchedule))) {
-                    fragmentTransaction.replace(R.id.content_frame, new Update_Schedule_SameTime());
-                } else if (experiment.equals(getString(R.string.secondSchedule))) {
-                    fragmentTransaction.replace(R.id.content_frame, new Update_Schedule_7hours());
-                } else if (experiment.equals(getString(R.string.thirdSchedule))) {
-                    fragmentTransaction.replace(R.id.content_frame, new Update_Schedule_Relax());
-                } else if (experiment.equals(getString(R.string.fourthSchedule))) {
-                    fragmentTransaction.replace(R.id.content_frame, new Update_Schedule_Midnight());
-                } else {
-                    fragmentTransaction.replace(R.id.content_frame, new Update());
-                }
-
-            }
-        } else if (id == R.id.nav_calendar) {
-
-            fragmentTransaction.replace(R.id.content_frame, new CalendarPage());
-
         }
 
         fragmentTransaction.addToBackStack(null);
@@ -394,73 +309,6 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
         return true;
     }
 
-
-    private boolean checkIfAllowsQuestionnaire(){
-
-        Calendar calendar1 = Calendar.getInstance();
-        SimpleDateFormat formatter1 = new SimpleDateFormat("HH:mm");
-        String currentHour = formatter1.format(calendar1.getTime());
-
-        SimpleDateFormat formatter2 = new SimpleDateFormat("dd-MMM-yyyy");
-        String currentDate = formatter2.format(calendar1.getTime());
-
-
-        String startingDate = getSharedPreferences("date", MODE_PRIVATE).getString("startingDate", "");
-
-        Date date1 = null;
-        Date date2 = null;
-
-        SimpleDateFormat dates = new SimpleDateFormat("dd-MMM-yyyy");
-
-        //Setting dates
-        try {
-            date1 = dates.parse(currentDate);
-            date2 = dates.parse(startingDate);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
-        Calendar c1 = Calendar.getInstance();
-        c1.setTime(date1);
-
-        Calendar c2 = Calendar.getInstance();
-        c2.setTime(date2);
-
-        int shouldBe = c1.get(Calendar.DAY_OF_YEAR) - c2.get(Calendar.DAY_OF_YEAR);
-
-
-        String experiments = getSharedPreferences("experiments", MODE_PRIVATE).getString("experiments", "");
-
-        String[] experimentsArray = experiments.split("gcm");
-   /*     String[] copy = new String[2];
-        copy[0] = experimentsArray[0];
-        copy[1] = experimentsArray[1];
-        experimentsArray = copy;
-
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < experimentsArray.length; i++) {
-            sb.append(experimentsArray[i]).append("gcm");
-        }
-        getSharedPreferences("experiments", MODE_PRIVATE).edit().putString("experiments", sb.toString()).apply();
-
-        System.out.println(shouldBe);
-        System.out.println(experimentsArray.length);
-        System.out.println(experimentsArray.length - shouldBe > 1);*/
-        if (currentHour.compareTo("18:59") < 0) {
-            Toast.makeText(getApplicationContext(), "You are not allowed to fill in today's questionnaire yet. Come back at 19:00.", Toast.LENGTH_LONG).show();
-
-            return false;
-        } else if (getApplicationContext().getSharedPreferences("experiments", MODE_PRIVATE).getString("experiments", "").equals("No experiment for the initial day.")) {
-            Toast.makeText(getApplicationContext(), "You are not allowed to fill in today's questionnaire. Come back after you choose an experiment.", Toast.LENGTH_LONG).show();
-            return false;
-        } else if (experimentsArray.length - shouldBe > 1) {
-            Toast.makeText(getApplicationContext(), "You are not allowed to fill in today's questionnaire. Come back tomorrow.", Toast.LENGTH_LONG).show();
-            return false;
-        } else {
-            return true;
-        }
-
-    }
     private void createNotificationChannel() {
         // Create the NotificationChannel, but only on API 26+ because
         // the NotificationChannel class is new and not in the support library
@@ -491,9 +339,9 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
                 calendar.add(Calendar.DAY_OF_MONTH, 1);
             }
 
-            Intent intent1 = new Intent(MainMenu.this, Broadcast1.class);
-            PendingIntent pendingIntent = PendingIntent.getBroadcast(MainMenu.this, 0, intent1, 0);
-            AlarmManager am = (AlarmManager) MainMenu.this.getSystemService(MainMenu.this.ALARM_SERVICE);
+            Intent intent1 = new Intent(B_MainMenu.this, Broadcast1.class);
+            PendingIntent pendingIntent = PendingIntent.getBroadcast(B_MainMenu.this, 0, intent1, 0);
+            AlarmManager am = (AlarmManager) B_MainMenu.this.getSystemService(B_MainMenu.this.ALARM_SERVICE);
             am.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
     }
 
@@ -506,9 +354,9 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
         if (Calendar.getInstance().after(calendar)) {
             calendar.add(Calendar.DAY_OF_MONTH, 1);
         }
-        Intent intent1 = new Intent(MainMenu.this, Broadcast2.class);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(MainMenu.this, 0, intent1, 0);
-        AlarmManager am1 = (AlarmManager) MainMenu.this.getSystemService(MainMenu.this.ALARM_SERVICE);
+        Intent intent1 = new Intent(B_MainMenu.this, Broadcast2.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(B_MainMenu.this, 0, intent1, 0);
+        AlarmManager am1 = (AlarmManager) B_MainMenu.this.getSystemService(B_MainMenu.this.ALARM_SERVICE);
         am1.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
 
     }

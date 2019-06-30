@@ -35,9 +35,19 @@ public class WhatIsSleep extends AppCompatActivity {
     private void goToThirdActivity() {
 
 
-        Intent intent = new Intent(this, MainMenu.class);
 
-        startActivity(intent);
+        String participantID = getSharedPreferences("name", MODE_PRIVATE).getString("participantID", "nothing");
+
+        if (participantID.contains("B")){
+            Intent intent = new Intent(this, B_MainMenu.class);
+
+            startActivity(intent);
+        } else {
+            Intent intent = new Intent(this, MainMenu.class);
+
+            startActivity(intent);
+    }
+
 
     }
 

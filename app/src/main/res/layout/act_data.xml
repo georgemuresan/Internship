@@ -93,9 +93,9 @@
 
             <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="1181dp"
-                tools:layout_editor_absoluteX="8dp"
-                tools:layout_editor_absoluteY="0dp">
+                android:layout_height="1200dp"
+                tools:layout_editor_absoluteX="24dp"
+                tools:layout_editor_absoluteY="8dp">
 
                 <com.jjoe64.graphview.GraphView
                     android:id="@+id/shortMood"
@@ -140,6 +140,42 @@
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/impactGeneral" />
+
+                <Button
+                    android:id="@+id/infoImprovements"
+                    android:layout_width="60dp"
+                    android:layout_height="40dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/info"
+                    app:layout_constraintBottom_toBottomOf="@+id/progress"
+                    app:layout_constraintEnd_toEndOf="@+id/progress"
+                    app:layout_constraintTop_toBottomOf="@+id/impactGeneral" />
+
+                <Button
+                    android:id="@+id/infoTimelines"
+                    android:layout_width="60dp"
+                    android:layout_height="40dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/info"
+                    app:layout_constraintBottom_toBottomOf="@+id/timelines"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/timelines" />
+
+                <Button
+                    android:id="@+id/infoThirdTimeline"
+                    android:layout_width="60dp"
+                    android:layout_height="40dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/info"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/textView10"
+                    app:layout_constraintTop_toBottomOf="@+id/shortMood" />
 
                 <EditText
                     android:id="@+id/timelines"
@@ -333,7 +369,7 @@
 
                 <TextView
                     android:id="@+id/awake"
-                    android:layout_width="107dp"
+                    android:layout_width="94dp"
                     android:layout_height="58dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginStart="8dp"
@@ -348,8 +384,8 @@
 
                 <TextView
                     android:id="@+id/earlier"
-                    android:layout_width="109dp"
-                    android:layout_height="60dp"
+                    android:layout_width="95dp"
+                    android:layout_height="71dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="16dp"
@@ -363,16 +399,16 @@
 
                 <TextView
                     android:id="@+id/impactActivities"
-                    android:layout_width="111dp"
+                    android:layout_width="97dp"
                     android:layout_height="76dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginStart="8dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="8dp"
                     android:text="@string/svdImpactActivities"
                     android:textColor="@android:color/black"
                     android:textSize="12sp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toEndOf="@+id/imageView28"
                     app:layout_constraintTop_toBottomOf="@+id/impactMood" />
 
@@ -389,6 +425,17 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/imageView28" />
+
+                <Button
+                    android:id="@+id/infoRatings"
+                    android:layout_width="60dp"
+                    android:layout_height="40dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/info"
+                    app:layout_constraintBottom_toBottomOf="@+id/singleVD"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
             </android.support.constraint.ConstraintLayout>
         </FrameLayout>

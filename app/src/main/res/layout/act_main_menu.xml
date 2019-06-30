@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".MainMenu"
-    tools:showIn="@layout/extra_bar_Main">
+    tools:showIn="@layout/extra_bar_main">
 
     <FrameLayout
         android:id="@+id/content_frame"
@@ -112,6 +112,21 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+            <TextView
+                android:id="@+id/youHave"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="102dp"
+                android:layout_marginStart="102dp"
+                android:layout_marginTop="13dp"
+                android:text="You have 2 days left of the current experiment."
+                android:textColor="#000000"
+                android:textSize="8sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
             <ImageView
                 android:id="@+id/imageView2"
