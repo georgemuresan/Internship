@@ -38,7 +38,7 @@ public class WhatIsSleep extends AppCompatActivity {
 
         String participantID = getSharedPreferences("name", MODE_PRIVATE).getString("participantID", "nothing");
 
-        if (participantID.contains("B")){
+        if (participantID.contains("B") || participantID.contains("b")){
             Intent intent = new Intent(this, B_MainMenu.class);
 
             startActivity(intent);

@@ -288,7 +288,7 @@ public class Data extends Fragment implements AdapterView.OnItemSelectedListener
         @Override
         public Dialog onCreateDialog(Bundle savedInstanceState) {
             AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-            builder.setMessage("This section displays 3 graphs based on your progress while using the app. First graph shows your overall progress in time while using SleepBetter. Second graph shows the same progress but for only a duration of 5 days- the current running experiment. For the third graph you are able to choose which attribute's progress you want to view during the time you used SleepBetter. \\\"Lower is better\\\" means a lower value is desirable, as it shows a better, improved state.");
+            builder.setMessage("This section displays 3 graphs based on your progress while using the app. First graph shows your overall progress in time while using SleepBetter. Second graph shows the same progress but for only a duration of 5 days- the current running experiment. For the third graph you are able to choose which attribute's progress you want to view during the time you used SleepBetter. \"Lower is better\" means a lower value is desirable, as it shows a better, improved state.");
             builder.setNegativeButton("OK", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
                     dialog.dismiss();

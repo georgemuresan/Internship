@@ -55,7 +55,6 @@ public class Factors extends Fragment {
         radioGroup = (RadioGroup) factorsView.findViewById(R.id.experimentsGroup);
 
         if (!experiment.equals("nothing")){
-            System.out.println("YESSSSSSSSSSSSSSS");
             RadioButton savedCheckedRadioButton = (RadioButton)radioGroup.getChildAt(savedRadioIndex);
             savedCheckedRadioButton.setChecked(true);
         }
@@ -138,8 +137,7 @@ public class Factors extends Fragment {
                     e.printStackTrace();
                 }
 
-                System.out.println(date1);
-                System.out.println(date2);
+
                 Calendar c1 = Calendar.getInstance();
                 c1.setTime(date1);
 
@@ -149,35 +147,111 @@ public class Factors extends Fragment {
                 int differenceBetweenOldExperimentAndCurrent = c1.get(Calendar.DAY_OF_YEAR) - c2.get(Calendar.DAY_OF_YEAR);
 
 
-                if (differenceBetweenOldExperimentAndCurrent % 5 < 5 && !getActivity().getApplicationContext().getSharedPreferences("experiments", MODE_PRIVATE).getString("experiments", "").equals("No experiment for the initial day.")){
-                    if (currentDate.equals(studyStartDate) ){
+
+        String participantID = getActivity().getApplicationContext().getSharedPreferences("name", MODE_PRIVATE).getString("participantID", "nothing");
+
+
+
+        if (participantID.contains("B") || participantID.contains("b")){
+            if (differenceBetweenOldExperimentAndCurrent % 5 != 0){
+                for (int i = 0; i < radioGroup.getChildCount(); i++) {
+                    radioGroup.getChildAt(i).setEnabled(false);
+                }
+                Toast.makeText(getActivity().getApplicationContext(), "You are not allowed to change your experiment as 5 days have not passed yet.", Toast.LENGTH_LONG).show();
+
+
+            } else if (differenceBetweenOldExperimentAndCurrent == 0 && getActivity().getSharedPreferences("expB", MODE_PRIVATE).getString("pickedB", "").equals("newPickedB")){
+
+                for (int i = 0; i < radioGroup.getChildCount(); i++) {
+                    radioGroup.getChildAt(i).setEnabled(false);
+                }
+                Toast.makeText(getActivity().getApplicationContext(), "You are not allowed to change your experiment as you've just picked it.", Toast.LENGTH_LONG).show();
+
+            }
+        } else {
+
+            if (differenceBetweenOldExperimentAndCurrent % 5 != 0){
+                for (int i = 0; i < radioGroup.getChildCount(); i++) {
+                    radioGroup.getChildAt(i).setEnabled(false);
+                }
+                Toast.makeText(getActivity().getApplicationContext(), "You are not allowed to change your experiment as 5 days have not passed yet.", Toast.LENGTH_LONG).show();
+
+
+            } else if (differenceBetweenOldExperimentAndCurrent == 0 && getActivity().getSharedPreferences("expB", MODE_PRIVATE).getString("pickedB", "").equals("newPickedB")){
+
+                for (int i = 0; i < radioGroup.getChildCount(); i++) {
+                    radioGroup.getChildAt(i).setEnabled(false);
+                }
+                Toast.makeText(getActivity().getApplicationContext(), "You are not allowed to change your experiment as you've just picked it.", Toast.LENGTH_LONG).show();
+
+            } else if (differenceBetweenOldExperimentAndCurrent % 5 == 0 && differenceBetweenOldExperimentAndCurrent != 0){
+                if (Integer.valueOf(currentHour) < 19) {
+                    System.out.println("correct 5");
+                    for (int i = 0; i < radioGroup.getChildCount(); i++) {
+                        radioGroup.getChildAt(i).setEnabled(false);
+                    }
+                    Toast.makeText(getActivity().getApplicationContext(), "You are not allowed to change your experiment yet. You can change it after 19:00 today.", Toast.LENGTH_LONG).show();
+
+                } else if (loggedIn % 5 != 1) {
+                    System.out.println("correct 6");
+                    for (int i = 0; i < radioGroup.getChildCount(); i++) {
+                        radioGroup.getChildAt(i).setEnabled(false);
+                    }
+                    Toast.makeText(getActivity().getApplicationContext(), "You are not allowed to change your experiment yet. You can change it after completing today's questionnaire.", Toast.LENGTH_LONG).show();
+
+                }
+            }
+
+            /*
+            System.out.println("correct 1");
+            if (!getActivity().getApplicationContext().getSharedPreferences("experiments", MODE_PRIVATE).getString("experiments", "").equals("No experiment for the initial day.")) {
+                System.out.println("correct 2");
+                if (currentDate.equals(studyStartDate)) {
+                    for (int i = 0; i < radioGroup.getChildCount(); i++) {
+                        radioGroup.getChildAt(i).setEnabled(false);
+                    }
+
+                    Toast.makeText(getActivity().getApplicationContext(), "You are not allowed to change your experiment yet as you've just picked it.", Toast.LENGTH_LONG).show();
+                    System.out.println("correct 3");
+                } else if (differenceBetweenOldExperimentAndCurrent % 5 == 0) {
+                    System.out.println("correct 4");
+                    if (Integer.valueOf(currentHour) < 19) {
+                        System.out.println("correct 5");
                         for (int i = 0; i < radioGroup.getChildCount(); i++) {
                             radioGroup.getChildAt(i).setEnabled(false);
                         }
+                        Toast.makeText(getActivity().getApplicationContext(), "You are not allowed to change your experiment yet. You can change it after 19:00 today.", Toast.LENGTH_LONG).show();
 
-                        Toast.makeText(getActivity().getApplicationContext(), "You are not allowed to change your experiment yet as you've just picked it.", Toast.LENGTH_LONG).show();
-                    } else if (differenceBetweenOldExperimentAndCurrent % 5 == 0){
-                        if (Integer.valueOf(currentHour) < 19){
-                            for (int i = 0; i < radioGroup.getChildCount(); i++) {
-                                radioGroup.getChildAt(i).setEnabled(false);
-                            }
-                            Toast.makeText(getActivity().getApplicationContext(), "You are not allowed to change your experiment yet. You can change it after 19:00 today.", Toast.LENGTH_LONG).show();
-
-                        } else if (loggedIn % 5 != 1){
-                            for (int i = 0; i < radioGroup.getChildCount(); i++) {
-                                radioGroup.getChildAt(i).setEnabled(false);
-                            }
-                            Toast.makeText(getActivity().getApplicationContext(), "You are not allowed to change your experiment yet. You can change it after completing today's questionnaire.", Toast.LENGTH_LONG).show();
-
-                        }
-                    } else {
+                    } else if (loggedIn % 5 != 1) {
+                        System.out.println("correct 6");
                         for (int i = 0; i < radioGroup.getChildCount(); i++) {
                             radioGroup.getChildAt(i).setEnabled(false);
                         }
-                        Toast.makeText(getActivity().getApplicationContext(), "You are not allowed to change your experiment as 5 days have not passed yet.", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getActivity().getApplicationContext(), "You are not allowed to change your experiment yet. You can change it after completing today's questionnaire.", Toast.LENGTH_LONG).show();
 
                     }
+                } else {
+                    System.out.println("correct 7");
+                    for (int i = 0; i < radioGroup.getChildCount(); i++) {
+                        radioGroup.getChildAt(i).setEnabled(false);
+                    }
+                    Toast.makeText(getActivity().getApplicationContext(), "You are not allowed to change your experiment as 5 days have not passed yet.", Toast.LENGTH_LONG).show();
+
                 }
+            } else if (differenceBetweenOldExperimentAndCurrent == 0 && getActivity().getSharedPreferences("exp", MODE_PRIVATE).getString("picked", "").equals("newPicked")) {
+                System.out.println("correct 8");
+                for (int i = 0; i < radioGroup.getChildCount(); i++) {
+                    radioGroup.getChildAt(i).setEnabled(false);
+                }
+                Toast.makeText(getActivity().getApplicationContext(), "You are not allowed to change your experiment as you've just picked it.", Toast.LENGTH_LONG).show();
+
+            }*/
+        }
+
+
+
+
+
         return factorsView;
     }
 
@@ -243,7 +317,7 @@ public class Factors extends Fragment {
                                 for (int i = 0; i < radioGroup.getChildCount(); i++) {
                                     radioGroup.getChildAt(i).setEnabled(false);
                                 }
-                                Intent intent = new Intent(getActivity().getApplicationContext(), MainMenu.class);
+
 
                                 //update starting date
                                 Date c = Calendar.getInstance().getTime();
@@ -252,26 +326,26 @@ public class Factors extends Fragment {
 
                                 getActivity().getSharedPreferences("date", MODE_PRIVATE).getString("startExperiment", "");
                                 getActivity().getSharedPreferences("date", MODE_PRIVATE).edit().putString("startExperiment", currentDate).apply();
-                                //
-                                String experiments = getActivity().getSharedPreferences("experiments", MODE_PRIVATE).getString("experiments", "");
+                                getActivity().getSharedPreferences("exp", MODE_PRIVATE).getString("picked", "newPicked");
+                                getActivity().getSharedPreferences("exp", MODE_PRIVATE).edit().putString("picked", "newPicked").apply();
+                            getActivity().getSharedPreferences("expB", MODE_PRIVATE).getString("pickedB", "newPickedB");
+                            getActivity().getSharedPreferences("expB", MODE_PRIVATE).edit().putString("pickedB", "newPickedB").apply();
 
-                                String currentExperiment = getActivity().getApplicationContext().getSharedPreferences("name", MODE_PRIVATE).getString("experiment", "nothing");
+                            //
 
 
-                                String[] experimentsArray = experiments.split("gcm");
+                            String participantID = getActivity().getApplicationContext().getSharedPreferences("name", MODE_PRIVATE).getString("participantID", "nothing");
 
-                                ArrayList<String> experimentsArrayList = new ArrayList<String>(Arrays.asList(experimentsArray));
-                                experimentsArrayList.add(currentExperiment + ".");
-
-                                experimentsArray = experimentsArrayList.toArray(experimentsArray);
-
-                                StringBuilder sb = new StringBuilder();
-                                for (int i = 0; i < experimentsArray.length; i++) {
-                                    sb.append(experimentsArray[i]).append("gcm");
-                                }
-                                getActivity().getApplicationContext().getSharedPreferences("experiments", MODE_PRIVATE).edit().putString("experiments", sb.toString()).apply();
+                            if (participantID.contains("B") || participantID.contains("b")){
+                                Intent intent = new Intent(getActivity().getApplicationContext(), B_MainMenu.class);
 
                                 startActivity(intent);
+                            } else {
+                                Intent intent = new Intent(getActivity().getApplicationContext(), MainMenu.class);
+
+                                startActivity(intent);
+                            }
+
                         }
                     })
                     .setNegativeButton("Back", new DialogInterface.OnClickListener() {

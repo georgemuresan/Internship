@@ -13,7 +13,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.NotificationCompat;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -27,8 +26,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import org.w3c.dom.Text;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -46,14 +43,6 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.act_menu);
-
-
-        String moods_string = getApplicationContext().getSharedPreferences("moods", MODE_PRIVATE).getString("moods", "");
-
-        String[] moods = moods_string.split("gcm");
-
-        System.out.println("MOODS       " + moods_string);
-        System.out.println(moods.length);
 
         Date c = Calendar.getInstance().getTime();
         SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
@@ -90,6 +79,7 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
                 UserDatabase uDatabase = Room.databaseBuilder(getApplicationContext(), UserDatabase.class, DATABASE_NAME).fallbackToDestructiveMigration().build();
                 int loggedIn = uDatabase.daoAccess().fetchUserQuestionnaires().size();
 
+
                 int misses = finalShouldBe -loggedIn;
 
 
@@ -101,7 +91,7 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
 
                     ArrayList<String> moodsArrayList = new ArrayList<String>(Arrays.asList(moods));
 
-                    for (int i=1; i<misses; i++){
+                    for (int i=0; i<misses; i++){
                     // adaugam -1 in tabel
 
                         UserQuestionnaire user = new UserQuestionnaire();
@@ -166,17 +156,12 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
 
         String[] experimentsArray = experiments.split("gcm");
 
-        System.out.println(shouldBe);
-        System.out.println(experimentsArray.length);
-        System.out.println(shouldBe >= experimentsArray.length);
-
         //+1 to include dy 0
-        if ((shouldBe +1)> experimentsArray.length){
+        if (shouldBe> experimentsArray.length){
             String currentExperiment = getSharedPreferences("name", MODE_PRIVATE).getString("experiment", "nothing");
 
-
             ArrayList<String> experimentsArrayList = new ArrayList<String>(Arrays.asList(experimentsArray));
-            for (int i=0; i<= (shouldBe - experimentsArray.length); i++){
+            for (int i=0; i< (shouldBe - experimentsArray.length); i++){
                 experimentsArrayList.add(currentExperiment + ".");
             }
 
@@ -187,6 +172,7 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
                 sb.append(experimentsArray[i]).append("gcm");
             }
             getSharedPreferences("experiments", MODE_PRIVATE).edit().putString("experiments", sb.toString()).apply();
+
 
         }
 
@@ -432,28 +418,16 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
         String experiments = getSharedPreferences("experiments", MODE_PRIVATE).getString("experiments", "");
 
         String[] experimentsArray = experiments.split("gcm");
-   /*     String[] copy = new String[2];
-        copy[0] = experimentsArray[0];
-        copy[1] = experimentsArray[1];
-        experimentsArray = copy;
 
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < experimentsArray.length; i++) {
-            sb.append(experimentsArray[i]).append("gcm");
-        }
-        getSharedPreferences("experiments", MODE_PRIVATE).edit().putString("experiments", sb.toString()).apply();
-
-        System.out.println(shouldBe);
         System.out.println(experimentsArray.length);
-        System.out.println(experimentsArray.length - shouldBe > 1);*/
-        if (currentHour.compareTo("18:59") < 0) {
+        if (getApplicationContext().getSharedPreferences("experiments", MODE_PRIVATE).getString("experiments", "").equals("No experiment for the initial day.") && shouldBe == 0) {
+            Toast.makeText(getApplicationContext(), "You are not allowed to fill in today's questionnaire. Choose an experiment if you haven't.", Toast.LENGTH_LONG).show();
+            return false;
+        } else if (currentHour.compareTo("18:59") < 0) {
             Toast.makeText(getApplicationContext(), "You are not allowed to fill in today's questionnaire yet. Come back at 19:00.", Toast.LENGTH_LONG).show();
 
             return false;
-        } else if (getApplicationContext().getSharedPreferences("experiments", MODE_PRIVATE).getString("experiments", "").equals("No experiment for the initial day.")) {
-            Toast.makeText(getApplicationContext(), "You are not allowed to fill in today's questionnaire. Come back after you choose an experiment.", Toast.LENGTH_LONG).show();
-            return false;
-        } else if (experimentsArray.length - shouldBe > 1) {
+        } else if (experimentsArray.length - shouldBe >= 1) {
             Toast.makeText(getApplicationContext(), "You are not allowed to fill in today's questionnaire. Come back tomorrow.", Toast.LENGTH_LONG).show();
             return false;
         } else {
@@ -540,7 +514,6 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
                 setAlarmManager(18, 30, "Remember:", "Do not forget! Go to bed and wake up at the same time as yesterday!");
                 break;
             case 10: // Sleep no lesss than 7 hours per night
-                System.out.println("should be");
                 setAlarmManager(19, 50, "Remember:", "Sleep no less than 7 hours per night!");
                 break;
             case 11: //DO not go to bed unless you are tired. If you are not
@@ -597,42 +570,8 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
             NotificationManager notificationManager = (NotificationManager) context
                     .getSystemService(Context.NOTIFICATION_SERVICE);
 //AICIII
-            Intent notificationIntent = null;
-            int experiment = context.getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).getInt("KEY_SAVED_RADIO_BUTTON_INDEX", 0);
-
-            switch (experiment) {
-                case 1: //increase bright light exposure
-                    notificationIntent = new Intent(context, Update_Light_Bright.class);
-                    break;
-                case 2: //wear glasses that block blue light during the night
-                    notificationIntent = new Intent(context, Update_Light_Glasses.class);
-                    break;
-                case 3: // turn off any bright lights 2 hours before going to bed
-                    notificationIntent = new Intent(context, Update_Light_TurnOffBright.class);
-                    break;
-                case 5: // Do not drink caffeine within 6 hours
-                    notificationIntent = new Intent(context, Update_Caffeine_6hours.class);
-                    break;
-                case 6: // Limit yourself to 4 cups of coffees per day; 10 canss of
-                    notificationIntent = new Intent(context, Update_Caffeine_limit.class);
-                    break;
-                case 7: //Do not drink empty stomach
-                    notificationIntent = new Intent(context, Update_Caffeine_Empty.class);
-                    break;
-                case 9://Usually get up at the same time everyday, even on weekends
-                    notificationIntent = new Intent(context, Update_Schedule_SameTime.class);
-                    break;
-                case 10: // Sleep no lesss than 7 hours per night
-                    notificationIntent = new Intent(context, Update_Schedule_7hours.class);
-                    break;
-                case 11: //DO not go to bed unless you are tired. If you are not
-                    notificationIntent = new Intent(context, Update_Schedule_Relax.class);
-                    break;
-                case 12: //Go to sleep at 22:30 PM the latest
-                    notificationIntent = new Intent(context, Update_Schedule_Midnight.class);
-                    break;
-            }
-
+            Intent notificationIntent = new Intent(context, MainMenu.class);
+           
             notificationIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
             PendingIntent pendingIntent = PendingIntent.getActivity(context, 0,

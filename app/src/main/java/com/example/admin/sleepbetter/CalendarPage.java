@@ -92,6 +92,7 @@ public class CalendarPage extends Fragment {
 
         //model date from 23-Jun-2019 too 2019-06-23
         String dayForLoop = startingDate;
+        Calendar cal = Calendar.getInstance();
 
         for (int i = 0; i <= shouldBe - 1; i++) {
             Date d1 = null;
@@ -104,14 +105,15 @@ public class CalendarPage extends Fragment {
 
             String dateToAdd = changer.format(d1);
 
+            System.out.println("CHECKKKKKKKKKK");
             System.out.println(experimentsArray.length);
             System.out.println(moods.length);
-            System.out.println(diaries.length);
+            System.out.println(dateToAdd);
             HomeCollection.date_collection_arr.add(new HomeCollection(dateToAdd, experimentsArray[i], moods[i], diaries[i]));
 
-            Calendar cal = Calendar.getInstance();
+
             try {
-                cal.setTime(df.parse(startingDate));
+                cal.setTime(df.parse(dayForLoop));
             } catch (ParseException e) {
                 e.printStackTrace();
             }
@@ -233,8 +235,9 @@ public class CalendarPage extends Fragment {
 
         //model date from 23-Jun-2019 too 2019-06-23
         String dayForLoop = startingDate;
+        Calendar cal = Calendar.getInstance();
 
-        for (int i = 0; i <= shouldBe -1 ; i++) {
+        for (int i = 0; i <= shouldBe - 1; i++) {
             Date d1 = null;
             try {
                 d1=new SimpleDateFormat("dd-MMM-yyyy").parse(dayForLoop);
@@ -245,11 +248,15 @@ public class CalendarPage extends Fragment {
 
             String dateToAdd = changer.format(d1);
 
+            System.out.println("CHECKKKKKKKKKK");
+            System.out.println(experimentsArray.length);
+            System.out.println(moods.length);
+            System.out.println(dateToAdd);
             HomeCollection.date_collection_arr.add(new HomeCollection(dateToAdd, experimentsArray[i], moods[i], diaries[i]));
 
-            Calendar cal = Calendar.getInstance();
+
             try {
-                cal.setTime(df.parse(startingDate));
+                cal.setTime(df.parse(dayForLoop));
             } catch (ParseException e) {
                 e.printStackTrace();
             }

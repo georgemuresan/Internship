@@ -178,7 +178,7 @@ public class QInitial extends AppCompatActivity {
 
         String participantID = getSharedPreferences("name", MODE_PRIVATE).getString("participantID", "nothing");
 
-        if (participantID.contains("B")){
+        if (participantID.contains("B") || participantID.contains("b")){
             startActivity(intentB);
         } else {
             startActivity(intent);
@@ -250,6 +250,10 @@ public class QInitial extends AppCompatActivity {
         }
         getApplicationContext().getSharedPreferences("moods", MODE_PRIVATE).edit().putString("moods", sb.toString()).apply();
 
+        getSharedPreferences("exp", MODE_PRIVATE).getString("picked", "picked");
+        getSharedPreferences("exp", MODE_PRIVATE).edit().putString("picked", "picked").apply();
+        getSharedPreferences("expB", MODE_PRIVATE).getString("pickedB", "pickedB");
+        getSharedPreferences("expB", MODE_PRIVATE).edit().putString("pickedB", "pickedB").apply();
     }
 
 /*

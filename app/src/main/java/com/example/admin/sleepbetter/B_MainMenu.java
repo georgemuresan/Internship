@@ -44,16 +44,6 @@ public class B_MainMenu extends AppCompatActivity implements NavigationView.OnNa
 
         setContentView(R.layout.act_b_menu);
 
-
-/*
-        String experimentss = "No experiment for the initial day.gcmNo experiment for the initial day.gcm gcm";
-
-        String[] s = experimentss.split("gcm");
-
-        System.out.println(s[0] + " RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR");
-        System.out.println(s.length);
-
-*/
         Date c = Calendar.getInstance().getTime();
         SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
         final String currentDate = df.format(c);
@@ -81,98 +71,22 @@ public class B_MainMenu extends AppCompatActivity implements NavigationView.OnNa
 
         int shouldBe = c1.get(Calendar.DAY_OF_YEAR) - c2.get(Calendar.DAY_OF_YEAR);
 
-        final int finalShouldBe = shouldBe;
-
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                UserDatabase uDatabase = Room.databaseBuilder(getApplicationContext(), UserDatabase.class, DATABASE_NAME).fallbackToDestructiveMigration().build();
-                int loggedIn = uDatabase.daoAccess().fetchUserQuestionnaires().size();
-
-                int misses = finalShouldBe -loggedIn;
-
-
-                if (misses >=1){
-
-                    String moods_string = getApplicationContext().getSharedPreferences("moods", MODE_PRIVATE).getString("moods", "");
-
-                    String[] moods = moods_string.split("gcm");
-
-                    ArrayList<String> moodsArrayList = new ArrayList<String>(Arrays.asList(moods));
-
-                    for (int i=1; i<misses; i++){
-                    // adaugam -1 in tabel
-
-                        UserQuestionnaire user = new UserQuestionnaire();
-                        String username = getApplicationContext().getSharedPreferences("name", MODE_PRIVATE).getString("participantID", "nothing"); user.setUsername(username);
-                        user.setDate(currentDate);
-                        user.setUsername(username);
-                        user.setHowLong(-1);
-                        user.setAwake(-1);
-                        user.setEarlier(-1);
-                        user.setNightsAWeek(-1);
-                        user.setQuality(-1);
-                        user.setImpactMood(-1);
-                        user.setImpactActivities(-1);
-                        user.setImpactGeneral(-1);
-                        user.setProblem(-1);
-                        user.setMood(-1);
-
-                        getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("howLong", -1).apply();
-                        getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("awake", -1).apply();
-                        getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("earlier", -1).apply();
-                        getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("quality", -1).apply();
-                        getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("impactMood", -1).apply();
-                        getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("impactActivities", -1).apply();
-                        getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("impactGeneral", -1).apply();
-                        getSharedPreferences("MOOD", MODE_PRIVATE).edit().putFloat("mood", (float) -1).apply();
-
-                        //setting mood value to -1 in shared preferences
-
-                        uDatabase.daoAccess().insertSingleUserQuestionnaire(user);
-
-                        moodsArrayList.add("-1");
-
-                        Report rep = new Report(uDatabase, getApplicationContext());
-                        rep.save(username, false, getSharedPreferences("consent", MODE_PRIVATE).getString("consent", "nothing"));
-                    }
-
-                    moods = moodsArrayList.toArray(moods);
-
-                    StringBuilder sb = new StringBuilder();
-                    for (int i = 0; i < moods.length; i++) {
-                        sb.append(moods[i]).append("gcm");
-                    }
-                    getApplicationContext().getSharedPreferences("moods", MODE_PRIVATE).edit().putString("moods", sb.toString()).apply();
-
-                }
-
-
-
-
-
-
-
-            }
-
-            //scoatem variabila days si verificam: daca se imparte la 5, si nu e locked,
-        }).start();
 
         //update experiments
 
-        //including day 0
-        shouldBe++;
 
         String experiments = getSharedPreferences("experiments", MODE_PRIVATE).getString("experiments", "");
 
+        //+1 to include dy 0
         String[] experimentsArray = experiments.split("gcm");
 
         if (shouldBe > experimentsArray.length){
             String currentExperiment = getSharedPreferences("name", MODE_PRIVATE).getString("experiment", "nothing");
 
-
             ArrayList<String> experimentsArrayList = new ArrayList<String>(Arrays.asList(experimentsArray));
-            experimentsArrayList.add(currentExperiment + ".");
+            for (int i=0; i< (shouldBe - experimentsArray.length); i++){
+                experimentsArrayList.add(currentExperiment + ".");
+            }
 
             experimentsArray = experimentsArrayList.toArray(experimentsArray);
 
@@ -214,7 +128,6 @@ public class B_MainMenu extends AppCompatActivity implements NavigationView.OnNa
         //NOTIFICATION DEMO
         this.createNotificationChannel();
         this.setNotifications();
-        this.setFirstSpecialNotification();
 ///END NOTIFICATIONs
 
         Button button1 = (Button) findViewById(R.id.whatSleep);
@@ -240,6 +153,75 @@ public class B_MainMenu extends AppCompatActivity implements NavigationView.OnNa
             }
 
         });
+
+
+        String expStartDate = getSharedPreferences("date", MODE_PRIVATE).getString("startExperiment", "");
+
+        TextView remainedDaysText = (TextView) findViewById(R.id.youHave);
+
+        if (expStartDate.equals("")){
+            remainedDaysText.setText("Please choose your experiment in the Experiments section.");
+        } else {
+            Date date3 = null;
+
+            //Setting dates
+            try {
+                date1 = dates.parse(currentDate);
+                date3 = dates.parse(expStartDate);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+            Calendar c3 = Calendar.getInstance();
+            c3.setTime(date3);
+
+            int experimentDaysDifference = c1.get(Calendar.DAY_OF_YEAR) - c2.get(Calendar.DAY_OF_YEAR);
+
+            int difference = 5 - experimentDaysDifference;
+
+
+            remainedDaysText.setText("You have " + difference + " days left of the current experiment.");
+
+
+            if (expStartDate.equals(startingDate)) {
+                remainedDaysText.setText("You have 5 days left of the current experiment.");
+            } else if (difference < 5 && difference != 0){
+                remainedDaysText.setText(difference + " days left of the current experiment.");
+            } else {
+                remainedDaysText.setText(difference + " days left of the current experiment. When available, change your experiment in the Experiments section.");
+            }
+
+        }
+
+
+        String previousExperimentStartDate = getSharedPreferences("date", MODE_PRIVATE).getString("startExperiment", "");
+
+        Date date3 = null;
+        Date date4 = null;
+
+        if (previousExperimentStartDate.equals("")){
+            previousExperimentStartDate = currentDate;
+        }
+        //Setting dates
+        try {
+            date3 = dates.parse(currentDate);
+            date4 = dates.parse(previousExperimentStartDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+
+        Calendar c3 = Calendar.getInstance();
+        c3.setTime(date3);
+
+        Calendar c4 = Calendar.getInstance();
+        c4.setTime(date4);
+
+        int differenceBetweenOldExperimentAndCurrent = c3.get(Calendar.DAY_OF_YEAR) - c4.get(Calendar.DAY_OF_YEAR);
+
+        if (differenceBetweenOldExperimentAndCurrent != 0){
+           getSharedPreferences("expB", MODE_PRIVATE).edit().putString("pickedB", "pickedB").apply();
+        }
 
     }
 
@@ -345,21 +327,6 @@ public class B_MainMenu extends AppCompatActivity implements NavigationView.OnNa
             am.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
     }
 
-    private void setFirstSpecialNotification() {
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.HOUR_OF_DAY, 19);
-        calendar.set(Calendar.MINUTE, 0);
-        calendar.set(Calendar.SECOND, 0);
-
-        if (Calendar.getInstance().after(calendar)) {
-            calendar.add(Calendar.DAY_OF_MONTH, 1);
-        }
-        Intent intent1 = new Intent(B_MainMenu.this, Broadcast2.class);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(B_MainMenu.this, 0, intent1, 0);
-        AlarmManager am1 = (AlarmManager) B_MainMenu.this.getSystemService(B_MainMenu.this.ALARM_SERVICE);
-        am1.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
-
-    }
 
     //produce the required notifications
     private void setNotifications() {
@@ -432,72 +399,6 @@ public class B_MainMenu extends AppCompatActivity implements NavigationView.OnNa
                     .setContentIntent(pendingIntent);
             notificationManager.notify(13, mNotifyBuilder.build());
 //
-        }
-    }
-
-    public static class Broadcast2 extends BroadcastReceiver {
-
-        //intrebarea este daca, aunci cand va veni momentul a schimbe si experimentul - daca o sa ii dea si alarma veche cu complete questionnaire si cea noua cu both complete the questionnaire and the experiment
-        @Override
-        public void onReceive(Context context, Intent intent) {
-
-            long when = System.currentTimeMillis();
-            NotificationManager notificationManager = (NotificationManager) context
-                    .getSystemService(Context.NOTIFICATION_SERVICE);
-//AICIII
-            Intent notificationIntent = null;
-            int experiment = context.getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).getInt("KEY_SAVED_RADIO_BUTTON_INDEX", 0);
-
-            switch (experiment) {
-                case 1: //increase bright light exposure
-                    notificationIntent = new Intent(context, Update_Light_Bright.class);
-                    break;
-                case 2: //wear glasses that block blue light during the night
-                    notificationIntent = new Intent(context, Update_Light_Glasses.class);
-                    break;
-                case 3: // turn off any bright lights 2 hours before going to bed
-                    notificationIntent = new Intent(context, Update_Light_TurnOffBright.class);
-                    break;
-                case 5: // Do not drink caffeine within 6 hours
-                    notificationIntent = new Intent(context, Update_Caffeine_6hours.class);
-                    break;
-                case 6: // Limit yourself to 4 cups of coffees per day; 10 canss of
-                    notificationIntent = new Intent(context, Update_Caffeine_limit.class);
-                    break;
-                case 7: //Do not drink empty stomach
-                    notificationIntent = new Intent(context, Update_Caffeine_Empty.class);
-                    break;
-                case 9://Usually get up at the same time everyday, even on weekends
-                    notificationIntent = new Intent(context, Update_Schedule_SameTime.class);
-                    break;
-                case 10: // Sleep no lesss than 7 hours per night
-                    notificationIntent = new Intent(context, Update_Schedule_7hours.class);
-                    break;
-                case 11: //DO not go to bed unless you are tired. If you are not
-                    notificationIntent = new Intent(context, Update_Schedule_Relax.class);
-                    break;
-                case 12: //Go to sleep at 22:30 PM the latest
-                    notificationIntent = new Intent(context, Update_Schedule_Midnight.class);
-                    break;
-            }
-
-            notificationIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-
-            PendingIntent pendingIntent = PendingIntent.getActivity(context, 0,
-                    notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-
-
-            // Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-
-           NotificationCompat.Builder mNotifyBuilder = new NotificationCompat.Builder(context, "13")
-                        .setSmallIcon(R.drawable.pill)
-                        .setContentTitle("Questionnaire")
-                        .setContentText("Remember to complete your questionnaire")
-                        .setAutoCancel(true).setWhen(when)
-                        .setContentIntent(pendingIntent);
-                notificationManager.notify(20, mNotifyBuilder.build());
-
-
         }
     }
 

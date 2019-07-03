@@ -113,7 +113,7 @@ public class Report {
         }
 
         final String username = "gcm1y18";
-        final String password = "Ohmygoals2018";
+        final String password = "experimentUK2";
 
         Properties props = new Properties();
         props.put("mail.smtp.auth", true);
@@ -121,6 +121,7 @@ public class Report {
         props.put("mail.smtp.host", "smtp.soton.ac.uk");
         props.put("mail.smtp.port", "25");
         props.put("mail.smtp.EnableSSL.enable", "true");
+        props.put("mail.smtp.ssl.trust", "smtp.soton.ac.uk");
 
         Session session = Session.getInstance(props, new javax.mail.Authenticator() {
             protected PasswordAuthentication getPasswordAuthentication() {

@@ -108,7 +108,7 @@ public class FirstPage extends AppCompatActivity {
 
             String participantID = getSharedPreferences("name", MODE_PRIVATE).getString("participantID", "nothing");
 
-            if (participantID.contains("B")){
+            if (participantID.contains("B") || participantID.contains("b")){
                 startActivity(new Intent(this, B_MainMenu.class));
             } else {
                 startActivity(new Intent(this, MainMenu.class));
@@ -126,6 +126,8 @@ public class FirstPage extends AppCompatActivity {
 
     private void goToSecondActivity() {
 
+
+
         if (nameBox.getText().toString().equals("")){
             Toast.makeText(getApplicationContext(), "Please input your name", Toast.LENGTH_SHORT).show();
 
@@ -133,16 +135,24 @@ public class FirstPage extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Please input your participant ID number", Toast.LENGTH_SHORT).show();
 
         } else {
-            Intent intent = new Intent(this, Notice.class);
 
-            String name = nameBox.getText().toString();
-            String participant = participantID.getText().toString();
+            if (participantID.getText().toString().contains("B") || participantID.getText().toString().contains("b") || participantID.getText().toString().contains("A") || participantID.getText().toString().contains("a")) {
+                Intent intent = new Intent(this, Notice.class);
 
-            getSharedPreferences("name", MODE_PRIVATE).edit().putString("username", name).apply();
-            getSharedPreferences("name", MODE_PRIVATE).edit().putString("participantID", participant).apply();
-            getSharedPreferences("PREFERENCE", MODE_PRIVATE).edit().putBoolean("isFirstRun", false).apply();
+                String name = nameBox.getText().toString();
+                String participant = participantID.getText().toString();
 
-            startActivity(intent);
+                getSharedPreferences("name", MODE_PRIVATE).edit().putString("username", name).apply();
+                getSharedPreferences("name", MODE_PRIVATE).edit().putString("participantID", participant).apply();
+                getSharedPreferences("PREFERENCE", MODE_PRIVATE).edit().putBoolean("isFirstRun", false).apply();
+
+                startActivity(intent);
+            } else {
+                Toast.makeText(getApplicationContext(), "Please input the CORRECT participant ID number (e.g. A1/B2 etc)", Toast.LENGTH_LONG).show();
+
+            }
+
+
 
         }
 

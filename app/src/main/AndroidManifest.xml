@@ -36,10 +36,15 @@
             android:name=".MainMenu"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".B_MainMenu"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity android:name=".WhatExperiments"></activity>
         <activity android:name=".WhatIsSleep"></activity>
         <activity android:name=".Notice"></activity>
         <activity android:name=".QInitial"></activity>
+        <activity android:name=".B_WhatExperiments"></activity>
     </application>
 
 </manifest>

@@ -93,12 +93,6 @@ public class QFinal extends Fragment {
         final int earlier = qGroup.indexOfChild(radioButton) +1;
         mood += earlier;
 
-        qGroup = questionnaireView.findViewById(R.id.q4Group);
-        qID = qGroup.getCheckedRadioButtonId();
-        radioButton = qGroup.findViewById(qID);
-        final int nightsAWeek = qGroup.indexOfChild(radioButton) +1;
-        mood += nightsAWeek;
-
         qGroup = questionnaireView.findViewById(R.id.q5Group);
         qID = qGroup.getCheckedRadioButtonId();
         radioButton = qGroup.findViewById(qID);
@@ -123,13 +117,8 @@ public class QFinal extends Fragment {
         final int impactGeneral = qGroup.indexOfChild(radioButton) +1;
         mood += impactGeneral;
 
-        qGroup = questionnaireView.findViewById(R.id.q9Group);
-        qID = qGroup.getCheckedRadioButtonId();
-        radioButton = qGroup.findViewById(qID);
-        final int problem = qGroup.indexOfChild(radioButton) +1;
-        mood += problem;
 
-        mood = mood/9;
+        mood = mood/7;
 
         DecimalFormat formatting = new DecimalFormat("#.##");
         mood = Double.parseDouble(formatting.format(mood));
@@ -137,11 +126,7 @@ public class QFinal extends Fragment {
 
         String participantID = getActivity().getApplicationContext().getSharedPreferences("name", MODE_PRIVATE).getString("participantID", "nothing");
 
-        if (participantID.contains("B")){
-            startActivity(new Intent(getActivity().getApplicationContext(), B_MainMenu.class));
-        } else {
-            startActivity(new Intent(getActivity().getApplicationContext(), MainMenu.class));
-        }
+        startActivity(new Intent(getActivity().getApplicationContext(), MainMenu.class));
 
 
         Date c = Calendar.getInstance().getTime();
@@ -164,12 +149,12 @@ public class QFinal extends Fragment {
                 user.setHowLong(howLong);
                 user.setAwake(awake);
                 user.setEarlier(earlier);
-                user.setNightsAWeek(nightsAWeek);
+                user.setNightsAWeek(-1);
                 user.setQuality(quality);
                 user.setImpactMood(impactMood);
                 user.setImpactActivities(impactActivities);
                 user.setImpactGeneral(impactGeneral);
-                user.setProblem(problem);
+                user.setProblem(-1);
                 user.setMood(finalMood);
 
                 getActivity().getApplicationContext().getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("howLong", howLong).apply();
@@ -205,6 +190,27 @@ public class QFinal extends Fragment {
             sb.append(moods[i]).append("gcm");
         }
         getActivity().getApplicationContext().getSharedPreferences("moods", MODE_PRIVATE).edit().putString("moods", sb.toString()).apply();
+
+        String experiments = getActivity().getApplicationContext().getSharedPreferences("experiments", MODE_PRIVATE).getString("experiments", "");
+
+        String[] experimentsArray = experiments.split("gcm");
+        String currentExperiment = getActivity().getApplicationContext().getSharedPreferences("name", MODE_PRIVATE).getString("experiment", "nothing");
+
+
+        ArrayList<String> experimentsArrayList = new ArrayList<String>(Arrays.asList(experimentsArray));
+        experimentsArrayList.add(currentExperiment + ".");
+
+
+        experimentsArray = experimentsArrayList.toArray(experimentsArray);
+
+        sb = new StringBuilder();
+        for (int i = 0; i < experimentsArray.length; i++) {
+            sb.append(experimentsArray[i]).append("gcm");
+        }
+        getActivity().getApplicationContext().getSharedPreferences("experiments", MODE_PRIVATE).edit().putString("experiments", sb.toString()).apply();
+
+        getActivity().getSharedPreferences("exp", MODE_PRIVATE).getString("picked", "picked");
+        getActivity().getSharedPreferences("exp", MODE_PRIVATE).edit().putString("picked", "picked").apply();
 
     }
 
