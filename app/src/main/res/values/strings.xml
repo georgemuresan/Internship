@@ -16,7 +16,7 @@
     <string name="consentPageTitle">CONSENT FORM</string>
     <string name="consentIntro">In order to proceed with the experiment, we will kindly ask you to look over the next paragraphs to understand your involvement into this study. Please initial the box(es) if you agree with the statement(s):
 </string>
-    <string name="permissionOne">I have read and understood the information sheet (20/07/2018 /Version 1.0) and have had the opportunity to ask questions about the study.</string>
+    <string name="permissionOne">I have read and understood the information sheet (26/11/2018 /Version 2.0) and have had the opportunity to ask questions about the study.</string>
     <string name="permissionTwo">I agree to take part in this research project and agree for my data to be used for the purpose of this study.</string>
     <string name="permissionThree">I understand my participation is voluntary and I may withdraw at any time for any reason without my rights being affected.</string>
     <string name="permissionFour">I understand my responses will be anonymised in reports of the research.</string>
@@ -398,6 +398,58 @@ To begin with, complete the consent form, input your name (that only YOU will be
     <string name="submitUpdate">SUBMIT</string>
     <string name="nextButton">NEXT</string>
     <string name="backButton">BACK</string>
+
+    <string name="surveyDesc">All of this information is optional - and we’re making the gender question as open as possible - but it is important for the research questions that we can understand effects that may be related to gender in particular, and these other situational contexts. That said, while we would appreciate you helping us with as much of this information as possible, how much you complete is over to you. Please note none of your answers are ever connected with any identifiable information about you.</string>
+    <string name="surveyTitle">SURVEY</string>
+    <string name="genderd">Which gender do you identify most with?</string>
+    <string name="gender1">Male</string>
+    <string name="gender2">Female</string>
+    <string name="gender3">I would prefer to not comment</string>
+
+    <string name="aged">What is your age?</string>
+    <string name="age1">18-24</string>
+    <string name="age2">25-34</string>
+    <string name="age3">35-44</string>
+    <string name="age4">45-54</string>
+    <string name="age5">Above 54</string>
+
+    <string name="raced">What would best describe you?</string>
+    <string name="race1">African American</string>
+    <string name="race2">Asian</string>
+    <string name="race3">Native American</string>
+    <string name="race4">White</string>
+    <string name="race5">Others</string>
+
+    <string name="degreed">What is your highest qualification?</string>
+    <string name="degree1">Less than high school diploma</string>
+    <string name="degree2">High school diploma or equivalent degree</string>
+    <string name="degree3">No degree</string>
+    <string name="degree4">Bachelor’s degree</string>
+    <string name="degree5">Master’s degree</string>
+
+    <string name="maritald">What is your marital status?</string>
+    <string name="marital1">Married</string>
+    <string name="marital2">Divorced</string>
+    <string name="marital3">Separated</string>
+    <string name="marital4">Widowed</string>
+    <string name="marital5">Unmarried</string>
+
+    <string name="employmentd">What is your current employment status?</string>
+    <string name="employment1">Full-time employment</string>
+    <string name="employment2">Part-time employment</string>
+    <string name="employment3">Unemployed</string>
+    <string name="employment4">Self-employed</string>
+    <string name="employment5">Home-maker</string>
+    <string name="employment6">Student</string>
+    <string name="employment7">Retired</string>
+
+    <string name="incomed">Which income group does your household fall under?</string>
+    <string name="income1">Less than $20,000</string>
+    <string name="income2">$21,000 – $30,000</string>
+    <string name="income3">$31,000 to $40,000</string>
+    <string name="income4">$41,000 to $50,000</string>
+    <string name="income5">$51,000 to $60,000</string>
+    <string name="income6">Above $60,000</string>
 
 
 </resources>

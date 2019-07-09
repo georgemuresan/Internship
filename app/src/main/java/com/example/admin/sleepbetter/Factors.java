@@ -177,7 +177,7 @@ public class Factors extends Fragment {
                 Toast.makeText(getActivity().getApplicationContext(), "You are not allowed to change your experiment as 5 days have not passed yet.", Toast.LENGTH_LONG).show();
 
 
-            } else if (differenceBetweenOldExperimentAndCurrent == 0 && getActivity().getSharedPreferences("expB", MODE_PRIVATE).getString("pickedB", "").equals("newPickedB")){
+            } else if (differenceBetweenOldExperimentAndCurrent == 0 && getActivity().getSharedPreferences("exp", MODE_PRIVATE).getString("picked", "").equals("newPicked")){
 
                 for (int i = 0; i < radioGroup.getChildCount(); i++) {
                     radioGroup.getChildAt(i).setEnabled(false);

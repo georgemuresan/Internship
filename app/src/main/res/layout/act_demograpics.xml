@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white"
-    tools:context=".Qfinal">
+    tools:context=".SecondPage">
 
     <View
         android:id="@+id/topView"
@@ -17,14 +17,13 @@
         tools:layout_editor_absoluteY="0dp" />
 
     <TextView
-        android:id="@+id/questionnaireTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="@string/questionnaireTitle"
+        android:text="@string/surveyTitle"
         android:textAllCaps="false"
         android:textColor="@android:color/black"
         android:textSize="30sp"
@@ -86,7 +85,7 @@
 
             <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="1595dp"
+                android:layout_height="1584dp"
                 tools:layout_editor_absoluteX="8dp"
                 tools:layout_editor_absoluteY="0dp">
 
@@ -96,7 +95,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
                     android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
                     android:clickable="false"
                     android:cursorVisible="false"
                     android:ems="10"
@@ -104,56 +102,12 @@
                     android:focusableInTouchMode="false"
                     android:hint="@string/some_explanation_about_the_input"
                     android:inputType="textMultiLine"
-                    android:text="@string/q1desc"
+                    android:text="@string/surveyDesc"
                     android:textSize="12sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
-
-                <EditText
-                    android:id="@+id/secondSet"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:clickable="false"
-                    android:cursorVisible="false"
-                    android:ems="10"
-                    android:focusable="false"
-                    android:focusableInTouchMode="false"
-                    android:hint="@string/some_explanation_about_the_input"
-                    android:inputType="textMultiLine"
-                    android:text="@string/q2desc"
-                    android:textSize="12sp"
-                    android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/q3Group" />
-
-                <EditText
-                    android:id="@+id/thirdSet"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:clickable="false"
-                    android:cursorVisible="false"
-                    android:ems="10"
-                    android:focusable="false"
-                    android:focusableInTouchMode="false"
-                    android:hint="@string/some_explanation_about_the_input"
-                    android:inputType="textMultiLine"
-                    android:text="@string/q3desc"
-                    android:textSize="12sp"
-                    android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/q5Group" />
 
                 <Button
                     android:id="@+id/submitButton"
@@ -165,13 +119,13 @@
                     android:text="@string/submitUpdate"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/q8Group" />
+                    app:layout_constraintTop_toBottomOf="@+id/q7Group" />
 
 
                 <EditText
                     android:id="@+id/fallAsleepUsually"
                     android:layout_width="match_parent"
-                    android:layout_height="14dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
@@ -183,7 +137,7 @@
                     android:focusableInTouchMode="false"
                     android:hint="@string/some_explanation_about_the_input"
                     android:inputType="textMultiLine|textUri"
-                    android:text="@string/s1.1"
+                    android:text="@string/genderd"
                     android:textSize="12sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.428"
@@ -205,12 +159,12 @@
                     android:focusableInTouchMode="false"
                     android:hint="@string/some_explanation_about_the_input"
                     android:inputType="textMultiLine|textUri"
-                    android:text="@string/s5.1"
+                    android:text="@string/maritald"
                     android:textSize="12sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/secondSet" />
+                    app:layout_constraintTop_toBottomOf="@+id/q4Group" />
 
                 <EditText
                     android:id="@+id/s6"
@@ -227,12 +181,12 @@
                     android:focusableInTouchMode="false"
                     android:hint="@string/some_explanation_about_the_input"
                     android:inputType="textMultiLine|textUri"
-                    android:text="@string/s6.1"
+                    android:text="@string/employmentd"
                     android:textSize="12sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/thirdSet" />
+                    app:layout_constraintTop_toBottomOf="@+id/q5Group" />
 
                 <EditText
                     android:id="@+id/s7"
@@ -249,33 +203,12 @@
                     android:focusableInTouchMode="false"
                     android:hint="@string/some_explanation_about_the_input"
                     android:inputType="textMultiLine|textUri"
-                    android:text="@string/s7.1"
+                    android:text="@string/incomed"
                     android:textSize="12sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/q6Group" />
-
-                <EditText
-                    android:id="@+id/s8"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:background="@android:color/transparent"
-                    android:clickable="false"
-                    android:cursorVisible="false"
-                    android:ems="10"
-                    android:focusable="false"
-                    android:focusableInTouchMode="false"
-                    android:hint="@string/some_explanation_about_the_input"
-                    android:inputType="textMultiLine|textUri"
-                    android:text="@string/s8.1"
-                    android:textSize="12sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/q7Group" />
 
                 <EditText
                     android:id="@+id/wakeUpUsually"
@@ -292,7 +225,7 @@
                     android:focusableInTouchMode="false"
                     android:hint="@string/some_explanation_about_the_input"
                     android:inputType="textMultiLine"
-                    android:text="@string/s2.1"
+                    android:text="@string/aged"
                     android:textSize="12sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
@@ -301,6 +234,28 @@
 
                 <EditText
                     android:id="@+id/usually"
+                    android:layout_width="match_parent"
+                    android:layout_height="14dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@android:color/transparent"
+                    android:clickable="false"
+                    android:cursorVisible="false"
+                    android:ems="10"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:hint="@string/some_explanation_about_the_input"
+                    android:inputType="textMultiLine"
+                    android:text="@string/degreed"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/q3Group" />
+
+                <EditText
+                    android:id="@+id/freshUsually2d"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
@@ -314,7 +269,7 @@
                     android:focusableInTouchMode="false"
                     android:hint="@string/some_explanation_about_the_input"
                     android:inputType="textMultiLine"
-                    android:text="@string/s3.1"
+                    android:text="@string/raced"
                     android:textSize="12sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
@@ -324,7 +279,7 @@
                 <RadioGroup
                     android:id="@+id/q1Group"
                     android:layout_width="327dp"
-                    android:layout_height="128dp"
+                    android:layout_height="98dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
@@ -333,39 +288,26 @@
                     app:layout_constraintTop_toBottomOf="@+id/fallAsleepUsually">
 
                     <RadioButton
-                        android:id="@+id/radioButton2"
+                        android:id="@+id/radioButton2fg"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/op1" />
+                        android:text="@string/gender1" />
 
                     <RadioButton
-                        android:id="@+id/radioButton4"
+                        android:id="@+id/radioButton4g"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/op2" />
+                        android:text="@string/gender2" />
 
                     <RadioButton
-                        android:id="@+id/radioButton"
+                        android:id="@+id/radioButtongf"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/op3" />
+                        android:text="@string/gender3" />
 
-                    <RadioButton
-                        android:id="@+id/radioButton3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/op4" />
-
-                    <RadioButton
-                        android:id="@+id/radioButton5"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/op5" />
                 </RadioGroup>
 
                 <RadioGroup
@@ -380,39 +322,39 @@
                     app:layout_constraintTop_toBottomOf="@+id/wakeUpUsually">
 
                     <RadioButton
-                        android:id="@+id/radioButton7"
+                        android:id="@+id/fd"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/op1" />
+                        android:text="@string/age1" />
 
                     <RadioButton
-                        android:id="@+id/radioButton8"
+                        android:id="@+id/f"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/op2" />
+                        android:text="@string/age2" />
 
                     <RadioButton
-                        android:id="@+id/radioButton9"
+                        android:id="@+id/sd"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/op3" />
+                        android:text="@string/age3" />
 
                     <RadioButton
-                        android:id="@+id/radioButton10"
+                        android:id="@+id/raddsioButton10"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/op4" />
+                        android:text="@string/age4" />
 
                     <RadioButton
-                        android:id="@+id/radioButton6"
+                        android:id="@+id/rssadioButton6"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/op5" />
+                        android:text="@string/age5" />
                 </RadioGroup>
 
                 <RadioGroup
@@ -423,6 +365,55 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/freshUsually2d">
+
+                    <RadioButton
+                        android:id="@+id/radioButtddon7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/race1" />
+
+                    <RadioButton
+                        android:id="@+id/radiddoButton8"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/race2" />
+
+                    <RadioButton
+                        android:id="@+id/radioButton9asd"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/race3" />
+
+                    <RadioButton
+                        android:id="@+id/radioButdsfton10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/race4" />
+
+                    <RadioButton
+                        android:id="@+id/radioButton6fd"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/race5" />
+                </RadioGroup>
+
+                <RadioGroup
+                    android:id="@+id/q4Group"
+                    android:layout_width="327dp"
+                    android:layout_height="128dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/usually">
 
@@ -431,35 +422,35 @@
                         android:layout_width="296dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/op1.1" />
+                        android:text="@string/degree1" />
 
                     <RadioButton
                         android:id="@+id/radioButton13"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/op2" />
+                        android:text="@string/degree2" />
 
                     <RadioButton
                         android:id="@+id/radioButton11"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/op3" />
+                        android:text="@string/degree3" />
 
                     <RadioButton
                         android:id="@+id/radioButton12"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/op4" />
+                        android:text="@string/degree4" />
 
                     <RadioButton
                         android:id="@+id/radioButton14"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/op5" />
+                        android:text="@string/degree5" />
                 </RadioGroup>
 
                 <RadioGroup
@@ -470,6 +461,7 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/s5">
 
@@ -478,41 +470,41 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/op1.3" />
+                        android:text="@string/marital1" />
 
                     <RadioButton
                         android:id="@+id/radioButton22"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/op2.3" />
+                        android:text="@string/marital2" />
 
                     <RadioButton
                         android:id="@+id/radioButton23"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/op3.3" />
+                        android:text="@string/marital3" />
 
                     <RadioButton
                         android:id="@+id/radioButton24"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/op4.3" />
+                        android:text="@string/marital4" />
 
                     <RadioButton
                         android:id="@+id/radioButton25"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/op5.3" />
+                        android:text="@string/marital5" />
                 </RadioGroup>
 
                 <RadioGroup
                     android:id="@+id/q6Group"
                     android:layout_width="327dp"
-                    android:layout_height="128dp"
+                    android:layout_height="158dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
@@ -525,35 +517,49 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/op1.4" />
+                        android:text="@string/employment1" />
 
                     <RadioButton
                         android:id="@+id/radioButton27"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/op2.4" />
+                        android:text="@string/employment2" />
 
                     <RadioButton
                         android:id="@+id/radioButton28"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/op3.4" />
+                        android:text="@string/employment3" />
 
                     <RadioButton
                         android:id="@+id/radioButton29"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/op4.4" />
+                        android:text="@string/employment4" />
 
                     <RadioButton
                         android:id="@+id/radioButton30"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/op5.4" />
+                        android:text="@string/employment5" />
+
+                    <RadioButton
+                        android:id="@+id/radioButton62"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/employment6" />
+
+                    <RadioButton
+                        android:id="@+id/radioButton63"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/employment7" />
                 </RadioGroup>
 
                 <RadioGroup
@@ -572,83 +578,42 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/op1.4" />
+                        android:text="@string/income1" />
 
                     <RadioButton
                         android:id="@+id/radioButton31"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/op2.4" />
+                        android:text="@string/income2" />
 
                     <RadioButton
                         android:id="@+id/radioButton32"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/op3.4" />
+                        android:text="@string/income3" />
 
                     <RadioButton
                         android:id="@+id/radioButton33"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/op4.4" />
+                        android:text="@string/income4" />
 
                     <RadioButton
                         android:id="@+id/radioButton34"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/op5.4" />
-                </RadioGroup>
-
-                <RadioGroup
-                    android:id="@+id/q8Group"
-                    android:layout_width="327dp"
-                    android:layout_height="128dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/s8">
+                        android:text="@string/income5" />
 
                     <RadioButton
-                        android:id="@+id/radioButton36"
+                        android:id="@+id/radioButton64"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/op1.4" />
-
-                    <RadioButton
-                        android:id="@+id/radioButton37"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/op2.4" />
-
-                    <RadioButton
-                        android:id="@+id/radioButton38"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/op3.4" />
-
-                    <RadioButton
-                        android:id="@+id/radioButton39"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/op4.4" />
-
-                    <RadioButton
-                        android:id="@+id/radioButton40"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/op5.4" />
+                        android:text="@string/income6" />
                 </RadioGroup>
 
 

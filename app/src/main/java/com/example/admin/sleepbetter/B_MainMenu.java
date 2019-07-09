@@ -71,6 +71,11 @@ public class B_MainMenu extends AppCompatActivity implements NavigationView.OnNa
 
         int shouldBe = c1.get(Calendar.DAY_OF_YEAR) - c2.get(Calendar.DAY_OF_YEAR);
 
+        String expStartDate = getSharedPreferences("date", MODE_PRIVATE).getString("startExperiment", "");
+
+        if (shouldBe == 0 && expStartDate.equals("")) {
+            Toast.makeText(getApplicationContext(), "Please choose an experiment.", Toast.LENGTH_LONG).show();
+        }
 
         //update experiments
 
@@ -155,8 +160,6 @@ public class B_MainMenu extends AppCompatActivity implements NavigationView.OnNa
         });
 
 
-        String expStartDate = getSharedPreferences("date", MODE_PRIVATE).getString("startExperiment", "");
-
         TextView remainedDaysText = (TextView) findViewById(R.id.youHave);
 
         if (expStartDate.equals("")){
@@ -166,7 +169,6 @@ public class B_MainMenu extends AppCompatActivity implements NavigationView.OnNa
 
             //Setting dates
             try {
-                date1 = dates.parse(currentDate);
                 date3 = dates.parse(expStartDate);
             } catch (ParseException e) {
                 e.printStackTrace();
@@ -175,7 +177,7 @@ public class B_MainMenu extends AppCompatActivity implements NavigationView.OnNa
             Calendar c3 = Calendar.getInstance();
             c3.setTime(date3);
 
-            int experimentDaysDifference = c1.get(Calendar.DAY_OF_YEAR) - c2.get(Calendar.DAY_OF_YEAR);
+            int experimentDaysDifference = c1.get(Calendar.DAY_OF_YEAR) - c3.get(Calendar.DAY_OF_YEAR);
 
             int difference = 5 - experimentDaysDifference;
 
@@ -183,7 +185,7 @@ public class B_MainMenu extends AppCompatActivity implements NavigationView.OnNa
             remainedDaysText.setText("You have " + difference + " days left of the current experiment.");
 
 
-            if (expStartDate.equals(startingDate)) {
+            if (expStartDate.equals(currentDate)) {
                 remainedDaysText.setText("You have 5 days left of the current experiment.");
             } else if (difference < 5 && difference != 0){
                 remainedDaysText.setText(difference + " days left of the current experiment.");

@@ -7,22 +7,18 @@ import android.arch.persistence.room.Room;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioGroup;
-
-import com.google.gson.Gson;
+import android.widget.Toast;
 
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -98,6 +94,7 @@ public class QInitial extends AppCompatActivity {
 
     private void goToMenu() {
 
+        int answered = 0;
         double mood =0;
 
         RadioGroup qGroup = this.findViewById(R.id.q1Group);
@@ -105,7 +102,7 @@ public class QInitial extends AppCompatActivity {
         View radioButton = qGroup.findViewById(qID);
         final int howLong = qGroup.indexOfChild(radioButton) +1;
         mood += howLong;
-
+        if (howLong == 0) answered++;
         //RadioButton r = (RadioButton) q1Group.getChildAt(idx);
         // final String howLong = r.getText().toString();
 
@@ -114,146 +111,158 @@ public class QInitial extends AppCompatActivity {
         radioButton = qGroup.findViewById(qID);
         final int awake = qGroup.indexOfChild(radioButton) +1;
         mood += awake;
+        if (awake == 0) answered++;
 
         qGroup = this.findViewById(R.id.q3Group);
         qID = qGroup.getCheckedRadioButtonId();
         radioButton = qGroup.findViewById(qID);
         final int earlier = qGroup.indexOfChild(radioButton) +1;
         mood += earlier;
+        if (earlier == 0) answered++;
 
         qGroup = this.findViewById(R.id.q4Group);
         qID = qGroup.getCheckedRadioButtonId();
         radioButton = qGroup.findViewById(qID);
         final int nightsAWeek = qGroup.indexOfChild(radioButton) +1;
         mood += nightsAWeek;
+        if (nightsAWeek == 0) answered++;
 
         qGroup = this.findViewById(R.id.q5Group);
         qID = qGroup.getCheckedRadioButtonId();
         radioButton = qGroup.findViewById(qID);
         final int quality = qGroup.indexOfChild(radioButton) +1;
         mood += quality;
+        if (quality == 0) answered++;
 
         qGroup = this.findViewById(R.id.q6Group);
         qID = qGroup.getCheckedRadioButtonId();
         radioButton = qGroup.findViewById(qID);
         final int impactMood = qGroup.indexOfChild(radioButton) +1;
         mood += impactMood;
+        if (impactMood == 0) answered++;
 
         qGroup = this.findViewById(R.id.q7Group);
         qID = qGroup.getCheckedRadioButtonId();
         radioButton = qGroup.findViewById(qID);
         final int impactActivities = qGroup.indexOfChild(radioButton) +1;
         mood += impactActivities;
+        if (impactActivities == 0) answered++;
 
         qGroup = this.findViewById(R.id.q8Group);
         qID = qGroup.getCheckedRadioButtonId();
         radioButton = qGroup.findViewById(qID);
         final int impactGeneral = qGroup.indexOfChild(radioButton) +1;
         mood += impactGeneral;
+        if (impactGeneral == 0) answered++;
 
         qGroup = this.findViewById(R.id.q9Group);
         qID = qGroup.getCheckedRadioButtonId();
         radioButton = qGroup.findViewById(qID);
         final int problem = qGroup.indexOfChild(radioButton) +1;
         mood += problem;
+        if (problem == 0) answered++;
 
-        mood = mood/9;
-
-        DecimalFormat formatting = new DecimalFormat("#.##");
-        mood = Double.parseDouble(formatting.format(mood));
-
-        Intent intent = new Intent(this, MainMenu.class);
-        Intent intentB = new Intent(this, B_MainMenu.class);
-
-    //    getSharedPreferences("questionnaire", MODE_PRIVATE).getInt("apetite", 0);
-   //     getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("apetite", 1).apply();
-
-
-        Date c = Calendar.getInstance().getTime();
-        SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
-        final String currentDate = df.format(c);
-
-        getSharedPreferences("date", MODE_PRIVATE).getString("startingDate", "");
-        getSharedPreferences("date", MODE_PRIVATE).edit().putString("startingDate", currentDate).apply();
-
-        String participantID = getSharedPreferences("name", MODE_PRIVATE).getString("participantID", "nothing");
-
-        if (participantID.contains("B") || participantID.contains("b")){
-            startActivity(intentB);
+        if (answered > 0){
+            Toast.makeText(getApplicationContext(), "In order to proceed, please answer ALL questions", Toast.LENGTH_LONG).show();
         } else {
-            startActivity(intent);
-        }
+            mood = mood / 9;
+
+            DecimalFormat formatting = new DecimalFormat("#.##");
+            mood = Double.parseDouble(formatting.format(mood));
+
+            Intent intent = new Intent(this, MainMenu.class);
+            Intent intentB = new Intent(this, B_MainMenu.class);
+
+            //    getSharedPreferences("questionnaire", MODE_PRIVATE).getInt("apetite", 0);
+            //     getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("apetite", 1).apply();
 
 
-        final double finalMood = mood;
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
+            Date c = Calendar.getInstance().getTime();
+            SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
+            final String currentDate = df.format(c);
 
-                userDatabase = Room.databaseBuilder(getApplicationContext(), UserDatabase.class, DATABASE_NAME).fallbackToDestructiveMigration().build();
-                userDatabase.daoAccess().deleteUserExperimentTable();
-                userDatabase.daoAccess().deleteUserQuesionnaireTable();
-                userDatabase.daoAccess().deleteUserDiaryTable();
+            getSharedPreferences("date", MODE_PRIVATE).getString("startingDate", "");
+            getSharedPreferences("date", MODE_PRIVATE).edit().putString("startingDate", currentDate).apply();
 
-                UserQuestionnaire user = new UserQuestionnaire();
-                String username = getSharedPreferences("name", MODE_PRIVATE).getString("participantID", "nothing");
-                user.setUsername(username);
-                user.setDate(currentDate);
-                user.setHowLong(howLong);
-                user.setAwake(awake);
-                user.setEarlier(earlier);
-                user.setNightsAWeek(nightsAWeek);
-                user.setQuality(quality);
-                user.setImpactMood(impactMood);
-                user.setImpactActivities(impactActivities);
-                user.setImpactGeneral(impactGeneral);
-                user.setProblem(problem);
-                user.setMood(finalMood);
+            String participantID = getSharedPreferences("name", MODE_PRIVATE).getString("participantID", "nothing");
 
-                getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("howLong", howLong).apply();
-                getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("awake", awake).apply();
-                getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("earlier", earlier).apply();
-                getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("quality", quality).apply();
-                getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("impactMood", impactMood).apply();
-                getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("impactActivities", impactActivities).apply();
-                getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("impactGeneral", impactGeneral).apply();
-                getSharedPreferences("MOOD", MODE_PRIVATE).edit().putFloat("mood", (float) finalMood).apply();
-                userDatabase.daoAccess().insertSingleUserQuestionnaire(user);
-
-
-                Report rep = new Report(userDatabase, getApplicationContext());
-                rep.save(username, true, getSharedPreferences("consent", MODE_PRIVATE).getString("consent", "nothing"));
-
-             //   ArrayList<String> diary_comments = new ArrayList<String>();
-            //    diary_comments.add("");
-                String diary_comments = "gcm gcm gcm gcm gcm gcm gcm gcm gcm gcm gcm gcm gcm gcm gcm gcm";
-                getSharedPreferences("diary", MODE_PRIVATE).edit().putString("diary", diary_comments).apply();
-                String experiments = "No experiment for the initial day.";
-                getSharedPreferences("experiments", MODE_PRIVATE).edit().putString("experiments", experiments).apply();
+            if (participantID.contains("B") || participantID.contains("b")) {
+                startActivity(intentB);
+            } else {
+                startActivity(intent);
             }
-        }).start();
 
 
-        String moods_string = getApplicationContext().getSharedPreferences("moods", MODE_PRIVATE).getString("moods", "");
+            final double finalMood = mood;
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
 
-        String[] moods = new String[0];
+                    userDatabase = Room.databaseBuilder(getApplicationContext(), UserDatabase.class, DATABASE_NAME).fallbackToDestructiveMigration().build();
+                    userDatabase.daoAccess().deleteUserExperimentTable();
+                    userDatabase.daoAccess().deleteUserQuesionnaireTable();
+                    userDatabase.daoAccess().deleteUserDiaryTable();
 
-        ArrayList<String> moodsArrayList = new ArrayList<String>();
+                    UserQuestionnaire user = new UserQuestionnaire();
+                    String username = getSharedPreferences("name", MODE_PRIVATE).getString("participantID", "nothing");
+                    user.setUsername(username);
+                    user.setDate(currentDate);
+                    user.setHowLong(howLong);
+                    user.setAwake(awake);
+                    user.setEarlier(earlier);
+                    user.setNightsAWeek(nightsAWeek);
+                    user.setQuality(quality);
+                    user.setImpactMood(impactMood);
+                    user.setImpactActivities(impactActivities);
+                    user.setImpactGeneral(impactGeneral);
+                    user.setProblem(problem);
+                    user.setMood(finalMood);
 
-        moodsArrayList.add(String.valueOf(mood));
+                    getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("howLong", howLong).apply();
+                    getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("awake", awake).apply();
+                    getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("earlier", earlier).apply();
+                    getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("quality", quality).apply();
+                    getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("impactMood", impactMood).apply();
+                    getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("impactActivities", impactActivities).apply();
+                    getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("impactGeneral", impactGeneral).apply();
+                    getSharedPreferences("MOOD", MODE_PRIVATE).edit().putFloat("mood", (float) finalMood).apply();
+                    userDatabase.daoAccess().insertSingleUserQuestionnaire(user);
 
-        moods = moodsArrayList.toArray(moods);
 
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < moods.length; i++) {
-            sb.append(moods[i]).append("gcm");
+                    Report rep = new Report(userDatabase, getApplicationContext());
+                    rep.save(username, true, getSharedPreferences("consent", MODE_PRIVATE).getString("consent", "nothing"));
+
+                    //   ArrayList<String> diary_comments = new ArrayList<String>();
+                    //    diary_comments.add("");
+                    String diary_comments = "gcm gcm gcm gcm gcm gcm gcm gcm gcm gcm gcm gcm gcm gcm gcm gcm";
+                    getSharedPreferences("diary", MODE_PRIVATE).edit().putString("diary", diary_comments).apply();
+                    String experiments = "No experiment for the initial day.";
+                    getSharedPreferences("experiments", MODE_PRIVATE).edit().putString("experiments", experiments).apply();
+                }
+            }).start();
+
+
+            String moods_string = getApplicationContext().getSharedPreferences("moods", MODE_PRIVATE).getString("moods", "");
+
+            String[] moods = new String[0];
+
+            ArrayList<String> moodsArrayList = new ArrayList<String>();
+
+            moodsArrayList.add(String.valueOf(mood));
+
+            moods = moodsArrayList.toArray(moods);
+
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < moods.length; i++) {
+                sb.append(moods[i]).append("gcm");
+            }
+            getApplicationContext().getSharedPreferences("moods", MODE_PRIVATE).edit().putString("moods", sb.toString()).apply();
+
+            getSharedPreferences("exp", MODE_PRIVATE).getString("picked", "picked");
+            getSharedPreferences("exp", MODE_PRIVATE).edit().putString("picked", "picked").apply();
+            getSharedPreferences("expB", MODE_PRIVATE).getString("pickedB", "pickedB");
+            getSharedPreferences("expB", MODE_PRIVATE).edit().putString("pickedB", "pickedB").apply();
         }
-        getApplicationContext().getSharedPreferences("moods", MODE_PRIVATE).edit().putString("moods", sb.toString()).apply();
-
-        getSharedPreferences("exp", MODE_PRIVATE).getString("picked", "picked");
-        getSharedPreferences("exp", MODE_PRIVATE).edit().putString("picked", "picked").apply();
-        getSharedPreferences("expB", MODE_PRIVATE).getString("pickedB", "pickedB");
-        getSharedPreferences("expB", MODE_PRIVATE).edit().putString("pickedB", "pickedB").apply();
     }
 
 /*

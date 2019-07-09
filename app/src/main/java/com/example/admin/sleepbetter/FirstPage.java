@@ -137,7 +137,7 @@ public class FirstPage extends AppCompatActivity {
         } else {
 
             if (participantID.getText().toString().contains("B") || participantID.getText().toString().contains("b") || participantID.getText().toString().contains("A") || participantID.getText().toString().contains("a")) {
-                Intent intent = new Intent(this, Notice.class);
+                Intent intent = new Intent(this, Demographics.class);
 
                 String name = nameBox.getText().toString();
                 String participant = participantID.getText().toString();

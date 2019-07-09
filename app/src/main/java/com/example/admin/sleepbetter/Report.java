@@ -49,14 +49,14 @@ public class Report {
 
             BufferedWriter bw = null;
             bw = new BufferedWriter(new FileWriter(f));
-            bw.write("Username, Date, How long, Awake, Earlier, Nights A Week, Quality, Impact mood, Impact activities, Impact general, Problem, mood, \n");
+            bw.write("Username, Date, How long, Awake, Earlier, Nights A Week, Quality, Impact mood, Impact activities, Impact general, Problem, mood, Demographics, \n");
 
             for (int i = 0; i < uq.size(); i++) {
                 bw.append(uq.get(i).getUsername() + ", " + uq.get(i).getDate() + ", " + uq.get(i).getHowLong() +
                         ", " + uq.get(i).getAwake() + ", " + uq.get(i).getEarlier() + ", " + uq.get(0).getNightsAWeek() +
                         ", " + uq.get(i).getQuality() + ", " + uq.get(i).getImpactMood() +
                         ", " + uq.get(i).getImpactActivities() + ", " + uq.get(i).getImpactGeneral() + ", " + uq.get(0).getProblem() + ", " +
-                        uq.get(i).getMood() + "\n");
+                        uq.get(i).getMood() + ", " +  context.getSharedPreferences("demographics", MODE_PRIVATE).getString("demographics", "") + "\n");
             }
 
             bw.close();
@@ -72,7 +72,7 @@ public class Report {
 
                 BufferedWriter bw2 = null;
                 bw2 = new BufferedWriter(new FileWriter(f2));
-                bw2.write("Username, Date, Experiment, L1 sunlight exposure, L1 half an hour, L1 captures sunlight, L2 app, L2 glasses, L3 bright, L3 TV, C1 when drink, C1 when sleep, C2 cups, C2 cans, C2 energy, C3 drink, C3 empty, S1 when sleep, S1 when wak, S2 when sleep, S2 when wake, S3 relaxed, S3 activity, S4 when sleep, Overall better, \n");
+                bw2.write("Username, Date, Experiment, L1 sunlight exposure, L1 half an hour, L1 captures sunlight, L2 app, L2 glasses, L3 bright, L3 TV, C1 when drink, C1 when sleep, C2 cups, C2 cans, C2 energy, C3 drink, C3 empty, S1 when sleep, S1 when wak, S2 when sleep, S2 when wake, S3 relaxed, S3 activity, S4 when sleep, Overall better, Demographics, \n");
 
                 for (int i = 0; i < ue.size(); i++) {
                     bw2.append(ue.get(i).getUsername() + ", " + ue.get(i).getDate() + ", " + ue.get(i).getExperiment() +
@@ -83,7 +83,7 @@ public class Report {
                             + ue.get(i).getCaffeineTwoEnergy() + ", " + ue.get(i).getCaffeineThreeDrink() + ", " + ue.get(i).getCaffeineThreeEmpty() + ", "
                             + ue.get(i).getScheduleOneWhenSleep() + ", " + ue.get(i).getScheduleOneWhenWake() + ", " + ue.get(i).getScheduleTwoWhenSleep() + ", "
                             + ue.get(i).getScheduleTwoWhenWake() + ", " + ue.get(i).getScheduleThreeRelaxed() + ", " + ue.get(i).getScheduleThreeActivity() + ", "
-                            + ue.get(i).getScheduleFourWhenSleep() + ", " + ue.get(i).getOverallBetter() + "\n");
+                            + ue.get(i).getScheduleFourWhenSleep() + ", " + ue.get(i).getOverallBetter() + ", " +  context.getSharedPreferences("demographics", MODE_PRIVATE).getString("demographics", "") + "\n");
                 }
 
                 bw2.close();

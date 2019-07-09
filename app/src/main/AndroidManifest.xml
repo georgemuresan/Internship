@@ -45,6 +45,7 @@
         <activity android:name=".Notice"></activity>
         <activity android:name=".QInitial"></activity>
         <activity android:name=".B_WhatExperiments"></activity>
+        <activity android:name=".Demographics"></activity>
     </application>
 
 </manifest>

@@ -22,6 +22,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -43,6 +44,7 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.act_menu);
+
 
         Date c = Calendar.getInstance().getTime();
         SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
@@ -72,6 +74,13 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
         int shouldBe = c1.get(Calendar.DAY_OF_YEAR) - c2.get(Calendar.DAY_OF_YEAR);
 
         final int finalShouldBe = shouldBe;
+
+        String expStartDate = getSharedPreferences("date", MODE_PRIVATE).getString("startExperiment", "");
+
+        if (shouldBe == 0 && expStartDate.equals("")) {
+            Toast.makeText(getApplicationContext(), "Please choose an experiment.", Toast.LENGTH_LONG).show();
+        }
+
 
         new Thread(new Runnable() {
             @Override
@@ -234,8 +243,6 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
         });
 
 
-        String expStartDate = getSharedPreferences("date", MODE_PRIVATE).getString("startExperiment", "");
-
         TextView remainedDaysText = (TextView) findViewById(R.id.youHave);
 
         if (expStartDate.equals("")){
@@ -245,7 +252,6 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
 
             //Setting dates
             try {
-                date1 = dates.parse(currentDate);
                 date3 = dates.parse(expStartDate);
             } catch (ParseException e) {
                 e.printStackTrace();
@@ -254,7 +260,7 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
             Calendar c3 = Calendar.getInstance();
             c3.setTime(date3);
 
-            int experimentDaysDifference = c1.get(Calendar.DAY_OF_YEAR) - c2.get(Calendar.DAY_OF_YEAR);
+            int experimentDaysDifference = c1.get(Calendar.DAY_OF_YEAR) - c3.get(Calendar.DAY_OF_YEAR);
 
             int difference = 5 - experimentDaysDifference;
 
@@ -262,7 +268,7 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
             remainedDaysText.setText("You have " + difference + " days left of the current experiment.");
 
 
-            if (expStartDate.equals(startingDate)) {
+            if (expStartDate.equals(currentDate)) {
                 remainedDaysText.setText("You have 5 days left of the current experiment.");
             } else if (difference < 5 && difference != 0){
                 remainedDaysText.setText(difference + " days left of the current experiment.");
