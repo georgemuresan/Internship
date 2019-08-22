@@ -68,8 +68,10 @@
 
         <TextView
             android:id="@+id/lightIntro"
+            app:autoSizeTextType="uniform"
+            android:maxLines="30"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="70dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:text="@string/brightExposureIntro"
@@ -82,13 +84,15 @@
             android:id="@+id/ScrollViewQuestionnaire"
             style="@android:style/Widget.Material.ScrollView"
             android:layout_width="match_parent"
-            android:layout_height="425dp"
+            android:layout_height="0dp"
+            android:layout_marginBottom="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:fillViewport="true"
             android:scrollbarStyle="insideOverlay"
             android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.454"
             app:layout_constraintStart_toStartOf="parent"
@@ -113,7 +117,7 @@
                 <android.support.constraint.ConstraintLayout
                     android:id="@+id/fr"
                     android:layout_width="match_parent"
-                    android:layout_height="660dp"
+                    android:layout_height="wrap_content"
                     tools:layout_editor_absoluteX="8dp"
                     tools:layout_editor_absoluteY="0dp">
 
@@ -200,7 +204,7 @@
 
                     <RadioGroup
                         android:id="@+id/radioGroup2"
-                        android:layout_width="327dp"
+                        android:layout_width="match_parent"
                         android:layout_height="128dp"
                         android:layout_marginEnd="8dp"
                         android:layout_marginStart="8dp"
@@ -382,9 +386,12 @@
                         android:id="@+id/submitUpdate"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp"
                         android:layout_marginEnd="8dp"
                         android:layout_marginStart="8dp"
+                        android:layout_marginTop="16dp"
                         android:text="@string/nextButton"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/sunlightGroup" />

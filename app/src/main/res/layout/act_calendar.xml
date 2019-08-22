@@ -51,10 +51,13 @@
 
         <TextView
             android:id="@+id/factorsIntro"
-            android:layout_width="362dp"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="130dp"
+            android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="12dp"
+            app:autoSizeTextType="uniform"
+            android:maxLines="30"
             android:text="@string/calendarIntro"
             android:textColor="@android:color/black"
             app:layout_constraintEnd_toEndOf="parent"
@@ -63,11 +66,12 @@
             app:layout_constraintTop_toBottomOf="@+id/topView" />
 
         <RelativeLayout
-            android:layout_width="366dp"
-            android:layout_height="418dp"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/factorsIntro"

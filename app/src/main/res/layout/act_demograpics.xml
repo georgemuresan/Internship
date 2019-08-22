@@ -54,7 +54,7 @@
         android:id="@+id/ScrollViewQuestionnaire"
         style="@android:style/Widget.Material.ScrollView"
         android:layout_width="match_parent"
-        android:layout_height="458dp"
+        android:layout_height="0dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
@@ -85,14 +85,14 @@
 
             <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="1584dp"
+                android:layout_height="wrap_content"
                 tools:layout_editor_absoluteX="8dp"
                 tools:layout_editor_absoluteY="0dp">
 
                 <EditText
                     android:id="@+id/firstSet"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="160dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginStart="8dp"
                     android:clickable="false"
@@ -102,9 +102,11 @@
                     android:focusableInTouchMode="false"
                     android:hint="@string/some_explanation_about_the_input"
                     android:inputType="textMultiLine"
+                    android:maxLines="30"
                     android:text="@string/surveyDesc"
                     android:textSize="12sp"
                     android:textStyle="bold"
+                    app:autoSizeTextType="uniform"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -113,10 +115,12 @@
                     android:id="@+id/submitButton"
                     android:layout_width="102dp"
                     android:layout_height="43dp"
+                    android:layout_marginBottom="24dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:text="@string/submitUpdate"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/q7Group" />
@@ -278,7 +282,7 @@
 
                 <RadioGroup
                     android:id="@+id/q1Group"
-                    android:layout_width="327dp"
+                    android:layout_width="match_parent"
                     android:layout_height="98dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginStart="8dp"
@@ -312,7 +316,7 @@
 
                 <RadioGroup
                     android:id="@+id/q2Group"
-                    android:layout_width="327dp"
+                    android:layout_width="match_parent"
                     android:layout_height="128dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginStart="8dp"
@@ -359,7 +363,7 @@
 
                 <RadioGroup
                     android:id="@+id/q3Group"
-                    android:layout_width="327dp"
+                    android:layout_width="match_parent"
                     android:layout_height="128dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginStart="8dp"
@@ -407,8 +411,8 @@
 
                 <RadioGroup
                     android:id="@+id/q4Group"
-                    android:layout_width="327dp"
-                    android:layout_height="128dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="148dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
@@ -455,7 +459,7 @@
 
                 <RadioGroup
                     android:id="@+id/q5Group"
-                    android:layout_width="327dp"
+                    android:layout_width="match_parent"
                     android:layout_height="128dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginStart="8dp"
@@ -503,7 +507,7 @@
 
                 <RadioGroup
                     android:id="@+id/q6Group"
-                    android:layout_width="327dp"
+                    android:layout_width="match_parent"
                     android:layout_height="158dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginStart="8dp"
@@ -564,7 +568,7 @@
 
                 <RadioGroup
                     android:id="@+id/q7Group"
-                    android:layout_width="327dp"
+                    android:layout_width="match_parent"
                     android:layout_height="128dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginStart="8dp"

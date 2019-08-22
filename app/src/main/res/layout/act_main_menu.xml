@@ -25,22 +25,21 @@
             <Button
                 android:id="@+id/whatSleep"
                 android:layout_width="139dp"
-                android:layout_height="111dp"
+                android:layout_height="71dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="24dp"
                 android:background="@drawable/rounded_button_one"
                 android:text="@string/firstOptionMainMenu"
                 android:textColor="@android:color/white"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.502"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/textView"
+                app:layout_constraintStart_toStartOf="@+id/textView"
                 app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
             <Button
                 android:id="@+id/WhatExperiments"
                 android:layout_width="139dp"
-                android:layout_height="111dp"
+                android:layout_height="71dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginTop="8dp"
                 android:background="@drawable/rounded_button_two"
@@ -92,14 +91,13 @@
                 android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
                 android:text="@string/introUp"
                 android:textColor="@android:color/holo_red_dark"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/imageView3"
+                app:layout_constraintStart_toStartOf="@+id/imageView3"
                 app:layout_constraintTop_toBottomOf="@+id/imageView3" />
 
             <TextView
@@ -107,26 +105,25 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
                 android:text="@string/introUpsub"
                 android:textColor="@android:color/holo_blue_dark"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/imageView3"
+                app:layout_constraintStart_toStartOf="@+id/imageView3"
                 app:layout_constraintTop_toBottomOf="@+id/textView" />
 
             <TextView
                 android:id="@+id/youHave"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="102dp"
-                android:layout_marginStart="102dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="13dp"
                 android:text="You have 2 days left of the current experiment."
                 android:textColor="#000000"
                 android:textSize="8sp"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/textView"
+                app:layout_constraintStart_toStartOf="@+id/textView"
                 app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
             <ImageView
@@ -135,9 +132,8 @@
                 android:layout_height="92dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.502"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/textView"
+                app:layout_constraintStart_toStartOf="@+id/textView"
                 app:layout_constraintTop_toBottomOf="@+id/WhatExperiments"
                 app:srcCompat="@drawable/sleep" />
 
@@ -161,8 +157,8 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/upText"
+                app:layout_constraintStart_toStartOf="@+id/upText"
                 app:layout_constraintTop_toBottomOf="@+id/upText"
                 app:srcCompat="@drawable/pill" />
         </android.support.constraint.ConstraintLayout>

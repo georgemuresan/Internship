@@ -10,7 +10,7 @@
         android:id="@+id/ScrollViewQuestionnaire"
         style="@android:style/Widget.Material.ScrollView"
         android:layout_width="match_parent"
-        android:layout_height="481dp"
+        android:layout_height="0dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
@@ -43,7 +43,7 @@
 
             <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="575dp"
+                android:layout_height="wrap_content"
                 tools:layout_editor_absoluteX="8dp"
                 tools:layout_editor_absoluteY="0dp">
 
@@ -69,12 +69,16 @@
                 <TextView
                     android:id="@+id/textView6"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:maxLines="30"
+                    android:layout_height="100dp"
+                    android:layout_marginEnd="8dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:text="@string/experimentsB"
                     android:textAlignment="textStart"
                     android:textColor="@android:color/black"
+                    app:autoSizeTextType="uniform"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/sleepHygieneTitle" />
 
@@ -82,10 +86,12 @@
                     android:id="@+id/back"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:text="@string/backButton"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView9" />
@@ -94,24 +100,25 @@
                     android:id="@+id/imageView23"
                     android:layout_width="133dp"
                     android:layout_height="133dp"
-                    android:layout_marginEnd="108dp"
-                    android:layout_marginStart="108dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
                     android:layout_marginTop="12dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/textView6"
+                    app:layout_constraintStart_toStartOf="@+id/textView6"
                     app:layout_constraintTop_toBottomOf="@+id/textView6"
                     app:srcCompat="@drawable/phone" />
 
                 <TextView
                     android:id="@+id/textView9"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="180dp"
                     android:layout_marginEnd="8dp"
+                    android:maxLines="30"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:text="@string/experiments2"
                     android:textColor="@android:color/black"
+                    app:autoSizeTextType="uniform"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/imageView23" />

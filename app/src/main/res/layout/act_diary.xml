@@ -58,8 +58,8 @@
 
         <EditText
             android:id="@+id/pleaseInput"
-            android:layout_width="354dp"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="4dp"
@@ -74,6 +74,8 @@
             android:text="@string/goalDiaryIntro"
             android:textSize="16sp"
             android:textStyle="italic"
+            android:maxLines="5"
+            app:autoSizeTextType="uniform"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/logoPlace" />
@@ -84,21 +86,21 @@
             android:layout_height="33dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:background="@drawable/text_input_border"
             android:hint="@string/goalDiaryInput"
             android:inputType=""
             android:textSize="14sp"
             android:textStyle="italic"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.042"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/pleaseInput"
+            app:layout_constraintHorizontal_bias="0.063"
+            app:layout_constraintStart_toStartOf="@+id/pleaseInput"
             app:layout_constraintTop_toBottomOf="@+id/pleaseInput" />
 
         <EditText
             android:id="@+id/editText"
-            android:layout_width="352dp"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:clickable="false"
@@ -114,9 +116,11 @@
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="198dp"
+            android:layout_height="0dp"
+            android:layout_marginBottom="16dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -166,10 +170,10 @@
             android:layout_height="86dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="28dp"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="@+id/pleaseInput"
             app:layout_constraintHorizontal_bias="0.501"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/pleaseInput"
             app:layout_constraintTop_toBottomOf="@+id/yourGoal" />
 
         <Button
@@ -180,8 +184,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:text="@string/submitUpdate"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.458"
+            app:layout_constraintEnd_toEndOf="@+id/pleaseInput"
             app:layout_constraintStart_toEndOf="@+id/yourGoal"
             app:layout_constraintTop_toBottomOf="@+id/pleaseInput" />
 
