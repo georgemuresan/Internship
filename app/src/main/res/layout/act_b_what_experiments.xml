@@ -106,7 +106,7 @@
                     app:layout_constraintEnd_toEndOf="@+id/textView6"
                     app:layout_constraintStart_toStartOf="@+id/textView6"
                     app:layout_constraintTop_toBottomOf="@+id/textView6"
-                    app:srcCompat="@drawable/phone" />
+                    app:srcCompat="@drawable/data" />
 
                 <TextView
                     android:id="@+id/textView9"
@@ -132,7 +132,6 @@
         android:id="@+id/topView"
         android:layout_width="match_parent"
         android:layout_height="75dp"
-        android:background="@color/LightSteelBlue"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="0dp" />
@@ -167,6 +166,6 @@
         app:layout_constraintBottom_toBottomOf="@+id/topView"
         app:layout_constraintEnd_toEndOf="@+id/topView"
         app:layout_constraintTop_toTopOf="@+id/topView"
-        app:srcCompat="@drawable/pill" />
+        app:srcCompat="@drawable/data" />
 
 </android.support.constraint.ConstraintLayout>

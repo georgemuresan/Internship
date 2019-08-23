@@ -15,10 +15,10 @@ public class WhatIsSleep extends AppCompatActivity {
         setContentView(R.layout.act_what_is_sleep);
 
         ImageView imageView = findViewById(R.id.imageView4);
-        imageView.setImageResource(R.drawable.sleepmoon);
+        imageView.setImageResource(R.drawable.data);
 
         imageView = findViewById(R.id.imageView5);
-        imageView.setImageResource(R.drawable.mission);
+        imageView.setImageResource(R.drawable.data);
 
         Button button = (Button) findViewById(R.id.back);
 

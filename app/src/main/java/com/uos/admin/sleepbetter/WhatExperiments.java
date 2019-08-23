@@ -15,13 +15,13 @@ public class WhatExperiments extends AppCompatActivity {
         setContentView(R.layout.act_what_experiments);
 
        ImageView imageView = findViewById(R.id.imageView23);
-        imageView.setImageResource(R.drawable.phone);
+        imageView.setImageResource(R.drawable.data);
 
          imageView = findViewById(R.id.imageView24);
-        imageView.setImageResource(R.drawable.moon);
+        imageView.setImageResource(R.drawable.data);
 
         imageView = findViewById(R.id.imageView25);
-        imageView.setImageResource(R.drawable.ques);
+        imageView.setImageResource(R.drawable.data);
 
         Button button = (Button) findViewById(R.id.back);
 

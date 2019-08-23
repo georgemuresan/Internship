@@ -2,8 +2,6 @@ package com.uos.admin.sleepbetter;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.app.DialogFragment;
-import android.app.Fragment;
 import android.arch.persistence.room.Room;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -13,6 +11,8 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,6 +34,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import android.support.v4.app.DialogFragment;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -42,20 +43,21 @@ public class Data extends Fragment implements AdapterView.OnItemSelectedListener
     private static final String DATABASE_NAME = "user_db";
     private Spinner spinner;
     View dataView;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         dataView = inflater.inflate(R.layout.act_data, container, false);
         ImageView imageView1 = (ImageView) dataView.findViewById(R.id.imageView28);
 
-        imageView1.setImageResource(R.drawable.you);
-
+        imageView1.setImageResource(R.drawable.data);
 
         Button info1 = (Button) dataView.findViewById(R.id.infoRatings);
         info1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 InfoOneDialog dia = new InfoOneDialog();
-                dia.show(getFragmentManager(), "dialog");
+
+                dia.show(getFragmentManager(), "dd");
             }
         });
         Button info2 = (Button) dataView.findViewById(R.id.infoImprovements);

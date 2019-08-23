@@ -15,7 +15,7 @@ public class B_WhatExperiments extends AppCompatActivity {
         setContentView(R.layout.act_b_what_experiments);
 
        ImageView imageView = findViewById(R.id.imageView23);
-        imageView.setImageResource(R.drawable.phone);
+        imageView.setImageResource(R.drawable.data);
 
 
         Button button = (Button) findViewById(R.id.back);

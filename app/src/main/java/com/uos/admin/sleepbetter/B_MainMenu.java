@@ -34,7 +34,7 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 
-public class B_MainMenu extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class B_MainMenu extends AppCompatActivity {
     static Class nextclass = B_MainMenu.class;
     private static final String DATABASE_NAME = "user_db";
 
@@ -42,7 +42,7 @@ public class B_MainMenu extends AppCompatActivity implements NavigationView.OnNa
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.act_b_menu);
+        setContentView(R.layout.act_main_menu);
 
         Date c = Calendar.getInstance().getTime();
         SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
@@ -108,6 +108,7 @@ public class B_MainMenu extends AppCompatActivity implements NavigationView.OnNa
 
             //scoatem variabila days si verificam: daca se imparte la 5, si nu e locked,
        ImageView imageView = findViewById(R.id.imageView2);
+        /*
         imageView.setImageResource(R.drawable.sleep);
 
 
@@ -129,7 +130,7 @@ public class B_MainMenu extends AppCompatActivity implements NavigationView.OnNa
 
         String name = getSharedPreferences("name", MODE_PRIVATE).getString("username", "nothing");
         navUsername.setText(name);
-
+*/
         //NOTIFICATION DEMO
         this.createNotificationChannel();
         this.setNotifications();
@@ -240,7 +241,7 @@ public class B_MainMenu extends AppCompatActivity implements NavigationView.OnNa
         startActivity(intent);
 
     }
-
+/*
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -258,7 +259,7 @@ public class B_MainMenu extends AppCompatActivity implements NavigationView.OnNa
             }
         }
     }
-
+*/
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -271,7 +272,7 @@ public class B_MainMenu extends AppCompatActivity implements NavigationView.OnNa
 
         return super.onOptionsItemSelected(item);
     }
-
+/*
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -292,7 +293,7 @@ public class B_MainMenu extends AppCompatActivity implements NavigationView.OnNa
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-
+*/
     private void createNotificationChannel() {
         // Create the NotificationChannel, but only on API 26+ because
         // the NotificationChannel class is new and not in the support library
@@ -392,7 +393,7 @@ public class B_MainMenu extends AppCompatActivity implements NavigationView.OnNa
             // Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
 
             NotificationCompat.Builder mNotifyBuilder = new NotificationCompat.Builder(context, "13")
-                    .setSmallIcon(R.drawable.pill)
+                    .setSmallIcon(R.drawable.data)
                     .setContentTitle(titleM)
                     .setStyle(new NotificationCompat.BigTextStyle()
                             .bigText(messageM))

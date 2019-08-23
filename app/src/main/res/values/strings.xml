@@ -78,9 +78,9 @@
     <string name="s4">How many nights a week do you have a problem with your sleep?</string>
     <string name="s5">How would you rate your sleep quality?</string>
     <string name="q3desc">This set of questions refer to the impact your sleeping pattern usually has on your daily activities and your life in general. Please choose the most appropriate answer.</string>
-    <string name="s6">How do you think sleep impacted your mood, energy, or relationships?</string>
-    <string name="s7">How do you think sleep impacted your concentration, productivity, or ability to stay awake?</string>
-    <string name="s8">How do you think sleep impacted your life in general?</string>
+    <string name="s6">How do you think sleep negatively impacted your mood, energy, or relationships?</string>
+    <string name="s7">How do you think sleep negatively impacted your concentration, productivity, or ability to stay awake?</string>
+    <string name="s8">How do you think sleep negatively impacted your life in general?</string>
     <string name="q4desc">This set of questions aim to asses the severity of your sleep problems (if any). Please choose the most appropriate answer.</string>
     <string name="s9">How long have you had a problem with your sleep?</string>
 
@@ -198,6 +198,8 @@
     <string name="nav_header_desc">Navigation header</string>
 
     <string name="factorsTitle">EXPERIMENTS</string>
+    <string name="settingsTitle">Settings</string>
+    <string name="preQues">PRE-QUESTIONNAIRE</string>
     <string name="factorsIntroduction">
         These are the next factors and associated experiments that impact your sleep hygiene. The chosen experiment is the one you chose to follow.
         <font fgcolor="red"><b>Please bare in mind that after clicking Submit you will only be able to change the experiment after 5 days.</b></font>

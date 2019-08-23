@@ -2,13 +2,13 @@ package com.uos.admin.sleepbetter;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.app.DialogFragment;
-import android.app.Fragment;
 import android.arch.persistence.room.Room;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.DialogFragment;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,6 +30,7 @@ import static android.content.Context.MODE_PRIVATE;
 public class Factors extends Fragment {
 
     View factorsView;
+
     private static RadioGroup radioGroup;
     private boolean shouldBlockTouches = false;
 
@@ -42,13 +43,13 @@ public class Factors extends Fragment {
 
 
         Button button2 = (Button) factorsView.findViewById(R.id.submit);
-        button2.setOnClickListener(new View.OnClickListener() {
+       /* button2.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 submitExperiment();
             }
         });
 
-
+*/
         String experiment = getActivity().getApplicationContext().getSharedPreferences("name", MODE_PRIVATE).getString("experiment", "nothing");
         int savedRadioIndex = getActivity().getApplicationContext().getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).getInt("KEY_SAVED_RADIO_BUTTON_INDEX", 0);
 
