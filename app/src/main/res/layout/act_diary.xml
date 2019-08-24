@@ -126,13 +126,14 @@
             android:id="@+id/imageView29"
             android:layout_width="99dp"
             android:layout_height="86dp"
-            android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
             app:layout_constraintEnd_toEndOf="@+id/pleaseInput"
             app:layout_constraintHorizontal_bias="0.501"
             app:layout_constraintStart_toStartOf="@+id/pleaseInput"
-            app:layout_constraintTop_toBottomOf="@+id/yourGoal" />
+            app:layout_constraintTop_toBottomOf="@+id/yourGoal"
+            app:srcCompat="@drawable/diary2" />
 
         <Button
             android:id="@+id/button"
