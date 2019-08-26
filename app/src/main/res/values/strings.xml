@@ -88,64 +88,19 @@
     <string name="s2.1">If you woke up one or more times during last night, how long are you awake in total?</string>
     <string name="s3.1">If your final wake-up time occurred before you intended to wake up, how much earlier was this?</string>
     <string name="s5.1">How would you rate the quality of last night\'s sleep?</string>
-    <string name="s6.1">How do you think last night\'s sleep impacted your mood, energy, or relationships?</string>
-    <string name="s7.1">How do you think last night\'s sleep impacted your concentration, productivity, or ability to stay awake?</string>
-    <string name="s8.1">How do you think last night\'s sleep impacted your life in general?</string>
+    <string name="s6.1">How do you think last night\'s sleep negatively impacted your mood, energy, or relationships?</string>
+    <string name="s7.1">How do you think last night\'s sleep negatively impacted your concentration, productivity, or ability to stay awake?</string>
+    <string name="s8.1">How do you think last night\'s sleep negatively impacted your life in general?</string>
 
-    <string name="questionnaireHelp">First, how would you rate the following aspects of your sleep and daily experience? 1 represents the lowest and 5 the highest.</string>
-    <string name="questionnaireHelpSecond">For the question \"How quickly do you usually fall asleep?\", please bare in mind that 1 means \"as soon as getting into bed\", 2 is \"within 20 minutes\", 3 is \"up to one hour\", 4 is \"1/1.30 hours\" and 5 is \"more than that\". Also, for the \"How easily do you usually wake up?\", notice that 1 means \"waking up with no alarm\", 2 is \"using the alarm only sometimes\", 3 is \"using the alarm but I get up easily\", 4 is \"using the snooze button once\", 5 is \"using the snooze button more than once\".</string>
-
-    <string name="questionnaireUsuallyHelpSecond">For the question \"How easily did you fall asleep last night?\", please bare in mind that 1 means \"as soon as got into bed\", 2 is \"within 20 minutes\", 3 is \"up to one hour\", 4 is \"1/1.30 hours\" and 5 is \"more than that\". Also, for the \"How easily did you wake up this morning?\", notice that 1 means \"woke up with no alarm\", 2 is \"used the alarm\", 3 is \"used the alarm and hit snooze\", 4 is \"used the snooze button more than once\", 5 is \"could not wake up even wih alarm\".</string>
-
-    <string name="nocturnalTitle">Night-time</string>
-    <string name="timesWakingUp">How many times do you wake up per night in average?</string>
-    <string name="nightTerrorUsually">Do you ever have night terrors? If yes, how many times a week?</string>
-    <string name="beforeAfter">Before and after</string>
-    <string name="fallAsleepUsually">How quickly do you usually fall asleep?</string>
-    <string name="wakeUpUsually">How easily do you usually wake up?</string>
-    <string name="freshUsually">How fresh do you usually feel after you wake up?</string>
-    <string name="mood">Mood</string>
-
-    <string name="happyUsually">How happy do you usually feel during the day?</string>
-    <string name="sadUsually">How sad do you usually feel during the day?</string>
-    <string name="sleepyUsually">How sleepy do you usually feel during the day?</string>
-    <string name="tiredUsually">How tired do you usually feel during the day?</string>
-    <string name="stressUsually">How stressed do you usually feel during the day?</string>
-    <string name="irritableUsually">How irritable do you usually feel during the day?</string>
-    <string name="actions">Actions</string>
-    <string name="concentrateUsually">How hard is for you to concentrate during the day?</string>
-    <string name="coordinateUsually">How hard is for you to coordinate your activities during the day?</string>
-    <string name="apetiteUsually">How would you usually rate your appetite during the day?</string>
 
     <string name="comments">Do you have any other notes you wish to add into your Goal Diary?</string>
     <string name="firstNote">*First note*</string>
     <string name="yourNote">Your note...</string>
 
-    <string name="offquestionnaireHelp">How would you rate the following aspects of your day? 1 represents the lowest and 5 the highest.</string>
-
-    <string name="offtimesWakingUp">How many times did you wake up last night?</string>
-    <string name="offnightTerrorUsually">How many night terrors did you have last night?</string>
-    <string name="offfallAsleepUsually">How easily did you fall asleep last night?</string>
-    <string name="offwakeUpUsually">How easily did you wake up this morning?</string>
-    <string name="offfreshUsually">How fresh did you feel after you woke up today?</string>
-
-    <string name="offhappyUsually">How happy did you feel today?</string>
-    <string name="offsadUsually">How sad did you feel today?</string>
-    <string name="offsleepyUsually">How sleepy did you feel today?</string>
-    <string name="offtiredUsually">How tired did you feel today?</string>
-    <string name="offstressUsually">How stressed did you feel today?</string>
-    <string name="offirritableUsually">How irritable did you feel today?</string>
-    <string name="offconcentrateUsually">How hard was for you to concentrate today?</string>
-    <string name="offcoordinateUsually">How hard was for you to coordinate your activities today?</string>
-    <string name="offapetiteUsually">How would you rate your appetite for today?</string>
-
 
     <string name="goalDiaryTitle">CURRENT STATE</string>
     <string name="goalDiaryTitlee">GOAL DIARY</string>
-    <!--<string name="greatText">GREAT! My name is Alex and I will do this experiment together with you. As your companion, I will reflect your mood:</string>-->
-    <string name="greatText1">GREAT! My name is Alex and I will do this experiment together with you. As your companion, I will reflect your mood. I can see you are ok at the moment. That is great! We will work together to keep it like this and even improve your state.</string>
-    <string name="greatText2">GREAT! My name is Alex and I will do this experiment together with you. As your companion, I will reflect your mood. I see that you feel blue. We will work together to make you feel better and you will see, it is not hard at all.</string>
-    <string name="pleaseInputGoal">Please input either a goal, a wish, or any note. You can return to this section later.</string>
+   <string name="pleaseInputGoal">Please input either a goal, a wish, or any note. You can return to this section later.</string>
     <string name="goalInput">Goal Diary input...</string>
     <string-array name="targetGraph">
             <item>Falling asleep</item>
@@ -191,12 +146,6 @@
 
     <string name="title_activity_main_menu">MainMenu</string>
 
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
-    <string name="nav_header_desc">Navigation header</string>
-
     <string name="factorsTitle">EXPERIMENTS</string>
     <string name="settingsTitle">Settings</string>
     <string name="preQues">PRE-QUESTIONNAIRE</string>
@@ -219,26 +168,12 @@
     <string name="caffeineCheck">Caffeine</string>
 
 
-
     <string name="sleepSettingsTitle">Sleep Settings</string>
-    <string name="lightIntro">Here you can mark which experiments you wish to undertake in terms of the LIGHT factor. You can also choose your own personalised behavior by clicking on PERSONALISED and having access to information.</string>
-    <string name="lightTitle">LIGHT</string>
+  <string name="lightTitle">LIGHT</string>
     <string name="firstLight">Increase bright light exposure during the day</string>
-    <string name="secondLight">Wear glasses that block blue light during the night.</string>
+    <string name="secondLight">Wear glasses/a sleeping mask that block blue light during the night.</string>
     <string name="thirdLight">Turn off any bright lights 2 hours before going to bed (such as TV/the computer etc).</string>
 
-    <string name="personalised">PERSONALISED</string>
-    <string name="personalisedText">You currently have no personalised plan for this factor.</string>
-
-    <string name="lightPersTitle">LIGHT - PERSONALISED PLAN</string>
-
-    <string name="chatbotTitle">CHATBOT</string>
-
-
-    <string name="drugEffectsTitle">Drug Effects</string>
-
-
-    <string name="caffeineIntro">Here you can mark which experiments you wish to undertake in terms of the CAFFEINE factor. You can also choose your own personalised behavior by clicking on PERSONALISED and having access to information.</string>
     <string name="caffeineTitle">CAFFEINE</string>
     <string name="firstCaffeine">Do not drink caffeine within 6 hours before sleep</string>
     <string name="secondCaffeine">Limit yourself to 4 cups of coffees per day; 10 cans of coke/fanta; 2 energy drinks</string>
@@ -264,7 +199,7 @@
     <string name="moreInfo">More Information</string>
 
     <string name="dataTitle">DATA</string>
-    <string name="dataIntro">Here you will be able to look at personal data in terms of progress, changes, variations and so on!\nSingle value displays - looking at your current state;\nImprovements - where you will be able to see what fields could be improved;\nTimelines - looking at your progress through 3 different types of graphs. </string>
+    <string name="dataIntro">Here you will be able to look at personal data in terms of progress, changes, variations and so on!\nRatings - looking at your current state;\nImprovements - where you will be able to see what fields could be improved;\nTimelines - looking at your progress through 3 different types of graphs. </string>
     <string name="progressTitle">Improvements</string>
     <string name="timelineTitle">Timelines</string>
     <string name="singleValueDisplayTitle">Ratings</string>
@@ -293,9 +228,9 @@
     <string name="turnOffIntro">Your current experiment is: TURN OFF ANY BRIGHT LIGHT WITHIN 2 HOURS OF GOING TO SLEEP. Below you are asked to complete the questions on whether you followed the experiment.</string>
     <string name="turnOffLightQuestion">Did you turn off any bright lights in your room with 2 hours before going to bed?</string>
 
-    <string name="glassesIntro">Your current experiment is: WEAR GLASSES THAT BLOCK ANY LIGHT DURING THE NIGHT. Below you are asked to complete the questions on whether you followed the experiment.</string>
+    <string name="glassesIntro">Your current experiment is: WEAR GLASSES/A SLEEPING MASK THAT BLOCK ANY LIGHT DURING THE NIGHT. Below you are asked to complete the questions on whether you followed the experiment.</string>
     <string name="dayQuestion">Did you use the f.lx app on the computer during  the day?</string>
-    <string name="nightQuestion">Did you use any glasses to block blue light during the night?</string>
+    <string name="nightQuestion">Did you use any glasses/sleeping mask to block blue light during the night?</string>
 
     <string name="stomachIntro">Your current experiment is: DO NOT DRINK CAFFEINE ON EMPTY STOMACH. Below you are asked to complete the questions on whether you followed the experiment.</string>
     <string name="drinkCaffeineQuestion">Did you drink any caffeine today?</string>

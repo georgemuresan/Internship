@@ -10,10 +10,17 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.sql.Time;
+import java.time.LocalDate;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.TimeZone;
+
 public class FirstPage extends AppCompatActivity {
 
     private EditText nameBox = null;
-    private EditText participantID = null;
+    private TextView participantID = null;
+    private String participant = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -22,21 +29,21 @@ public class FirstPage extends AppCompatActivity {
 
         nameBox = (EditText) findViewById(R.id.yourName);
         System.out.println("INPUT IS :" + nameBox.getText().toString());
-        participantID = (EditText) findViewById(R.id.participantName);
-/*
-        getApplicationContext().getSharedPreferences("MOOD", MODE_PRIVATE).edit().clear().commit();
-        getApplicationContext().getSharedPreferences("name", MODE_PRIVATE).edit().clear().commit();
-        getApplicationContext().getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).edit().clear().commit();
-        getApplicationContext().getSharedPreferences("questionnaire", MODE_PRIVATE).edit().clear().commit();
-        getApplicationContext().getSharedPreferences("consent", MODE_PRIVATE).edit().clear().commit();
-        getApplicationContext().getSharedPreferences("PREFERENCE", MODE_PRIVATE).edit().clear().commit();
-        getApplicationContext().getSharedPreferences("bmhappy", MODE_PRIVATE).edit().clear().commit();
-        getApplicationContext().getSharedPreferences("bmok", MODE_PRIVATE).edit().clear().commit();
-        getApplicationContext().getSharedPreferences("bmnotok", MODE_PRIVATE).edit().clear().commit();
-        getApplicationContext().getSharedPreferences("bmbad", MODE_PRIVATE).edit().clear().commit();
-*/
-        getSharedPreferences("name", MODE_PRIVATE).getString("username", "nothing");
-        getSharedPreferences("name", MODE_PRIVATE).getString("participantID", "nothing");
+        participantID = (TextView) findViewById(R.id.participantID);
+
+        Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
+        //getTime() returns the current date in default time zone
+        Date date = calendar.getTime();
+        String day = String.valueOf(calendar.get(Calendar.DAY_OF_YEAR));
+        String month = String.valueOf(calendar.get(Calendar.MONTH) + 1);
+        String year = String.valueOf(calendar.get(Calendar.YEAR));
+        String hour = String.valueOf(calendar.get(Calendar.HOUR));
+        String minute = String.valueOf(calendar.get(Calendar.MINUTE));
+        String second = String.valueOf(calendar.get(Calendar.SECOND));
+        String millisecond = String.valueOf(calendar.get(Calendar.MILLISECOND));
+
+        participant = day + month + year + hour + minute + second + millisecond;
+        participantID.setText("Participant ID: " + participant);
 
         final CheckBox consent = (CheckBox) findViewById(R.id.consentCheckbox);
 
@@ -55,13 +62,9 @@ public class FirstPage extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), FirstPageConsent.class);
 
                 String name = nameBox.getText().toString();
-                String participant = participantID.getText().toString();
 
                 if (!name.equals("")){
                     getSharedPreferences("name", MODE_PRIVATE).edit().putString("username", name).apply();
-                }
-                if (!participant.equals("")){
-                    getSharedPreferences("name", MODE_PRIVATE).edit().putString("participantID", participant).apply();
                 }
 
                 startActivity(intent);
@@ -72,13 +75,9 @@ public class FirstPage extends AppCompatActivity {
 
 
         String name = getSharedPreferences("name", MODE_PRIVATE).getString("username", "nothing");
-        String participant = getSharedPreferences("name", MODE_PRIVATE).getString("participantID", "nothing");
 
         if (!name.equals("nothing")){
             nameBox.setText(name);
-        }
-        if (!participant.equals("nothing")){
-            participantID.setText(participant);
         }
 
         Button button = (Button) findViewById(R.id.submitButton);
@@ -102,17 +101,10 @@ public class FirstPage extends AppCompatActivity {
         Boolean isFirstRun = getSharedPreferences("PREFERENCE", MODE_PRIVATE)
                 .getBoolean("isFirstRun", true);
 
-        if (!isFirstRun && consent.isChecked() && !nameBox.getText().toString().equals("") && !participantID.getText().toString().equals("")) {
+        if (!isFirstRun && consent.isChecked() && !nameBox.getText().toString().equals("")) {
             //show start activity
 
-
-            String participantID = getSharedPreferences("name", MODE_PRIVATE).getString("participantID", "nothing");
-
-            if (participantID.contains("B") || participantID.contains("b")){
-                startActivity(new Intent(this, B_MainMenu.class));
-            } else {
-                startActivity(new Intent(this, MainMenu.class));
-            }
+            startActivity(new Intent(this, AllPages.class));
 
 
         }
@@ -131,28 +123,17 @@ public class FirstPage extends AppCompatActivity {
         if (nameBox.getText().toString().equals("")){
             Toast.makeText(getApplicationContext(), "Please input your name", Toast.LENGTH_SHORT).show();
 
-        } else if (participantID.getText().toString().equals("")){
-            Toast.makeText(getApplicationContext(), "Please input your participant ID number", Toast.LENGTH_SHORT).show();
-
         } else {
 
-            if (participantID.getText().toString().contains("B") || participantID.getText().toString().contains("b") || participantID.getText().toString().contains("A") || participantID.getText().toString().contains("a")) {
-                Intent intent = new Intent(this, Demographics.class);
+            Intent intent = new Intent(this, Demographics.class);
 
                 String name = nameBox.getText().toString();
-                String participant = participantID.getText().toString();
 
                 getSharedPreferences("name", MODE_PRIVATE).edit().putString("username", name).apply();
                 getSharedPreferences("name", MODE_PRIVATE).edit().putString("participantID", participant).apply();
                 getSharedPreferences("PREFERENCE", MODE_PRIVATE).edit().putBoolean("isFirstRun", false).apply();
 
                 startActivity(intent);
-            } else {
-                Toast.makeText(getApplicationContext(), "Please input the CORRECT participant ID number (e.g. A1/B2 etc)", Toast.LENGTH_LONG).show();
-
-            }
-
-
 
         }
 

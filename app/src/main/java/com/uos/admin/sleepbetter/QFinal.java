@@ -1,19 +1,25 @@
 package com.uos.admin.sleepbetter;
 
-import android.app.Fragment;
+
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.arch.persistence.room.Room;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.DialogFragment;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RadioGroup;
 import android.widget.Toast;
+import android.support.v4.app.FragmentManager;
 
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
@@ -28,6 +34,8 @@ public class QFinal extends Fragment {
 
    private static final String DATABASE_NAME = "user_db";
     private UserDatabase userDatabase;
+
+    private static boolean goToMenu = false;
 
     View questionnaireView;
     @Nullable
@@ -52,15 +60,36 @@ public class QFinal extends Fragment {
     }
 
     private void loopForSending(){
-        //     System.out.println("IS NETWORK : " + isConnected());
         if (isConnected()){
             goToMenu();
         } else {
-            QInitial.InternetDialog dial = new QInitial.InternetDialog();
-            dial.show(getFragmentManager(), "dialog");
+            InternetDialog dial = new InternetDialog();
+            FragmentManager fragmentManager = getFragmentManager();
+            dial.show(fragmentManager, "dialog");
         }
     }
 
+    public static class InternetDialog extends DialogFragment {
+
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+
+            builder.setMessage("Make sure you have internet connection. When ready, press - OK.");
+            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    dialog.dismiss();
+                }
+            });
+            builder.setNegativeButton("I can't access the internet", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    dialog.dismiss();
+                    goToMenu = true;
+                }
+            });
+            return builder.create();
+        }
+    }
 
     public void goToMenu(){
 
@@ -124,10 +153,7 @@ public class QFinal extends Fragment {
             DecimalFormat formatting = new DecimalFormat("#.##");
             mood = Double.parseDouble(formatting.format(mood));
 
-
-            String participantID = getActivity().getApplicationContext().getSharedPreferences("name", MODE_PRIVATE).getString("participantID", "nothing");
-
-            startActivity(new Intent(getActivity().getApplicationContext(), MainMenu.class));
+            startActivity(new Intent(getActivity().getApplicationContext(), AllPages.class));
 
 
             Date c = Calendar.getInstance().getTime();

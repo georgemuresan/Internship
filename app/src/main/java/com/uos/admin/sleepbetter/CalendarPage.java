@@ -36,20 +36,23 @@ public class CalendarPage extends Fragment {
         helpView = inflater.inflate(R.layout.act_calendar, container, false);
 
 
-/*
-        HomeCollection.date_collection_arr = new ArrayList<HomeCollection>();
-        HomeCollection.date_collection_arr.add(new HomeCollection("2017-07-08", "Diwali", "Holiday", "this is holiday"));
-        HomeCollection.date_collection_arr.add(new HomeCollection("2017-07-08", "Holi", "Holiday", "this is holiday"));
-        HomeCollection.date_collection_arr.add(new HomeCollection("2017-07-08", "Statehood Day", "Holiday", "this is holiday"));
-        HomeCollection.date_collection_arr.add(new HomeCollection("2017-08-08", "Republic Unian", "Holiday", "this is holiday"));
-        HomeCollection.date_collection_arr.add(new HomeCollection("2017-07-09", "ABC", "Holiday", "this is holiday"));
-        HomeCollection.date_collection_arr.add(new HomeCollection("2017-06-15", "demo", "Holiday", "this is holiday"));
-        HomeCollection.date_collection_arr.add(new HomeCollection("2017-09-26", "weekly off", "Holiday", "this is holiday"));
-        HomeCollection.date_collection_arr.add(new HomeCollection("2018-01-08", "Events", "Holiday", "this is holiday"));
-        HomeCollection.date_collection_arr.add(new HomeCollection("2018-01-16", "Dasahara", "Holiday", "this is holiday"));
-        HomeCollection.date_collection_arr.add(new HomeCollection("2018-02-09", "Christmas", "Holiday", "this is holiday"));
+        return helpView;
+    }
 
-*/
+    private boolean isViewShown = false;
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (getView() != null) {
+            isViewShown = true;
+            loadPageDataProcessing();
+        } else {
+            isViewShown = false;
+        }
+    }
+
+    public void loadPageDataProcessing() {
 
         Date c = Calendar.getInstance().getTime();
         SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
@@ -96,7 +99,7 @@ public class CalendarPage extends Fragment {
 
         for (int i = 0; i <= shouldBe - 1; i++) {
             Date d1 = null;
-             try {
+            try {
                 d1=new SimpleDateFormat("dd-MMM-yyyy").parse(dayForLoop);
             } catch (ParseException e) {
                 e.printStackTrace();
@@ -105,12 +108,7 @@ public class CalendarPage extends Fragment {
 
             String dateToAdd = changer.format(d1);
 
-            System.out.println("CHECKKKKKKKKKK");
-            System.out.println(experimentsArray.length);
-            System.out.println(moods.length);
-            System.out.println(dateToAdd);
             HomeCollection.date_collection_arr.add(new HomeCollection(dateToAdd, experimentsArray[i], moods[i], diaries[i]));
-
 
             try {
                 cal.setTime(df.parse(dayForLoop));
@@ -172,27 +170,11 @@ public class CalendarPage extends Fragment {
         });
 
 
-        return helpView;
     }
 
     @Override
     public void onResume() {
         super.onResume();
-
-/*
-        HomeCollection.date_collection_arr = new ArrayList<HomeCollection>();
-        HomeCollection.date_collection_arr.add(new HomeCollection("2017-07-08", "Diwali", "Holiday", "this is holiday"));
-        HomeCollection.date_collection_arr.add(new HomeCollection("2017-07-08", "Holi", "Holiday", "this is holiday"));
-        HomeCollection.date_collection_arr.add(new HomeCollection("2017-07-08", "Statehood Day", "Holiday", "this is holiday"));
-        HomeCollection.date_collection_arr.add(new HomeCollection("2017-08-08", "Republic Unian", "Holiday", "this is holiday"));
-        HomeCollection.date_collection_arr.add(new HomeCollection("2017-07-09", "ABC", "Holiday", "this is holiday"));
-        HomeCollection.date_collection_arr.add(new HomeCollection("2017-06-15", "demo", "Holiday", "this is holiday"));
-        HomeCollection.date_collection_arr.add(new HomeCollection("2017-09-26", "weekly off", "Holiday", "this is holiday"));
-        HomeCollection.date_collection_arr.add(new HomeCollection("2018-01-08", "Events", "Holiday", "this is holiday"));
-        HomeCollection.date_collection_arr.add(new HomeCollection("2018-01-16", "Dasahara", "Holiday", "this is holiday"));
-        HomeCollection.date_collection_arr.add(new HomeCollection("2018-02-09", "Christmas", "Holiday", "this is holiday"));
-
-*/
 
         Date c = Calendar.getInstance().getTime();
         SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
@@ -248,10 +230,6 @@ public class CalendarPage extends Fragment {
 
             String dateToAdd = changer.format(d1);
 
-            System.out.println("CHECKKKKKKKKKK");
-            System.out.println(experimentsArray.length);
-            System.out.println(moods.length);
-            System.out.println(dateToAdd);
             HomeCollection.date_collection_arr.add(new HomeCollection(dateToAdd, experimentsArray[i], moods[i], diaries[i]));
 
 
@@ -339,4 +317,6 @@ public class CalendarPage extends Fragment {
         hwAdapter.notifyDataSetChanged();
         tv_month.setText(android.text.format.DateFormat.format("MMMM yyyy", cal_month));
     }
+
+
 }

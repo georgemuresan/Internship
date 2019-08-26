@@ -20,9 +20,6 @@ public class WhatExperiments extends AppCompatActivity {
          imageView = findViewById(R.id.imageView24);
         imageView.setImageResource(R.drawable.data);
 
-        imageView = findViewById(R.id.imageView25);
-        imageView.setImageResource(R.drawable.data);
-
         Button button = (Button) findViewById(R.id.back);
 
         button.setOnClickListener(new View.OnClickListener() {
@@ -39,7 +36,7 @@ public class WhatExperiments extends AppCompatActivity {
     private void goToThirdActivity() {
 
 
-        Intent intent = new Intent(this, MainMenu.class);
+        Intent intent = new Intent(this, AllPages.class);
 
         startActivity(intent);
 

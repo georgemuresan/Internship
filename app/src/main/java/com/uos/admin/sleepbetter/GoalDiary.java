@@ -36,10 +36,8 @@ public class GoalDiary extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         goalDiaryView = inflater.inflate(R.layout.act_diary, container, false);
-        ImageView imageView = (ImageView) goalDiaryView.findViewById(R.id.imageView29);
-        imageView.setImageResource(R.drawable.data);
-        Button button = (Button) goalDiaryView.findViewById(R.id.button);
 
+        Button button = (Button) goalDiaryView.findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
@@ -53,10 +51,27 @@ public class GoalDiary extends Fragment {
 
         });
 
+        return goalDiaryView;
+    }
+
+    private boolean isViewShown = false;
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (getView() != null) {
+            isViewShown = true;
+            loadPageDataProcessing();
+        } else {
+            isViewShown = false;
+        }
+    }
+
+    public void loadPageDataProcessing() {
+
         new Thread(new Runnable() {
             @Override
             public void run() {
-
 
                 userDatabase = Room.databaseBuilder(getActivity().getApplicationContext(), UserDatabase.class, DATABASE_NAME).fallbackToDestructiveMigration().build();
 
@@ -91,9 +106,7 @@ public class GoalDiary extends Fragment {
 
             }
         }).start();
-        return goalDiaryView;
     }
-
     public void updateDiary(String notee) {
 
         Date c = Calendar.getInstance().getTime();
@@ -141,8 +154,6 @@ public class GoalDiary extends Fragment {
         int differenceOfDates = c1.get(Calendar.DAY_OF_YEAR) - c2.get(Calendar.DAY_OF_YEAR);
 
         String diary_comments = getActivity().getApplicationContext().getSharedPreferences("diary", MODE_PRIVATE).getString("diary", "");
-
-
 
         String[] diaries = diary_comments.split("gcm");
 

@@ -5,21 +5,18 @@ import android.app.Dialog;
 import android.arch.persistence.room.Room;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -27,16 +24,10 @@ import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import android.support.v4.app.DialogFragment;
-
-import static android.content.Context.MODE_PRIVATE;
 
 public class Data extends Fragment implements AdapterView.OnItemSelectedListener {
     private UserDatabase userDatabase;
@@ -48,9 +39,6 @@ public class Data extends Fragment implements AdapterView.OnItemSelectedListener
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         dataView = inflater.inflate(R.layout.act_data, container, false);
-        ImageView imageView1 = (ImageView) dataView.findViewById(R.id.imageView28);
-
-        imageView1.setImageResource(R.drawable.data);
 
         Button info1 = (Button) dataView.findViewById(R.id.infoRatings);
         info1.setOnClickListener(new View.OnClickListener() {
@@ -81,6 +69,25 @@ public class Data extends Fragment implements AdapterView.OnItemSelectedListener
                 dia.show(getFragmentManager(), "dialog");
             }
         });
+
+        return dataView;
+    }
+
+
+    private boolean isViewShown = false;
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (getView() != null) {
+            isViewShown = true;
+            loadPageDataProcessing();
+        } else {
+            isViewShown = false;
+        }
+    }
+
+    public void loadPageDataProcessing() {
 
 
         new Thread(new Runnable() {
@@ -146,10 +153,6 @@ public class Data extends Fragment implements AdapterView.OnItemSelectedListener
                 GraphView graph2 = (GraphView) dataView.findViewById(R.id.shortMood);
                 DataPoint[] dp2;
 
-                //diferit pt ca luam doar de la structuri de 5
-
-
-
                 if (userDatabase.daoAccess().fetchMoods().size() > 1) {
 
                     int sizeOfSecondGraph = 0;
@@ -170,8 +173,6 @@ public class Data extends Fragment implements AdapterView.OnItemSelectedListener
                     }
 
                     dp2 = new DataPoint[sizeOfSecondGraph];
-
-                    //cum schimb
 
                     i=0;
                     int k=0;
@@ -245,73 +246,16 @@ public class Data extends Fragment implements AdapterView.OnItemSelectedListener
         updateAllTexts();
 
         spinner = (Spinner) dataView.findViewById(R.id.spinner);
-// Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity().getApplicationContext(),
                 R.array.targetGraph, android.R.layout.simple_spinner_item);
-// Specify the layout to use when the list of choices appears
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-// Apply the adapter to the spinner
+
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
 
-
-
-        return dataView;
     }
 
 
-    public static class InfoOneDialog extends DialogFragment {
-        @Override
-        public Dialog onCreateDialog(Bundle savedInstanceState) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-            builder.setMessage("This section shows your state as reported in yesterday's questionnaire. The overall mood value was computed based on all of your answers. If the values show -1, it means you forgot to fill in the questionnaire.");
-            builder.setNegativeButton("OK", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            dialog.dismiss();
-                        }
-                    });
-            return builder.create();
-        }
-    }
-    public static class InfoTwoDialog extends DialogFragment {
-        @Override
-        public Dialog onCreateDialog(Bundle savedInstanceState) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-            builder.setMessage("This section aims to recommend the fields that could be improved since yesterday's questionnaire. As higher values are associated with worse feelings, this section highlights all the attributes rated 3+. Bear in mind that if you haven't completed yesterday's questionnaire, this section will be empty.");
-            builder.setNegativeButton("OK", new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int id) {
-                    dialog.dismiss();
-                }
-            });
-            return builder.create();
-        }
-    }
-    public static class InfoThreeDialog extends DialogFragment {
-        @Override
-        public Dialog onCreateDialog(Bundle savedInstanceState) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-            builder.setMessage("This section displays 3 graphs based on your progress while using the app. First graph shows your overall progress in time while using SleepBetter. Second graph shows the same progress but for only a duration of 5 days- the current running experiment. For the third graph you are able to choose which attribute's progress you want to view during the time you used SleepBetter. \"Lower is better\" means a lower value is desirable, as it shows a better, improved state.");
-            builder.setNegativeButton("OK", new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int id) {
-                    dialog.dismiss();
-                }
-            });
-            return builder.create();
-        }
-    }
-    public static class InfoFourDialog extends DialogFragment {
-        @Override
-        public Dialog onCreateDialog(Bundle savedInstanceState) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-            builder.setMessage("For this graph you are able to choose which attribute's progress you want to view during the time you used SleepBetter. \\\"Lower is better\\\" means a lower value is desirable, as it shows a better, improved state.");
-            builder.setNegativeButton("OK", new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int id) {
-                    dialog.dismiss();
-                }
-            });
-            return builder.create();
-        }
-    }
 
     private int sizeOfMoods(ArrayList<Double> integers) {
 
@@ -395,11 +339,6 @@ public class Data extends Fragment implements AdapterView.OnItemSelectedListener
                 graph.removeAllSeries();
 
                 ArrayList<Double> numberOfGoodMoods = (ArrayList<Double>) userDatabase.daoAccess().fetchMoods();
-                int sizeMoods = sizeOfMoods(numberOfGoodMoods);
-
-
-                System.out.println("DATAAAAAAAAAAAAAAAAAAAAa");
-                System.out.println(sizeMoods);
 
                 int sizeToGraph = 0;
 
@@ -478,9 +417,61 @@ public class Data extends Fragment implements AdapterView.OnItemSelectedListener
         }).start();
     }
 
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
+    public static class InfoOneDialog extends DialogFragment {
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+            builder.setMessage("This section shows your state as reported in yesterday's questionnaire. The overall mood value was computed based on all of your answers. If the values show -1, it means you forgot to fill in the questionnaire.");
+            builder.setNegativeButton("OK", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    dialog.dismiss();
+                }
+            });
+            return builder.create();
+        }
+    }
+    public static class InfoTwoDialog extends DialogFragment {
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+            builder.setMessage("This section aims to recommend the fields that could be improved since yesterday's questionnaire. As higher values are associated with worse feelings, this section highlights all the attributes rated 3+. Bear in mind that if you haven't completed yesterday's questionnaire, this section will be empty.");
+            builder.setNegativeButton("OK", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    dialog.dismiss();
+                }
+            });
+            return builder.create();
+        }
+    }
+    public static class InfoThreeDialog extends DialogFragment {
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+            builder.setMessage("This section displays 3 graphs based on your progress while using the app. First graph shows your overall progress in time while using SleepBetter. Second graph shows the same progress but for only a duration of 5 days- the current running experiment. For the third graph you are able to choose which attribute's progress you want to view during the time you used SleepBetter. \"Lower is better\" means a lower value is desirable, as it shows a better, improved state.");
+            builder.setNegativeButton("OK", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    dialog.dismiss();
+                }
+            });
+            return builder.create();
+        }
+    }
+    public static class InfoFourDialog extends DialogFragment {
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+            builder.setMessage("For this graph you are able to choose which attribute's progress you want to view during the time you used SleepBetter. \\\"Lower is better\\\" means a lower value is desirable, as it shows a better, improved state.");
+            builder.setNegativeButton("OK", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    dialog.dismiss();
+                }
+            });
+            return builder.create();
+        }
+    }
 
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
 
     }
 }

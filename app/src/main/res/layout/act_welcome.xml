@@ -6,22 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".FirstPage">
 
-    <EditText
-        android:id="@+id/participantName"
-        android:layout_width="150dp"
-        android:layout_height="30dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="12dp"
-        android:background="@drawable/text_input_border"
-        android:hint="@string/participant"
-        android:inputType=""
-        android:textSize="18sp"
-        android:textStyle="italic"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/yourName" />
-
     <TextView
         android:id="@+id/welcomeTo"
         android:layout_width="match_parent"
@@ -37,6 +21,21 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/welcomeTitle" />
+
+    <TextView
+        android:id="@+id/participantID"
+        android:layout_width="242dp"
+        android:layout_height="27dp"
+        android:layout_marginTop="16dp"
+        android:maxLines="20"
+        android:text="Participant ID:"
+        android:textAlignment="center"
+        android:textColor="@android:color/black"
+        android:textSize="14sp"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/yourName" />
 
     <TextView
         android:id="@+id/welcomeTitle"

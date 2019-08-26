@@ -35,170 +35,153 @@ public class Report {
 
     public void save(String user, Boolean isFirstTime, String consent) {
 
-        String filePath = "";
-        String filePathTwo = "";
-        String filePath2 = "";
-        try {
-
-            List<UserQuestionnaire> uq = database.daoAccess().fetchUserQuestionnaires();
-
-            filePath = context.getFilesDir().getPath().toString() + "/" + user + "_userQuestionnaire.csv";
-
-            File f = new File(filePath);
+        List<UserQuestionnaire> uq = database.daoAccess().fetchUserQuestionnaires();
 
 
-            BufferedWriter bw = null;
-            bw = new BufferedWriter(new FileWriter(f));
-            bw.write("Username, Date, How long, Awake, Earlier, Nights A Week, Quality, Impact mood, Impact activities, Impact general, Problem, mood, Demographics, \n");
+        String stats = "";
 
-            for (int i = 0; i < uq.size(); i++) {
-                bw.append(uq.get(i).getUsername() + ", " + uq.get(i).getDate() + ", " + uq.get(i).getHowLong() +
-                        ", " + uq.get(i).getAwake() + ", " + uq.get(i).getEarlier() + ", " + uq.get(0).getNightsAWeek() +
-                        ", " + uq.get(i).getQuality() + ", " + uq.get(i).getImpactMood() +
-                        ", " + uq.get(i).getImpactActivities() + ", " + uq.get(i).getImpactGeneral() + ", " + uq.get(0).getProblem() + ", " +
-                        uq.get(i).getMood() + ", " +  context.getSharedPreferences("demographics", MODE_PRIVATE).getString("demographics", "") + "\n");
+        String date = "";
+        String how_long = "";
+        String awake = "";
+        String earlier = "";
+        String nightsAWeek = String.valueOf(uq.get(0).getNightsAWeek());
+        String quality = "";
+        String impact_mood = "";
+        String impact_activities = "";
+        String impact_general = "";
+        String problem = String.valueOf(uq.get(0).getProblem());
+        String mood = "";
+        String demographics = context.getSharedPreferences("demographics", MODE_PRIVATE).getString("demographics", "");
+        for (int i = 0; i < uq.size(); i++) {
+            date += String.valueOf(uq.get(i).getDate()) + ", ";
+            how_long += String.valueOf(uq.get(i).getHowLong()) + ", ";
+            awake += String.valueOf(uq.get(i).getAwake()) + ", ";
+            earlier += String.valueOf(uq.get(i).getEarlier()) + ", ";
+            quality += String.valueOf(uq.get(i).getQuality()) + ", ";
+            impact_mood += String.valueOf(uq.get(i).getImpactMood()) + ", ";
+            impact_activities += String.valueOf(uq.get(i).getImpactActivities()) + ", ";
+            impact_general += String.valueOf(uq.get(i).getImpactGeneral()) + ", ";
+            mood += String.valueOf(uq.get(i).getMood()) + ", ";
+        }
+        stats += "Username: " + uq.get(0).getUsername() + "/ " +
+                "Date: " + date + "/ " +
+                "How long: " + how_long + "/ " +
+                "Awake: " + awake + "/ " +
+                "Earlier: " + earlier + "/ " +
+                "Nights A Week: " + nightsAWeek + "/ " +
+                "Quality: " + quality + "/ " +
+                "Impact mood: " + impact_mood + "/ " +
+                "Impact activities: " + impact_activities + "/ " +
+                "Impact general: " + impact_general + "/ " +
+                "Problem: " + problem + "/ " +
+                "Mood: " + mood + "/ " +
+                "Demographics: " + demographics + "/ ";
+
+
+        String experimentsList = "";
+
+        if (!isFirstTime) {
+
+            List<UserExperiment> ue = database.daoAccess().fetchUserExperiments();
+
+
+            String date2 = "";
+            String experiment2 = "";
+            String l1_1 = "";
+            String l1_2 = "";
+            String l1_3 = "";
+            String l2_1 = "";
+            String l2_2 = "";
+            String l3_1 = "";
+            String l3_2 = "";
+            String c1_1 = "";
+            String c1_2 = "";
+            String c2_1 = "";
+            String c2_2 = "";
+            String c2_3 = "";
+            String c3_1 = "";
+            String c3_2 = "";
+            String s1_1 = "";
+            String s1_2 = "";
+            String s2_1 = "";
+            String s2_2 = "";
+            String s3_1 = "";
+            String s3_2 = "";
+            String s4_1 = "";
+            String overall_better = "";
+
+            for (int i = 0; i < ue.size(); i++) {
+
+                date2 += String.valueOf(ue.get(i).getDate()) + ", ";
+                experiment2 += String.valueOf(ue.get(i).getExperiment()) + ", ";
+                l1_1 += String.valueOf(ue.get(i).getLightOneSunlightExposure()) + ", ";
+                l1_2 += String.valueOf(ue.get(i).getLightOneHalfAnHour()) + ", ";
+                l1_3 += String.valueOf(ue.get(i).getLightOneCapturesSunlight()) + ", ";
+                l2_1 += String.valueOf(ue.get(i).getLightTwoApp()) + ", ";
+                l2_2 += String.valueOf(ue.get(i).getLightTwoGlasses()) + ", ";
+                l3_1 += String.valueOf(ue.get(i).getLightThreeBright()) + ", ";
+                l3_2 += String.valueOf(ue.get(i).getLightThreeTV()) + ", ";
+                c1_1 += String.valueOf(ue.get(i).getCaffeineOneWhenDrink()) + ", ";
+                c1_2 += String.valueOf(ue.get(i).getCaffeineOneWhenSleep()) + ", ";
+                c2_1 += String.valueOf(ue.get(i).getCaffeineTwoCups()) + ", ";
+                c2_2 += String.valueOf(ue.get(i).getCaffeineTwoCans()) + ", ";
+                c2_3 += String.valueOf(ue.get(i).getCaffeineTwoEnergy()) + ", ";
+                c3_1 += String.valueOf(ue.get(i).getCaffeineThreeDrink()) + ", ";
+                c3_2 += String.valueOf(ue.get(i).getCaffeineThreeEmpty()) + ", ";
+                s1_1 += String.valueOf(ue.get(i).getScheduleOneWhenSleep()) + ", ";
+                s1_2 += String.valueOf(ue.get(i).getScheduleOneWhenWake()) + ", ";
+                s2_1 += String.valueOf(ue.get(i).getScheduleTwoWhenSleep()) + ", ";
+                s2_2 += String.valueOf(ue.get(i).getScheduleTwoWhenWake()) + ", ";
+                s3_1 += String.valueOf(ue.get(i).getScheduleThreeRelaxed()) + ", ";
+                s3_2 += String.valueOf(ue.get(i).getScheduleThreeActivity()) + ", ";
+                s4_1 += String.valueOf(ue.get(i).getScheduleFourWhenSleep()) + ", ";
+                overall_better += String.valueOf(ue.get(i).getOverallBetter()) + ", ";
             }
 
-            bw.close();
-
-            if (!isFirstTime){
-
-                List<UserExperiment> ue = database.daoAccess().fetchUserExperiments();
-
-                filePathTwo = context.getFilesDir().getPath().toString() + "/" + user + "_userExperiment.csv";
-
-                File f2 = new File(filePathTwo);
-
-
-                BufferedWriter bw2 = null;
-                bw2 = new BufferedWriter(new FileWriter(f2));
-                bw2.write("Username, Date, Experiment, L1 sunlight exposure, L1 half an hour, L1 captures sunlight, L2 app, L2 glasses, L3 bright, L3 TV, C1 when drink, C1 when sleep, C2 cups, C2 cans, C2 energy, C3 drink, C3 empty, S1 when sleep, S1 when wak, S2 when sleep, S2 when wake, S3 relaxed, S3 activity, S4 when sleep, Overall better, Demographics, \n");
-
-                for (int i = 0; i < ue.size(); i++) {
-                    bw2.append(ue.get(i).getUsername() + ", " + ue.get(i).getDate() + ", " + ue.get(i).getExperiment() +
-                            ", " + ue.get(i).getLightOneSunlightExposure() + ", " + ue.get(i).getLightOneHalfAnHour() + ", " + ue.get(i).getLightOneCapturesSunlight() +
-                            ", " + ue.get(i).getLightTwoApp() + ", " + ue.get(i).getLightTwoGlasses() +
-                            ", " + ue.get(i).getLightThreeBright() + ", " + ue.get(i).getLightThreeTV() + ", " + ue.get(i).getCaffeineOneWhenDrink() + ", " +
-                            ue.get(i).getCaffeineOneWhenSleep() + ", " + ue.get(i).getCaffeineTwoCups() + ", " + ue.get(i).getCaffeineTwoCans() + ", "
-                            + ue.get(i).getCaffeineTwoEnergy() + ", " + ue.get(i).getCaffeineThreeDrink() + ", " + ue.get(i).getCaffeineThreeEmpty() + ", "
-                            + ue.get(i).getScheduleOneWhenSleep() + ", " + ue.get(i).getScheduleOneWhenWake() + ", " + ue.get(i).getScheduleTwoWhenSleep() + ", "
-                            + ue.get(i).getScheduleTwoWhenWake() + ", " + ue.get(i).getScheduleThreeRelaxed() + ", " + ue.get(i).getScheduleThreeActivity() + ", "
-                            + ue.get(i).getScheduleFourWhenSleep() + ", " + ue.get(i).getOverallBetter() + ", " +  context.getSharedPreferences("demographics", MODE_PRIVATE).getString("demographics", "") + "\n");
-                }
-
-                bw2.close();
-            }
-
-            List<UserDiary> ud = database.daoAccess().fetchDiary();
-
-            filePath2 = context.getFilesDir().getPath().toString() + "/" + user + "_userDiary.csv";
-
-            File f2 = new File(filePath2);
+            experimentsList += "Username: " + uq.get(0).getUsername() + "/ " +
+                    "Date: " + date2 + "/ " +
+                    "Experiment: " + experiment2 + "/ " +
+                    "L1 sunlight exposure: " + l1_1 + "/ " +
+                    "L1 half an hour: " + l1_2 + "/ " +
+                    "L1 captures sunlight: " + l1_3 + "/ " +
+                    "L2 app: " + l2_1 + "/ " +
+                    "L2 glasses: " + l2_2 + "/ " +
+                    "L3 bright: " + l3_1 + "/ " +
+                    "L3 TV: " + l3_2 + "/ " +
+                    "C1 when drink: " + c1_1 + "/ " +
+                    "C1 when sleep: " + c1_2 + "/ " +
+                    "C2 cups: " + c2_1 + "/ " +
+                    "C2 cans: " + c2_2 + "/ " +
+                    "C2 energy: " + c2_3 + "/ " +
+                    "C3 drink: " + c3_1 + "/ " +
+                    "C3 empty: " + c3_2 + "/ " +
+                    "S1 when sleep: " + s1_1 + "/ " +
+                    "S1 when wake: " + s1_2 + "/ " +
+                    "S2 when sleep: " + s2_1 + "/ " +
+                    "S2 when wake: " + s2_2 + "/ " +
+                    "S3 relaxed: " + s3_1 + "/ " +
+                    "S3 activity: " + s3_2 + "/ " +
+                    "S4 when sleep: " + s4_1 + "/ " +
+                    "Overall better: " + overall_better + "/ ";
 
 
-            BufferedWriter bw2 = null;
-            bw2 = new BufferedWriter(new FileWriter(f2));
-            bw2.write("Username, Date, Comment, \n");
-
-            for (int i = 0; i < ud.size(); i++) {
-                bw2.append(ud.get(i).getUsername() + ", " + ud.get(i).getDate() + ", " + ud.get(i).getComment() + "\n");
-            }
-
-            bw2.close();
-
-
-
-        } catch (IOException e) {
-            e.printStackTrace();
         }
 
-        final String username = "gcm1y18";
-        final String password = "experimentUK2";
-
-        Properties props = new Properties();
-        props.put("mail.smtp.auth", true);
-        props.put("mail.smtp.starttls.enable", true);
-        props.put("mail.smtp.host", "smtp.soton.ac.uk");
-        props.put("mail.smtp.port", "25");
-        props.put("mail.smtp.EnableSSL.enable", "true");
-        props.put("mail.smtp.ssl.trust", "smtp.soton.ac.uk");
-
-        Session session = Session.getInstance(props, new javax.mail.Authenticator() {
-            protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(username, password);
-            }
-        });
-
-        try {
-
-            Message message = new MimeMessage(session);
-            message.setFrom(new InternetAddress("GC.Muresan@soton.ac.uk"));
-            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse("GC.Muresan@soton.ac.uk"));
-            message.setSubject("Username: " + user + " / First time: " + isFirstTime + " / Consent for interview: " +  consent);
-            message.setText("PFA");
+        stats += experimentsList;
+        List<UserDiary> ud = database.daoAccess().fetchDiary();
 
 
+        String date3 = "";
+        String comment = String.valueOf(uq.get(0).getProblem());
+        for (int i = 0; i < ud.size(); i++) {
+            date3 += String.valueOf(ud.get(i).getDate()) + ", ";
+            comment += String.valueOf(ud.get(i).getComment()) + ", ";
 
-            Multipart multipart = new MimeMultipart();
-
-
-            MimeBodyPart messageBodyPart = new MimeBodyPart();
-
-            messageBodyPart = new MimeBodyPart();
-
-            String file = filePath;
-
-            File ff = new File(file);
-            String fileName = user + "_userQuestionnaire.csv";
-            DataSource source = new FileDataSource(file);
-            messageBodyPart.setDataHandler(new DataHandler(source));
-            messageBodyPart.setFileName(fileName);
-
-            multipart.addBodyPart(messageBodyPart);
-
-            if (!isFirstTime){
-                MimeBodyPart messageBodyPartTwo = new MimeBodyPart();
-
-                messageBodyPartTwo = new MimeBodyPart();
-
-                String fileTwo = filePathTwo;
-
-                File ff2 = new File(fileTwo);
-                String fileNameTwo = user + "_userExperiment.csv";
-                DataSource sourceTwo = new FileDataSource(fileTwo);
-                messageBodyPartTwo.setDataHandler(new DataHandler(sourceTwo));
-                messageBodyPartTwo.setFileName(fileNameTwo);
-
-                multipart.addBodyPart(messageBodyPartTwo);
-            }
-
-            MimeBodyPart messageBodyPartThree = new MimeBodyPart();
-
-            messageBodyPartThree = new MimeBodyPart();
-
-            String fileThree = filePath2;
-
-            File ff3 = new File(fileThree);
-            String fileNameThree = user + "_userDiary.csv";
-            DataSource source3 = new FileDataSource(fileThree);
-            messageBodyPartThree.setDataHandler(new DataHandler(source3));
-            messageBodyPartThree.setFileName(fileNameThree);
-
-            multipart.addBodyPart(messageBodyPartThree);
-
-
-
-            message.setContent(multipart);
-
-            System.out.println("Sending");
-
-            Transport.send(message);
-
-            System.out.println("Done");
-
-        } catch (MessagingException e) {
-            e.printStackTrace();
         }
+        stats += "Date: " + date3 + "/ " +
+                "Comment: " + comment;
+
+
     }
 
 }
