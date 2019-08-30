@@ -9,17 +9,21 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
-import android.support.v4.app.FragmentManager;
+
 
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
@@ -29,22 +33,23 @@ import java.util.Calendar;
 import java.util.Date;
 
 import static android.content.Context.MODE_PRIVATE;
+import static android.text.Layout.JUSTIFICATION_MODE_INTER_WORD;
 
-public class QFinal extends Fragment {
+public class QFinal extends AppCompatActivity {
 
    private static final String DATABASE_NAME = "user_db";
     private UserDatabase userDatabase;
 
     private static boolean goToMenu = false;
 
-    View questionnaireView;
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        questionnaireView = inflater.inflate(R.layout.act_ques_final, container, false);
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    protected void onCreate(Bundle savedInstanceState) {
 
 
-        Button button = (Button) questionnaireView.findViewById(R.id.submitButton);
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.act_ques_final);
+
+        Button button = (Button) findViewById(R.id.submitButton);
 
         button.setOnClickListener(new View.OnClickListener() {
 
@@ -56,7 +61,14 @@ public class QFinal extends Fragment {
 
         });
 
-        return questionnaireView;
+        TextView cons8 = findViewById(R.id.firstSet);
+        cons8.setJustificationMode(JUSTIFICATION_MODE_INTER_WORD);
+
+        TextView sec = findViewById(R.id.secondSet);
+        sec.setJustificationMode(JUSTIFICATION_MODE_INTER_WORD);
+
+        TextView th = findViewById(R.id.thirdSet);
+        th.setJustificationMode(JUSTIFICATION_MODE_INTER_WORD);
     }
 
     private void loopForSending(){
@@ -64,8 +76,7 @@ public class QFinal extends Fragment {
             goToMenu();
         } else {
             InternetDialog dial = new InternetDialog();
-            FragmentManager fragmentManager = getFragmentManager();
-            dial.show(fragmentManager, "dialog");
+            new InternetDialog().show(getSupportFragmentManager(), "dialog");
         }
     }
 
@@ -96,49 +107,49 @@ public class QFinal extends Fragment {
         int answered = 0;
         double mood =0;
 
-        RadioGroup qGroup = questionnaireView.findViewById(R.id.q1Group);
+        RadioGroup qGroup = findViewById(R.id.q1Group);
         int qID = qGroup.getCheckedRadioButtonId();
         View radioButton = qGroup.findViewById(qID);
         final int howLong = qGroup.indexOfChild(radioButton) +1;
         mood += howLong;
         if (howLong == 0) answered++;
 
-        qGroup = questionnaireView.findViewById(R.id.q2Group);
+        qGroup = findViewById(R.id.q2Group);
         qID = qGroup.getCheckedRadioButtonId();
         radioButton = qGroup.findViewById(qID);
         final int awake = qGroup.indexOfChild(radioButton) +1;
         mood += awake;
         if (awake == 0) answered++;
 
-        qGroup = questionnaireView.findViewById(R.id.q3Group);
+        qGroup = findViewById(R.id.q3Group);
         qID = qGroup.getCheckedRadioButtonId();
         radioButton = qGroup.findViewById(qID);
         final int earlier = qGroup.indexOfChild(radioButton) +1;
         mood += earlier;
         if (earlier == 0) answered++;
 
-        qGroup = questionnaireView.findViewById(R.id.q5Group);
+        qGroup = findViewById(R.id.q5Group);
         qID = qGroup.getCheckedRadioButtonId();
         radioButton = qGroup.findViewById(qID);
         final int quality = qGroup.indexOfChild(radioButton) +1;
         mood += quality;
         if (quality == 0) answered++;
 
-        qGroup = questionnaireView.findViewById(R.id.q6Group);
+        qGroup = findViewById(R.id.q6Group);
         qID = qGroup.getCheckedRadioButtonId();
         radioButton = qGroup.findViewById(qID);
         final int impactMood = qGroup.indexOfChild(radioButton) +1;
         mood += impactMood;
         if (impactMood == 0) answered++;
 
-        qGroup = questionnaireView.findViewById(R.id.q7Group);
+        qGroup = findViewById(R.id.q7Group);
         qID = qGroup.getCheckedRadioButtonId();
         radioButton = qGroup.findViewById(qID);
         final int impactActivities = qGroup.indexOfChild(radioButton) +1;
         mood += impactActivities;
         if (impactActivities == 0) answered++;
 
-        qGroup = questionnaireView.findViewById(R.id.q8Group);
+        qGroup = findViewById(R.id.q8Group);
         qID = qGroup.getCheckedRadioButtonId();
         radioButton = qGroup.findViewById(qID);
         final int impactGeneral = qGroup.indexOfChild(radioButton) +1;
@@ -146,14 +157,14 @@ public class QFinal extends Fragment {
         if (impactGeneral == 0) answered++;
 
         if (answered > 0){
-            Toast.makeText(questionnaireView.getContext(), "In order to proceed, please answer ALL questions", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "In order to proceed, please answer ALL questions", Toast.LENGTH_LONG).show();
         } else {
             mood = mood / 7;
 
             DecimalFormat formatting = new DecimalFormat("#.##");
             mood = Double.parseDouble(formatting.format(mood));
 
-            startActivity(new Intent(getActivity().getApplicationContext(), AllPages.class));
+            startActivity(new Intent(getApplicationContext(), AllPages.class));
 
 
             Date c = Calendar.getInstance().getTime();
@@ -167,10 +178,10 @@ public class QFinal extends Fragment {
                 @Override
                 public void run() {
 
-                    userDatabase = Room.databaseBuilder(getActivity().getApplicationContext(), UserDatabase.class, DATABASE_NAME).fallbackToDestructiveMigration().build();
+                    userDatabase = Room.databaseBuilder(getApplicationContext(), UserDatabase.class, DATABASE_NAME).fallbackToDestructiveMigration().build();
 
                     UserQuestionnaire user = new UserQuestionnaire();
-                    String username = getActivity().getApplicationContext().getSharedPreferences("name", MODE_PRIVATE).getString("participantID", "nothing");
+                    String username = getApplicationContext().getSharedPreferences("name", MODE_PRIVATE).getString("participantID", "nothing");
                     user.setUsername(username);
                     user.setDate(quesDate);
                     user.setHowLong(howLong);
@@ -184,24 +195,24 @@ public class QFinal extends Fragment {
                     user.setProblem(-1);
                     user.setMood(finalMood);
 
-                    getActivity().getApplicationContext().getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("howLong", howLong).apply();
-                    getActivity().getApplicationContext().getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("awake", awake).apply();
-                    getActivity().getApplicationContext().getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("earlier", earlier).apply();
-                    getActivity().getApplicationContext().getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("quality", quality).apply();
-                    getActivity().getApplicationContext().getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("impactMood", impactMood).apply();
-                    getActivity().getApplicationContext().getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("impactActivities", impactActivities).apply();
-                    getActivity().getApplicationContext().getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("impactGeneral", impactGeneral).apply();
-                    getActivity().getApplicationContext().getSharedPreferences("MOOD", MODE_PRIVATE).edit().putFloat("mood", (float) finalMood).apply();
+                    getApplicationContext().getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("howLong", howLong).apply();
+                    getApplicationContext().getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("awake", awake).apply();
+                    getApplicationContext().getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("earlier", earlier).apply();
+                    getApplicationContext().getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("quality", quality).apply();
+                    getApplicationContext().getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("impactMood", impactMood).apply();
+                    getApplicationContext().getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("impactActivities", impactActivities).apply();
+                    getApplicationContext().getSharedPreferences("questionnaire", MODE_PRIVATE).edit().putInt("impactGeneral", impactGeneral).apply();
+                    getApplicationContext().getSharedPreferences("MOOD", MODE_PRIVATE).edit().putFloat("mood", (float) finalMood).apply();
 
                     userDatabase.daoAccess().insertSingleUserQuestionnaire(user);
 
-                    Report rep = new Report(userDatabase, getActivity().getApplicationContext());
-                    rep.save(username, false, getActivity().getApplicationContext().getSharedPreferences("consent", MODE_PRIVATE).getString("consent", "nothing"));
+                    Report rep = new Report(userDatabase, getApplicationContext());
+                    rep.save(username, false, getApplicationContext().getSharedPreferences("consent", MODE_PRIVATE).getString("consent", "nothing"));
                 }
             }).start();
 
 
-            String moods_string = getActivity().getApplicationContext().getSharedPreferences("moods", MODE_PRIVATE).getString("moods", "");
+            String moods_string = getApplicationContext().getSharedPreferences("moods", MODE_PRIVATE).getString("moods", "");
 
             String[] moods = moods_string.split("gcm");
 
@@ -215,12 +226,12 @@ public class QFinal extends Fragment {
             for (int i = 0; i < moods.length; i++) {
                 sb.append(moods[i]).append("gcm");
             }
-            getActivity().getApplicationContext().getSharedPreferences("moods", MODE_PRIVATE).edit().putString("moods", sb.toString()).apply();
+            getApplicationContext().getSharedPreferences("moods", MODE_PRIVATE).edit().putString("moods", sb.toString()).apply();
 
-            String experiments = getActivity().getApplicationContext().getSharedPreferences("experiments", MODE_PRIVATE).getString("experiments", "");
+            String experiments = getApplicationContext().getSharedPreferences("experiments", MODE_PRIVATE).getString("experiments", "");
 
             String[] experimentsArray = experiments.split("gcm");
-            String currentExperiment = getActivity().getApplicationContext().getSharedPreferences("name", MODE_PRIVATE).getString("experiment", "nothing");
+            String currentExperiment = getApplicationContext().getSharedPreferences("name", MODE_PRIVATE).getString("experiment", "nothing");
 
 
             ArrayList<String> experimentsArrayList = new ArrayList<String>(Arrays.asList(experimentsArray));
@@ -233,20 +244,26 @@ public class QFinal extends Fragment {
             for (int i = 0; i < experimentsArray.length; i++) {
                 sb.append(experimentsArray[i]).append("gcm");
             }
-            getActivity().getApplicationContext().getSharedPreferences("experiments", MODE_PRIVATE).edit().putString("experiments", sb.toString()).apply();
+            getApplicationContext().getSharedPreferences("experiments", MODE_PRIVATE).edit().putString("experiments", sb.toString()).apply();
 
-            getActivity().getSharedPreferences("exp", MODE_PRIVATE).getString("picked", "picked");
-            getActivity().getSharedPreferences("exp", MODE_PRIVATE).edit().putString("picked", "picked").apply();
+            getSharedPreferences("exp", MODE_PRIVATE).getString("picked", "picked");
+            getSharedPreferences("exp", MODE_PRIVATE).edit().putString("picked", "picked").apply();
 
         }
     }
 
     public boolean isConnected() {
         ConnectivityManager
-                cm = (ConnectivityManager) getActivity().getApplicationContext()
+                cm = (ConnectivityManager) getApplicationContext()
                 .getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
         return activeNetwork != null
                 && activeNetwork.isConnectedOrConnecting();
+    }
+
+    @Override
+    public void onBackPressed() {
+        Toast.makeText(getApplicationContext(), "I'm sorry, you can't go back to the previous Pre-Questionnaire section.", Toast.LENGTH_LONG).show();
+
     }
 }

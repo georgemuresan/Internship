@@ -8,13 +8,16 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.text.DecimalFormat;
@@ -23,6 +26,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
+import static android.text.Layout.JUSTIFICATION_MODE_INTER_WORD;
+
 public class QInitial extends AppCompatActivity {
 
 
@@ -30,6 +35,7 @@ public class QInitial extends AppCompatActivity {
     private UserDatabase userDatabase;
     private static boolean goToMenu = false;
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -46,6 +52,18 @@ public class QInitial extends AppCompatActivity {
             }
 
         });
+
+        TextView cons8 = findViewById(R.id.firstSet);
+        cons8.setJustificationMode(JUSTIFICATION_MODE_INTER_WORD);
+
+        TextView sec = findViewById(R.id.secondSet);
+        sec.setJustificationMode(JUSTIFICATION_MODE_INTER_WORD);
+
+        TextView th = findViewById(R.id.thirdSet);
+        th.setJustificationMode(JUSTIFICATION_MODE_INTER_WORD);
+
+        TextView fo = findViewById(R.id.fourthSet);
+        fo.setJustificationMode(JUSTIFICATION_MODE_INTER_WORD);
 
     }
 
@@ -237,7 +255,22 @@ public class QInitial extends AppCompatActivity {
             }
             getApplicationContext().getSharedPreferences("moods", MODE_PRIVATE).edit().putString("moods", sb.toString()).apply();
 
-            getSharedPreferences("exp", MODE_PRIVATE).edit().putString("picked", "picked").apply();
+            getApplicationContext().getSharedPreferences("exp", MODE_PRIVATE).edit().putString("picked", "picked").apply();
+
+
+            //settings
+            getApplicationContext().getSharedPreferences("notif", MODE_PRIVATE).edit().putString("limit", "0:0").apply();
+            getApplicationContext().getSharedPreferences("notif", MODE_PRIVATE).edit().putInt("nrNotif", 1).apply();
+            getApplicationContext().getSharedPreferences("notif", MODE_PRIVATE).edit().putBoolean("disableAll", false).apply();
+            getApplicationContext().getSharedPreferences("PREFERENCE", MODE_PRIVATE).edit().putBoolean("isFirstRun", false).apply();
+
+            getApplicationContext().getSharedPreferences("firstnotice", MODE_PRIVATE).edit().putBoolean("menu", true).apply();
+            getApplicationContext().getSharedPreferences("firstnotice", MODE_PRIVATE).edit().putBoolean("experiments", true).apply();
+            getApplicationContext().getSharedPreferences("firstnotice", MODE_PRIVATE).edit().putBoolean("data", true).apply();
+            getApplicationContext().getSharedPreferences("firstnotice", MODE_PRIVATE).edit().putBoolean("diary", true).apply();
+            getApplicationContext().getSharedPreferences("firstnotice", MODE_PRIVATE).edit().putBoolean("calendar", true).apply();
+            getApplicationContext().getSharedPreferences("firstnotice", MODE_PRIVATE).edit().putBoolean("questionnaire", true).apply();
+
         }
     }
 

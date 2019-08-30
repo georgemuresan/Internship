@@ -1,11 +1,13 @@
 package com.uos.admin.sleepbetter;
 
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.arch.persistence.room.Room;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,17 +25,17 @@ import java.util.List;
 
 import static android.content.Context.MODE_PRIVATE;
 
-public class Update_Light_Glasses extends Fragment {
+public class Update_Light_Glasses extends AppCompatActivity {
     private static final String DATABASE_NAME = "user_db";
     private UserDatabase userDatabase;
-    View updateView;
 
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        updateView = inflater.inflate(R.layout.act_update_light_glasses, container, false);
+    protected void onCreate(Bundle savedInstanceState) {
 
-        Button button = (Button) updateView.findViewById(R.id.submitUpdate);
+
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.act_update_light_glasses);
+
+        Button button = (Button) findViewById(R.id.submitUpdate);
 
         button.setOnClickListener(new View.OnClickListener() {
 
@@ -45,7 +47,6 @@ public class Update_Light_Glasses extends Fragment {
 
         });
 
-        return updateView;
     }
 
     public void goToQuestionnaire() {
@@ -54,7 +55,7 @@ public class Update_Light_Glasses extends Fragment {
         SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
         final String formattedDate = df.format(c);
 
-        RadioGroup radioButtonGroup0 = updateView.findViewById(R.id.radioGroup2);
+        RadioGroup radioButtonGroup0 = findViewById(R.id.radioGroup2);
         int radioButtonID0 = radioButtonGroup0.getCheckedRadioButtonId();
         View radioButton0 = radioButtonGroup0.findViewById(radioButtonID0);
         int idx0 = radioButtonGroup0.indexOfChild(radioButton0);
@@ -62,14 +63,14 @@ public class Update_Light_Glasses extends Fragment {
         final String testCompared = r0.getText().toString();
 
 
-        RadioGroup radioButtonGroup = updateView.findViewById(R.id.appGroup);
+        RadioGroup radioButtonGroup = findViewById(R.id.appGroup);
         int radioButtonID = radioButtonGroup.getCheckedRadioButtonId();
         View radioButton = radioButtonGroup.findViewById(radioButtonID);
         int idx = radioButtonGroup.indexOfChild(radioButton);
         RadioButton r = (RadioButton) radioButtonGroup.getChildAt(idx);
         final String textApp = r.getText().toString();
 
-        RadioGroup radioButtonGroup2 = updateView.findViewById(R.id.glassesGroup);
+        RadioGroup radioButtonGroup2 = findViewById(R.id.glassesGroup);
         int radioButtonID2 = radioButtonGroup2.getCheckedRadioButtonId();
         View radioButton2 = radioButtonGroup2.findViewById(radioButtonID2);
         int idx2 = radioButtonGroup2.indexOfChild(radioButton2);
@@ -83,9 +84,9 @@ public class Update_Light_Glasses extends Fragment {
             @Override
             public void run() {
 
-                userDatabase = Room.databaseBuilder(getActivity().getApplicationContext(), UserDatabase.class, DATABASE_NAME).fallbackToDestructiveMigration().build();
+                userDatabase = Room.databaseBuilder(getApplicationContext(), UserDatabase.class, DATABASE_NAME).fallbackToDestructiveMigration().build();
                 UserExperiment user = new UserExperiment();
-                String username = getActivity().getApplicationContext().getSharedPreferences("name", MODE_PRIVATE).getString("username", "nothing");
+                String username = getApplicationContext().getSharedPreferences("name", MODE_PRIVATE).getString("username", "nothing");
                 user.setUsername(username);
                 user.setDate(formattedDate);
                 user.setExperiment("L2");
@@ -101,9 +102,7 @@ public class Update_Light_Glasses extends Fragment {
             }
         }).start();
 
-        FragmentManager fragmentManager = getFragmentManager();
-
-        fragmentManager.beginTransaction().replace(R.id.content_frame, new QFinal()).commit();
+        startActivity(new Intent(this, QFinal.class));
     }
 
 }

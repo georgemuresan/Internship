@@ -1,15 +1,21 @@
 package com.uos.admin.sleepbetter;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioGroup;
+import android.widget.TextView;
+
+import static android.text.Layout.JUSTIFICATION_MODE_INTER_WORD;
 
 public class Demographics extends AppCompatActivity {
 
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_demograpics);
@@ -25,6 +31,9 @@ public class Demographics extends AppCompatActivity {
             }
 
         });
+
+        TextView cons8 = findViewById(R.id.firstSet);
+        cons8.setJustificationMode(JUSTIFICATION_MODE_INTER_WORD);
 
     }
 

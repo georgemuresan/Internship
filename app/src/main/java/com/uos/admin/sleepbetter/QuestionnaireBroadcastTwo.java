@@ -7,10 +7,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.NotificationCompat;
 
-import static android.content.Context.MODE_PRIVATE;
 import static com.uos.admin.sleepbetter.AllPages.nextclass;
 
-public class QuestionnaireBroadcast extends BroadcastReceiver {
+public class QuestionnaireBroadcastTwo extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
 
@@ -29,13 +28,13 @@ public class QuestionnaireBroadcast extends BroadcastReceiver {
             NotificationCompat.Builder mNotifyBuilder = new NotificationCompat.Builder(context, "13")
                     .setSmallIcon(R.drawable.pillow)
                     .setContentTitle("Questionnaire")
-                    .setStyle(new NotificationCompat.BigTextStyle().bigText("Remember to complete the daily questionnaire!"))
-                    .setContentText("Remember to complete the daily questionnaire!")
+                    .setStyle(new NotificationCompat.BigTextStyle().bigText("Remember to complete the daily questionnaire if you haven't yet!"))
+                    .setContentText("Remember to complete the daily questionnaire if you haven't yet!")
                     .setAutoCancel(false)
                     .setWhen(when)
                     .setOngoing(false)
                     .setContentIntent(pendingIntent);
-            notificationManager.notify(20, mNotifyBuilder.build());
+            notificationManager.notify(21, mNotifyBuilder.build());
 
     }
     }

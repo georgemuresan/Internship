@@ -131,12 +131,12 @@ public class FirstPage extends AppCompatActivity {
 
                 getSharedPreferences("name", MODE_PRIVATE).edit().putString("username", name).apply();
                 getSharedPreferences("name", MODE_PRIVATE).edit().putString("participantID", participant).apply();
-                getSharedPreferences("PREFERENCE", MODE_PRIVATE).edit().putBoolean("isFirstRun", false).apply();
 
                 startActivity(intent);
 
         }
 
     }
+
 
 }

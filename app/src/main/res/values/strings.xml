@@ -10,13 +10,13 @@
     <string name="startButton">START</string>
     <string name="permission">Consent Form</string>
     <string name="yourName">Your name...</string>
-    <string name="participantName">Participant ID...</string>
+    <string name="participantName">User ID...</string>
     <string name="linkBitmoji">Linked Bitmoji</string>
 
     <string name="consentPageTitle">CONSENT FORM</string>
     <string name="consentIntro">In order to proceed with the experiment, we will kindly ask you to look over the next paragraphs to understand your involvement into this study. Please initial the box(es) if you agree with the statement(s):
 </string>
-    <string name="permissionOne">I have read and understood the information sheet (26/11/2018 /Version 2.0) and have had the opportunity to ask questions about the study.</string>
+    <string name="permissionOne">I have read and understood the information sheet (18/12/2018 /Version 3.0) and have had the opportunity to ask questions about the study.</string>
     <string name="permissionTwo">I agree to take part in this research project and agree for my data to be used for the purpose of this study.</string>
     <string name="permissionThree">I understand my participation is voluntary and I may withdraw at any time for any reason without my rights being affected.</string>
     <string name="permissionFour">I understand my responses will be anonymised in reports of the research.</string>
@@ -133,7 +133,7 @@
     <string name="desc">Description</string>
     <string name="goalDiaryInput">Goal Diary Input...</string>
     <string name="name">Your Name...</string>
-    <string name="participant">Participant ID...</string>
+    <string name="participant">User ID...</string>
     <string name="firstNoteHint">*First Note*</string>
 
     <string name="title_activity_main_page">MainPage</string>
@@ -193,7 +193,7 @@
     <string name="persInputSchedule"> </string>
 
 
-    <string name="goalDiaryIntro">Welcome to your Goal Diary! Here you will able to note any particular changes you want to reflect on/any goals you wish to accomplice and any other observations. You can also see previous notes.</string>
+    <string name="goalDiaryIntro">Welcome to your Goal Diary! Here you will able to note any particular changes you want to reflect on/any goals you wish to accomplish and any other observations. You can also see previous notes.</string>
     <string name="previousGoals">Today\'s notes</string>
 
     <string name="moreInfo">More Information</string>
@@ -302,7 +302,7 @@
 
     <string name="appIntro">Welcome! Sleep Better is a mobile application that guides you through a series of experiments that you can run in a definite period of time in order to start a tuning process over your sleeping patterns.
 You will be able to change/choose your experiment once every 5 days, where (if you\'re in group A) at the end of each day you will have to log on your experience and analyse the data and interact with the other features of the app.
-To begin with, complete the consent form, input your name (that only YOU will be able to see), and your given participant number.
+To begin with, complete the consent form and input your name (that only YOU will be able to see).
 </string>
 
     <string name="ourMissionTitle">Our mission?</string>

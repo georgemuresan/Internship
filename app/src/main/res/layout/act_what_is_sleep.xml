@@ -163,7 +163,8 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/textView6"
                     app:layout_constraintTop_toBottomOf="@+id/sleepHygieneTitle"
-                    app:srcCompat="@drawable/owl" />
+                    app:srcCompat="@drawable/owl"
+                    tools:srcCompat="@drawable/owl" />
 
                 <ImageView
                     android:id="@+id/imageView5"

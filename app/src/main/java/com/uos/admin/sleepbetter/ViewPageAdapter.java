@@ -40,4 +40,6 @@ public class ViewPageAdapter extends FragmentPagerAdapter {
         sectionsTitles.add(title);
 
     }
+
+
 }

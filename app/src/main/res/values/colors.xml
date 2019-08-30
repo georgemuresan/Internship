@@ -4,5 +4,7 @@
     <color name="colorPrimaryDark">#2E3A91</color>
     <color name="colorAccent">#FF4081</color>
     <color name="toolbarColor">#5A9DEC</color>
+    <color name="toolbarColorUp">#32467E</color>
     <color name="black">#000000</color>
+    <color name="LightSteelBlue">#b0c4de</color>
 </resources>

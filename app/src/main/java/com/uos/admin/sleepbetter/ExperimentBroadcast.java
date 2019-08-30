@@ -35,7 +35,7 @@ public class ExperimentBroadcast extends BroadcastReceiver {
                             .bigText(messageM))
                     .setContentText(messageM)
                     .setAutoCancel(false).setWhen(when)
-                    .setOngoing(true)
+                    .setOngoing(false)
                     .setContentIntent(pendingIntent);
             notificationManager.notify(13, mNotifyBuilder.build());
 

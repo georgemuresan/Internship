@@ -7,19 +7,27 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.arch.persistence.room.Room;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.LocalBroadcastManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.text.ParseException;
@@ -30,6 +38,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 import static android.content.Context.MODE_PRIVATE;
+import static android.text.Layout.JUSTIFICATION_MODE_INTER_WORD;
 
 
 public class Factors extends Fragment {
@@ -38,91 +47,122 @@ public class Factors extends Fragment {
 
     private static RadioGroup radioGroup;
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         factorsView = inflater.inflate(R.layout.act_experiments, container, false);
 
-        Button button2 = (Button) factorsView.findViewById(R.id.submit);
+
+        TabLayout tabLayout = (TabLayout) AllPages.tabLayout;
+        if (getView() == null && tabLayout.getSelectedTabPosition() == 1) {
+            if (getActivity().getApplicationContext().getSharedPreferences("firstnotice", MODE_PRIVATE).getBoolean("experiments", true) == true) {
+
+                InfoFirstDialog dia = new InfoFirstDialog();
+                dia.show(getFragmentManager(), "dialog");
+
+                getActivity().getApplicationContext().getSharedPreferences("firstnotice", MODE_PRIVATE).edit().putBoolean("experiments", false).apply();
+
+            }
+
+        }
+
+       Button button2 = (Button) factorsView.findViewById(R.id.submit);
         button2.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 submitExperiment();
             }
         });
 
+        TextView cons8 = factorsView.findViewById(R.id.factorsIntro);
+        cons8.setJustificationMode(JUSTIFICATION_MODE_INTER_WORD);
+
         return factorsView;
     }
-
-
-    private boolean isViewShown = false;
 
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
-        if (getView() != null) {
-            isViewShown = true;
+
+        TabLayout tabLayout = (TabLayout) AllPages.tabLayout;
+        if (getView() != null && tabLayout.getSelectedTabPosition() == 1) {
             loadPageDataProcessing();
-        } else {
-            isViewShown = false;
+            if (getActivity().getApplicationContext().getSharedPreferences("firstnotice", MODE_PRIVATE).getBoolean("experiments", true) == true) {
+
+                InfoFirstDialog dia = new InfoFirstDialog();
+                dia.show(getFragmentManager(), "dialog");
+
+                getActivity().getApplicationContext().getSharedPreferences("firstnotice", MODE_PRIVATE).edit().putBoolean("experiments", false).apply();
+
+            }
+
+        }
+
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        TabLayout tabLayout = (TabLayout) AllPages.tabLayout;
+        if (tabLayout.getSelectedTabPosition() == 1) {
+            loadPageDataProcessing();
         }
     }
 
-    public void loadPageDataProcessing(){
 
-
-
+    public void loadPageDataProcessing() {
         String experiment = getActivity().getApplicationContext().getSharedPreferences("name", MODE_PRIVATE).getString("experiment", "nothing");
         int savedRadioIndex = getActivity().getApplicationContext().getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).getInt("KEY_SAVED_RADIO_BUTTON_INDEX", 0);
 
         radioGroup = (RadioGroup) factorsView.findViewById(R.id.experimentsGroup);
 
-        if (!experiment.equals("nothing")){
-            RadioButton savedCheckedRadioButton = (RadioButton)radioGroup.getChildAt(savedRadioIndex);
+        if (!experiment.equals("nothing")) {
+            RadioButton savedCheckedRadioButton = (RadioButton) radioGroup.getChildAt(savedRadioIndex);
             savedCheckedRadioButton.setChecked(true);
         }
 
-        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
-        {
+        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
 
                 int checkedIndex;
 
-                RadioButton rb =(RadioButton) factorsView.findViewById(checkedId);
-                if (rb.getText().equals(getString(R.string.firstLight))){
+                RadioButton rb = (RadioButton) factorsView.findViewById(checkedId);
+                if (rb.getText().equals(getString(R.string.firstLight))) {
                     getActivity().getSharedPreferences("name", MODE_PRIVATE).edit().putString("experiment", getString(R.string.firstLight)).apply();
                     getActivity().getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).edit().putInt("KEY_SAVED_RADIO_BUTTON_INDEX", 1).apply();
-                } else if (rb.getText().equals(getString(R.string.secondLight))){
+                } else if (rb.getText().equals(getString(R.string.secondLight))) {
                     getActivity().getSharedPreferences("name", MODE_PRIVATE).edit().putString("experiment", getString(R.string.secondLight)).apply();
                     getActivity().getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).edit().putInt("KEY_SAVED_RADIO_BUTTON_INDEX", 2).apply();
-                } else if (rb.getText().equals(getString(R.string.thirdLight))){
+                } else if (rb.getText().equals(getString(R.string.thirdLight))) {
                     getActivity().getSharedPreferences("name", MODE_PRIVATE).edit().putString("experiment", getString(R.string.thirdLight)).apply();
                     getActivity().getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).edit().putInt("KEY_SAVED_RADIO_BUTTON_INDEX", 3).apply();
-                } else if (rb.getText().equals(getString(R.string.firstCaffeine))){
+                } else if (rb.getText().equals(getString(R.string.firstCaffeine))) {
                     getActivity().getSharedPreferences("name", MODE_PRIVATE).edit().putString("experiment", getString(R.string.firstCaffeine)).apply();
                     getActivity().getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).edit().putInt("KEY_SAVED_RADIO_BUTTON_INDEX", 5).apply();
-                } else if (rb.getText().equals(getString(R.string.secondCaffeine))){
+                } else if (rb.getText().equals(getString(R.string.secondCaffeine))) {
                     getActivity().getSharedPreferences("name", MODE_PRIVATE).edit().putString("experiment", getString(R.string.secondCaffeine)).apply();
                     getActivity().getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).edit().putInt("KEY_SAVED_RADIO_BUTTON_INDEX", 6).apply();
-                } else if (rb.getText().equals(getString(R.string.thirdCaffeine))){
+                } else if (rb.getText().equals(getString(R.string.thirdCaffeine))) {
                     getActivity().getSharedPreferences("name", MODE_PRIVATE).edit().putString("experiment", getString(R.string.thirdCaffeine)).apply();
                     getActivity().getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).edit().putInt("KEY_SAVED_RADIO_BUTTON_INDEX", 7).apply();
-                } else if (rb.getText().equals(getString(R.string.firstSchedule))){
+                } else if (rb.getText().equals(getString(R.string.firstSchedule))) {
                     getActivity().getSharedPreferences("name", MODE_PRIVATE).edit().putString("experiment", getString(R.string.firstSchedule)).apply();
                     getActivity().getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).edit().putInt("KEY_SAVED_RADIO_BUTTON_INDEX", 9).apply();
-                } else if (rb.getText().equals(getString(R.string.secondSchedule))){
+                } else if (rb.getText().equals(getString(R.string.secondSchedule))) {
                     getActivity().getSharedPreferences("name", MODE_PRIVATE).edit().putString("experiment", getString(R.string.secondSchedule)).apply();
                     getActivity().getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).edit().putInt("KEY_SAVED_RADIO_BUTTON_INDEX", 10).apply();
-                } else if (rb.getText().equals(getString(R.string.thirdSchedule))){
+                } else if (rb.getText().equals(getString(R.string.thirdSchedule))) {
                     getActivity().getSharedPreferences("name", MODE_PRIVATE).edit().putString("experiment", getString(R.string.thirdSchedule)).apply();
                     getActivity().getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).edit().putInt("KEY_SAVED_RADIO_BUTTON_INDEX", 11).apply();
-                } else if (rb.getText().equals(getString(R.string.fourthSchedule))){
+                } else if (rb.getText().equals(getString(R.string.fourthSchedule))) {
                     getActivity().getSharedPreferences("name", MODE_PRIVATE).edit().putString("experiment", getString(R.string.fourthSchedule)).apply();
                     getActivity().getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).edit().putInt("KEY_SAVED_RADIO_BUTTON_INDEX", 12).apply();
                 }
             }
         });
-
 
 
         Date c = Calendar.getInstance().getTime();
@@ -145,7 +185,7 @@ public class Factors extends Fragment {
 
         SimpleDateFormat dates = new SimpleDateFormat("dd-MMM-yyyy");
 
-        if (previousExperimentStartDate.equals("")){
+        if (previousExperimentStartDate.equals("")) {
             previousExperimentStartDate = currentDate;
         }
         //Setting dates
@@ -164,49 +204,53 @@ public class Factors extends Fragment {
 
         int differenceBetweenOldExperimentAndCurrent = c1.get(Calendar.DAY_OF_YEAR) - c2.get(Calendar.DAY_OF_YEAR);
 
+        //adding a new day only after the ques limit - e.g. after 4 am
+        Calendar calendarr = Calendar.getInstance();
+        SimpleDateFormat formatterr = new SimpleDateFormat("HH:mm");
+        String currentHourr = formatterr.format(calendarr.getTime());
 
-        if (differenceBetweenOldExperimentAndCurrent % 5 != 0){
+        String quesLimit = getActivity().getApplicationContext().getSharedPreferences("notif", MODE_PRIVATE).getString("limit", "0:0");
+        String[] lastQuestNotifComponents = quesLimit.split(":");
+
+        String[] currentHourComponents = currentHourr.split(":");
+        if (Integer.valueOf(currentHourComponents[0]) < Integer.valueOf(lastQuestNotifComponents[0])) {
+            differenceBetweenOldExperimentAndCurrent--;
+        }
+
+
+        System.out.println(loggedIn);
+        if (differenceBetweenOldExperimentAndCurrent % 5 != 0) {
             for (int i = 0; i < radioGroup.getChildCount(); i++) {
                 radioGroup.getChildAt(i).setEnabled(false);
             }
             Toast.makeText(getActivity().getApplicationContext(), "I'm sorry, you can't change your experiment as 5 days have not passed yet.", Toast.LENGTH_LONG).show();
 
 
-            } else if (differenceBetweenOldExperimentAndCurrent == 0 && getActivity().getSharedPreferences("exp", MODE_PRIVATE).getString("picked", "").equals("newPicked")){
+        } else if (differenceBetweenOldExperimentAndCurrent == 0 && getActivity().getSharedPreferences("exp", MODE_PRIVATE).getString("picked", "").equals("newPicked")) {
 
+            for (int i = 0; i < radioGroup.getChildCount(); i++) {
+                radioGroup.getChildAt(i).setEnabled(false);
+            }
+            Toast.makeText(getActivity().getApplicationContext(), "I'm sorry, you can't change your experiment yet as you've just picked it.", Toast.LENGTH_LONG).show();
+
+        } else if (differenceBetweenOldExperimentAndCurrent % 5 == 0 && differenceBetweenOldExperimentAndCurrent != 0) {
+            if (loggedIn % 5 != 1) {
                 for (int i = 0; i < radioGroup.getChildCount(); i++) {
                     radioGroup.getChildAt(i).setEnabled(false);
                 }
-                Toast.makeText(getActivity().getApplicationContext(), "I'm sorry, you can't change your experiment yet as you've just picked it.", Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity().getApplicationContext(), "I'm sorry, you can't change your experiment yet. You can change it after completing today's questionnaire.", Toast.LENGTH_LONG).show();
 
-            } else if (differenceBetweenOldExperimentAndCurrent % 5 == 0 && differenceBetweenOldExperimentAndCurrent != 0) {
-    if (Integer.valueOf(currentHour) < 19) {
-        System.out.println("correct 5");
-        for (int i = 0; i < radioGroup.getChildCount(); i++) {
-            radioGroup.getChildAt(i).setEnabled(false);
+            }
         }
-        Toast.makeText(getActivity().getApplicationContext(), "I'm sorry, you can't change your experiment yet. You can change it after 19:00 today.", Toast.LENGTH_LONG).show();
-
-    } else if (loggedIn % 5 != 1) {
-        System.out.println("correct 6");
-        for (int i = 0; i < radioGroup.getChildCount(); i++) {
-            radioGroup.getChildAt(i).setEnabled(false);
-        }
-        Toast.makeText(getActivity().getApplicationContext(), "I'm sorry, you can't change your experiment yet. You can change it after completing today's questionnaire.", Toast.LENGTH_LONG).show();
-
-    }
-}
-
-
 
 
     }
 
-    private void SavePreferences(String key, int value){
+    private void SavePreferences(String key, int value) {
         getActivity().getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE).edit().putInt(key, value).apply();
     }
 
-    private void submitExperiment(){
+    private void submitExperiment() {
 
         FactorsDialog dia = new FactorsDialog();
         dia.show(getFragmentManager(), "dialog");
@@ -236,19 +280,19 @@ public class Factors extends Fragment {
                     break;
                 case 2: //wear glasses that block blue light during the night
                     builder.setMessage("Are you sure you want to choose this experiment? You will not be able to change it for the next 5 days. This experiment presumes:\nMaybe installing the f.lx app fromm google that warms up your computer display at night, to match your indoor lighting;\nIf needed - wearing glasses/a sleeping mask to block blue light during the night.");
-                    message = "\"Use the \\\"f.lux\\\" app!\"!";
+                    message = "\"Use the \\\"f.lux\\\" app!\" and wear a sleeping mask/glasses when going to sleep!";
                     hour = 12;
                     minute = 30;
                     break;
                 case 3: // turn off any bright lights 2 hours before going to bed
                     builder.setMessage("Are you sure you want to choose this experiment? You will not be able to change it for the next 5 days. This experiment presumes:\nTurning off the TV/computer with 2 hours before going to bed;\nTurning off any other bright lights in your room with 2 hours before going to bed.");
-                    message = "Going to bed soon?\", \"Do not forget to turn off your light with 2 hours before bed!";
+                    message = "Going to bed soon?, Do not forget to turn off your light with 2 hours before bed!";
                     hour = 19;
                     minute = 30;
                     break;
                 case 5: // Do not drink caffeine within 6 hours
                     builder.setMessage("Are you sure you want to choose this experiment? You will not be able to change it for the next 5 days. This experiment presumes:\nNot drinking coffee/soda/any energy drink with 6 hours before sleep.");
-                    message = "Going to bed soon?\", \"Do not forget to turn off your light with 2 hours before bed!";
+                    message = "Don't drink caffeine within 6 hours of going to bed!!";
                     hour = 19;
                     minute = 30;
                     break;
@@ -293,39 +337,71 @@ public class Factors extends Fragment {
 
 
             builder.setPositiveButton("Submit", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                             //daca nu e blocat, atunci se updateaza experimentul, se blocheaza accesul si se incrementeaza nr de zile
-                                for (int i = 0; i < radioGroup.getChildCount(); i++) {
-                                    radioGroup.getChildAt(i).setEnabled(false);
-                                }
-
-
-                                //update starting date
-                                Date c = Calendar.getInstance().getTime();
-                                SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
-                                final String currentDate = df.format(c);
-
-                                getActivity().getSharedPreferences("date", MODE_PRIVATE).getString("startExperiment", "");
-                                getActivity().getSharedPreferences("date", MODE_PRIVATE).edit().putString("startExperiment", currentDate).apply();
-                                getActivity().getSharedPreferences("exp", MODE_PRIVATE).getString("picked", "newPicked");
-                                getActivity().getSharedPreferences("exp", MODE_PRIVATE).edit().putString("picked", "newPicked").apply();
-
-                            //
-
-
-                            String participantID = getActivity().getApplicationContext().getSharedPreferences("name", MODE_PRIVATE).getString("participantID", "nothing");
-
-                            Intent intent = new Intent(getActivity().getApplicationContext(), AllPages.class);
-
-                                startActivity(intent);
-
-                            createQuestionnaireNotification();
-                            createExperimentNotification();
+                public void onClick(DialogInterface dialog, int id) {
+                    //daca nu e blocat, atunci se updateaza experimentul, se blocheaza accesul si se incrementeaza nr de zile
+                    for (int i = 0; i < radioGroup.getChildCount(); i++) {
+                        radioGroup.getChildAt(i).setEnabled(false);
+                    }
 
 
 
-                        }
-                    })
+
+                    getActivity().getSharedPreferences("date", MODE_PRIVATE).getString("startExperiment", "");
+
+                    //adding a new day only after the ques limit - e.g. after 4 am
+                    Calendar calendarr = Calendar.getInstance();
+                    SimpleDateFormat formatterr = new SimpleDateFormat("HH:mm");
+                    String currentHourr = formatterr.format(calendarr.getTime());
+
+                    String quesLimit = getActivity().getApplicationContext().getSharedPreferences("notif", MODE_PRIVATE).getString("limit", "0:0");
+                    String[] lastQuestNotifComponents = quesLimit.split(":");
+
+                    String[] currentHourComponents = currentHourr.split(":");
+
+                    if (Integer.valueOf(currentHourComponents[0]) < Integer.valueOf(lastQuestNotifComponents[0])) {
+
+                        Date dt = Calendar.getInstance().getTime();
+                        Calendar cal = Calendar.getInstance();
+                        cal.setTime(dt);
+                        cal.add(Calendar.DATE, -1);
+                        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MMM-yyyy");
+                        final String currentDate = dateFormat.format(cal.getTime());
+
+                        getActivity().getSharedPreferences("date", MODE_PRIVATE).edit().putString("startExperiment", currentDate).apply();
+
+                        System.out.println(currentDate);
+                    } else {
+
+                        //update starting date
+
+                        Date c = Calendar.getInstance().getTime();
+                        SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
+                        final String currentDate = df.format(c);
+                        getActivity().getSharedPreferences("date", MODE_PRIVATE).edit().putString("startExperiment", currentDate).apply();
+
+                        System.out.println(currentDate);
+
+                    }
+
+
+                    getActivity().getSharedPreferences("exp", MODE_PRIVATE).getString("picked", "newPicked");
+                    getActivity().getSharedPreferences("exp", MODE_PRIVATE).edit().putString("picked", "newPicked").apply();
+
+                    //
+
+
+                    String participantID = getActivity().getApplicationContext().getSharedPreferences("name", MODE_PRIVATE).getString("participantID", "nothing");
+
+                    Intent intent = new Intent(getActivity().getApplicationContext(), AllPages.class);
+
+                    startActivity(intent);
+
+                    createQuestionnaireNotification();
+                    createExperimentNotification();
+
+
+                }
+            })
                     .setNegativeButton("Back", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
                             // User cancelled the dialog
@@ -352,7 +428,7 @@ public class Factors extends Fragment {
 
             Calendar calendar = Calendar.getInstance();
             calendar.set(Calendar.HOUR_OF_DAY, 19);
-            calendar.set(Calendar.MINUTE, 0);
+            calendar.set(Calendar.MINUTE, 55);
             calendar.set(Calendar.SECOND, 0);
 
             if (Calendar.getInstance().after(calendar)) {
@@ -366,9 +442,11 @@ public class Factors extends Fragment {
 
         private void createExperimentNotification() {
 
+            getActivity().getApplicationContext().getSharedPreferences("notif", MODE_PRIVATE).edit().putString("currentNot", hour + ":" + minute).apply();
+
             Calendar calendar = Calendar.getInstance();
-            calendar.set(Calendar.HOUR_OF_DAY, hour);
-            calendar.set(Calendar.MINUTE, minute);
+            calendar.set(Calendar.HOUR_OF_DAY, 19);
+            calendar.set(Calendar.MINUTE, 56);
             calendar.set(Calendar.SECOND, 0);
 
             if (Calendar.getInstance().after(calendar)) {
@@ -382,5 +460,29 @@ public class Factors extends Fragment {
         }
     }
 
+
+    public static class InfoFirstDialog extends DialogFragment {
+
+        private String message;
+        private int hour, minute;
+
+
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+            // Use the Builder class for convenient dialog construction
+            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+
+            builder.setMessage("This is where you will be able to choose your preferred experiment to try out for the next 5 days in order to improve your sleep. Please bare in mind that once you choose an experiment, you cannot change it for the next 5 days. When clicking submit, a dialog will pop up outlining the experiment information again and asking you if you are sure about your choice. Also, once 5 days have passed, you will be able to change the experiment after completing that day's questionnaire. If you won't change the experiment, your current one will continue for another 5 days.");
+            builder.setPositiveButton("Okay", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    dialog.dismiss();
+                }
+            });
+
+            return builder.create();
+        }
+
+
+    }
 
 }

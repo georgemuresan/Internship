@@ -10,6 +10,7 @@
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.NEW_OUTGOING_CALL" />
 
+
     <application
 
         android:allowBackup="true"
@@ -29,6 +30,8 @@
         <activity android:name=".FirstPageConsent" />
 
         <receiver android:name=".QuestionnaireBroadcast" />
+        <receiver android:name=".QuestionnaireBroadcastTwo" />
+        <receiver android:name=".QuestionnaireBroadcastThree" />
         <receiver android:name=".ExperimentBroadcast" />
 
         <activity
@@ -40,7 +43,23 @@
         <activity android:name=".Notice"></activity>
         <activity android:name=".QInitial"></activity>
         <activity android:name=".Demographics"></activity>
+        <activity android:name=".Settings"></activity>
+        <activity android:name=".MyCurrentExperiment"></activity>
+        <activity android:name=".Update_Light_Bright"></activity>
+        <activity android:name=".Update_Light_Glasses"></activity>
+        <activity android:name=".Update_Light_TurnOffBright"></activity>
+        <activity android:name=".Update_Caffeine_Empty"></activity>
+        <activity android:name=".Update_Caffeine_limit"></activity>
+        <activity android:name=".Update_Caffeine_6hours"></activity>
+        <activity android:name=".Update_Schedule_Relax"></activity>
+        <activity android:name=".Update_Schedule_7hours"></activity>
+        <activity android:name=".Update_Schedule_Midnight"></activity>
+        <activity android:name=".Update_Schedule_SameTime"></activity>
+        <activity android:name=".QFinal"></activity>
 
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
     </application>
 
 </manifest>

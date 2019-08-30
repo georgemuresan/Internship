@@ -1,7 +1,13 @@
 package com.uos.admin.sleepbetter;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -25,7 +31,49 @@ public class Update extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         helpView = inflater.inflate(R.layout.act_update, container, false);
 
+        TabLayout tabLayout = (TabLayout) AllPages.tabLayout;
+        if (getView() == null && tabLayout.getSelectedTabPosition() == 5) {
+            loadPageDataProcessing();
+            if (getActivity().getApplicationContext().getSharedPreferences("firstnotice", MODE_PRIVATE).getBoolean("questionnaire", true) == true){
+
+                InfoFirstDialog dia = new InfoFirstDialog();
+                dia.show(getFragmentManager(), "dialog");
+
+                getActivity().getApplicationContext().getSharedPreferences("firstnotice", MODE_PRIVATE).edit().putBoolean("questionnaire", false).apply();
+
+            }
+        }
+
         return helpView;
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+
+        TabLayout tabLayout = (TabLayout) AllPages.tabLayout;
+        if (getView() != null && tabLayout.getSelectedTabPosition() == 5) {
+            loadPageDataProcessing();
+            if (getActivity().getApplicationContext().getSharedPreferences("firstnotice", MODE_PRIVATE).getBoolean("questionnaire", true) == true){
+
+                InfoFirstDialog dia = new InfoFirstDialog();
+                dia.show(getFragmentManager(), "dialog");
+
+                getActivity().getApplicationContext().getSharedPreferences("firstnotice", MODE_PRIVATE).edit().putBoolean("questionnaire", false).apply();
+
+            }
+        }
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        TabLayout tabLayout = (TabLayout) AllPages.tabLayout;
+        if (tabLayout.getSelectedTabPosition() == 5){
+            loadPageDataProcessing();
+        }
     }
 
     private boolean checkIfAllowsQuestionnaire(){
@@ -61,21 +109,35 @@ public class Update extends Fragment {
 
         int shouldBe = c1.get(Calendar.DAY_OF_YEAR) - c2.get(Calendar.DAY_OF_YEAR);
 
+        //adding a new day only after the ques limit - e.g. after 4 am
+        Calendar calendarr = Calendar.getInstance();
+        SimpleDateFormat formatterr = new SimpleDateFormat("HH:mm");
+        String currentHourr = formatterr.format(calendarr.getTime());
+
+        String quesLimit = getActivity().getApplicationContext().getSharedPreferences("notif", MODE_PRIVATE).getString("limit", "0:0");
+        String[] lastQuestNotifComponents = quesLimit.split(":");
+
+        String[] currentHourComponents = currentHourr.split(":");
+        if (Integer.valueOf(currentHourComponents[0]) < Integer.valueOf(lastQuestNotifComponents[0])) {
+            shouldBe--;
+        }
 
         String experiments = getActivity().getApplicationContext().getSharedPreferences("experiments", MODE_PRIVATE).getString("experiments", "");
 
         String[] experimentsArray = experiments.split("gcm");
 
-        System.out.println(experimentsArray.length);
-        if (getActivity().getApplicationContext().getSharedPreferences("experiments", MODE_PRIVATE).getString("experiments", "").equals("No experiment for the initial day.") && shouldBe == 0) {
-            Toast.makeText(getActivity().getApplicationContext(), "You are not allowed to fill in today's questionnaire. Choose an experiment if you haven't.", Toast.LENGTH_LONG).show();
-            return false;
-        } else if (currentHour.compareTo("18:59") < 0) {
-            Toast.makeText(getActivity().getApplicationContext(), "You are not allowed to fill in today's questionnaire yet. Come back at 19:00.", Toast.LENGTH_LONG).show();
 
+        if (experiments.equals("No experiment for the initial day.") && shouldBe == 0) {
+            System.out.println("gggG");
+            Toast.makeText(getActivity().getApplicationContext(), "I'm sorry, you cannot fill in today's questionnaire as this is the first day. Please choose an experiment if you haven't yet.", Toast.LENGTH_LONG).show();
             return false;
         } else if (experimentsArray.length - shouldBe >= 1) {
-            Toast.makeText(getActivity().getApplicationContext(), "You are not allowed to fill in today's questionnaire. Come back tomorrow.", Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity().getApplicationContext(), "I'm sorry, you cannot fill in today's questionnaire. Come back tomorrow.", Toast.LENGTH_LONG).show();
+            System.out.println("gggGefw4f");
+            return false;
+        } else if ((Integer.valueOf(currentHourComponents[0]) < 19 && Integer.valueOf(currentHourComponents[0]) > Integer.valueOf(lastQuestNotifComponents[0])) || (Integer.valueOf(currentHourComponents[0]) == Integer.valueOf(lastQuestNotifComponents[0]) && Integer.valueOf(currentHourComponents[1]) > Integer.valueOf(lastQuestNotifComponents[1]))) {
+            Toast.makeText(getActivity().getApplicationContext(), "I'm sorry, you cannot fill in today's questionnaire yet. Come back at 19:00.", Toast.LENGTH_LONG).show();
+            System.out.println("gggGwww");
             return false;
         } else {
             return true;
@@ -83,54 +145,64 @@ public class Update extends Fragment {
 
     }
 
-    private boolean isViewShown = false;
-
-    @Override
-    public void setUserVisibleHint(boolean isVisibleToUser) {
-        super.setUserVisibleHint(isVisibleToUser);
-        if (getView() != null) {
-            isViewShown = true;
-            loadPageDataProcessing();
-        } else {
-            isViewShown = false;
-        }
-    }
 
     public void loadPageDataProcessing(){
-        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-
         String experiment = getActivity().getApplicationContext().getSharedPreferences("name", MODE_PRIVATE).getString("experiment", "nothing");
 
+        System.out.println(checkIfAllowsQuestionnaire());
         if (checkIfAllowsQuestionnaire()) {
 
             if (experiment.equals(getString(R.string.firstLight))) {
-                fragmentTransaction.replace(R.id.content_frame, new Update_Light_Bright());
+                startActivity(new Intent(getActivity(), Update_Light_Bright.class));
             } else if (experiment.equals(getString(R.string.secondLight))) {
-                fragmentTransaction.replace(R.id.content_frame, new Update_Light_Glasses());
+                startActivity(new Intent(getActivity(), Update_Light_Glasses.class));
             } else if (experiment.equals(getString(R.string.thirdLight))) {
-                fragmentTransaction.replace(R.id.content_frame, new Update_Light_TurnOffBright());
+                startActivity(new Intent(getActivity(), Update_Light_TurnOffBright.class));
             } else if (experiment.equals(getString(R.string.firstCaffeine))) {
-                fragmentTransaction.replace(R.id.content_frame, new Update_Caffeine_6hours());
+                startActivity(new Intent(getActivity(), Update_Caffeine_6hours.class));
             } else if (experiment.equals(getString(R.string.secondCaffeine))) {
-                fragmentTransaction.replace(R.id.content_frame, new Update_Caffeine_limit());
+                startActivity(new Intent(getActivity(), Update_Caffeine_limit.class));
             } else if (experiment.equals(getString(R.string.thirdCaffeine))) {
-                fragmentTransaction.replace(R.id.content_frame, new Update_Caffeine_Empty());
+                startActivity(new Intent(getActivity(), Update_Caffeine_Empty.class));
             } else if (experiment.equals(getString(R.string.firstSchedule))) {
-                fragmentTransaction.replace(R.id.content_frame, new Update_Schedule_SameTime());
+                startActivity(new Intent(getActivity(), Update_Schedule_SameTime.class));
             } else if (experiment.equals(getString(R.string.secondSchedule))) {
-                fragmentTransaction.replace(R.id.content_frame, new Update_Schedule_7hours());
+                startActivity(new Intent(getActivity(), Update_Schedule_7hours.class));
             } else if (experiment.equals(getString(R.string.thirdSchedule))) {
-                fragmentTransaction.replace(R.id.content_frame, new Update_Schedule_Relax());
+                startActivity(new Intent(getActivity(), Update_Schedule_Relax.class));
             } else if (experiment.equals(getString(R.string.fourthSchedule))) {
-                fragmentTransaction.replace(R.id.content_frame, new Update_Schedule_Midnight());
+                startActivity(new Intent(getActivity(), Update_Schedule_Midnight.class));
             } else {
-                fragmentTransaction.replace(R.id.content_frame, new Update());
+                startActivity(new Intent(getActivity(), Update.class));
             }
 
-            fragmentTransaction.addToBackStack(null);
-            fragmentTransaction.commit();
-            getFragmentManager().executePendingTransactions();
         }
 
     }
+
+    public static class InfoFirstDialog extends DialogFragment {
+
+        private String message;
+        private int hour, minute;
+
+
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+            // Use the Builder class for convenient dialog construction
+            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+
+            builder.setMessage("This is the page you will have to access after 7PM everyday in order to fill in the daily questionnaire. If you try to complete it at the different time, you will get a notice saying that is not possible. The limit for completing the questionnaire (the default is 12AM) can be extended in the Settings. First, you will be asked a few (3-4) questions about your experiment, and afterwards the questionnaire (with 7 questions) will begin. You will not be able to go back after starting the questionnaire so please make sure you have 1-2 minutes for filling this in before closing the app.");
+
+            builder.setPositiveButton("Okay", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    dialog.dismiss();
+                }
+            });
+
+            return builder.create();
+        }
+
+
+    }
+
 }

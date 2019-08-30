@@ -7,9 +7,12 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,16 +32,33 @@ import java.util.Iterator;
 import java.util.List;
 import android.support.v4.app.DialogFragment;
 
+import static android.content.Context.MODE_PRIVATE;
+import static android.text.Layout.JUSTIFICATION_MODE_INTER_WORD;
+
 public class Data extends Fragment implements AdapterView.OnItemSelectedListener {
     private UserDatabase userDatabase;
     private static final String DATABASE_NAME = "user_db";
     private Spinner spinner;
     View dataView;
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         dataView = inflater.inflate(R.layout.act_data, container, false);
+
+
+        TabLayout tabLayout = (TabLayout) AllPages.tabLayout;
+        if (getView() == null && tabLayout.getSelectedTabPosition() == 2) {
+            if (getActivity().getApplicationContext().getSharedPreferences("firstnotice", MODE_PRIVATE).getBoolean("data", true) == true){
+
+                InfoFirstDialog dia = new InfoFirstDialog();
+                dia.show(getFragmentManager(), "dialog");
+
+                getActivity().getApplicationContext().getSharedPreferences("firstnotice", MODE_PRIVATE).edit().putBoolean("data", false).apply();
+
+            }
+        }
 
         Button info1 = (Button) dataView.findViewById(R.id.infoRatings);
         info1.setOnClickListener(new View.OnClickListener() {
@@ -70,24 +90,13 @@ public class Data extends Fragment implements AdapterView.OnItemSelectedListener
             }
         });
 
-        return dataView;
-    }
+        TextView cons8 = dataView.findViewById(R.id.dataIntro);
+        cons8.setJustificationMode(JUSTIFICATION_MODE_INTER_WORD);
 
+        updateAllTexts();
 
-    private boolean isViewShown = false;
+        //from load function
 
-    @Override
-    public void setUserVisibleHint(boolean isVisibleToUser) {
-        super.setUserVisibleHint(isVisibleToUser);
-        if (getView() != null) {
-            isViewShown = true;
-            loadPageDataProcessing();
-        } else {
-            isViewShown = false;
-        }
-    }
-
-    public void loadPageDataProcessing() {
 
 
         new Thread(new Runnable() {
@@ -157,7 +166,6 @@ public class Data extends Fragment implements AdapterView.OnItemSelectedListener
 
                     int sizeOfSecondGraph = 0;
 
-                    System.out.println("nr" + numberOfGoodMoods.size());
                     int beginning;
                     if ((numberOfGoodMoods.size() -1) % 5 == 0){
                         beginning = numberOfGoodMoods.size() - 5;
@@ -243,7 +251,7 @@ public class Data extends Fragment implements AdapterView.OnItemSelectedListener
 
         }).start();
 
-        updateAllTexts();
+
 
         spinner = (Spinner) dataView.findViewById(R.id.spinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity().getApplicationContext(),
@@ -253,9 +261,8 @@ public class Data extends Fragment implements AdapterView.OnItemSelectedListener
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
 
+        return dataView;
     }
-
-
 
     private int sizeOfMoods(ArrayList<Double> integers) {
 
@@ -269,6 +276,25 @@ public class Data extends Fragment implements AdapterView.OnItemSelectedListener
         return size;
     }
 
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+
+        TabLayout tabLayout = (TabLayout) AllPages.tabLayout;
+        if (getView() != null && tabLayout.getSelectedTabPosition() == 2) {
+            if (getActivity().getApplicationContext().getSharedPreferences("firstnotice", MODE_PRIVATE).getBoolean("data", true) == true){
+
+                InfoFirstDialog dia = new InfoFirstDialog();
+                dia.show(getFragmentManager(), "dialog");
+
+                getActivity().getApplicationContext().getSharedPreferences("firstnotice", MODE_PRIVATE).edit().putBoolean("data", false).apply();
+
+            }
+        }
+
+
+
+    }
     private void updateAllTexts() {
         TextView editWorking = (TextView) dataView.findViewById(R.id.workEdit);
         String result = "Nothing to work on";
@@ -460,7 +486,7 @@ public class Data extends Fragment implements AdapterView.OnItemSelectedListener
         @Override
         public Dialog onCreateDialog(Bundle savedInstanceState) {
             AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-            builder.setMessage("For this graph you are able to choose which attribute's progress you want to view during the time you used SleepBetter. \\\"Lower is better\\\" means a lower value is desirable, as it shows a better, improved state.");
+            builder.setMessage("For this graph you are able to choose which attribute's progress you want to view during the time you used SleepBetter. \"Lower is better\" means a lower value is desirable, as it shows a better, improved state.");
             builder.setNegativeButton("OK", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
                     dialog.dismiss();
@@ -469,6 +495,32 @@ public class Data extends Fragment implements AdapterView.OnItemSelectedListener
             return builder.create();
         }
     }
+
+    public static class InfoFirstDialog extends DialogFragment {
+
+        private String message;
+        private int hour, minute;
+
+
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+            // Use the Builder class for convenient dialog construction
+            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+
+            builder.setMessage("In this section you will be able to look at the data gathered from filling in the daily questionnaire. You can look at your last day's status (or last completed questionnaire).You can also see the attributes/points rated in the daily questionnaire that could be improved in the future (by following the guidelines in the app). Moreover, you can see 3 graphs with your progress in time, based on your overall mood (an average of all your answers to the questionnaire) and other attributes. \"Lower is better\" means that a lower number shows a better/healthier state for you. For example, taking 0-15 minutes to fall asleep once you get into bed (the first option in question 1) would be regarded as \"1\". If at some point, you didn't complete the daily questionnaire, the experiment goes on, but some of the values from this page will show \"-1\" for the day.");
+
+            builder.setPositiveButton("Okay", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    dialog.dismiss();
+                }
+            });
+
+            return builder.create();
+        }
+
+
+    }
+
 
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {

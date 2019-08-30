@@ -1,13 +1,24 @@
 package com.uos.admin.sleepbetter;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.arch.persistence.room.Room;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -24,6 +35,7 @@ import java.util.Date;
 import java.util.List;
 
 import static android.content.Context.MODE_PRIVATE;
+import static android.text.Layout.JUSTIFICATION_MODE_INTER_WORD;
 
 public class GoalDiary extends Fragment {
 
@@ -32,10 +44,26 @@ public class GoalDiary extends Fragment {
     private UserDatabase userDatabase;
     private String note;
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         goalDiaryView = inflater.inflate(R.layout.act_diary, container, false);
+
+        TabLayout tabLayout = (TabLayout) AllPages.tabLayout;
+        if (getView() == null && tabLayout.getSelectedTabPosition() == 3) {
+
+            if (getActivity().getApplicationContext().getSharedPreferences("firstnotice", MODE_PRIVATE).getBoolean("diary", true)){
+
+                InfoFirstDialog dia = new InfoFirstDialog();
+                dia.show(getFragmentManager(), "dialog");
+
+                getActivity().getApplicationContext().getSharedPreferences("firstnotice", MODE_PRIVATE).edit().putBoolean("diary", false).apply();
+
+            }
+        }
+
+
 
         Button button = (Button) goalDiaryView.findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
@@ -46,28 +74,21 @@ public class GoalDiary extends Fragment {
                 note = noted.getText().toString();
                 if (!note.equals("")) {
                     updateDiary(note);
+
+                    InputMethodManager inputManager = (InputMethodManager)
+                            getActivity().getApplicationContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+
+                    inputManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(),
+                            InputMethodManager.HIDE_NOT_ALWAYS);
+
+                    noted.setText("");
                 }
             }
 
         });
 
-        return goalDiaryView;
-    }
-
-    private boolean isViewShown = false;
-
-    @Override
-    public void setUserVisibleHint(boolean isVisibleToUser) {
-        super.setUserVisibleHint(isVisibleToUser);
-        if (getView() != null) {
-            isViewShown = true;
-            loadPageDataProcessing();
-        } else {
-            isViewShown = false;
-        }
-    }
-
-    public void loadPageDataProcessing() {
+        TextView cons8 = goalDiaryView.findViewById(R.id.pleaseInput);
+        cons8.setJustificationMode(JUSTIFICATION_MODE_INTER_WORD);
 
         new Thread(new Runnable() {
             @Override
@@ -106,7 +127,31 @@ public class GoalDiary extends Fragment {
 
             }
         }).start();
+
+        return goalDiaryView;
     }
+
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+
+        TabLayout tabLayout = (TabLayout) AllPages.tabLayout;
+        if (getView() != null && tabLayout.getSelectedTabPosition() == 3) {
+
+            if (getActivity().getApplicationContext().getSharedPreferences("firstnotice", MODE_PRIVATE).getBoolean("diary", true)){
+
+                InfoFirstDialog dia = new InfoFirstDialog();
+                dia.show(getFragmentManager(), "dialog");
+
+                getActivity().getApplicationContext().getSharedPreferences("firstnotice", MODE_PRIVATE).edit().putBoolean("diary", false).apply();
+
+            }
+        }
+
+
+    }
+
     public void updateDiary(String notee) {
 
         Date c = Calendar.getInstance().getTime();
@@ -186,4 +231,30 @@ public class GoalDiary extends Fragment {
         }).start();
 
     }
+
+    public static class InfoFirstDialog extends DialogFragment {
+
+        private String message;
+        private int hour, minute;
+
+
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+            // Use the Builder class for convenient dialog construction
+            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+
+            builder.setMessage("This section is where you can save any notes, insights, comments or ideas about your experience - think of it as a notebook that would help you record any comments. Also, you will be able to see previous comments from the current day only. The old ones could only be seen in the Calendar section.");
+
+            builder.setPositiveButton("Okay", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    dialog.dismiss();
+                }
+            });
+
+            return builder.create();
+        }
+
+
+    }
+
 }

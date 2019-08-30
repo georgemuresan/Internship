@@ -1,10 +1,16 @@
 package com.uos.admin.sleepbetter;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.FragmentTransaction;
 import android.arch.persistence.room.Room;
+import android.content.DialogInterface;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,33 +30,57 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 
 import static android.content.Context.MODE_PRIVATE;
+import static android.text.Layout.JUSTIFICATION_MODE_INTER_WORD;
 
 public class CalendarPage extends Fragment {
     public GregorianCalendar cal_month, cal_month_copy;
     private HwAdapter hwAdapter;
     private TextView tv_month;
     View helpView;
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         helpView = inflater.inflate(R.layout.act_calendar, container, false);
 
+        TabLayout tabLayout = (TabLayout) AllPages.tabLayout;
+        if (getView() == null && tabLayout.getSelectedTabPosition() == 4) {
+            loadPageDataProcessing();
+            if (getActivity().getApplicationContext().getSharedPreferences("firstnotice", MODE_PRIVATE).getBoolean("calendar", true) == true){
+
+                InfoFirstDialog dia = new InfoFirstDialog();
+                dia.show(getFragmentManager(), "dialog");
+
+                getActivity().getApplicationContext().getSharedPreferences("firstnotice", MODE_PRIVATE).edit().putBoolean("calendar", false).apply();
+
+            }
+        }
+        TextView cons8 = helpView.findViewById(R.id.factorsIntro);
+        cons8.setJustificationMode(JUSTIFICATION_MODE_INTER_WORD);
 
         return helpView;
     }
 
-    private boolean isViewShown = false;
-
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
-        if (getView() != null) {
-            isViewShown = true;
+
+        TabLayout tabLayout = (TabLayout) AllPages.tabLayout;
+        if (getView() != null && tabLayout.getSelectedTabPosition() == 4) {
             loadPageDataProcessing();
-        } else {
-            isViewShown = false;
+            if (getActivity().getApplicationContext().getSharedPreferences("firstnotice", MODE_PRIVATE).getBoolean("calendar", true) == true){
+
+                InfoFirstDialog dia = new InfoFirstDialog();
+                dia.show(getFragmentManager(), "dialog");
+
+                getActivity().getApplicationContext().getSharedPreferences("firstnotice", MODE_PRIVATE).edit().putBoolean("calendar", false).apply();
+
+            }
         }
+
+
     }
+
 
     public void loadPageDataProcessing() {
 
@@ -79,6 +109,20 @@ public class CalendarPage extends Fragment {
         c2.setTime(date2);
 
         int shouldBe = c1.get(Calendar.DAY_OF_YEAR) - c2.get(Calendar.DAY_OF_YEAR);
+
+//adding a new day only after the ques limit - e.g. after 4 am
+        Calendar calendar1 = Calendar.getInstance();
+        SimpleDateFormat formatter1 = new SimpleDateFormat("HH:mm");
+        String currentHour = formatter1.format(calendar1.getTime());
+
+        String quesLimit = getActivity().getApplicationContext().getSharedPreferences("notif", MODE_PRIVATE).getString("limit", "0:0");
+        String[] lastQuestNotifComponents = quesLimit.split(":");
+
+        String[] currentHourComponents = currentHour.split(":");
+
+        if (Integer.valueOf(currentHourComponents[0]) < Integer.valueOf(lastQuestNotifComponents[0])) {
+            shouldBe--;
+        }
 
 
         HomeCollection.date_collection_arr = new ArrayList<HomeCollection>();
@@ -176,6 +220,11 @@ public class CalendarPage extends Fragment {
     public void onResume() {
         super.onResume();
 
+        TabLayout tabLayout = (TabLayout) AllPages.tabLayout;
+        if (tabLayout.getSelectedTabPosition() == 4){
+            loadPageDataProcessing();
+        }
+
         Date c = Calendar.getInstance().getTime();
         SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
         final String currentDate = df.format(c);
@@ -219,6 +268,23 @@ public class CalendarPage extends Fragment {
         String dayForLoop = startingDate;
         Calendar cal = Calendar.getInstance();
 
+        boolean afterQuesLimit = false;
+
+        Calendar calendar1 = Calendar.getInstance();
+        SimpleDateFormat formatter1 = new SimpleDateFormat("HH:mm");
+        String currentHour = formatter1.format(calendar1.getTime());
+
+        String quesLimit = getActivity().getApplicationContext().getSharedPreferences("notif", MODE_PRIVATE).getString("limit", "0:0");
+        String[] lastQuestNotifComponents = quesLimit.split(":");
+
+        String[] currentHourComponents = currentHour.split(":");
+
+
+        afterQuesLimit = (Integer.valueOf(currentHourComponents[0]) < 19 && Integer.valueOf(currentHourComponents[0]) > Integer.valueOf(lastQuestNotifComponents[0])) || (Integer.valueOf(currentHourComponents[0]) == Integer.valueOf(lastQuestNotifComponents[0]) && Integer.valueOf(currentHourComponents[1]) > Integer.valueOf(lastQuestNotifComponents[1]));
+
+
+
+
         for (int i = 0; i <= shouldBe - 1; i++) {
             Date d1 = null;
             try {
@@ -230,7 +296,12 @@ public class CalendarPage extends Fragment {
 
             String dateToAdd = changer.format(d1);
 
-            HomeCollection.date_collection_arr.add(new HomeCollection(dateToAdd, experimentsArray[i], moods[i], diaries[i]));
+            if (!(i == shouldBe - 1)) {
+                HomeCollection.date_collection_arr.add(new HomeCollection(dateToAdd, experimentsArray[i], moods[i], diaries[i]));
+            }
+            if (i == shouldBe - 1 && afterQuesLimit) {
+                HomeCollection.date_collection_arr.add(new HomeCollection(dateToAdd, experimentsArray[i], moods[i], diaries[i]));
+            }
 
 
             try {
@@ -316,6 +387,31 @@ public class CalendarPage extends Fragment {
         hwAdapter.refreshDays();
         hwAdapter.notifyDataSetChanged();
         tv_month.setText(android.text.format.DateFormat.format("MMMM yyyy", cal_month));
+    }
+
+    public static class InfoFirstDialog extends DialogFragment {
+
+        private String message;
+        private int hour, minute;
+
+
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+            // Use the Builder class for convenient dialog construction
+            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+
+            builder.setMessage("This section would present your data classified by days. You could only see the progress from previous days - they will be highlighted on the calendar. Data will show you the experiment you had for that day, the comments you put into the Goal Diary, and how you felt compared to the previous day.");
+
+            builder.setPositiveButton("Okay", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    dialog.dismiss();
+                }
+            });
+
+            return builder.create();
+        }
+
+
     }
 
 
