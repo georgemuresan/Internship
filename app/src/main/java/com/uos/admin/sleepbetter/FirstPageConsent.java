@@ -79,6 +79,8 @@ public class FirstPageConsent extends AppCompatActivity {
             RadioButton radioButton = (RadioButton) findViewById(selectedId);
             String answer = (String) radioButton.getText();
 
+            System.out.println(answer);
+
             getSharedPreferences("consent", MODE_PRIVATE).edit().putString("consent", answer).apply();
 
             startActivity(intent);

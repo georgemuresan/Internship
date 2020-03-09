@@ -31,9 +31,6 @@ import java.util.Map;
 
 
 import static android.content.Context.MODE_PRIVATE;
-import static java.net.Proxy.Type.HTTP;
-import static org.apache.commons.lang3.CharEncoding.UTF_8;
-
 public class Menu extends Fragment {
 
     View mainPage;

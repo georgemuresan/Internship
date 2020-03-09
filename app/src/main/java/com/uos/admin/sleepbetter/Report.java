@@ -74,128 +74,112 @@ public class Report {
             impact_general += String.valueOf(uq.get(i).getImpactGeneral()) + ", ";
             mood += String.valueOf(uq.get(i).getMood()) + ", ";
         }
-        stats += "User ID: " + uq.get(0).getUsername() + "\n " +
-                "Date: " + date + "\n  " +
-                "How long: " + how_long + "\n  " +
-                "Awake: " + awake + "\n  " +
-                "Earlier: " + earlier + "\n " +
-                "Nights A Week: " + nightsAWeek + "\n " +
-                "Quality: " + quality + "\n  " +
-                "Impact mood: " + impact_mood + "\n " +
-                "Impact activities: " + impact_activities + "\n  " +
-                "Impact general: " + impact_general + "\n  " +
-                "Problem: " + problem + "\n  " +
-                "Mood: " + mood + "\n  " +
-                "Demographics: " + demographics + "\n  ";
+
+        String agreed = context.getSharedPreferences("consent", MODE_PRIVATE).getString("consent", "nothing");
+        String experiments = context.getSharedPreferences("experiments", MODE_PRIVATE).getString("experiments", "N/A");
 
 
-        String experimentsList = "";
+        String overall_better = "";
+        String exprimentProof = "";
 
         if (!isFirstTime) {
 
             List<UserExperiment> ue = database.daoAccess().fetchUserExperiments();
 
 
-            String date2 = "";
             String experiment2 = "";
-            String l1_1 = "";
-            String l1_2 = "";
-            String l1_3 = "";
-            String l2_1 = "";
-            String l2_2 = "";
-            String l3_1 = "";
-            String l3_2 = "";
-            String c1_1 = "";
-            String c1_2 = "";
-            String c2_1 = "";
-            String c2_2 = "";
-            String c2_3 = "";
-            String c3_1 = "";
-            String c3_2 = "";
-            String s1_1 = "";
-            String s1_2 = "";
-            String s2_1 = "";
-            String s2_2 = "";
-            String s3_1 = "";
-            String s3_2 = "";
-            String s4_1 = "";
-            String overall_better = "";
+
 
             for (int i = 0; i < ue.size(); i++) {
 
-                date2 += String.valueOf(ue.get(i).getDate()) + ", ";
-                experiment2 += String.valueOf(ue.get(i).getExperiment()) + ", ";
-                l1_1 += String.valueOf(ue.get(i).getLightOneSunlightExposure()) + ", ";
-                l1_2 += String.valueOf(ue.get(i).getLightOneHalfAnHour()) + ", ";
-                l1_3 += String.valueOf(ue.get(i).getLightOneCapturesSunlight()) + ", ";
-                l2_1 += String.valueOf(ue.get(i).getLightTwoApp()) + ", ";
-                l2_2 += String.valueOf(ue.get(i).getLightTwoGlasses()) + ", ";
-                l3_1 += String.valueOf(ue.get(i).getLightThreeBright()) + ", ";
-                l3_2 += String.valueOf(ue.get(i).getLightThreeTV()) + ", ";
-                c1_1 += String.valueOf(ue.get(i).getCaffeineOneWhenDrink()) + ", ";
-                c1_2 += String.valueOf(ue.get(i).getCaffeineOneWhenSleep()) + ", ";
-                c2_1 += String.valueOf(ue.get(i).getCaffeineTwoCups()) + ", ";
-                c2_2 += String.valueOf(ue.get(i).getCaffeineTwoCans()) + ", ";
-                c2_3 += String.valueOf(ue.get(i).getCaffeineTwoEnergy()) + ", ";
-                c3_1 += String.valueOf(ue.get(i).getCaffeineThreeDrink()) + ", ";
-                c3_2 += String.valueOf(ue.get(i).getCaffeineThreeEmpty()) + ", ";
-                s1_1 += String.valueOf(ue.get(i).getScheduleOneWhenSleep()) + ", ";
-                s1_2 += String.valueOf(ue.get(i).getScheduleOneWhenWake()) + ", ";
-                s2_1 += String.valueOf(ue.get(i).getScheduleTwoWhenSleep()) + ", ";
-                s2_2 += String.valueOf(ue.get(i).getScheduleTwoWhenWake()) + ", ";
-                s3_1 += String.valueOf(ue.get(i).getScheduleThreeRelaxed()) + ", ";
-                s3_2 += String.valueOf(ue.get(i).getScheduleThreeActivity()) + ", ";
-                s4_1 += String.valueOf(ue.get(i).getScheduleFourWhenSleep()) + ", ";
+                experiment2 = String.valueOf(ue.get(i).getExperiment());
+
+                if (experiment2.equals("L1")){
+                    exprimentProof += String.valueOf(ue.get(i).getLightOneSunlightExposure()) + "-";
+                    exprimentProof += String.valueOf(ue.get(i).getLightOneHalfAnHour()) + "-";
+                    exprimentProof += String.valueOf(ue.get(i).getLightOneCapturesSunlight()) + ", ";
+                } else  if (experiment2.equals("L2")){
+                    exprimentProof += String.valueOf(ue.get(i).getLightTwoApp()) + "-";
+                    exprimentProof += String.valueOf(ue.get(i).getLightTwoGlasses()) + ", ";
+                } else if (experiment2.equals("L3")){
+                    exprimentProof += String.valueOf(ue.get(i).getLightThreeBright()) + "-";
+                    exprimentProof += String.valueOf(ue.get(i).getLightThreeTV()) + ", ";
+                } else if (experiment2.equals("C1")){
+                    exprimentProof += String.valueOf(ue.get(i).getCaffeineOneWhenDrink()) + "-";
+                    exprimentProof += String.valueOf(ue.get(i).getCaffeineOneWhenSleep()) + ", ";
+                } else if (experiment2.equals("C2")){
+                    exprimentProof += String.valueOf(ue.get(i).getCaffeineTwoCups()) + "-";
+                    exprimentProof += String.valueOf(ue.get(i).getCaffeineTwoCans()) + "-";
+                    exprimentProof += String.valueOf(ue.get(i).getCaffeineTwoEnergy()) + ", ";
+                } else if (experiment2.equals("C3")){
+                    exprimentProof += String.valueOf(ue.get(i).getCaffeineThreeDrink()) + "-";
+                    exprimentProof += String.valueOf(ue.get(i).getCaffeineThreeEmpty()) + ", ";
+                } else if (experiment2.equals("S1")){
+                    exprimentProof += String.valueOf(ue.get(i).getScheduleOneWhenSleep()) + "-";
+                    exprimentProof += String.valueOf(ue.get(i).getScheduleOneWhenWake()) + ", ";
+                } else if (experiment2.equals("S2")){
+                    exprimentProof += String.valueOf(ue.get(i).getScheduleTwoWhenSleep()) + "-";
+                    exprimentProof += String.valueOf(ue.get(i).getScheduleTwoWhenWake()) + ", ";
+                } else if (experiment2.equals("S3")){
+                    exprimentProof += String.valueOf(ue.get(i).getScheduleThreeRelaxed()) + "-";
+                    exprimentProof += String.valueOf(ue.get(i).getScheduleThreeActivity()) + ", ";
+                } else if (experiment2.equals("S4")){
+                    exprimentProof += String.valueOf(ue.get(i).getScheduleFourWhenSleep()) + ", ";
+                }
+
                 overall_better += String.valueOf(ue.get(i).getOverallBetter()) + ", ";
             }
-
-            experimentsList += "Username: " + uq.get(0).getUsername() + "\n " +
-                    "Date: " + date2 + "\n  " +
-                    "Experiment: " + experiment2 + "\n  " +
-                    "L1 sunlight exposure: " + l1_1 + "\n  " +
-                    "L1 half an hour: " + l1_2 + "\n  " +
-                    "L1 captures sunlight: " + l1_3 + "\n  " +
-                    "L2 app: " + l2_1 + "\n  " +
-                    "L2 glasses: " + l2_2 + "\n  " +
-                    "L3 bright: " + l3_1 + "\n  " +
-                    "L3 TV: " + l3_2 + "\n  " +
-                    "C1 when drink: " + c1_1 + "\n  " +
-                    "C1 when sleep: " + c1_2 + "\n  " +
-                    "C2 cups: " + c2_1 + "\n  " +
-                    "C2 cans: " + c2_2 + "\n  " +
-                    "C2 energy: " + c2_3 + "\n  " +
-                    "C3 drink: " + c3_1 + "\n  " +
-                    "C3 empty: " + c3_2 + "\n  " +
-                    "S1 when sleep: " + s1_1 + "\n  " +
-                    "S1 when wake: " + s1_2 + "\n  " +
-                    "S2 when sleep: " + s2_1 + "\n  " +
-                    "S2 when wake: " + s2_2 + "\n  " +
-                    "S3 relaxed: " + s3_1 + "\n  " +
-                    "S3 activity: " + s3_2 + "\n  " +
-                    "S4 when sleep: " + s4_1 + "\n  " +
-                    "Overall better: " + overall_better + "\n  ";
 
 
         }
 
-        stats += experimentsList;
+        if (overall_better.equals("")){
+            exprimentProof = "N/A";
+            overall_better = "N/A";
+        }
+
+
+
+
         List<UserDiary> ud = database.daoAccess().fetchDiary();
 
 
         String date3 = "";
         String comment = "";
+
+        String diary = "";
+
         for (int i = 0; i < ud.size(); i++) {
-            date3 += String.valueOf(ud.get(i).getDate()) + ", ";
-            comment += String.valueOf(ud.get(i).getComment()) + ", ";
-
+            diary += String.valueOf(ud.get(i).getDate()) + "-";
+            diary += String.valueOf(ud.get(i).getComment()) + ", ";
         }
-        stats += "Date: " + date3 + "\n  " +
-                "Comment: " + comment;
 
-        /*
+        if (diary.equals("")){
+            diary = "N/A";
+        }
+
+        stats += "ANDROID - Participant ID: " + uq.get(0).getUsername() + "\n " +
+                "Demographics: " + demographics + "\n  " +
+                "Agreed on being contacted: " + agreed + "\n" +
+                "Experiment: " + experiments + "\n" +
+                "Experiment Proof: " + exprimentProof + "\n" +
+                "Feeling compared to yesterday: " + overall_better + "\n" +
+                "Fall asleep rate: " + how_long + "\n  " +
+                "How long awake rate: " + awake + "\n  " +
+                "Earlier wake up rate: " + earlier + "\n " +
+                "Nights a week rate: " + nightsAWeek + "\n " +
+                "Sleep quality rate: " + quality + "\n  " +
+                "Mood rate: " + impact_mood + "\n " +
+                "Activities rate: " + impact_activities + "\n  " +
+                "Life rate: " + impact_general + "\n  " +
+                "Problem rate: " + problem + "\n  " +
+                "Overall Mood: " + mood + "\n  " +
+                "Goal Diary: " + diary + "\n  ";
+
+
         // Instantiate the RequestQueue.
         final RequestQueue requestQueue = Volley.newRequestQueue(context);
-        String server_urlpost = "https://hooks.slack.com/services/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"; //Points to target which is obtained from IPV4 Address from IP Config
+        String server_urlpost = "https://hooks.slack.com/services/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"; //Points to target which is obtained from IPV4 Address from IP Config
 
         final String finalStats = stats;
         StringRequest stringRequestpost = new StringRequest(Request.Method.POST, server_urlpost,
@@ -242,7 +226,7 @@ public class Report {
 
         //Starts Request
         requestQueue.add(stringRequestpost);
-*/
+
     }
 
 }
